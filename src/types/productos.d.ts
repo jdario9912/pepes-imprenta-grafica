@@ -52,10 +52,9 @@ export interface Loma extends Producto {
   portabaner: enums.SiNo;
 }
 
-// falta hacer enum de colores
 export interface Plotter extends Producto {
   tamano: string;
-  color: number;
+  color: enums.PlotterColor;
   material: enums.PlotterMaterial;
   terminacion: enums.PlotterTerminacion;
 }

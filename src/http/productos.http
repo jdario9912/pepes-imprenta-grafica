@@ -1,5 +1,17 @@
 @baseUrl= http://localhost:3000/api/productos
 
 ###
-GET {{baseUrl}}/plotter?producto=plotter
+GET {{baseUrl}}
+
+###
+POST {{baseUrl}}/loma
+Content-Type: application/json
+
+{
+  "ubicacion_archivo": "compu 1",
+  "estado": "pendiente"
+}
+
+###
+GET {{baseUrl}}/loma/3
 

@@ -1,14 +1,10 @@
 const env = process.env;
 
-const environment = env.NODE_ENV;
-
-const productionEnv = "production";
-
-const host = environment === productionEnv ? env.MYSQL_HOST : env.MYSQL_HOST_DEV;
-const port = environment === productionEnv ? env.MYSQL_PORT : env.MYSQL_PORT_DEV;
-const user = environment === productionEnv ? env.MYSQL_USER : env.MYSQL_USER_DEV;
-const password = environment === productionEnv ? env.MYSQL_ROOT_PASSWORD : env.MYSQL_ROOT_PASSWORD_DEV;
-const database = environment === productionEnv ? env.MYSQL_DATABASE : env.MYSQL_DATABASE_DEV;
+const host = env.MYSQL_HOST;
+const port = env.MYSQL_PORT;
+const user = env.MYSQL_USER;
+const password = env.MYSQL_PASSWORD;
+const database = env.MYSQL_DATABASE;
 
 const mysqlConfig = {
   host,
@@ -21,4 +17,4 @@ const mysqlConfig = {
   queueLimit: 0,
 };
 
-export default mysqlConfig ;
+export default mysqlConfig;

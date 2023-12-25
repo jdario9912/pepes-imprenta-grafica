@@ -1,15 +1,17 @@
-version: "3"
+version: '3'
 
 services:
   mysql:
     image: mysql:oraclelinux8
     env_file:
-      - .env.local
+      - .env
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD_DEV}
-      MYSQL_PORT_DEV: ${MYSQL_PORT_DEV}
-    container_name: pepes-imprenta-grafica-db
-    # ports:
-    #   - ${MYSQL_PORT_DEV}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD_CONTAINER_DEV}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    container_name: ${MYSQL_CONTAINER_NAME_DEV}
+    ports:
+      - ${MYSQL_PORTS_CONTAINER_DEV}
     stdin_open: true
     tty: true

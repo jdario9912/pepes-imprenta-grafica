@@ -1,8 +1,8 @@
 import * as enums from "./enums";
 
 interface Producto {
-  id: string;
-  id_cliente: string;
+  id: number;
+  id_cliente: number;
   nro_orden: number;
   fecha_creacion: string;
   atendido_por: string;

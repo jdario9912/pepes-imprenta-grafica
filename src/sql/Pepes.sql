@@ -12,7 +12,7 @@ CREATE TABLE clientes (
   nombre VARCHAR(100) NOT NULL,
   telefono VARCHAR(20) NOT NULL,
   email VARCHAR(50) DEFAULT NULL,
-  observaciones VARCHAR(255),
+  observaciones VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY (id)
 );
 

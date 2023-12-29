@@ -1,0 +1,22 @@
+@baseUrl= http://localhost:3000/api/clientes
+
+### obtener todos los clientes
+GET {{baseUrl}}
+
+### crear un cliente
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "nombre": "Luigi Bross",
+  "telefono": "3215-324513"
+}
+
+###
+GET {{baseUrl}}/4
+
+###
+PUT {{baseUrl}}/4
+
+###
+DELETE {{baseUrl}}/4

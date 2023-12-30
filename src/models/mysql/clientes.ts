@@ -2,7 +2,7 @@ import { pool } from "@/app/db/mysql";
 import { ResultSetHeader } from "mysql2/promise";
 
 export class ClientesModel {
-  static async crear(cliente: Cliente): Promise<ClienteCreado | Error> {
+  static async crear(cliente: Cliente): Promise<ClienteRegistrado | Error> {
     const { nombre, telefono, email, observaciones } = cliente;
 
     const [result] = await pool.query(
@@ -18,7 +18,10 @@ export class ClientesModel {
     return { ...cliente, id: respuesta.insertId };
   }
 
-  static async obtenerTodos() {}
+  static async obtenerTodos() {
+    const [clientes] = await pool.query("SELECT * FROM clientes");
+    return clientes;
+  }
 
-  static async obtenerUno() {}
+  static async obtenerUno({ id }: any) {}
 }

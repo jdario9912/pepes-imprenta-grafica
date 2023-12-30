@@ -5,6 +5,6 @@ interface Cliente {
   observaciones?: string;
 }
 
-interface ClienteCreado extends Cliente {
+interface ClienteRegistrado extends Cliente {
   id: number;
 }

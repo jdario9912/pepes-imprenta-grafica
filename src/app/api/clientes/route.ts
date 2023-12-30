@@ -4,7 +4,12 @@ import { validarCliente } from "@/schemas/cliente";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async () => {
-  return NextResponse.json("obteniendo clientes");
+  try {
+    const clientes = await ClientesModel.obtenerTodos();
+    return NextResponse.json(clientes);
+  } catch (error) {
+    return errorResponse(error);
+  }
 };
 
 export const POST = async (req: NextRequest) => {
@@ -17,8 +22,6 @@ export const POST = async (req: NextRequest) => {
 
     return NextResponse.json(clienteCreado);
   } catch (error) {
-    console.log(error);
-    
-    return errorResponse(error)
+    return errorResponse(error);
   }
 };

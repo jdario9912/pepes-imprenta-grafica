@@ -3,7 +3,7 @@ import { z } from "zod";
 const ClienteSchema = z.object({
   nombre: z.string(),
   telefono: z.string(),
-  email: z.string().email().nullish().default(""),
+  email: z.string().email().optional(),
   observaciones: z.string().nullish().default(""),
 });
 

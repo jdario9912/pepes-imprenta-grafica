@@ -1,5 +1,6 @@
 import { pool } from "@/app/db/mysql";
-import { ResultSetHeader } from "mysql2/promise";
+import { IdParam } from "@/types/params";
+import { FieldPacket, ResultSetHeader } from "mysql2/promise";
 
 export class ClientesModel {
   static async crear(cliente: Cliente): Promise<ClienteRegistrado | Error> {
@@ -23,5 +24,29 @@ export class ClientesModel {
     return clientes;
   }
 
-  static async obtenerUno({ id }: any) {}
+  static async obtenerUno({ id }: IdParam): Promise<ClienteRegistrado | null> {
+    const [cliente]: any[] = await pool.query(
+      "SELECT * FROM clientes WHERE id = ?",
+      [id]
+    );
+    return cliente ? (cliente[0] as ClienteRegistrado) : null;
+  }
+
+  static async eliminar({ id }: IdParam): Promise<boolean> {
+    const [result]: [ResultSetHeader, FieldPacket[]] = await pool.query(
+      "DELETE FROM clientes WHERE id = ?",
+      [id]
+    );
+
+    return result.affectedRows > 0;
+  }
+
+  static async actualizar(id: IdParam, input: Cliente): Promise<boolean> {
+    const [result]: [ResultSetHeader, FieldPacket[]] = await pool.query(
+      "UPDATE clientes SET ? WHERE ?",
+      [input, id]
+    );
+
+    return result.affectedRows > 0;
+  }
 }

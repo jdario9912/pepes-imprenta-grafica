@@ -108,8 +108,3 @@ export interface Volantes extends Producto<Omit, "ubicacion_archivo"> {
   impresion: enums.VolantesImpresion;
   ubicacion_diseno: string;
 }
-
-export interface ParamsRequest {
-  producto: enums.Productos;
-  id: string
-}

@@ -13,10 +13,16 @@ Content-Type: application/json
 }
 
 ###
-GET {{baseUrl}}/4
+GET {{baseUrl}}/59
 
 ###
-PUT {{baseUrl}}/4
+PATCH {{baseUrl}}/59
+Content-Type: application/json
+
+{
+  "nombre": "Pollo Vignolo",
+  "email": "pollo@email.com"
+}
 
 ###
-DELETE {{baseUrl}}/4
+DELETE {{baseUrl}}/52

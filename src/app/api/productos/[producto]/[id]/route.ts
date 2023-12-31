@@ -1,10 +1,10 @@
 import { Productos } from "@/types/enums";
-import { ParamsRequest } from "@/types/productos";
+import { IdProductoParam } from "@/types/params";
 import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 
-export const GET = async (req: NextApiRequest, { params }: any) => {
-  const { id, producto } = params as ParamsRequest;
+export const GET = async (_: NextApiRequest, { params }: any) => {
+  const { id, producto } = params as IdProductoParam;
 
   if (!Object.values(Productos).includes(producto))
     return NextResponse.json(

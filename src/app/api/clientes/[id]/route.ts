@@ -1,14 +1,52 @@
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import { cliente404Response, errorResponse } from "@/libs/responses";
+import { ClientesModel } from "@/models/mysql/clientes";
+import { validarClienteActualizar } from "@/schemas/cliente";
+import { IdParam } from "@/types/params";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async (req: NextApiRequest) => {
-  return NextResponse.json("obteniendo un cliente");
+export const GET = async (_: NextRequest, { params }: any) => {
+  try {
+    const { id } = params as IdParam;
+
+    const cliente = await ClientesModel.obtenerUno({ id });
+
+    if (!cliente) return cliente404Response();
+
+    return NextResponse.json(cliente);
+  } catch (error) {
+    return errorResponse(error);
+  }
 };
 
-export const PUT = async (req: NextApiRequest) => {
-  return NextResponse.json("actualizando un cliente");
+export const PATCH = async (req: NextRequest, { params }: any) => {
+  try {
+    const body = await req.json();
+    const id = params as IdParam;
+
+    const clienteValidado = validarClienteActualizar(body);
+
+    const actualizaCliente = await ClientesModel.actualizar(id, clienteValidado);
+
+    if(!actualizaCliente) return cliente404Response()
+
+    const clienteActualizado = await ClientesModel.obtenerUno(id);
+
+    return NextResponse.json(clienteActualizado);
+  } catch (error) {
+    return errorResponse(error);
+  }
 };
 
-export const DELETE = async (req: NextApiRequest) => {
-  return NextResponse.json("eliminando un cliente");
+export const DELETE = async (_: NextRequest, { params }: any) => {
+  try {
+    const { id } = params as IdParam;
+
+    const eliminado = await ClientesModel.eliminar({ id });
+
+    if (!eliminado) return cliente404Response();
+
+    return NextResponse.json(null);
+  } catch (error) {
+    return errorResponse(error);
+  }
 };

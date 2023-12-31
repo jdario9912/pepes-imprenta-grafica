@@ -8,3 +8,9 @@ export const errorResponse = (error: unknown) => {
   if (error instanceof Error)
     return NextResponse.json({ mensaje: "Algo salio mal." }, { status: 500 });
 };
+
+export const cliente404Response = () =>
+  NextResponse.json(
+    { mensaje: "El cliente no esta registrado." },
+    { status: 404 }
+  );

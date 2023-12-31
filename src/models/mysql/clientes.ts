@@ -1,4 +1,4 @@
-import { pool } from "@/app/db/mysql";
+import { pool } from "@/db/mysql";
 import { IdParam } from "@/types/params";
 import { FieldPacket, ResultSetHeader } from "mysql2/promise";
 

@@ -24,7 +24,7 @@ export class ClientesModel {
     return clientes;
   }
 
-  static async obtenerUno({ id }: IdParam): Promise<ClienteRegistrado | null> {
+  static async obtenerUno(id : IdParam): Promise<ClienteRegistrado | null> {
     const [cliente]: any[] = await pool.query(
       "SELECT * FROM clientes WHERE id = ?",
       [id]
@@ -32,7 +32,7 @@ export class ClientesModel {
     return cliente ? (cliente[0] as ClienteRegistrado) : null;
   }
 
-  static async eliminar({ id }: IdParam): Promise<boolean> {
+  static async eliminar(id : IdParam): Promise<boolean> {
     const [result]: [ResultSetHeader, FieldPacket[]] = await pool.query(
       "DELETE FROM clientes WHERE id = ?",
       [id]
@@ -43,7 +43,7 @@ export class ClientesModel {
 
   static async actualizar(id: IdParam, input: Cliente): Promise<boolean> {
     const [result]: [ResultSetHeader, FieldPacket[]] = await pool.query(
-      "UPDATE clientes SET ? WHERE ?",
+      "UPDATE clientes SET ? WHERE id = ?",
       [input, id]
     );
 

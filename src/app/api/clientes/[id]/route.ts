@@ -6,9 +6,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (_: NextRequest, { params }: any) => {
   try {
-    const { id } = params as IdParam;
+    const id = params as IdParam;
 
-    const cliente = await ClientesModel.obtenerUno({ id });
+    const cliente = await ClientesModel.obtenerUno(id);
 
     if (!cliente) return cliente404Response();
 
@@ -25,9 +25,12 @@ export const PATCH = async (req: NextRequest, { params }: any) => {
 
     const clienteValidado = validarClienteActualizar(body);
 
-    const actualizaCliente = await ClientesModel.actualizar(id, clienteValidado);
+    const actualizaCliente = await ClientesModel.actualizar(
+      id,
+      clienteValidado
+    );
 
-    if(!actualizaCliente) return cliente404Response()
+    if (!actualizaCliente) return cliente404Response();
 
     const clienteActualizado = await ClientesModel.obtenerUno(id);
 
@@ -39,9 +42,9 @@ export const PATCH = async (req: NextRequest, { params }: any) => {
 
 export const DELETE = async (_: NextRequest, { params }: any) => {
   try {
-    const { id } = params as IdParam;
+    const id = params as IdParam;
 
-    const eliminado = await ClientesModel.eliminar({ id });
+    const eliminado = await ClientesModel.eliminar(id);
 
     if (!eliminado) return cliente404Response();
 

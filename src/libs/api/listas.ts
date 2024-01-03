@@ -31,3 +31,6 @@ export const plotterMaterial: string[] = Object.values(enums.PlotterMaterial);
 export const plotterTerminacion: string[] = Object.values(
   enums.PlotterTerminacion
 );
+
+// sellos
+export const sellosTipo: string[] = Object.values(enums.SellosTipo)

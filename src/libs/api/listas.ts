@@ -24,3 +24,6 @@ export const impresionesFaz: string[] = Object.values(enums.ImpresionesFaz);
 // loma
 export const lomaMaterial: string[] = Object.values(enums.LomaMaterial);
 export const lomaOrientacion: string[] = Object.values(enums.LomaOrientacion);
+
+// plotter
+

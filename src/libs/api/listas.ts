@@ -54,3 +54,10 @@ export const tarjetasPapel: string[] = Object.values(enums.TarjetasPapel);
 export const tarjetasTerminacion: string[] = Object.values(
   enums.TarjetasTerminacion
 );
+
+// volantes
+export const volantesTipo: string[] = Object.values(enums.VolantesTipo);
+export const volantesImpresion: string[] = Object.values(
+  enums.VolantesImpresion
+);
+export const volantesTamano: string[] = Object.values(enums.VolantesTamano);

@@ -108,3 +108,5 @@ export interface Volantes extends Producto<Omit, "ubicacion_archivo"> {
   impresion: enums.VolantesImpresion;
   ubicacion_diseno: string;
 }
+
+// en las validaciones me falta agregar la ubicacion_archivo a los productos que lo tengan

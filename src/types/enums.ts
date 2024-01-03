@@ -61,9 +61,9 @@ export enum ImpresionesImpesion {
 }
 
 export enum ImpresionesTamanoPapel {
-  a4 = "a4",
-  a5 = "a5",
-  a3 = "a3",
+  a4 = "A4",
+  a5 = "A5",
+  a3 = "A3",
   oficio = "oficio",
   legal = "legal",
 }

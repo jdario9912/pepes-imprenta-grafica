@@ -1,10 +1,10 @@
 import { z } from "zod";
 import { ProductoSchema } from "../producto";
-import * as lista from "@/libs/api/listas";
+import { bonosTamano, bonosTipo } from "@/libs/api/listas";
 
 const BonosCrearSchema = ProductoSchema.extend({
-  tipo: z.string(z.enum(["", ...lista.bonosTipo])),
-  tamano: z.string(z.enum(["", ...lista.bonosTamano])),
+  tipo: z.string(z.enum(["", ...bonosTipo])),
+  tamano: z.string(z.enum(["", ...bonosTamano])),
   desde_numero: z.number().positive(),
   cantidad: z.number().positive(),
   numeradores: z.number().positive(),

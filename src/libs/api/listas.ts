@@ -47,3 +47,10 @@ export const talonariosColorDuplicado: string[] = Object.values(
 export const talonariosColorTriplicado: string[] = Object.values(
   enums.TalonariosColorTriplicado
 );
+
+// tarjetas
+export const tarjetasTipo: string[] = Object.values(enums.TarjetasTipo);
+export const tarjetasPapel: string[] = Object.values(enums.TarjetasPapel);
+export const tarjetasTerminacion: string[] = Object.values(
+  enums.TarjetasTerminacion
+);

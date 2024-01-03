@@ -19,7 +19,7 @@ export enum Estado {
   realizado = "realizado",
 }
 
-export enum Abono {
+export enum MetodoPago {
   efectivo = "efectivo",
   debito = "débito",
   transferencia = "tranferencia",

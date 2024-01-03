@@ -1,14 +1,14 @@
 import { z } from "zod";
 
-const ClienteSchema = z.object({
+const ClienteCrearSchema = z.object({
   nombre: z.string(),
   telefono: z.string(),
   email: z.string().email().optional(),
   observaciones: z.string().nullish().default(""),
 });
 
-export const validarCliente = (object: any): Cliente =>
-  ClienteSchema.parse(object) as Cliente;
+export const validarClienteCrear = (object: any): Cliente =>
+  ClienteCrearSchema.parse(object) as Cliente;
 
 const ClienteActualizarSchema = z.object({
   nombre: z.string().optional(),

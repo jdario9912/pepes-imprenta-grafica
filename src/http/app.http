@@ -1,7 +1,0 @@
-@baseUrl= http://localhost:3000
-
-### GET /api
-GET {{baseUrl}}/api
-
-### POST /api
-POST {{baseUrl}}/api

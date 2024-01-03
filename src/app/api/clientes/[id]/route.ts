@@ -1,4 +1,4 @@
-import { cliente404Response, errorResponse } from "@/libs/responses";
+import { cliente404Response, errorResponse } from "@/libs/api/responses";
 import { ClientesModel } from "@/models/mysql/clientes";
 import { validarClienteActualizar } from "@/schemas/cliente";
 import { IdParam } from "@/types/params";

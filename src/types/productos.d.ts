@@ -9,13 +9,13 @@ interface Producto {
   fecha_entrega: string;
   hora_entrega: string;
   muestra: enums.SiNo;
-  producto: enums.Productos; // actualmente esta propiedad se llama tipo_trabajo en la base de datos
+  producto: enums.Productos; // actualmente esta propiedad se llama "tipo_trabajo" en la base de datos
   ubicacion_archivo: string;
   observaciones: string;
   total: number;
   entrega: number;
   estado: enums.Estado;
-  abono: enums.Abono;
+  metodo_pago: enums.MetodoPago; // actualmente esto se llama "abono" en la base de datos
 }
 
 export interface Bonos extends Producto<Omit, "ubicacion_archivo"> {
@@ -32,14 +32,14 @@ export interface Disenos extends Producto {
 }
 
 export interface Impresiones extends Producto {
-  impresion: ImpresionesImpesion;
-  faz: ImpresionesFaz;
+  impresion: enums.ImpresionesImpesion;
+  faz: enums.ImpresionesFaz;
   tipo_papel: string;
-  tamano_papel: ImpresionesTamanoPapel;
-  orientacion: ImpresionesOrientacion;
-  anillado: SiNo;
-  abrochado: SiNo;
-  corte: SiNo;
+  tamano_papel: enums.ImpresionesTamanoPapel;
+  orientacion: enums.ImpresionesOrientacion;
+  anillado: enums.SiNo;
+  abrochado: enums.SiNo;
+  corte: enums.SiNo;
 }
 
 export interface Loma extends Producto {

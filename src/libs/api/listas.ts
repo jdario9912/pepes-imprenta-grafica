@@ -26,4 +26,8 @@ export const lomaMaterial: string[] = Object.values(enums.LomaMaterial);
 export const lomaOrientacion: string[] = Object.values(enums.LomaOrientacion);
 
 // plotter
-
+export const plotterColor: string[] = Object.values(enums.PlotterColor);
+export const plotterMaterial: string[] = Object.values(enums.PlotterMaterial);
+export const plotterTerminacion: string[] = Object.values(
+  enums.PlotterTerminacion
+);

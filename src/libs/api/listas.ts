@@ -33,4 +33,17 @@ export const plotterTerminacion: string[] = Object.values(
 );
 
 // sellos
-export const sellosTipo: string[] = Object.values(enums.SellosTipo)
+export const sellosTipo: string[] = Object.values(enums.SellosTipo);
+
+// talonarios
+export const talonariosTipo: string[] = Object.values(enums.TalonariosTipo);
+export const talonariosTamano: string[] = Object.values(enums.TalonariosTamano);
+export const talonariosPuntilladoEmblocado: string[] = Object.values(
+  enums.TalonariosPuntilladoEmblocado
+);
+export const talonariosColorDuplicado: string[] = Object.values(
+  enums.TalonariosColorDuplicado
+);
+export const talonariosColorTriplicado: string[] = Object.values(
+  enums.TalonariosColorTriplicado
+);

@@ -81,7 +81,7 @@ export interface Talonarios extends Producto<Omit, "ubicacion_archivo"> {
   tamano: enums.TalonariosTamano;
   modelo_anterior: enums.SiNo;
   tiene_logo: enums.SiNo;
-  ubicacion_logo: enums.SiNo;
+  ubicacion_logo: string;
   numero_desde: number;
   puntillado_emblocado: enums.TalonariosPuntilladoEmblocado;
   color_duplicado: enums.TalonariosColorDuplicado;

@@ -3,6 +3,7 @@ import { ProductoSchema } from "../producto";
 import { lomaMaterial, lomaOrientacion, siNo } from "@/libs/api/listas";
 
 const LomaCrearSchema = ProductoSchema.extend({
+  ubicacion_archivo: z.string(),
   material: z.string(z.enum(["", ...lomaMaterial])),
   orientacion: z.string(z.enum(["", ...lomaOrientacion])),
   bolsillo: z.string(z.enum(["", ...siNo])),

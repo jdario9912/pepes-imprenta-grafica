@@ -9,6 +9,7 @@ import {
 } from "@/libs/api/listas";
 
 const ImpresionesCrearSchema = ProductoSchema.extend({
+  ubicacion_archivo: z.string(),
   impresion: z.string(z.enum(["", ...impresionesImpesion])),
   faz: z.string(z.enum(["", ...impresionesFaz])),
   tipo_papel: z.string(),

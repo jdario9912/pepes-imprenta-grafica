@@ -2,6 +2,7 @@ import { z } from "zod";
 import { ProductoSchema } from "../producto";
 
 const RemerasCrearSchema = ProductoSchema.extend({
+  ubicacion_archivo: z.string(),
   talles: z.string(),
   color: z.string(),
   estampa_pecho: z.string(),

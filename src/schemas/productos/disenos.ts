@@ -2,6 +2,7 @@ import { z } from "zod";
 import { ProductoSchema } from "../producto";
 
 const DisenosCrearSchema = ProductoSchema.extend({
+  ubicacion_archivo: z.string(),
   detalles: z.string(),
 });
 

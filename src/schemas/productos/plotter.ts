@@ -7,6 +7,7 @@ import {
 } from "@/libs/api/listas";
 
 const PlotterCrearSchema = ProductoSchema.extend({
+  ubicacion_archivo: z.string(),
   tamano: z.string(),
   color: z.string(z.enum(["", ...plotterColor])),
   material: z.string(z.enum(["", ...plotterMaterial])),

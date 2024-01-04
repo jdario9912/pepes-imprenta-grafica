@@ -1,0 +1,51 @@
+@baseUrl= http://localhost:3000/api/ordenes/impresiones
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": ,
+  "atendido_por": ,
+  "fecha_entrega": ,
+  "hora_entrega": ,
+  "muestra": ,
+  "ubicacion_archivo": ,
+  "impresion": ,
+  "faz": ,
+  "tipo_papel": ,
+  "tamano_papel": ,
+  "orientacion": ,
+  "anillado": ,
+  "abrochado": ,
+  "corte": , 
+  "observaciones": ,
+  "total": ,
+  "entrega": ,
+  "estado": ,
+  "metodo_pago": 
+}
+
+###
+PATCH  {{baseUrl}}
+Content-Type: application/json
+
+{
+  "fecha_entrega": ,
+  "hora_entrega": ,
+  "muestra": ,
+  "ubicacion_archivo": ,
+  "impresion": ,
+  "faz": ,
+  "tipo_papel": ,
+  "tamano_papel": ,
+  "orientacion": ,
+  "anillado": ,
+  "abrochado": ,
+  "corte": , 
+  "observaciones": ,
+  "total": ,
+  "entrega": ,
+  "estado": ,
+  "metodo_pago": 
+}

@@ -1,0 +1,55 @@
+@baseUrl= http://localhost:3000/api/ordenes/talonarios
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": ,
+  "atendido_por": ,
+  "fecha_entrega": ,
+  "hora_entrega": ,
+  "muestra": ,
+  "tipo": ,
+  "cantidad": ,
+  "tamano": ,
+  "modelo_anterior": ,
+  "tiene_logo": ,
+  "ubicacion_logo": ,
+  "numero_desde": ,
+  "puntillado_emblocado": ,
+  "color_duplicado": ,
+  "triplicado": ,
+  "color_triplicado": , 
+  "observaciones": ,
+  "total": ,
+  "entrega": ,
+  "estado": ,
+  "metodo_pago": 
+}
+
+###
+PATCH  {{baseUrl}}
+Content-Type: application/json
+
+{
+  "fecha_entrega": ,
+  "hora_entrega": ,
+  "muestra": ,
+  "tipo": ,
+  "cantidad": ,
+  "tamano": ,
+  "modelo_anterior": ,
+  "tiene_logo": ,
+  "ubicacion_logo": ,
+  "numero_desde": ,
+  "puntillado_emblocado": ,
+  "color_duplicado": ,
+  "triplicado": ,
+  "color_triplicado": , 
+  "observaciones": ,
+  "total": ,
+  "entrega": ,
+  "estado": ,
+  "metodo_pago": 
+}

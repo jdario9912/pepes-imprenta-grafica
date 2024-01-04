@@ -1,0 +1,43 @@
+@baseUrl= http://localhost:3000/api/ordenes/volantes
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": ,
+  "atendido_por": ,
+  "fecha_entrega": ,
+  "hora_entrega": ,
+  "muestra": ,
+  "tipo": ,
+  "tamano": ,
+  "cantidad": ,
+  "impresion": ,
+  "ubicacion_diseno": ,
+  "observaciones": ,
+  "total": ,
+  "entrega": ,
+  "estado": ,
+  "metodo_pago": 
+}
+
+###
+PATCH  {{baseUrl}}
+Content-Type: application/json
+
+{
+  "fecha_entrega": ,
+  "hora_entrega": ,
+  "muestra": ,
+  "tipo": ,
+  "tamano": ,
+  "cantidad": ,
+  "impresion": ,
+  "ubicacion_diseno": ,
+  "observaciones": ,
+  "total": ,
+  "entrega": ,
+  "estado": ,
+  "metodo_pago": 
+}

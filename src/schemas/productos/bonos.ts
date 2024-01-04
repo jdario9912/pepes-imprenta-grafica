@@ -13,3 +13,15 @@ const BonosCrearSchema = ProductoSchema.extend({
 
 export const validarBonosCrear = (object: unknown) =>
   BonosCrearSchema.parse(object);
+
+const BonosEditarSchema = ProductoSchema.extend({
+  tipo: z.string(z.enum(["", ...bonosTipo])),
+  tamano: z.string(z.enum(["", ...bonosTamano])),
+  desde_numero: z.number().positive(),
+  cantidad: z.number().positive(),
+  numeradores: z.number().positive(),
+  lotes: z.number().positive(),
+}).optional();
+
+export const validarBonosEditar = (object: unknown) =>
+  BonosEditarSchema.parse(object);

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { ProductoSchema } from "../producto";
 import { bonosTamano, bonosTipo } from "@/libs/api/listas";
+import { Bonos } from "@/types/productos";
 
 const BonosCrearSchema = ProductoSchema.extend({
   tipo: z.string(z.enum(["", ...bonosTipo])),
@@ -11,7 +12,7 @@ const BonosCrearSchema = ProductoSchema.extend({
   lotes: z.number().positive(),
 });
 
-export const validarBonosCrear = (object: unknown) =>
+export const validarBonosCrear = (object: unknown): Bonos =>
   BonosCrearSchema.parse(object);
 
 const BonosEditarSchema = ProductoSchema.extend({

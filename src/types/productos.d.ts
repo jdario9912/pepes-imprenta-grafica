@@ -1,30 +1,30 @@
 import * as enums from "./enums";
 
 interface Producto {
-  id: number;
+  id?: number;
   id_cliente: number;
-  nro_orden: number;
-  fecha_creacion: string;
+  nro_orden?: number;
+  fecha_creacion?: string;
   atendido_por: string;
   fecha_entrega: string;
   hora_entrega: string;
-  muestra: enums.SiNo;
-  producto: enums.Productos; // actualmente esta propiedad se llama "tipo_trabajo" en la base de datos
+  muestra: string;
+  producto?: string; // actualmente esta propiedad se llama "tipo_trabajo" en la base de datos
   ubicacion_archivo: string;
   observaciones: string;
   total: number;
   entrega: number;
-  estado: enums.Estado;
-  metodo_pago: enums.MetodoPago; // actualmente esto se llama "abono" en la base de datos
+  estado: string;
+  metodo_pago: string; // actualmente esto se llama "abono" en la base de datos
 }
 
-export interface Bonos extends Producto<Omit, "ubicacion_archivo"> {
-  tipo: enums.BonosTipo;
-  tamano: enums.BonosTamano;
+export interface Bonos extends Omit<Producto, "ubicacion_archivo"> {
+  tipo: string;
+  tamano: string;
   desde_numero: number;
   cantidad: number;
-  numeradores: enums.BonosNumeradores;
-  lotes: enums.BonosLotes;
+  numeradores: number;
+  lotes: number;
 }
 
 export interface Disenos extends Producto {
@@ -68,14 +68,14 @@ export interface Remeras extends Producto {
   cantidad: number;
 }
 
-export interface Sellos extends Producto<Omit, "ubicacion_archivo"> {
+export interface Sellos extends Omit<Producto, "ubicacion_archivo"> {
   tipo: enums.SellosTipo;
   tamano: string;
   texto: string;
   dibujo: string;
 }
 
-export interface Talonarios extends Producto<Omit, "ubicacion_archivo"> {
+export interface Talonarios extends Omit<Producto, "ubicacion_archivo"> {
   tipo: enums.TalonariosTipo;
   cantidad: number;
   tamano: enums.TalonariosTamano;
@@ -97,11 +97,11 @@ export interface Tarjetas extends Producto {
   puntas_redondeadas: enums.SiNo;
 }
 
-export interface Varios extends Producto<Omit, "ubicacion_archivo"> {
+export interface Varios extends Omit<Producto, "ubicacion_archivo"> {
   detalle: string;
 }
 
-export interface Volantes extends Producto<Omit, "ubicacion_archivo"> {
+export interface Volantes extends Omit<Producto, "ubicacion_archivo"> {
   tipo: enums.VolantesTipo;
   tamano: enums.VolantesTamano;
   cantidad: enums.VolantesCantidad;

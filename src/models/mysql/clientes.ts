@@ -1,4 +1,5 @@
 import { pool } from "@/db/mysql";
+import { errorGuardarCliente } from "@/libs/api/responses";
 import { IdParam } from "@/types/params";
 import { FieldPacket, ResultSetHeader } from "mysql2/promise";
 
@@ -13,8 +14,7 @@ export class ClientesModel {
 
     const respuesta: ResultSetHeader = result as ResultSetHeader;
 
-    if (respuesta.affectedRows === 0)
-      return new Error("No se pudo guardar el cliente.");
+    if (respuesta.affectedRows === 0) return errorGuardarCliente()
 
     return { ...cliente, id: respuesta.insertId };
   }

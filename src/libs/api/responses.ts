@@ -14,3 +14,7 @@ export const cliente404Response = () =>
     { mensaje: "El cliente no esta registrado." },
     { status: 404 }
   );
+
+export const errorGuardarCliente = () => new Error("No se pudo guardar el cliente.");
+
+export const errorGuardarOrden = () => new Error("No se pudo guardar la orden.");

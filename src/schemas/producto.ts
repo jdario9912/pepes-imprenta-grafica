@@ -4,7 +4,7 @@ import { z } from "zod";
 export const ProductoSchema = z.object({
   id_cliente: z.number().int().positive(),
   atendido_por: z.string(),
-  fecha_entrega: z.date(),
+  fecha_entrega: z.string(z.date()),
   hora_entrega: z.string().includes(":"),
   muestra: z.enum(["si", "no"]),
   observaciones: z.string(),

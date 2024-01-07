@@ -7,16 +7,12 @@ export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
 
-    const bonoValidado = validarBonosCrear(body)
+    const bonoValidado = validarBonosCrear(body);
 
-    const ordenCreada =  await BonosModel.crear(bonoValidado)
+    const ordenBonoCreada = await BonosModel.crear(bonoValidado);
 
-    return NextResponse.json(ordenCreada)
+    return NextResponse.json(ordenBonoCreada);
   } catch (error) {
-    console.log(error);
-    
-    return errorResponse(error)
+    return errorResponse(error);
   }
-
-  // return NextResponse.json("creando un producto");
 };

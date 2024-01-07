@@ -2,58 +2,46 @@ import { pool } from "@/db/mysql";
 import { generarNumeroOrden } from "@/libs/api/nro-orden";
 import { errorGuardarOrden } from "@/libs/api/responses";
 import { IdParam } from "@/types/params";
-import { Bonos } from "@/types/productos";
+import { Disenos } from "@/types/productos";
 import {
   FieldPacket,
   ResultSetHeader,
   RowDataPacket,
 } from "mysql2/promise";
 
-export class BonosModel {
-  static async crear(input: Bonos): Promise<Bonos | Error> {
+export class DisenosModel {
+  static async crear(input: Disenos): Promise<Disenos | Error> {
     const {
       id_cliente,
       atendido_por,
       fecha_entrega,
       hora_entrega,
       muestra,
+      ubicacion_archivo,
       observaciones,
       total,
       entrega,
       estado,
       metodo_pago,
-      tipo,
-      tamano,
-      desde_numero,
-      cantidad,
-      numeradores,
-      lotes,
+      detalles
     } = input;
 
     const [result] = await pool.query(
-      `INSERT INTO bonos (
+      `INSERT INTO disenos (
       id_cliente,
       nro_orden,
       atendido_por,
       fecha_entrega,
       hora_entrega,
       muestra,
+      ubicacion_archivo,
       observaciones,
       total,
       entrega,
       estado,
       metodo_pago,
-      tipo,
-      tamano,
-      desde_numero,
-      cantidad,
-      numeradores,
-      lotes
+      detalles
     ) VALUES (
-      ?,
-      ?,
-      ?,
-      ?,
       ?,
       ?,
       ?,
@@ -75,17 +63,13 @@ export class BonosModel {
         fecha_entrega,
         hora_entrega,
         muestra,
+        ubicacion_archivo,
         observaciones,
         total,
         entrega,
         estado,
         metodo_pago,
-        tipo,
-        tamano,
-        desde_numero,
-        cantidad,
-        numeradores,
-        lotes,
+        detalles,
       ]
     );
 
@@ -94,13 +78,13 @@ export class BonosModel {
     if (respuesta.affectedRows === 0) return errorGuardarOrden();
 
     const [registro]: [RowDataPacket[], FieldPacket[]] = await pool.query(
-      "SELECT * FROM bonos WHERE id = ?",
+      "SELECT * FROM disenos WHERE id = ?",
       [respuesta.insertId]
     );
 
     const bonoNuevo: RowDataPacket = registro[0];
 
-    const bonoRegistrado: Bonos = bonoNuevo as Bonos;
+    const bonoRegistrado: Disenos = bonoNuevo as Disenos;
 
     return bonoRegistrado;
   }

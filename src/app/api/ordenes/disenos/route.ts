@@ -1,11 +1,18 @@
+import { errorResponse } from "@/libs/api/responses";
+import { DisenosModel } from "@/models/mysql/productos/disenos";
+import { validarDisenosCrear } from "@/schemas/productos/disenos";
 import { NextResponse, NextRequest } from "next/server";
 
-export const POST = async (req: NextRequest, { params }: any) => {
-  const body = await req.json()
-  
-  console.log(params);
-  
-  console.log(body);
-  
-  return NextResponse.json("creando un producto")
+export const POST = async (req: NextRequest) => {
+  try {
+    const body = await req.json();
+
+    const disenoValidado = validarDisenosCrear(body);
+
+    const ordenBonoCreada = await DisenosModel.crear(disenoValidado);
+
+    return NextResponse.json(ordenBonoCreada);
+  } catch (error) {
+    return errorResponse(error);
+  }
 }

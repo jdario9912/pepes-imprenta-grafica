@@ -5,18 +5,18 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": ,
-  "atendido_por": ,
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "ubicacion_archivo": ,
-  "detalles": , 
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  "id_cliente": 43,
+  "atendido_por": "Chespirito",
+  "fecha_entrega": "2024-02-08",
+  "hora_entrega": "19:00",
+  "muestra": "no",
+  "ubicacion_archivo": "pc 500",
+  "detalles": "Celulares cuadrados", 
+  "observaciones": "cuadrados no tan cuadrados",
+  "total": 54000,
+  "entrega": 10000,
+  "estado": "pendiente",
+  "metodo_pago": "débito"
 }
 
 ###

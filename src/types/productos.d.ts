@@ -32,14 +32,14 @@ export interface Disenos extends Producto {
 }
 
 export interface Impresiones extends Producto {
-  impresion: enums.ImpresionesImpesion;
-  faz: enums.ImpresionesFaz;
+  impresion: string;
+  faz: string;
   tipo_papel: string;
-  tamano_papel: enums.ImpresionesTamanoPapel;
-  orientacion: enums.ImpresionesOrientacion;
-  anillado: enums.SiNo;
-  abrochado: enums.SiNo;
-  corte: enums.SiNo;
+  tamano_papel: string;
+  orientacion: string;
+  anillado: string;
+  abrochado: string;
+  corte: string;
 }
 
 export interface Loma extends Producto {

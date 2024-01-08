@@ -22,7 +22,7 @@ export enum Estado {
 export enum MetodoPago {
   efectivo = "efectivo",
   debito = "débito",
-  transferencia = "tranferencia",
+  transferencia = "transferencia",
 }
 
 export enum SiNo {

@@ -5,25 +5,25 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": ,
-  "atendido_por": ,
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "ubicacion_archivo": ,
-  "impresion": ,
-  "faz": ,
-  "tipo_papel": ,
-  "tamano_papel": ,
-  "orientacion": ,
-  "anillado": ,
-  "abrochado": ,
-  "corte": , 
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  "id_cliente": 43,
+  "atendido_por": "Pepo",
+  "fecha_entrega": "2024-02-23",
+  "hora_entrega": "19:00",
+  "muestra": "no",
+  "ubicacion_archivo": "wathsapp",
+  "impresion": "blanco y negro",
+  "faz": "simple",
+  "tipo_papel": "cualquiera",
+  "tamano_papel": "A4",
+  "orientacion": "vertical",
+  "anillado": "no",
+  "abrochado": "no",
+  "corte": "si", 
+  "observaciones": "wasi waso",
+  "total": 2450,
+  "entrega": 1400,
+  "estado": "pendiente",
+  "metodo_pago": "efectivo"
 }
 
 ###
@@ -31,21 +31,21 @@ PATCH  {{baseUrl}}
 Content-Type: application/json
 
 {
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "ubicacion_archivo": ,
-  "impresion": ,
-  "faz": ,
-  "tipo_papel": ,
-  "tamano_papel": ,
-  "orientacion": ,
-  "anillado": ,
-  "abrochado": ,
-  "corte": , 
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  "fecha_entrega": "2024-02-23",
+  "hora_entrega": "19:00",
+  "muestra": "no",
+  "ubicacion_archivo": "wathsapp",
+  "impresion": "blanco y negro",
+  "faz": "vertical",
+  "tipo_papel": "cualquiera",
+  "tamano_papel": "A4",
+  "orientacion": "vertical",
+  "anillado": "no",
+  "abrochado": "no",
+  "corte": "si", 
+  "observaciones": "",
+  "total": 2450,
+  "entrega": 1400,
+  "estado": "pendiente",
+  "metodo_pago": "transferencia"
 }

@@ -2,15 +2,11 @@ import { pool } from "@/db/mysql";
 import { generarNumeroOrden } from "@/libs/api/nro-orden";
 import { errorGuardarOrden } from "@/libs/api/responses";
 import { IdParam } from "@/types/params";
-import { Disenos } from "@/types/productos";
-import {
-  FieldPacket,
-  ResultSetHeader,
-  RowDataPacket,
-} from "mysql2/promise";
+import { Loma } from "@/types/productos";
+import { FieldPacket, ResultSetHeader, RowDataPacket } from "mysql2/promise";
 
-export class DisenosModel {
-  static async crear(input: Disenos): Promise<Disenos | Error> {
+export class LomaModel {
+  static async crear(input: Loma): Promise<Loma | Error> {
     const {
       id_cliente,
       atendido_por,
@@ -23,11 +19,17 @@ export class DisenosModel {
       entrega,
       estado,
       metodo_pago,
-      detalles
+      material,
+      orientacion,
+      bolsillo,
+      corte,
+      ojales,
+      troquelado,
+      portabaner,
     } = input;
 
     const [result] = await pool.query(
-      `INSERT INTO disenos (
+      `INSERT INTO loma (
       id_cliente,
       nro_orden,
       atendido_por,
@@ -40,8 +42,20 @@ export class DisenosModel {
       entrega,
       estado,
       metodo_pago,
-      detalles
+      material,
+      orientacion,
+      bolsillo,
+      corte,
+      ojales,
+      troquelado,
+      portabaner
     ) VALUES (
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
       ?,
       ?,
       ?,
@@ -69,7 +83,13 @@ export class DisenosModel {
         entrega,
         estado,
         metodo_pago,
-        detalles,
+        material,
+        orientacion,
+        bolsillo,
+        corte,
+        ojales,
+        troquelado,
+        portabaner,
       ]
     );
 
@@ -78,15 +98,15 @@ export class DisenosModel {
     if (respuesta.affectedRows === 0) return errorGuardarOrden();
 
     const [registro]: [RowDataPacket[], FieldPacket[]] = await pool.query(
-      "SELECT * FROM disenos WHERE id = ?",
+      "SELECT * FROM loma WHERE id = ?",
       [respuesta.insertId]
     );
 
-    const disenoNuevo: RowDataPacket = registro[0];
+    const lomaNuevo: RowDataPacket = registro[0];
 
-    const disenoRegistrado: Disenos = disenoNuevo as Disenos;
+    const lomaRegistrado: Loma = lomaNuevo as Loma;
 
-    return disenoRegistrado;
+    return lomaRegistrado;
   }
 
   static async obtener(id: IdParam) {}

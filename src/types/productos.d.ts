@@ -43,13 +43,13 @@ export interface Impresiones extends Producto {
 }
 
 export interface Loma extends Producto {
-  material: enums.LomaMaterial;
-  orientacion: enums.LomaOrientacion;
-  bolsillo: enums.SiNo;
-  corte: enums.SiNo;
-  ojales: enums.SiNo;
-  troquelado: enums.SiNo;
-  portabaner: enums.SiNo;
+  material: string;
+  orientacion: string;
+  bolsillo: string;
+  corte: string;
+  ojales: string;
+  troquelado: string;
+  portabaner: string;
 }
 
 export interface Plotter extends Producto {

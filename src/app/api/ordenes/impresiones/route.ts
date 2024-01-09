@@ -1,5 +1,4 @@
 import { errorResponse } from "@/libs/api/responses";
-import { BonosModel } from "@/models/mysql/productos/bonos";
 import { ImpresionesModel } from "@/models/mysql/productos/impresiones";
 import { validarImpresionesCrear } from "@/schemas/productos/impresiones";
 import { NextResponse, NextRequest } from "next/server";
@@ -14,8 +13,6 @@ export const POST = async (req: NextRequest) => {
 
     return NextResponse.json(ordenImpresionesCreada);
   } catch (error) {
-    console.log(error);
-    
     return errorResponse(error);
   }
 };

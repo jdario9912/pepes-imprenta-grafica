@@ -5,24 +5,24 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": ,
-  "atendido_por": ,
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "ubicacion_archivo": ,
-  "material": ,
-  "orientacion": ,
-  "bolsillo": ,
-  "corte": ,
-  "ojales": ,
-  "troquelado": ,
-  "portabaner": , 
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  "id_cliente": 44,
+  "atendido_por": "Selena",
+  "fecha_entrega": "2024-05-10",
+  "hora_entrega": "19:00",
+  "muestra": "no",
+  "ubicacion_archivo": "que se yo",
+  "material": "vinilo sobre corrugado",
+  "orientacion": "horizontal",
+  "bolsillo": "no",
+  "corte": "no",
+  "ojales": "si",
+  "troquelado": "si",
+  "portabaner": "no", 
+  "observaciones": "",
+  "total": 3540,
+  "entrega": 345,
+  "estado": "pendiente",
+  "metodo_pago": "transferencia"
 }
 
 ###

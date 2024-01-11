@@ -2,11 +2,11 @@ import { pool } from "@/db/mysql";
 import { generarNumeroOrden } from "@/libs/api/nro-orden";
 import { errorGuardarOrden } from "@/libs/api/responses";
 import { IdParam } from "@/types/params";
-import { Impresiones } from "@/types/productos";
+import { Plotter } from "@/types/productos";
 import { FieldPacket, ResultSetHeader, RowDataPacket } from "mysql2/promise";
 
 export class PlotterModel {
-  static async crear(input: Impresiones): Promise<Impresiones | Error> {
+  static async crear(input: Plotter): Promise<Plotter | Error> {
     const {
       id_cliente,
       atendido_por,
@@ -19,18 +19,14 @@ export class PlotterModel {
       entrega,
       estado,
       metodo_pago,
-      impresion,
-      faz,
-      tipo_papel,
-      tamano_papel,
-      orientacion,
-      anillado,
-      abrochado,
-      corte,
+      tamano,
+      color,
+      material,
+      terminacion,
     } = input;
 
     const [result] = await pool.query(
-      `INSERT INTO impresiones (
+      `INSERT INTO plotter (
       id_cliente,
       nro_orden,
       atendido_por,
@@ -43,19 +39,11 @@ export class PlotterModel {
       entrega,
       estado,
       metodo_pago,
-      impresion,
-      faz,
-      tipo_papel,
-      tamano_papel,
-      orientacion,
-      anillado,
-      abrochado,
-      corte
+      tamano,
+      color,
+      material,
+      terminacion
     ) VALUES (
-      ?,
-      ?,
-      ?,
-      ?,
       ?,
       ?,
       ?,
@@ -86,14 +74,10 @@ export class PlotterModel {
         entrega,
         estado,
         metodo_pago,
-        impresion,
-        faz,
-        tipo_papel,
-        tamano_papel,
-        orientacion,
-        anillado,
-        abrochado,
-        corte,
+        tamano,
+        color,
+        material,
+        terminacion,
       ]
     );
 
@@ -102,15 +86,15 @@ export class PlotterModel {
     if (respuesta.affectedRows === 0) return errorGuardarOrden();
 
     const [registro]: [RowDataPacket[], FieldPacket[]] = await pool.query(
-      "SELECT * FROM impresiones WHERE id = ?",
+      "SELECT * FROM plotter WHERE id = ?",
       [respuesta.insertId]
     );
 
-    const impresionesNuevo: RowDataPacket = registro[0];
+    const plotterNuevo: RowDataPacket = registro[0];
 
-    const impresionesRegistrado: Impresiones = impresionesNuevo as Impresiones;
+    const plotterRegistrado: Plotter = plotterNuevo as Plotter;
 
-    return impresionesRegistrado;
+    return plotterRegistrado;
   }
 
   static async obtener(id: IdParam) {}

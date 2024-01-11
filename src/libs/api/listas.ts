@@ -1,3 +1,4 @@
+import { plotterColores } from "@/types/const";
 import * as enums from "@/types/enums";
 
 export const metodosPago: string[] = Object.values(enums.MetodoPago);
@@ -26,7 +27,7 @@ export const lomaMaterial: string[] = Object.values(enums.LomaMaterial);
 export const lomaOrientacion: string[] = Object.values(enums.LomaOrientacion);
 
 // plotter
-export const plotterColor: string[] = Object.values(enums.PlotterColor);
+export const plotterColor: number[] = plotterColores.map((color) => color.codigo);
 export const plotterMaterial: string[] = Object.values(enums.PlotterMaterial);
 export const plotterTerminacion: string[] = Object.values(
   enums.PlotterTerminacion

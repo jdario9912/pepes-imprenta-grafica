@@ -5,21 +5,21 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": ,
-  "atendido_por": ,
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "ubicacion_archivo": ,
-  "tamano": ,
-  "color": ,
-  "material": ,
-  "terminacion": , 
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  "id_cliente": 45,
+  "atendido_por": "Selena",
+  "fecha_entrega": "2024-03-12",
+  "hora_entrega": "19:00",
+  "muestra": "no",
+  "ubicacion_archivo": "no se",
+  "tamano": "gigante",
+  "color": 6021,
+  "material": "autoadhesivo",
+  "terminacion": "sin pelar", 
+  "observaciones": "jajaja",
+  "total": 23234,
+  "entrega": 32,
+  "estado": "pendiente",
+  "metodo_pago": "efectivo"
 }
 
 ###

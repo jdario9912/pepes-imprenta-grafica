@@ -54,9 +54,9 @@ export interface Loma extends Producto {
 
 export interface Plotter extends Producto {
   tamano: string;
-  color: enums.PlotterColor;
-  material: enums.PlotterMaterial;
-  terminacion: enums.PlotterTerminacion;
+  color: number;
+  material: string;
+  terminacion: string;
 }
 
 export interface Remeras extends Producto {

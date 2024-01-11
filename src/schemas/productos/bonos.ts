@@ -3,7 +3,7 @@ import { ProductoSchema } from "../producto";
 import { bonosTamano, bonosTipo } from "@/libs/api/listas";
 import { Bonos } from "@/types/productos";
 
-const BonosCrearSchema = ProductoSchema.extend({
+const BonosSchema = ProductoSchema.extend({
   tipo: z.string(z.enum(["", ...bonosTipo])),
   tamano: z.string(z.enum(["", ...bonosTamano])),
   desde_numero: z.number().positive(),
@@ -13,16 +13,7 @@ const BonosCrearSchema = ProductoSchema.extend({
 });
 
 export const validarBonosCrear = (object: unknown): Bonos =>
-  BonosCrearSchema.parse(object);
-
-const BonosEditarSchema = ProductoSchema.extend({
-  tipo: z.string(z.enum(["", ...bonosTipo])),
-  tamano: z.string(z.enum(["", ...bonosTamano])),
-  desde_numero: z.number().positive(),
-  cantidad: z.number().positive(),
-  numeradores: z.number().positive(),
-  lotes: z.number().positive(),
-}).optional();
+  BonosSchema.parse(object);
 
 export const validarBonosEditar = (object: unknown) =>
-  BonosEditarSchema.parse(object);
+  BonosSchema.optional().parse(object);

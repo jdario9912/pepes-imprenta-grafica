@@ -1,16 +1,13 @@
 import { z } from "zod";
 import { ProductoSchema } from "../producto";
+import { Varios } from "@/types/productos";
 
-const VariosCrearSchema = ProductoSchema.extend({
-  detalles: z.string(),
+const VariosSchema = ProductoSchema.extend({
+  detalle: z.string(),
 });
 
-export const validarVariosCrear = (object: unknown) =>
-  VariosCrearSchema.parse(object);
-
-const VariosEditarSchema = ProductoSchema.extend({
-  detalles: z.string(),
-}).optional();
+export const validarVariosCrear = (object: unknown): Varios =>
+  VariosSchema.parse(object);
 
 export const validarVariosEditar = (object: unknown) =>
-  VariosEditarSchema.parse(object);
+  VariosSchema.optional().parse(object);

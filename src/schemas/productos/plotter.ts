@@ -1,8 +1,9 @@
 import { z } from "zod";
 import { ProductoSchema } from "../producto";
 import { plotterMaterial, plotterTerminacion } from "@/libs/api/listas";
+import { Plotter } from "@/types/productos";
 
-const PlotterCrearSchema = ProductoSchema.extend({
+const PlotterSchema = ProductoSchema.extend({
   ubicacion_archivo: z.string(),
   tamano: z.string(),
   color: z.number().positive(),
@@ -10,16 +11,8 @@ const PlotterCrearSchema = ProductoSchema.extend({
   terminacion: z.string(z.enum(["", ...plotterTerminacion])),
 });
 
-export const validarPlotterCrear = (object: unknown) =>
-  PlotterCrearSchema.parse(object);
-
-const PlotterEditarSchema = ProductoSchema.extend({
-  ubicacion_archivo: z.string(),
-  tamano: z.string(),
-  color: z.number().positive(),
-  material: z.string(z.enum(["", ...plotterMaterial])),
-  terminacion: z.string(z.enum(["", ...plotterTerminacion])),
-}).optional();
+export const validarPlotterCrear = (object: unknown): Plotter =>
+  PlotterSchema.parse(object);
 
 export const validarPlotterEditar = (object: unknown) =>
-  PlotterEditarSchema.parse(object);
+  PlotterSchema.optional().parse(object);

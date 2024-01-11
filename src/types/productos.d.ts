@@ -69,32 +69,32 @@ export interface Remeras extends Producto {
 }
 
 export interface Sellos extends Omit<Producto, "ubicacion_archivo"> {
-  tipo: enums.SellosTipo;
+  tipo: string;
   tamano: string;
   texto: string;
   dibujo: string;
 }
 
 export interface Talonarios extends Omit<Producto, "ubicacion_archivo"> {
-  tipo: enums.TalonariosTipo;
+  tipo: string;
   cantidad: number;
-  tamano: enums.TalonariosTamano;
-  modelo_anterior: enums.SiNo;
-  tiene_logo: enums.SiNo;
+  tamano: string;
+  modelo_anterior: string;
+  tiene_logo: string;
   ubicacion_logo: string;
   numero_desde: number;
-  puntillado_emblocado: enums.TalonariosPuntilladoEmblocado;
-  color_duplicado: enums.TalonariosColorDuplicado;
-  triplicado: enums.SiNo;
-  color_triplicado: enums.TalonariosColorTriplicado;
+  puntillado_emblocado: string;
+  color_duplicado: string;
+  triplicado: string;
+  color_triplicado: string;
 }
 
 export interface Tarjetas extends Producto {
-  tipo: enums.TarjetasTipo;
-  cantidad: enums.TarjetasCantidad;
-  papel: enums.TarjetasPapel;
-  terminacion: enums.TarjetasTerminacion;
-  puntas_redondeadas: enums.SiNo;
+  tipo: string;
+  cantidad: number;
+  papel: string;
+  terminacion: string;
+  puntas_redondeadas: string;
 }
 
 export interface Varios extends Omit<Producto, "ubicacion_archivo"> {
@@ -102,9 +102,9 @@ export interface Varios extends Omit<Producto, "ubicacion_archivo"> {
 }
 
 export interface Volantes extends Omit<Producto, "ubicacion_archivo"> {
-  tipo: enums.VolantesTipo;
-  tamano: enums.VolantesTamano;
-  cantidad: enums.VolantesCantidad;
-  impresion: enums.VolantesImpresion;
+  tipo: string;
+  tamano: string;
+  cantidad: number;
+  impresion: string;
   ubicacion_diseno: string;
 }

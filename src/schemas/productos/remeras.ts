@@ -1,7 +1,8 @@
 import { z } from "zod";
 import { ProductoSchema } from "../producto";
+import { Remeras } from "@/types/productos";
 
-const RemerasCrearSchema = ProductoSchema.extend({
+const RemerasSchema = ProductoSchema.extend({
   ubicacion_archivo: z.string(),
   talles: z.string(),
   color: z.string(),
@@ -11,18 +12,8 @@ const RemerasCrearSchema = ProductoSchema.extend({
   cantidad: z.number().positive(),
 });
 
-export const validarRemerasCrear = (object: unknown) =>
-  RemerasCrearSchema.parse(object);
-
-const RemerasEditarSchema = ProductoSchema.extend({
-  ubicacion_archivo: z.string(),
-  talles: z.string(),
-  color: z.string(),
-  estampa_pecho: z.string(),
-  estampa_espalda: z.string(),
-  color_estampa: z.string(),
-  cantidad: z.number().positive(),
-}).optional();
+export const validarRemerasCrear = (object: unknown): Remeras =>
+  RemerasSchema.parse(object);
 
 export const validarRemerasEditar = (object: unknown) =>
-  RemerasEditarSchema.parse(object);
+  RemerasSchema.optional().parse(object);

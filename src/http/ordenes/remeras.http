@@ -5,23 +5,23 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": ,
-  "atendido_por": ,
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "ubicacion_archivo": ,
-  "talles": ,
-  "color": ,
-  "estampa_pecho": ,
-  "estampa_espalda": ,
-  "color_estampa": ,
-  "cantidad": , 
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  "id_cliente": 46,
+  "atendido_por": "Dua Lipa",
+  "fecha_entrega": "2024-02-04",
+  "hora_entrega": "19:00",
+  "muestra": "si",
+  "ubicacion_archivo": "ni idea",
+  "talles": "s, m, xl",
+  "color": "blanco",
+  "estampa_pecho": "superman",
+  "estampa_espalda": "no tiene",
+  "color_estampa": "rojo",
+  "cantidad": 24, 
+  "observaciones": "corte de gordo",
+  "total": 54000,
+  "entrega": 50000,
+  "estado": "pendiente",
+  "metodo_pago": "efectivo"
 }
 
 ###

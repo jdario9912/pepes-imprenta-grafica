@@ -2,11 +2,11 @@ import { pool } from "@/db/mysql";
 import { generarNumeroOrden } from "@/libs/api/nro-orden";
 import { errorGuardarOrden } from "@/libs/api/responses";
 import { IdParam } from "@/types/params";
-import { Impresiones } from "@/types/productos";
+import { Varios } from "@/types/productos";
 import { FieldPacket, ResultSetHeader, RowDataPacket } from "mysql2/promise";
 
 export class VariosModel {
-  static async crear(input: Impresiones): Promise<Impresiones | Error> {
+  static async crear(input: Varios): Promise<Varios | Error> {
     const {
       id_cliente,
       atendido_por,
@@ -30,7 +30,7 @@ export class VariosModel {
     } = input;
 
     const [result] = await pool.query(
-      `INSERT INTO impresiones (
+      `INSERT INTO varios (
       id_cliente,
       nro_orden,
       atendido_por,
@@ -102,13 +102,13 @@ export class VariosModel {
     if (respuesta.affectedRows === 0) return errorGuardarOrden();
 
     const [registro]: [RowDataPacket[], FieldPacket[]] = await pool.query(
-      "SELECT * FROM impresiones WHERE id = ?",
+      "SELECT * FROM varios WHERE id = ?",
       [respuesta.insertId]
     );
 
     const impresionesNuevo: RowDataPacket = registro[0];
 
-    const impresionesRegistrado: Impresiones = impresionesNuevo as Impresiones;
+    const impresionesRegistrado: Varios = impresionesNuevo as Varios;
 
     return impresionesRegistrado;
   }

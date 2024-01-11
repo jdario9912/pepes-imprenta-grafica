@@ -2,11 +2,11 @@ import { pool } from "@/db/mysql";
 import { generarNumeroOrden } from "@/libs/api/nro-orden";
 import { errorGuardarOrden } from "@/libs/api/responses";
 import { IdParam } from "@/types/params";
-import { Impresiones } from "@/types/productos";
+import {  Remeras } from "@/types/productos";
 import { FieldPacket, ResultSetHeader, RowDataPacket } from "mysql2/promise";
 
 export class RemerasModel {
-  static async crear(input: Impresiones): Promise<Impresiones | Error> {
+  static async crear(input: Remeras): Promise<Remeras | Error> {
     const {
       id_cliente,
       atendido_por,
@@ -19,18 +19,16 @@ export class RemerasModel {
       entrega,
       estado,
       metodo_pago,
-      impresion,
-      faz,
-      tipo_papel,
-      tamano_papel,
-      orientacion,
-      anillado,
-      abrochado,
-      corte,
+      color,
+      talles,
+      estampa_espalda,
+      estampa_pecho,
+      cantidad,
+      color_estampa,
     } = input;
 
     const [result] = await pool.query(
-      `INSERT INTO impresiones (
+      `INSERT INTO remeras (
       id_cliente,
       nro_orden,
       atendido_por,
@@ -43,17 +41,13 @@ export class RemerasModel {
       entrega,
       estado,
       metodo_pago,
-      impresion,
-      faz,
-      tipo_papel,
-      tamano_papel,
-      orientacion,
-      anillado,
-      abrochado,
-      corte
+      talles,
+      color,
+      estampa_pecho,
+      estampa_espalda,
+      color_estampa,
+      cantidad
     ) VALUES (
-      ?,
-      ?,
       ?,
       ?,
       ?,
@@ -86,14 +80,12 @@ export class RemerasModel {
         entrega,
         estado,
         metodo_pago,
-        impresion,
-        faz,
-        tipo_papel,
-        tamano_papel,
-        orientacion,
-        anillado,
-        abrochado,
-        corte,
+        talles,
+        color,
+        estampa_pecho,
+        estampa_espalda,
+        color_estampa,
+        cantidad,
       ]
     );
 
@@ -102,13 +94,13 @@ export class RemerasModel {
     if (respuesta.affectedRows === 0) return errorGuardarOrden();
 
     const [registro]: [RowDataPacket[], FieldPacket[]] = await pool.query(
-      "SELECT * FROM impresiones WHERE id = ?",
+      "SELECT * FROM remeras WHERE id = ?",
       [respuesta.insertId]
     );
 
     const impresionesNuevo: RowDataPacket = registro[0];
 
-    const impresionesRegistrado: Impresiones = impresionesNuevo as Impresiones;
+    const impresionesRegistrado: Remeras = impresionesNuevo as Remeras;
 
     return impresionesRegistrado;
   }

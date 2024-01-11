@@ -7,11 +7,11 @@ export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
 
-    const impresionesValidado = validarImpresionesCrear(body);
+    const ordenValidada = validarImpresionesCrear(body);
 
-    const ordenImpresionesCreada = await ImpresionesModel.crear(impresionesValidado);
+    const ordenCreada = await ImpresionesModel.crear(ordenValidada);
 
-    return NextResponse.json(ordenImpresionesCreada);
+    return NextResponse.json(ordenCreada);
   } catch (error) {
     return errorResponse(error);
   }

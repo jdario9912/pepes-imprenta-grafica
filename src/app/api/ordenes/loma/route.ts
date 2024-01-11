@@ -7,11 +7,11 @@ export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
 
-    const lomaValidado = validarLomaCrear(body);
+    const ordenValidada = validarLomaCrear(body);
 
-    const ordenLomaCreada = await LomaModel.crear(lomaValidado);
+    const ordenCreada = await LomaModel.crear(ordenValidada);
 
-    return NextResponse.json(ordenLomaCreada);
+    return NextResponse.json(ordenCreada);
   } catch (error) {
     return errorResponse(error);
   }

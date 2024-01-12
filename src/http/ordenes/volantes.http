@@ -5,21 +5,21 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": ,
-  "atendido_por": ,
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "tipo": ,
-  "tamano": ,
-  "cantidad": ,
-  "impresion": ,
-  "ubicacion_diseno": ,
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  "id_cliente": 33,
+  "atendido_por": "Vane",
+  "fecha_entrega": "2024-03-03",
+  "hora_entrega": "19:00",
+  "muestra": "si",
+  "tipo": "color",
+  "tamano": "1/2",
+  "cantidad": 250,
+  "impresion": "frente",
+  "ubicacion_diseno": "wasi",
+  "observaciones": "",
+  "total": 4689,
+  "entrega": 3345,
+  "estado": "pendiente",
+  "metodo_pago": "efectivo"
 }
 
 ###

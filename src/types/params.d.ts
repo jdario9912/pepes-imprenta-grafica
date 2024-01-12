@@ -1,1 +1,1 @@
-export type IdParam = string;
+export type Id = string | number;

@@ -8,12 +8,12 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "nombre": "Dixon Closs",
+  "nombre": "Fabia Liendo",
   "telefono": "3215-324513"
 }
 
 ###
-GET {{baseUrl}}/10
+GET {{baseUrl}}/109
 
 ###
 PATCH {{baseUrl}}/10

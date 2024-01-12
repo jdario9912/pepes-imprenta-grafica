@@ -9,7 +9,9 @@ export const POST = async (req: NextRequest) => {
 
     const ordenValidada = validarBonosCrear(body);
 
-    const ordenCreada = await BonosModel.crear(ordenValidada);
+    const id = await BonosModel.crear(ordenValidada);
+
+    const ordenCreada = await BonosModel.obtener(id)
 
     return NextResponse.json(ordenCreada);
   } catch (error) {

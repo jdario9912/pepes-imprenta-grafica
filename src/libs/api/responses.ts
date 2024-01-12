@@ -11,10 +11,6 @@ export const errorResponse = (error: unknown) => {
 
 export const cliente404Response = () =>
   NextResponse.json(
-    { mensaje: "El cliente no esta registrado." },
+    { mensaje: "El cliente no existe." },
     { status: 404 }
   );
-
-export const errorGuardarCliente = () => new Error("No se pudo guardar el cliente.");
-
-export const errorGuardarOrden = () => new Error("No se pudo guardar la orden.");

@@ -1,4 +1,4 @@
-import { errorResponse } from "@/libs/api/responses";
+import { cliente404Response, errorResponse } from "@/libs/api/responses";
 import { ClientesModel } from "@/models/mysql/clientes";
 import { validarClienteCrear } from "@/schemas/cliente";
 import { NextRequest, NextResponse } from "next/server";
@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const GET = async () => {
   try {
     const clientes = await ClientesModel.obtenerTodos();
-    
+
     return NextResponse.json(clientes);
   } catch (error) {
     return errorResponse(error);
@@ -19,9 +19,13 @@ export const POST = async (req: NextRequest) => {
 
     const clienteValidado = validarClienteCrear(body);
 
-    const clienteCreado = await ClientesModel.crear(clienteValidado);
+    const idCliente = await ClientesModel.crear(clienteValidado);
 
-    return NextResponse.json(clienteCreado);
+    const cliente = await ClientesModel.obtenerUno(idCliente);
+
+    if (!cliente) return cliente404Response();
+
+    return NextResponse.json(cliente);
   } catch (error) {
     return errorResponse(error);
   }

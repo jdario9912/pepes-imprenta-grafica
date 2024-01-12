@@ -1,12 +1,12 @@
 import { pool } from "@/db/mysql";
 import { generarNumeroOrden } from "@/libs/api/nro-orden";
-import { errorGuardarOrden } from "@/libs/api/responses";
-import { IdParam } from "@/types/params";
-import { Bonos } from "@/types/productos";
-import { FieldPacket, ResultSetHeader, RowDataPacket } from "mysql2/promise";
+import { errorActualizarOrden, errorGuardarOrden } from "@/libs/api/responses";
+import { Id } from "@/types/params";
+import { Bonos } from "@/types/recursos/productos";
+import { ResultSetHeader } from "mysql2/promise";
 
 export class BonosModel {
-  static async crear(input: Bonos): Promise<Bonos | Error> {
+  static async crear(input: Bonos): Promise<Id | Error> {
     const {
       id_cliente,
       atendido_por,
@@ -89,27 +89,20 @@ export class BonosModel {
 
     if (respuesta.affectedRows === 0) return errorGuardarOrden();
 
-    const [registro]: [RowDataPacket[], FieldPacket[]] = await pool.query(
-      "SELECT * FROM bonos WHERE id = ?",
-      [respuesta.insertId]
-    );
-
-    const bonoNuevo: RowDataPacket = registro[0];
-
-    const bonoRegistrado: Bonos = bonoNuevo as Bonos;
-
-    return bonoRegistrado;
+    return respuesta.insertId;
   }
 
-  static async obtener(id: IdParam) {}
+  static async obtener(id: Id) {}
 
-  static async actualizar(id: IdParam, input: Bonos) {
+  static async actualizar(id: Id, input: Bonos): Promise<Id | Error> {
     const [result] = await pool.query("UPDATE bonos SET ? WHERE = ?", [input, id]);
 
     const respuesta: ResultSetHeader = result as ResultSetHeader;
 
-    console.log(respuesta);
+    if (respuesta.affectedRows === 0) return errorActualizarOrden();
+
+    return id;
   }
 
-  static async eliminar(id: IdParam) {}
+  static async eliminar(id: Id) {}
 }

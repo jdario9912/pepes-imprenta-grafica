@@ -8,7 +8,7 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "nombre": "Canigia Bross",
+  "nombre": "Dixon Closs",
   "telefono": "3215-324513"
 }
 

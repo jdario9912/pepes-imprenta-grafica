@@ -5,27 +5,27 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": ,
-  "atendido_por": ,
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "tipo": ,
-  "cantidad": ,
-  "tamano": ,
-  "modelo_anterior": ,
-  "tiene_logo": ,
-  "ubicacion_logo": ,
-  "numero_desde": ,
-  "puntillado_emblocado": ,
-  "color_duplicado": ,
-  "triplicado": ,
-  "color_triplicado": , 
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  "id_cliente": 40,
+  "atendido_por": "Lucia",
+  "fecha_entrega": "2024-02-05",
+  "hora_entrega": "19:00",
+  "muestra": "si",
+  "tipo": "factura C",
+  "cantidad": 5,
+  "tamano": "A4",
+  "modelo_anterior": "si",
+  "tiene_logo": "si",
+  "ubicacion_logo": "celu",
+  "numero_desde": 40,
+  "puntillado_emblocado": "sueltas",
+  "color_duplicado": "amarillo",
+  "triplicado": "si",
+  "color_triplicado": "azul", 
+  "observaciones": "no tiene",
+  "total": 64000,
+  "entrega": 40000,
+  "estado": "pendiente",
+  "metodo_pago": "transferencia"
 }
 
 ###

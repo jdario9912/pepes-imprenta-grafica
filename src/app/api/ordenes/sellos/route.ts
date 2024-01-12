@@ -1,7 +1,5 @@
 import { errorResponse } from "@/libs/api/responses";
-import { RemerasModel } from "@/models/mysql/productos/remeras";
 import { SellosModel } from "@/models/mysql/productos/sellos";
-import { validarRemerasCrear } from "@/schemas/productos/remeras";
 import { validarSellosCrear } from "@/schemas/productos/sellos";
 import { NextResponse, NextRequest } from "next/server";
 

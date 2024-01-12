@@ -27,18 +27,17 @@ PATCH {{baseUrl}}/3
 Content-Type: application/json
 
 {
-  "fecha_entrega": null,
-  "hora_entrega": null,
-  "muestra": null,
-  "tipo": null,
-  "tamano": null,
-  "desde_numero": null,
-  "cantidad": null,
-  "numeradores": null,
-  "lotes": null,
-  "observaciones": null,
-  "total": null,
-  "entrega": null,
-  "estado": null,
-  "metodo_pago": null
+  "fecha_entrega": "2023-02-02",
+  "hora_entrega": "19:00",
+  "muestra": "no",
+  "tipo": "obra",
+  "tamano": "1/4",
+  "desde_numero": 2,
+  "cantidad": 3,
+  "numeradores": 1,
+  "lotes": 50,
+  "observaciones": "Bonos super grosos plus wasi waso",
+  "total": 3000,
+  "entrega": 2000,
+  "metodo_pago": "tranferencia"
 } 

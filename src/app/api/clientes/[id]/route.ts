@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (_: NextRequest, { params }: any) => {
   try {
-    const id = params as IdParam;
+    const { id }: {id: IdParam} = params;
 
     const cliente = await ClientesModel.obtenerUno(id);
 
@@ -21,7 +21,7 @@ export const GET = async (_: NextRequest, { params }: any) => {
 export const PATCH = async (req: NextRequest, { params }: any) => {
   try {
     const body = await req.json();
-    const id = params as IdParam;
+    const { id }: { id: IdParam } = params;
 
     const clienteValidado = validarClienteActualizar(body);
 

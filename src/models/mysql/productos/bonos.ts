@@ -3,11 +3,7 @@ import { generarNumeroOrden } from "@/libs/api/nro-orden";
 import { errorGuardarOrden } from "@/libs/api/responses";
 import { IdParam } from "@/types/params";
 import { Bonos } from "@/types/productos";
-import {
-  FieldPacket,
-  ResultSetHeader,
-  RowDataPacket,
-} from "mysql2/promise";
+import { FieldPacket, ResultSetHeader, RowDataPacket } from "mysql2/promise";
 
 export class BonosModel {
   static async crear(input: Bonos): Promise<Bonos | Error> {
@@ -107,7 +103,13 @@ export class BonosModel {
 
   static async obtener(id: IdParam) {}
 
-  static async actualizar(id: IdParam) {}
+  static async actualizar(id: IdParam, input: Bonos) {
+    const [result] = await pool.query("UPDATE bonos SET ? WHERE = ?", [input, id]);
+
+    const respuesta: ResultSetHeader = result as ResultSetHeader;
+
+    console.log(respuesta);
+  }
 
   static async eliminar(id: IdParam) {}
 }

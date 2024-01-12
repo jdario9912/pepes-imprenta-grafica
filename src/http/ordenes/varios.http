@@ -5,17 +5,17 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": ,
-  "atendido_por": ,
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "detalles": ,
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  "id_cliente": 38,
+  "atendido_por": "Laura",
+  "fecha_entrega": "2024-02-03",
+  "hora_entrega": "19:00",
+  "muestra": "si",
+  "detalle": "tiene cola de pescado",
+  "observaciones": "sin escamas",
+  "total": 200,
+  "entrega": 4,
+  "estado": "pendiente",
+  "metodo_pago": "efectivo"
 }
 
 ###

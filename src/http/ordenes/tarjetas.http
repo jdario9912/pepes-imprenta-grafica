@@ -5,22 +5,22 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": ,
-  "atendido_por": ,
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "ubicacion_archivo": ,
-  "tipo": ,
-  "cantidad": ,
-  "papel": ,
-  "terminacion": ,
-  "puntas_redondeadas": , 
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  "id_cliente": 40,
+  "atendido_por": "Lucia",
+  "fecha_entrega": "2024-03-10",
+  "hora_entrega": "19:00",
+  "muestra": "si",
+  "ubicacion_archivo": "compu",
+  "tipo": "1000 4/1",
+  "cantidad": 200,
+  "papel": "obra",
+  "terminacion": "ninguna",
+  "puntas_redondeadas": "no", 
+  "observaciones": "",
+  "total": 5000,
+  "entrega": 2000,
+  "estado": "pendiente",
+  "metodo_pago": "débito"
 }
 
 ###

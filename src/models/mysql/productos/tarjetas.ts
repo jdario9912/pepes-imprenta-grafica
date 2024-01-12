@@ -19,14 +19,11 @@ export class TarjetasModel {
       entrega,
       estado,
       metodo_pago,
-      impresion,
-      faz,
-      tipo_papel,
-      tamano_papel,
-      orientacion,
-      anillado,
-      abrochado,
-      corte,
+      tipo,
+      cantidad,
+      papel,
+      terminacion,
+      puntas_redondeadas,
     } = input;
 
     const [result] = await pool.query(
@@ -43,18 +40,12 @@ export class TarjetasModel {
       entrega,
       estado,
       metodo_pago,
-      impresion,
-      faz,
-      tipo_papel,
-      tamano_papel,
-      orientacion,
-      anillado,
-      abrochado,
-      corte
+      tipo,
+      cantidad,
+      papel,
+      terminacion,
+      puntas_redondeadas
     ) VALUES (
-      ?,
-      ?,
-      ?,
       ?,
       ?,
       ?,
@@ -86,14 +77,11 @@ export class TarjetasModel {
         entrega,
         estado,
         metodo_pago,
-        impresion,
-        faz,
-        tipo_papel,
-        tamano_papel,
-        orientacion,
-        anillado,
-        abrochado,
-        corte,
+        tipo,
+        cantidad,
+        papel,
+        terminacion,
+        puntas_redondeadas,
       ]
     );
 

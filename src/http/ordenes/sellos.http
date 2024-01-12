@@ -5,7 +5,7 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": 44,
+  "id_cliente": 5,
   "atendido_por": "Yo",
   "fecha_entrega": "2024-02-05",
   "hora_entrega": "19:00",
@@ -17,7 +17,6 @@ Content-Type: application/json
   "observaciones": "suave al tacto",
   "total": 4000,
   "entrega": 3000,
-  "estado": "pendiente",
   "metodo_pago": "efectivo"
 }
 

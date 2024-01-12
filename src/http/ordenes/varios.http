@@ -14,7 +14,6 @@ Content-Type: application/json
   "observaciones": "sin escamas",
   "total": 200,
   "entrega": 4,
-  "estado": "pendiente",
   "metodo_pago": "efectivo"
 }
 

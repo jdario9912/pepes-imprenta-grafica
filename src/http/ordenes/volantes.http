@@ -18,7 +18,6 @@ Content-Type: application/json
   "observaciones": "",
   "total": 4689,
   "entrega": 3345,
-  "estado": "pendiente",
   "metodo_pago": "efectivo"
 }
 

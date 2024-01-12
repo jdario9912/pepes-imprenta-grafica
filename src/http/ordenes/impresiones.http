@@ -5,7 +5,7 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": 43,
+  "id_cliente": 3,
   "atendido_por": "Pepo",
   "fecha_entrega": "2024-02-23",
   "hora_entrega": "19:00",
@@ -22,7 +22,6 @@ Content-Type: application/json
   "observaciones": "wasi waso",
   "total": 2450,
   "entrega": 1400,
-  "estado": "pendiente",
   "metodo_pago": "efectivo"
 }
 

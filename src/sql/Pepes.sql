@@ -39,7 +39,7 @@ CREATE TABLE bonos (
   total INT NOT NULL,
   entrega INT NOT NULL,
   estado VARCHAR(20) NOT NULL,
-  metodo_pago VARCHAR(18) NOT NULL NOT NULL,
+  metodo_pago VARCHAR(18) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY(id_cliente) REFERENCES clientes(id)
   ON DELETE CASCADE ON UPDATE CASCADE

@@ -10,10 +10,11 @@ export const ProductoSchema = z.object({
   observaciones: z.string(),
   total: z.number().positive(),
   entrega: z.number().positive(),
-  estado: z.enum(["", ...estado]),
+  estado: z.enum(["pendiente", ...estado]).default("pendiente"),
   metodo_pago: z.enum(["", ...metodosPago]),
 });
 
+// creo que no lo voy a usar
 export const ProductoEditarSchema = z.object({
   fecha_entrega: z.date(),
   hora_entrega: z.string().includes(":"),

@@ -1,11 +1,11 @@
 @baseUrl= http://localhost:3000/api/ordenes/bonos
 
-###
+### crear
 POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "id_cliente": 43,
+  "id_cliente": 1,
   "atendido_por": "Carlota",
   "fecha_entrega": "2023-02-02",
   "hora_entrega": "19:00",
@@ -19,7 +19,6 @@ Content-Type: application/json
   "observaciones": "Bonos super grosos plus wasi waso",
   "total": 3000,
   "entrega": 2000,
-  "estado": "pendiente",
   "metodo_pago": "efectivo"
 }
 

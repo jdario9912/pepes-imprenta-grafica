@@ -1,12 +1,12 @@
 import { pool } from "@/db/mysql";
 import { generarNumeroOrden } from "@/libs/api/nro-orden";
-import { errorGuardarOrden } from "@/libs/api/responses";
-import { IdParam } from "@/types/params";
-import {  Remeras } from "@/types/productos";
-import { FieldPacket, ResultSetHeader, RowDataPacket } from "mysql2/promise";
+import { errorGuardarOrden } from "@/libs/api/errors";
+import type { Id } from "@/types/params";
+import type { Remeras } from "@/types/recursos/productos";
+import type { ResultSetHeader } from "mysql2/promise";
 
 export class RemerasModel {
-  static async crear(input: Remeras): Promise<Remeras | Error> {
+  static async crear(input: Remeras): Promise<Id> {
     const {
       id_cliente,
       atendido_por,
@@ -91,23 +91,36 @@ export class RemerasModel {
 
     const respuesta: ResultSetHeader = result as ResultSetHeader;
 
-    if (respuesta.affectedRows === 0) return errorGuardarOrden();
+    if (respuesta.affectedRows === 0) errorGuardarOrden();
 
-    const [registro]: [RowDataPacket[], FieldPacket[]] = await pool.query(
-      "SELECT * FROM remeras WHERE id = ?",
-      [respuesta.insertId]
-    );
-
-    const impresionesNuevo: RowDataPacket = registro[0];
-
-    const impresionesRegistrado: Remeras = impresionesNuevo as Remeras;
-
-    return impresionesRegistrado;
+    return respuesta.insertId;
   }
 
-  static async obtener(id: IdParam) {}
+  static async obtener(id: Id): Promise<Remeras | null> {
+    const [orden]: any[] = await pool.query(
+      "SELECT * FROM remeras WHERE id = ?",
+      [id]
+    );
 
-  static async actualizar(id: IdParam) {}
+    return orden ? (orden[0] as Remeras) : null;
+  }
 
-  static async eliminar(id: IdParam) {}
+  static async actualizar(id: Id, input: Remeras): Promise<boolean> {
+    const [result] = await pool.query("UPDATE remeras SET ? WHERE = ?", [
+      input,
+      id,
+    ]);
+
+    const respuesta: ResultSetHeader = result as ResultSetHeader;
+
+    return respuesta.affectedRows > 0;
+  }
+
+  static async eliminar(id: Id): Promise<boolean> {
+    const [result] = await pool.query("DELETE FROM remeras WHERE id = ?", [id]);
+
+    const respuesta: ResultSetHeader = result as ResultSetHeader;
+
+    return respuesta.affectedRows > 0;
+  }
 }

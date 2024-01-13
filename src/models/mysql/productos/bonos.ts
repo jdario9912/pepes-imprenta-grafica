@@ -1,12 +1,12 @@
 import { pool } from "@/db/mysql";
 import { generarNumeroOrden } from "@/libs/api/nro-orden";
-import { errorActualizarOrden, errorGuardarOrden } from "@/libs/api/responses";
-import { Id } from "@/types/params";
-import { Bonos } from "@/types/recursos/productos";
-import { ResultSetHeader } from "mysql2/promise";
+import { errorGuardarOrden } from "@/libs/api/errors";
+import type { Id } from "@/types/params";
+import type { Bonos } from "@/types/recursos/productos";
+import type { ResultSetHeader } from "mysql2/promise";
 
 export class BonosModel {
-  static async crear(input: Bonos): Promise<Id | Error> {
+  static async crear(input: Bonos): Promise<Id> {
     const {
       id_cliente,
       atendido_por,
@@ -87,22 +87,36 @@ export class BonosModel {
 
     const respuesta: ResultSetHeader = result as ResultSetHeader;
 
-    if (respuesta.affectedRows === 0) return errorGuardarOrden();
+    if (respuesta.affectedRows === 0) errorGuardarOrden();
 
     return respuesta.insertId;
   }
 
-  static async obtener(id: Id) {}
+  static async obtener(id: Id): Promise<Bonos | null> {
+    const [orden]: any[] = await pool.query(
+      "SELECT * FROM bonos WHERE id = ?",
+      [id]
+    );
 
-  static async actualizar(id: Id, input: Bonos): Promise<Id | Error> {
-    const [result] = await pool.query("UPDATE bonos SET ? WHERE = ?", [input, id]);
+    return orden ? (orden[0] as Bonos) : null;
+  }
+
+  static async actualizar(id: Id, input: Bonos): Promise<boolean> {
+    const [result] = await pool.query("UPDATE bonos SET ? WHERE = ?", [
+      input,
+      id,
+    ]);
 
     const respuesta: ResultSetHeader = result as ResultSetHeader;
 
-    if (respuesta.affectedRows === 0) return errorActualizarOrden();
-
-    return id;
+    return respuesta.affectedRows > 0;
   }
 
-  static async eliminar(id: Id) {}
+  static async eliminar(id: Id): Promise<boolean> {
+    const [result] = await pool.query("DELETE FROM bonos WHERE id = ?", [id]);
+
+    const respuesta: ResultSetHeader = result as ResultSetHeader;
+
+    return respuesta.affectedRows > 0;
+  }
 }

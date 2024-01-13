@@ -8,20 +8,21 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "nombre": "Fabia Liendo",
-  "telefono": "3215-324513"
+  "nombre": "Fabian Liendo",
+  "telefono": "3215-324513",
+  "email": "fabian@gmail.com"
 }
 
 ###
-GET {{baseUrl}}/109
+GET {{baseUrl}}/41
 
 ###
-PATCH {{baseUrl}}/10
+PATCH {{baseUrl}}/42
 Content-Type: application/json
 
 {
-  "email": "cristian-cogote@email.com"
+  "observaciones": "Musico"
 }
 
 ###
-DELETE {{baseUrl}}/52
+DELETE {{baseUrl}}/41

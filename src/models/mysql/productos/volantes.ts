@@ -1,12 +1,12 @@
 import { pool } from "@/db/mysql";
 import { generarNumeroOrden } from "@/libs/api/nro-orden";
-import { errorGuardarOrden } from "@/libs/api/responses";
-import { IdParam } from "@/types/params";
-import { Volantes } from "@/types/productos";
-import { FieldPacket, ResultSetHeader, RowDataPacket } from "mysql2/promise";
+import { errorGuardarOrden } from "@/libs/api/errors";
+import type { Id } from "@/types/params";
+import type { Volantes } from "@/types/recursos/productos";
+import type { ResultSetHeader } from "mysql2/promise";
 
 export class VolantesModel {
-  static async crear(input: Volantes): Promise<Volantes | Error> {
+  static async crear(input: Volantes): Promise<Id> {
     const {
       id_cliente,
       atendido_por,
@@ -83,23 +83,37 @@ export class VolantesModel {
 
     const respuesta: ResultSetHeader = result as ResultSetHeader;
 
-    if (respuesta.affectedRows === 0) return errorGuardarOrden();
+    if (respuesta.affectedRows === 0) errorGuardarOrden();
 
-    const [registro]: [RowDataPacket[], FieldPacket[]] = await pool.query(
-      "SELECT * FROM volantes WHERE id = ?",
-      [respuesta.insertId]
-    );
-
-    const impresionesNuevo: RowDataPacket = registro[0];
-
-    const impresionesRegistrado: Volantes = impresionesNuevo as Volantes;
-
-    return impresionesRegistrado;
+    
+    return respuesta.insertId;
   }
 
-  static async obtener(id: IdParam) {}
+  static async obtener(id: Id): Promise<Volantes | null> {
+    const [orden]: any[] = await pool.query(
+      "SELECT * FROM volantes WHERE id = ?",
+      [id]
+    );
 
-  static async actualizar(id: IdParam) {}
+    return orden ? (orden[0] as Volantes) : null;
+  }
 
-  static async eliminar(id: IdParam) {}
+  static async actualizar(id: Id, input: Volantes): Promise<boolean> {
+    const [result] = await pool.query("UPDATE volantes SET ? WHERE = ?", [
+      input,
+      id,
+    ]);
+
+    const respuesta: ResultSetHeader = result as ResultSetHeader;
+
+    return respuesta.affectedRows > 0;
+  }
+
+  static async eliminar(id: Id): Promise<boolean> {
+    const [result] = await pool.query("DELETE FROM volantes WHERE id = ?", [id]);
+
+    const respuesta: ResultSetHeader = result as ResultSetHeader;
+
+    return respuesta.affectedRows > 0;
+  }
 }

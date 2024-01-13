@@ -1,16 +1,12 @@
 import { pool } from "@/db/mysql";
 import { generarNumeroOrden } from "@/libs/api/nro-orden";
-import { errorGuardarOrden } from "@/libs/api/responses";
-import { IdParam } from "@/types/params";
-import { Disenos } from "@/types/productos";
-import {
-  FieldPacket,
-  ResultSetHeader,
-  RowDataPacket,
-} from "mysql2/promise";
+import { errorGuardarOrden } from "@/libs/api/errors";
+import type { Id } from "@/types/params";
+import type { Disenos } from "@/types/recursos/productos";
+import type { ResultSetHeader } from "mysql2/promise";
 
 export class DisenosModel {
-  static async crear(input: Disenos): Promise<Disenos | Error> {
+  static async crear(input: Disenos): Promise<Id | Error> {
     const {
       id_cliente,
       atendido_por,
@@ -23,7 +19,7 @@ export class DisenosModel {
       entrega,
       estado,
       metodo_pago,
-      detalles
+      detalles,
     } = input;
 
     const [result] = await pool.query(
@@ -75,23 +71,36 @@ export class DisenosModel {
 
     const respuesta: ResultSetHeader = result as ResultSetHeader;
 
-    if (respuesta.affectedRows === 0) return errorGuardarOrden();
+    if (respuesta.affectedRows === 0) errorGuardarOrden();
 
-    const [registro]: [RowDataPacket[], FieldPacket[]] = await pool.query(
-      "SELECT * FROM disenos WHERE id = ?",
-      [respuesta.insertId]
-    );
-
-    const disenoNuevo: RowDataPacket = registro[0];
-
-    const disenoRegistrado: Disenos = disenoNuevo as Disenos;
-
-    return disenoRegistrado;
+    return respuesta.insertId;
   }
 
-  static async obtener(id: IdParam) {}
+  static async obtener(id: Id): Promise<Disenos | null> {
+    const [orden]: any[] = await pool.query(
+      "SELECT * FROM disenos WHERE id = ?",
+      [id]
+    );
 
-  static async actualizar(id: IdParam) {}
+    return orden ? (orden[0] as Disenos) : null;
+  }
 
-  static async eliminar(id: IdParam) {}
+  static async actualizar(id: Id, input: Disenos): Promise<boolean> {
+    const [result] = await pool.query("UPDATE disenos SET ? WHERE = ?", [
+      input,
+      id,
+    ]);
+
+    const respuesta: ResultSetHeader = result as ResultSetHeader;
+
+    return respuesta.affectedRows > 0;
+  }
+
+  static async eliminar(id: Id): Promise<boolean> {
+    const [result] = await pool.query("DELETE FROM disenos WHERE id = ?", [id]);
+
+    const respuesta: ResultSetHeader = result as ResultSetHeader;
+
+    return respuesta.affectedRows > 0;
+  }
 }

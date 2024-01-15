@@ -94,7 +94,7 @@ export class SellosModel {
   }
 
   static async actualizar(id: Id, input: Sellos): Promise<boolean> {
-    const [result] = await pool.query("UPDATE sellos SET ? WHERE = ?", [
+    const [result] = await pool.query("UPDATE sellos SET ? WHERE id = ?", [
       input,
       id,
     ]);

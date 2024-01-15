@@ -106,7 +106,7 @@ export class RemerasModel {
   }
 
   static async actualizar(id: Id, input: Remeras): Promise<boolean> {
-    const [result] = await pool.query("UPDATE remeras SET ? WHERE = ?", [
+    const [result] = await pool.query("UPDATE remeras SET ? WHERE id = ?", [
       input,
       id,
     ]);

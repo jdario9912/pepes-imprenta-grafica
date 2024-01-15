@@ -6,7 +6,7 @@ import {
   tarjetasTerminacion,
   tarjetasTipo,
 } from "@/libs/api/listas";
-import { Tarjetas } from "@/types/productos";
+import type { Tarjetas } from "@/types/recursos/productos";
 
 const TarjetasSchema = ProductoSchema.extend({
   ubicacion_archivo: z.string(),
@@ -21,4 +21,4 @@ export const validarTarjetasCrear = (object: unknown): Tarjetas =>
   TarjetasSchema.parse(object);
 
 export const validarTarjetasEditar = (object: unknown) =>
-  TarjetasSchema.optional().parse(object);
+  TarjetasSchema.partial().parse(object) as Tarjetas;

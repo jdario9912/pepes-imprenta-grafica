@@ -19,18 +19,16 @@ Content-Type: application/json
 }
 
 ###
-PATCH  {{baseUrl}}
+PATCH  {{baseUrl}}/9
 Content-Type: application/json
 
 {
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "ubicacion_archivo": ,
-  "detalles": , 
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  
+  "metodo_pago": "transferencia"
 }
+
+### obtener uno
+GET {{baseUrl}}/9
+
+### eliminar una
+DELETE {{baseUrl}}/2

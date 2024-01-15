@@ -5,7 +5,7 @@ import {
   volantesTamano,
   volantesTipo,
 } from "@/libs/api/listas";
-import { Volantes } from "@/types/productos";
+import type { Volantes } from "@/types/recursos/productos";
 
 const VolantesSchema = ProductoSchema.extend({
   tipo: z.string(z.enum(["", ...volantesTipo])),
@@ -19,4 +19,4 @@ export const validarVolantesCrear = (object: unknown): Volantes =>
   VolantesSchema.parse(object);
 
 export const validarVolantesEditar = (object: unknown) =>
-  VolantesSchema.optional().parse(object);
+  VolantesSchema.partial().parse(object) as Volantes;

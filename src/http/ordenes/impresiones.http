@@ -26,25 +26,10 @@ Content-Type: application/json
 }
 
 ###
-PATCH  {{baseUrl}}
+PATCH  {{baseUrl}}/1
 Content-Type: application/json
 
 {
-  "fecha_entrega": "2024-02-23",
-  "hora_entrega": "19:00",
-  "muestra": "no",
-  "ubicacion_archivo": "wathsapp",
-  "impresion": "blanco y negro",
-  "faz": "vertical",
-  "tipo_papel": "cualquiera",
-  "tamano_papel": "A4",
-  "orientacion": "vertical",
-  "anillado": "no",
-  "abrochado": "no",
-  "corte": "si", 
-  "observaciones": "",
-  "total": 2450,
-  "entrega": 1400,
-  "estado": "pendiente",
-  "metodo_pago": "transferencia"
+  
+  "estado": "proveedor"
 }

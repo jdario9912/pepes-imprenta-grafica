@@ -8,7 +8,7 @@ import {
   talonariosTamano,
   talonariosTipo,
 } from "@/libs/api/listas";
-import { Talonarios } from "@/types/productos";
+import type { Talonarios } from "@/types/recursos/productos";
 
 const TalonariosSchema = ProductoSchema.extend({
   tipo: z.string(z.enum(["", ...talonariosTipo])),
@@ -30,4 +30,4 @@ export const validarTalonariosCrear = (object: unknown): Talonarios =>
   TalonariosSchema.parse(object);
 
 export const validarTalonariosEditar = (object: unknown) =>
-  TalonariosSchema.optional().parse(object);
+  TalonariosSchema.partial().parse(object) as Talonarios;

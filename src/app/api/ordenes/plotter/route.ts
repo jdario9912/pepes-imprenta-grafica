@@ -9,7 +9,9 @@ export const POST = async (req: NextRequest) => {
 
     const ordenValidada = validarPlotterCrear(body);
     
-    const ordenCreada = await PlotterModel.crear(ordenValidada);
+    const id = await PlotterModel.crear(ordenValidada);
+
+    const ordenCreada = await PlotterModel.obtener(id);
 
     return NextResponse.json(ordenCreada);
   } catch (error) {

@@ -102,7 +102,7 @@ export class BonosModel {
   }
 
   static async actualizar(id: Id, input: Bonos): Promise<boolean> {
-    const [result] = await pool.query("UPDATE bonos SET ? WHERE = ?", [
+    const [result] = await pool.query("UPDATE bonos SET ? WHERE id = ?", [
       input,
       id,
     ]);

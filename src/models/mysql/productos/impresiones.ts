@@ -114,7 +114,7 @@ export class ImpresionesModel {
   }
 
   static async actualizar(id: Id, input: Impresiones): Promise<boolean> {
-    const [result] = await pool.query("UPDATE impresiones SET ? WHERE = ?", [
+    const [result] = await pool.query("UPDATE impresiones SET ? WHERE id = ?", [
       input,
       id,
     ]);

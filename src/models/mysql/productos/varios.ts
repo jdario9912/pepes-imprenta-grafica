@@ -83,7 +83,7 @@ export class VariosModel {
   }
 
   static async actualizar(id: Id, input: Varios): Promise<boolean> {
-    const [result] = await pool.query("UPDATE varios SET ? WHERE = ?", [
+    const [result] = await pool.query("UPDATE varios SET ? WHERE id = ?", [
       input,
       id,
     ]);

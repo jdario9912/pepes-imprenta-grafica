@@ -14,14 +14,3 @@ export const ProductoSchema = z.object({
   metodo_pago: z.enum(["", ...metodosPago]),
 });
 
-// creo que no lo voy a usar
-export const ProductoEditarSchema = z.object({
-  fecha_entrega: z.date(),
-  hora_entrega: z.string().includes(":"),
-  muestra: z.enum(["si", "no"]),
-  observaciones: z.string(),
-  total: z.number().positive(),
-  entrega: z.number().positive(),
-  estado: z.enum(["", ...estado]),
-  metodo_pago: z.enum(["", ...metodosPago]),
-}).optional();

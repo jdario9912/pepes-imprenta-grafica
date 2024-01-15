@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { ProductoSchema } from "../producto";
-import { Remeras } from "@/types/productos";
+import type { Remeras } from "@/types/recursos/productos";
 
 const RemerasSchema = ProductoSchema.extend({
   ubicacion_archivo: z.string(),
@@ -16,4 +16,4 @@ export const validarRemerasCrear = (object: unknown): Remeras =>
   RemerasSchema.parse(object);
 
 export const validarRemerasEditar = (object: unknown) =>
-  RemerasSchema.optional().parse(object);
+  RemerasSchema.partial().parse(object) as Remeras;

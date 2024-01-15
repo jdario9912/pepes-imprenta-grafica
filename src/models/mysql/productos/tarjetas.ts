@@ -103,7 +103,7 @@ export class TarjetasModel {
   }
 
   static async actualizar(id: Id, input: Tarjetas): Promise<boolean> {
-    const [result] = await pool.query("UPDATE tarjetas SET ? WHERE = ?", [
+    const [result] = await pool.query("UPDATE tarjetas SET ? WHERE id = ?", [
       input,
       id,
     ]);

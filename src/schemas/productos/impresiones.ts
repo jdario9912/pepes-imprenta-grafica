@@ -7,7 +7,7 @@ import {
   impresionesTamanoPapel,
   siNo,
 } from "@/libs/api/listas";
-import { Impresiones } from "@/types/productos";
+import type { Impresiones } from "@/types/recursos/productos";
 
 const ImpresionesSchema = ProductoSchema.extend({
   ubicacion_archivo: z.string(),
@@ -25,4 +25,4 @@ export const validarImpresionesCrear = (object: unknown): Impresiones =>
   ImpresionesSchema.parse(object);
 
 export const validarImpresionesEditar = (object: unknown) =>
-  ImpresionesSchema.optional().parse(object);
+  ImpresionesSchema.partial().parse(object) as Impresiones;

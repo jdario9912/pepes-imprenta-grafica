@@ -9,7 +9,9 @@ export const POST = async (req: NextRequest) => {
 
     const ordenValidada = validarSellosCrear(body);
     
-    const ordenCreada = await SellosModel.crear(ordenValidada);
+    const id = await SellosModel.crear(ordenValidada);
+
+    const ordenCreada = await SellosModel.obtener(id);
 
     return NextResponse.json(ordenCreada);
   } catch (error) {

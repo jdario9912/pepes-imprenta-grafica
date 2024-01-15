@@ -7,8 +7,8 @@ const ClienteSchema = z.object({
   observaciones: z.string().nullish().default(""),
 });
 
-export const validarClienteCrear = (object: any): Cliente =>
+export const validarClienteCrear = (object: unknown): Cliente =>
   ClienteSchema.parse(object) as Cliente;
 
-export const validarClienteActualizar = (object: any): Cliente =>
+export const validarClienteActualizar = (object: unknown): Cliente =>
   ClienteSchema.partial().parse(object) as Cliente;

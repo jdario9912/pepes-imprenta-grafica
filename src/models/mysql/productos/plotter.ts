@@ -98,7 +98,7 @@ export class PlotterModel {
   }
 
   static async actualizar(id: Id, input: Plotter): Promise<boolean> {
-    const [result] = await pool.query("UPDATE plotter SET ? WHERE = ?", [
+    const [result] = await pool.query("UPDATE plotter SET ? WHERE id = ?", [
       input,
       id,
     ]);

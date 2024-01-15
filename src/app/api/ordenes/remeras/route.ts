@@ -9,7 +9,9 @@ export const POST = async (req: NextRequest) => {
 
     const ordenValidada = validarRemerasCrear(body);
     
-    const ordenCreada = await RemerasModel.crear(ordenValidada);
+    const id = await RemerasModel.crear(ordenValidada);
+
+    const ordenCreada = await RemerasModel.obtener(id);
 
     return NextResponse.json(ordenCreada);
   } catch (error) {

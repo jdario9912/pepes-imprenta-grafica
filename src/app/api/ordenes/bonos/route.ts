@@ -11,7 +11,7 @@ export const POST = async (req: NextRequest) => {
 
     const id = await BonosModel.crear(ordenValidada);
 
-    const ordenCreada = await BonosModel.obtener(id)
+    const ordenCreada = await BonosModel.obtener(id);
 
     return NextResponse.json(ordenCreada);
   } catch (error) {

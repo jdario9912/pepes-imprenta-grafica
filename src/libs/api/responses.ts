@@ -10,7 +10,7 @@ export const errorResponse = (error: unknown) => {
 };
 
 export const cliente404Response = () =>
-  NextResponse.json(
-    { mensaje: "El cliente no existe." },
-    { status: 404 }
-  );
+  NextResponse.json({ mensaje: "El cliente no existe." }, { status: 404 });
+
+export const orden404Response = () =>
+  NextResponse.json({ mensaje: "La orden no existe." }, { status: 404 });

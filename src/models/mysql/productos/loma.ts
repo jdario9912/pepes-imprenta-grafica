@@ -110,7 +110,7 @@ export class LomaModel {
   }
 
   static async actualizar(id: Id, input: Loma): Promise<boolean> {
-    const [result] = await pool.query("UPDATE loma SET ? WHERE = ?", [
+    const [result] = await pool.query("UPDATE loma SET ? WHERE id = ?", [
       input,
       id,
     ]);

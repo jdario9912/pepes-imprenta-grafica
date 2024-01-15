@@ -99,7 +99,7 @@ export class VolantesModel {
   }
 
   static async actualizar(id: Id, input: Volantes): Promise<boolean> {
-    const [result] = await pool.query("UPDATE volantes SET ? WHERE = ?", [
+    const [result] = await pool.query("UPDATE volantes SET ? WHERE id = ?", [
       input,
       id,
     ]);

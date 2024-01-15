@@ -9,7 +9,9 @@ export const POST = async (req: NextRequest) => {
 
     const ordenValidada = validarImpresionesCrear(body);
 
-    const ordenCreada = await ImpresionesModel.crear(ordenValidada);
+    const id = await ImpresionesModel.crear(ordenValidada);
+
+    const ordenCreada = await ImpresionesModel.obtener(id);
 
     return NextResponse.json(ordenCreada);
   } catch (error) {

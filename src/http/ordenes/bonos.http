@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH {{baseUrl}}/3
+PATCH {{baseUrl}}/4
 Content-Type: application/json
 
 {
@@ -40,4 +40,12 @@ Content-Type: application/json
   "total": 3000,
   "entrega": 2000,
   "metodo_pago": "tranferencia"
-} 
+}
+
+### obtener uno
+GET {{baseUrl}}/12
+
+### eliminar una
+DELETE {{baseUrl}}/4
+
+

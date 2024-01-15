@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { ProductoSchema } from "../producto";
 import { lomaMaterial, lomaOrientacion, siNo } from "@/libs/api/listas";
-import { Loma } from "@/types/productos";
+import type { Loma } from "@/types/recursos/productos";
 
 const LomaSchema = ProductoSchema.extend({
   ubicacion_archivo: z.string(),
@@ -18,4 +18,4 @@ export const validarLomaCrear = (object: unknown): Loma =>
   LomaSchema.parse(object);
 
 export const validarLomaEditar = (object: unknown) =>
-  LomaSchema.optional().parse(object);
+  LomaSchema.partial().parse(object) as Loma;

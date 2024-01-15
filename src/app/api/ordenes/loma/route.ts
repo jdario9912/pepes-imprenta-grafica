@@ -9,7 +9,9 @@ export const POST = async (req: NextRequest) => {
 
     const ordenValidada = validarLomaCrear(body);
 
-    const ordenCreada = await LomaModel.crear(ordenValidada);
+    const id = await LomaModel.crear(ordenValidada);
+
+    const ordenCreada = await LomaModel.obtener(id);
 
     return NextResponse.json(ordenCreada);
   } catch (error) {

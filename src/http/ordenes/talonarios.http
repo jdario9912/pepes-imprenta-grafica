@@ -28,27 +28,13 @@ Content-Type: application/json
 }
 
 ###
-PATCH  {{baseUrl}}
+PATCH  {{baseUrl}}/2
 Content-Type: application/json
 
 {
-  "fecha_entrega": ,
-  "hora_entrega": ,
-  "muestra": ,
-  "tipo": ,
-  "cantidad": ,
-  "tamano": ,
-  "modelo_anterior": ,
-  "tiene_logo": ,
-  "ubicacion_logo": ,
-  "numero_desde": ,
-  "puntillado_emblocado": ,
-  "color_duplicado": ,
-  "triplicado": ,
-  "color_triplicado": , 
-  "observaciones": ,
-  "total": ,
-  "entrega": ,
-  "estado": ,
-  "metodo_pago": 
+  
+  "triplicado": "no"
 }
+
+### obtener una
+GET {{baseUrl}}/2

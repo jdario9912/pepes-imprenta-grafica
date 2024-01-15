@@ -6,7 +6,7 @@ import type { Disenos } from "@/types/recursos/productos";
 import type { ResultSetHeader } from "mysql2/promise";
 
 export class DisenosModel {
-  static async crear(input: Disenos): Promise<Id | Error> {
+  static async crear(input: Disenos): Promise<Id> {
     const {
       id_cliente,
       atendido_por,
@@ -86,7 +86,7 @@ export class DisenosModel {
   }
 
   static async actualizar(id: Id, input: Disenos): Promise<boolean> {
-    const [result] = await pool.query("UPDATE disenos SET ? WHERE = ?", [
+    const [result] = await pool.query("UPDATE disenos SET ? WHERE id = ?", [
       input,
       id,
     ]);

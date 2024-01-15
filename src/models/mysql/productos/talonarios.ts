@@ -122,7 +122,7 @@ export class TalonariosModel {
   }
 
   static async actualizar(id: Id, input: Talonarios): Promise<boolean> {
-    const [result] = await pool.query("UPDATE talonarios SET ? WHERE = ?", [
+    const [result] = await pool.query("UPDATE talonarios SET ? WHERE id = ?", [
       input,
       id,
     ]);

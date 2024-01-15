@@ -9,7 +9,9 @@ export const POST = async (req: NextRequest) => {
 
     const ordenValidada = validarTarjetasCrear(body);
     
-    const ordenCreada = await TarjetasModel.crear(ordenValidada);
+    const id = await TarjetasModel.crear(ordenValidada);
+
+    const ordenCreada = await TarjetasModel.obtener(id);
 
     return NextResponse.json(ordenCreada);
   } catch (error) {

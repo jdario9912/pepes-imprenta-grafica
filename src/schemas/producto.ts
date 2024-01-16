@@ -1,4 +1,4 @@
-import { estado, metodosPago } from "@/libs/api/listas";
+import { estadoOrden, metodosPago } from "@/libs/api/listas";
 import { z } from "zod";
 
 export const ProductoSchema = z.object({
@@ -10,7 +10,7 @@ export const ProductoSchema = z.object({
   observaciones: z.string(),
   total: z.number().positive(),
   entrega: z.number().positive(),
-  estado: z.enum(["pendiente", ...estado]).default("pendiente"),
+  estado: z.enum(["", ...estadoOrden]).default("pendiente"),
   metodo_pago: z.enum(["", ...metodosPago]),
 });
 

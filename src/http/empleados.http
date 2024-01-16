@@ -1,0 +1,26 @@
+@baseUrl= http://localhost:3000/api/empleados
+
+### obtener todos los empleados
+GET {{baseUrl}}
+
+### crear un empleado
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "nickname": "Pepo",
+  "email": "pepoquevedo@gmail.com",
+  "password": "admin123",
+  "permisos": "admin"
+}
+
+###
+PATCH {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  "permisos": "admin"
+}
+
+###
+DELETE {{baseUrl}}/1

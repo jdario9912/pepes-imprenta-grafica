@@ -2,7 +2,7 @@ import { plotterColores } from "@/types/const";
 import * as enums from "@/types/enums";
 
 export const metodosPago: string[] = Object.values(enums.MetodoPago);
-export const estado: string[] = Object.values(enums.Estado);
+export const estadoOrden: string[] = Object.values(enums.Estado);
 
 export const siNo: string[] = Object.values(enums.SiNo);
 
@@ -62,3 +62,6 @@ export const volantesImpresion: string[] = Object.values(
   enums.VolantesImpresion
 );
 export const volantesTamano: string[] = Object.values(enums.VolantesTamano);
+
+// empleados
+export const permisosEmpleado: string[] = Object.values(enums.Permiso)

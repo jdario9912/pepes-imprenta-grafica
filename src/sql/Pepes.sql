@@ -10,8 +10,8 @@ CREATE TABLE empleados (
   id INT(3) NOT NULL AUTO_INCREMENT,
   nickname VARCHAR(45) NOT NULL,
   email VARCHAR(50) DEFAULT NULL,
-  password VARCHAR(30) NOT NULL,
-  permisions VARCHAR(7) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  permisos VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
 

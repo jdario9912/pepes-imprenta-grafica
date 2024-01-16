@@ -14,3 +14,6 @@ export const cliente404Response = () =>
 
 export const orden404Response = () =>
   NextResponse.json({ mensaje: "La orden no existe." }, { status: 404 });
+
+export const empleado404Response = () =>
+  NextResponse.json({ mensaje: "El cliente no está registrado." }, { status: 404 });

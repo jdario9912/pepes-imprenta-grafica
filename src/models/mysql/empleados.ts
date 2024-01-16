@@ -1,17 +1,18 @@
 import { pool } from "@/db/mysql";
+import { hashPass } from "@/libs/api/bcrypt";
 import { errorGuardarEmpleado } from "@/libs/api/errors";
 import type { Id } from "@/types/params";
 import { FieldPacket, ResultSetHeader } from "mysql2/promise";
 
 export class EmpleadosModel {
   static async crear(empleado: Empleado): Promise<Id> {
-    const { nickname, email, password, permisions } = empleado;
+    const { nickname, email, password, permisos } = empleado;
 
     const [result] = await pool.query(
       `INSERT INTO empleados 
-      (nickname, email, password, permisions) VALUES 
+      (nickname, email, password, permisos) VALUES 
       (?, ?, ?, ?)`,
-      [nickname, email, password, permisions]
+      [nickname, email, hashPass(password), permisos]
     );
 
     const respuesta: ResultSetHeader = result as ResultSetHeader;
@@ -23,14 +24,14 @@ export class EmpleadosModel {
 
   static async obtenerTodos() {
     const [empleados] = await pool.query(
-      "SELECT id, nickname, email, permisions FROM empleados"
+      "SELECT id, nickname, email, permisos FROM empleados"
     );
     return empleados;
   }
 
   static async obtenerUno(id: Id): Promise<Empleado | null> {
     const [empleado]: any[] = await pool.query(
-      "SELECT id, nickname, email, permisions FROM empleados WHERE id = ?",
+      "SELECT id, nickname, email, permisos FROM empleados WHERE id = ?",
       [id]
     );
     return empleado ? (empleado[0] as Empleado) : null;

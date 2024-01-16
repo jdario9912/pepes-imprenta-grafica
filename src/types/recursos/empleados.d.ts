@@ -3,5 +3,5 @@ interface Empleado {
   nickname: string;
   email?: string;
   password: string;
-  permisions: string;
+  permisos: string;
 }

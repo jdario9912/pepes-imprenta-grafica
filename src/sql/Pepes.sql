@@ -4,6 +4,17 @@ CREATE DATABASE IF NOT EXISTS pepesdb;
 
 USE pepesdb;
 
+DROP TABLE IF EXISTS empleados;
+
+CREATE TABLE empleados (
+  id INT(3) NOT NULL AUTO_INCREMENT,
+  nickname VARCHAR(45) NOT NULL,
+  email VARCHAR(50) DEFAULT NULL,
+  password VARCHAR(30) NOT NULL,
+  permisions VARCHAR(7) NOT NULL,
+  PRIMARY KEY (id)
+);
+
 DROP TABLE IF EXISTS clientes;
 
 -- clientes

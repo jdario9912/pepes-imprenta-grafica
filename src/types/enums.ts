@@ -205,3 +205,9 @@ export enum VolantesTamano {
   un_octavo = "1/8",
   otro = "otro",
 }
+
+export enum Permiso {
+  admin = "admin",
+  user = "user",
+  externo = "externo"
+}

@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{baseUrl}}/41
+DELETE {{baseUrl}}/40

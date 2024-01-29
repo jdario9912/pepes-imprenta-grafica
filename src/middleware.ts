@@ -4,18 +4,27 @@ import { errorResponse } from "./libs/api/responses";
 
 export async function middleware(req: NextRequest) {
   const pathAuthQuery = req.nextUrl.pathname.startsWith("/api/auth/login");
+  if (pathAuthQuery) NextResponse.next();
+  
+  const method = req.method;
 
-  if (!pathAuthQuery) {
+  try {
     const headers = new Headers(req.headers);
     const token = headers.get("Authorization");
 
-    if (!token) return NextResponse.json({ mensaje: "No estas autorizado." });
+    if (!token) return NextResponse.redirect("/login");
 
-    try {
-      await validarToken(token);
-      NextResponse.next();
-    } catch (error) {
-      return errorResponse(error);
-    }
+    await validarToken(token);
+
+    // obtener el rol
+
+    // usuario ruta clientes y ordenes puede
+    // crear, obtener, actualizar
+
+    // externo ruta ordenes puede
+    // obtener
+
+  } catch (error) {
+    return errorResponse(error);
   }
 }

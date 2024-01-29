@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { jwtSecret } from "@/config";
-import { JWTPayload, jwtVerify } from "jose";
+import { jwtVerify } from "jose";
 
 export const generarToken = async (
   dataToken: EmpleadoDataToken

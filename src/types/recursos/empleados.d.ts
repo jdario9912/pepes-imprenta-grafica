@@ -5,3 +5,5 @@ interface Empleado {
   password: string;
   permisos: string;
 }
+
+interface EmpleadoDataToken extends Omit<Empleado, "password">{} 

@@ -8,8 +8,8 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "nickname": "Pepo",
-  "email": "pepoquevedo@gmail.com",
+  "nickname": "Joel",
+  "email": "joel@gmail.com",
   "password": "admin123",
   "permisos": "admin"
 }

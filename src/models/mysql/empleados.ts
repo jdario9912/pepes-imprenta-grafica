@@ -1,5 +1,5 @@
 import { pool } from "@/db/mysql";
-import { hashPass } from "@/libs/api/bcrypt";
+import { checkPass, hashPass } from "@/libs/api/bcrypt";
 import { errorGuardarEmpleado } from "@/libs/api/errors";
 import type { Id } from "@/types/params";
 import { FieldPacket, ResultSetHeader } from "mysql2/promise";
@@ -53,5 +53,28 @@ export class EmpleadosModel {
     );
 
     return result.affectedRows > 0;
+  }
+
+  static async login(
+    emailInput: string,
+    passwordInput: string
+  ): Promise<EmpleadoDataToken> {
+    const [result]: any[] = await pool.query(
+      "SELECT * FROM empleados WHERE email = ?",
+      [emailInput]
+    );
+
+    const empleado = result[0] as Empleado;
+
+    if (!empleado)
+      throw new Error("No hay usuarios registrados con ese email.");
+
+    const { id, nickname, permisos, email, password } = empleado;
+
+    const checkedPass = await checkPass(password, passwordInput);
+
+    if (!checkedPass) throw new Error("Contraseña incorrecta.");
+
+    return { id, nickname, permisos, email };
   }
 }

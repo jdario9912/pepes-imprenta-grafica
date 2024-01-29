@@ -7,3 +7,8 @@ export const hashPass = (password: string): string => {
 
   return hash;
 };
+
+export const checkPass = async (
+  hashPass: string,
+  passwordInput: string
+): Promise<boolean> => await bcrypt.compare(passwordInput, hashPass);

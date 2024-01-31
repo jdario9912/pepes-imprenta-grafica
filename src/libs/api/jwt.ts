@@ -1,6 +1,8 @@
-import jwt from "jsonwebtoken";
+import jwt, { Jwt } from "jsonwebtoken";
 import { jwtSecret } from "@/config";
 import { jwtVerify } from "jose";
+import { EmpleadosModel } from "@/models/mysql/empleados";
+import { unknown } from "zod";
 
 export const generarToken = async (
   dataToken: EmpleadoDataToken
@@ -22,4 +24,10 @@ export const validarToken = async (token: string) => {
   } catch (error) {
     throw new Error("Token invalida.");
   }
+};
+
+export const dataDesdeToken = (token: string): EmpleadoDataToken => {
+  const decodedToken = jwt.decode(token, jwtSecret) as unknown;
+
+  return decodedToken as EmpleadoDataToken;
 };

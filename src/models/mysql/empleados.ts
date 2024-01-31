@@ -1,7 +1,6 @@
 import { pool } from "@/db/mysql";
 import { checkPass, hashPass } from "@/libs/api/bcrypt";
 import { errorGuardarEmpleado } from "@/libs/api/errors";
-import { validarToken } from "@/libs/api/jwt";
 import type { Id } from "@/types/params";
 import { FieldPacket, ResultSetHeader } from "mysql2/promise";
 
@@ -77,9 +76,5 @@ export class EmpleadosModel {
     if (!checkedPass) throw new Error("Contraseña incorrecta.");
 
     return { id, nickname, permisos, email };
-  }
-
-  static async autorizado(){
-    
   }
 }

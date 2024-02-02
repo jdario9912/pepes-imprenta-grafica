@@ -1,3 +1,5 @@
-export default function Login (){
-  return <div>login page</div>
-}
+import FormLogin from "@/components/form-login";
+
+const Login = () => <FormLogin />;
+
+export default Login;

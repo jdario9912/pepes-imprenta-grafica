@@ -8,7 +8,7 @@ export const POST = async (req: NextRequest) => {
   const body = (await req.json()) as Empleado;
   try {
     const { email, password } = validarLogin(body);
-    
+
     const dataToken = await EmpleadosModel.login(email, password);
 
     const token = await generarToken(dataToken);

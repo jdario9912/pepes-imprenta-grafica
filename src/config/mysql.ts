@@ -1,12 +1,10 @@
 import { PoolOptions } from "mysql2/promise";
 
-const env = process.env;
-
-const host = env.MYSQL_HOST || "";
-const port = env.MYSQL_PORT || ""
-const user = env.MYSQL_USER || "";
-const password = env.MYSQL_PASSWORD || "";
-const database = env.MYSQL_DATABASE || "";
+const host = process.env.MYSQL_HOST || "";
+const port = process.env.MYSQL_PORT || ""
+const user = process.env.MYSQL_USER || "";
+const password = process.env.MYSQL_PASSWORD || "";
+const database = process.env.MYSQL_DATABASE || "";
 
 const mysqlConfig: PoolOptions = {
   host,

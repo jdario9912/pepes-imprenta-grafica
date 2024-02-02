@@ -12,6 +12,9 @@ export default function SystemLayout({
         <nav>
           <ul>
             <li>
+              <Link href="/">Inicio</Link>
+            </li>
+            <li>
               <Link href="/system/ordenes-pendientes">Ordenes pendientes</Link>
             </li>
             <li>

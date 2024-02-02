@@ -1,13 +1,17 @@
 "use client";
 
 import { login } from "@/libs/client/axios";
-import { setToken } from "@/libs/client/localstorage";
+import { obtenerAuthtoken, setToken } from "@/libs/client/localstorage";
 import { Button, Input } from "@nextui-org/react";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export default function FormLogin(){
+  useEffect(() => {
+    if(obtenerAuthtoken()) router.push('/system')
+  })
   const router = useRouter();
   const { register, handleSubmit, formState } = useForm<FormLogin>();
 

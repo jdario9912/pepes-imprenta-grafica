@@ -38,7 +38,7 @@ export default function Home() {
         <NavbarContent justify="end">
           <NavbarItem>
             <Button as={Link} color="primary" href="/login" variant="flat">
-              Login
+              Sistema
             </Button>
           </NavbarItem>
         </NavbarContent>

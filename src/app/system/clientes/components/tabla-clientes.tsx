@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -14,7 +13,6 @@ import {
 } from "@tanstack/react-table";
 import {
   Button,
-  Checkbox,
   Input,
   Table,
   TableBody,
@@ -24,71 +22,8 @@ import {
   TableRow,
 } from "@nextui-org/react";
 import { useState } from "react";
-import AccionesTablaClientes from "./acciones-tabla-clientes";
 
-export const columns: ColumnDef<Cliente>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() || table.getIsSomePageRowsSelected()
-        }
-        // onCheckedChange={(value: ) => table.toggleAllPageRowsSelected(!!value)}
-
-        aria-label="Select all"
-      >j</Checkbox>
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      >h</Checkbox>
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "nombre",
-    header: "Nombre",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("nombre")}</div>
-    ),
-  },
-  {
-    accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-        </Button>
-      );
-    },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-  },
-  {
-    accessorKey: "telefono",
-    header: () => <div className="text-right">Telefono</div>,
-    cell: ({ row }) => {
-      return (
-        <div className="text-right font-medium">{row.getValue("telefono")}</div>
-      );
-    },
-  },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const cliente = row.original;
-
-      return <AccionesTablaClientes cliente={cliente} />;
-    },
-  },
-];
+import { columns } from "../services/columns-tabla-clientes";
 
 const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -98,7 +33,7 @@ const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
 
   const table = useReactTable({
     data: clientes,
-    columns,
+    columns: columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -119,10 +54,10 @@ const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Buscar por nombre..."
+          value={(table.getColumn("nombre")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("nombre")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

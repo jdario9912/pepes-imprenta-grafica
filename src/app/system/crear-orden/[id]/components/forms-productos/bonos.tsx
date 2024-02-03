@@ -2,8 +2,6 @@ import { bonosLotes, bonosNumeradores, bonosTamano, bonosTipo } from "@/libs/lis
 import { Input, Select, SelectItem } from "@nextui-org/react";
 
 const BonosForm = () => {
-  console.log(bonosNumeradores);
-  
   return (
     <>
       <Select label="tipo">
@@ -11,21 +9,25 @@ const BonosForm = () => {
           <SelectItem key={tipo}>{tipo}</SelectItem>
         ))}
       </Select>
+
       <Select label="tamaño">
         {bonosTamano.map((tipo) => (
           <SelectItem key={tipo}>{tipo}</SelectItem>
         ))}
       </Select>
+
       <Select label="numeradores">
         {bonosNumeradores.map((tipo) => (
           <SelectItem key={tipo}>{tipo}</SelectItem>
         ))}
       </Select>
+
       <Select label="en lotes de">
         {bonosLotes.map((tipo) => (
           <SelectItem key={tipo}>{tipo}</SelectItem>
         ))}
       </Select>
+
       <Input type="num" label="desde número" />
       <Input type="num" label="cantidad" />
     </>

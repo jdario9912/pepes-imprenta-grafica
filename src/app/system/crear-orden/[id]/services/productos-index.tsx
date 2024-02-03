@@ -8,6 +8,7 @@ import { TbFileInvoice, TbQuestionMark } from "react-icons/tb";
 import { TfiStamp } from "react-icons/tfi";
 import { Productos } from "@/types/enums";
 import BonosForm from "../components/forms-productos/bonos";
+import DisenosForm from "../components/forms-productos/disenos";
 
 const productos = Object.values(Productos);
 
@@ -15,7 +16,7 @@ const productos = Object.values(Productos);
 
 export const productosModel = {
   bonos: { icono: <RiCoupon3Line />, inputs: <BonosForm /> },
-  diseños: { icono: <HiOutlineLightBulb />, inputs: <div></div> },
+  diseños: { icono: <HiOutlineLightBulb />, inputs: <DisenosForm /> },
   impresiones: { icono: <AiOutlinePrinter />, inputs: <div></div> },
   loma: { icono: <GiTestTubes />, inputs: <div></div> },
   plotter: { icono: <BsPrinter />, inputs: <div></div> },

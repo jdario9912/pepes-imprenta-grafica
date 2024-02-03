@@ -1,5 +1,10 @@
+import { Textarea } from "@nextui-org/react";
+
 const DisenosForm = () => {
-  return;
+
+  return (
+    <Textarea label="detalles" />
+  );
 };
 
 export default DisenosForm;

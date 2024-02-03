@@ -9,9 +9,11 @@ export const siNo: string[] = Object.values(enums.SiNo);
 // bonos
 export const bonosTipo: string[] = Object.values(enums.BonosTipo);
 export const bonosTamano: string[] = Object.values(enums.BonosTamano);
+
 export const bonosNumeradores: Array<number | string> = Object.values(
   enums.BonosNumeradores
 ).filter((numerador) => !isNaN(Number(numerador)));
+
 export const bonosLotes: Array<number | string> = Object.values(
   enums.BonosLotes
 ).filter((numerador) => !isNaN(Number(numerador)));

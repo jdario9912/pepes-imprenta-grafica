@@ -1,30 +1,8 @@
-import { ColumnDef } from "@tanstack/react-table"
-import {  Button, Checkbox} from "@nextui-org/react";
+import { ColumnDef } from "@tanstack/react-table";
+import { Button, Checkbox } from "@nextui-org/react";
 import AccionesTablaClientes from "../components/acciones-tabla-clientes";
 
 export const columns: ColumnDef<Cliente>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() || table.getIsSomePageRowsSelected()
-        }
-        // onCheckedChange={(value: ) => table.toggleAllPageRowsSelected(!!value)}
-
-        aria-label="Select all"
-      >j</Checkbox>
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      >h</Checkbox>
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
   {
     accessorKey: "nombre",
     header: ({ column }) => {
@@ -43,16 +21,15 @@ export const columns: ColumnDef<Cliente>[] = [
   },
   {
     accessorKey: "telefono",
-    header: () => <div className="text-right">Telefono</div>,
-    cell: ({ row }) => {
-      return (
-        <div className="text-right font-medium">{row.getValue("telefono")}</div>
-      );
-    },
+    header: () => <div className="text-center">Telefono</div>,
+    cell: ({ row }) => (
+      <div className="text-right">{row.getValue("telefono")}</div>
+    ),
   },
   {
     id: "actions",
     enableHiding: false,
+    header: () => <div className="text-center">Acciones</div>,
     cell: ({ row }) => {
       const cliente = row.original;
 

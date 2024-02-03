@@ -120,12 +120,11 @@ const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
+                {table.getFlatHeaders().map((header) => (
+                  <TableCell key={header.id}>
+                    No hay resultados
+                  </TableCell>
+                ))}
               </TableRow>
             )}
           </TableBody>

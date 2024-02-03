@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { ProductoSchema } from "../producto";
-import { plotterMaterial, plotterTerminacion } from "@/libs/api/listas";
+import { plotterMaterial, plotterTerminacion } from "@/libs/listas";
 import type { Plotter } from "@/types/recursos/productos";
 
 const PlotterSchema = ProductoSchema.extend({

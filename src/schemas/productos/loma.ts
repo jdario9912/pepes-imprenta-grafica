@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { ProductoSchema } from "../producto";
-import { lomaMaterial, lomaOrientacion, siNo } from "@/libs/api/listas";
+import { lomaMaterial, lomaOrientacion, siNo } from "@/libs/listas";
 import type { Loma } from "@/types/recursos/productos";
 
 const LomaSchema = ProductoSchema.extend({

@@ -7,7 +7,7 @@ import {
   talonariosPuntilladoEmblocado,
   talonariosTamano,
   talonariosTipo,
-} from "@/libs/api/listas";
+} from "@/libs/listas";
 import type { Talonarios } from "@/types/recursos/productos";
 
 const TalonariosSchema = ProductoSchema.extend({

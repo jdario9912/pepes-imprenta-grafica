@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { ProductoSchema } from "../producto";
-import { bonosTamano, bonosTipo } from "@/libs/api/listas";
+import { bonosTamano, bonosTipo } from "@/libs/listas";
 import type { Bonos } from "@/types/recursos/productos";
 
 const BonosSchema = ProductoSchema.extend({

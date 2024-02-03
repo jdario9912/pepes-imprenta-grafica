@@ -4,7 +4,7 @@ import {
   volantesImpresion,
   volantesTamano,
   volantesTipo,
-} from "@/libs/api/listas";
+} from "@/libs/listas";
 import type { Volantes } from "@/types/recursos/productos";
 
 const VolantesSchema = ProductoSchema.extend({

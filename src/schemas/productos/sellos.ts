@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { ProductoSchema } from "../producto";
-import { sellosTipo } from "@/libs/api/listas";
+import { sellosTipo } from "@/libs/listas";
 import type { Sellos } from "@/types/recursos/productos";
 
 const SellosSchema = ProductoSchema.extend({

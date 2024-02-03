@@ -6,7 +6,7 @@ import {
   impresionesOrientacion,
   impresionesTamanoPapel,
   siNo,
-} from "@/libs/api/listas";
+} from "@/libs/listas";
 import type { Impresiones } from "@/types/recursos/productos";
 
 const ImpresionesSchema = ProductoSchema.extend({

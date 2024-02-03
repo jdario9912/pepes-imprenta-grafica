@@ -121,9 +121,7 @@ const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
             ) : (
               <TableRow>
                 {table.getFlatHeaders().map((header) => (
-                  <TableCell key={header.id}>
-                    No hay resultados
-                  </TableCell>
+                  <TableCell key={header.id}>No hay resultados</TableCell>
                 ))}
               </TableRow>
             )}
@@ -132,10 +130,6 @@ const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
       </div>
 
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
         <div className="space-x-2">
           <Button
             size="sm"

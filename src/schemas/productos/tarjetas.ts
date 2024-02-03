@@ -5,7 +5,7 @@ import {
   tarjetasPapel,
   tarjetasTerminacion,
   tarjetasTipo,
-} from "@/libs/api/listas";
+} from "@/libs/listas";
 import type { Tarjetas } from "@/types/recursos/productos";
 
 const TarjetasSchema = ProductoSchema.extend({

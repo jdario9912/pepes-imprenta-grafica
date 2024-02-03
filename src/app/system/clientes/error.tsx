@@ -1,13 +1,10 @@
 "use client";
 
 import { Button } from "@nextui-org/react";
-import { useEffect } from "react";
 
 const ClientesErrorPage = ({
-  error,
   reset,
 }: {
-  error: Error & { digest?: string };
   reset: () => void;
 }) => {
   const handleClick = () => reset();

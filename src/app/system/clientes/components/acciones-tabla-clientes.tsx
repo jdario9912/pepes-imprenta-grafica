@@ -1,16 +1,24 @@
 "use client";
 
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
-const AccionesTablaClientes = ({ url, cliente }: { url: string, cliente: Cliente }) => {
+const AccionesTablaClientes = ({ cliente }: { cliente: Cliente }) => {
   const router = useRouter();
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const {nombre, telefono, email, observaciones} = cliente
+  const { id, nombre, telefono, email, observaciones } = cliente;
 
-  const handleClick = () => router.push(url);
+  const handleClick = () => router.push(`/system/crear-orden/${id}`);
 
   return (
     <div>
@@ -19,9 +27,8 @@ const AccionesTablaClientes = ({ url, cliente }: { url: string, cliente: Cliente
       <Button onPress={onOpen}>detalles</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
-          {
-            (onClose) => (
-              <>
+          {(onClose) => (
+            <>
               <ModalHeader>{nombre}</ModalHeader>
               <ModalBody>
                 <p>{telefono}</p>
@@ -31,9 +38,8 @@ const AccionesTablaClientes = ({ url, cliente }: { url: string, cliente: Cliente
               <ModalFooter>
                 <Button onPress={onClose}>Cerrar</Button>
               </ModalFooter>
-              </>
-            )
-          }
+            </>
+          )}
         </ModalContent>
       </Modal>
     </div>

@@ -34,12 +34,3 @@ bun dev
 ```
 
 Abrir [http://localhost:3000](http://localhost:3000) en el navegador para ver los resultados.
-
-### Por hacer
-
-* [ ] En la base de datos de produccion cambiar el nombre de la columna tipo_trabajo a producto
-* [ ] Buscar lista de colores de plotter
-
-TENGO QUE DESINSTALAR JEST CUANDO TENGA INTERNET
-
-`npm un @testing-library/jest-dom jest jest-environment-jsdom`

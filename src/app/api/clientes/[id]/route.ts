@@ -4,8 +4,9 @@ import { validarClienteActualizar } from "@/schemas/cliente";
 import { Id } from "@/types/params";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async (_: NextRequest, { params }: any) => {
+export const GET = async (req: NextRequest, { params }: any) => {
   try {
+    
     const { id }: { id: Id } = params;
 
     const cliente = await ClientesModel.obtenerUno(id);

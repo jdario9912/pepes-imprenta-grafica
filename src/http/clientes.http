@@ -13,10 +13,10 @@ Content-Type: application/json
   "email": "fabian@gmail.com"
 }
 
-###
-GET {{baseUrl}}/41
+### obtener un cliente
+GET {{baseUrl}}/42
 
-###
+### actualizar cliente
 PATCH {{baseUrl}}/42
 Content-Type: application/json
 

@@ -6,10 +6,13 @@ import {
 } from "@/libs/listas";
 import InputSelect from "../input-select";
 import InputRadio from "../input-radio";
+import InputText from "../input-text";
 
 const LomaForm = () => {
   return (
     <>
+      <InputText label="ubicación del archivo" />
+
       <InputSelect label="material" opciones={lomaMaterial} />
 
       <InputSelect label="bolsillo" opciones={lomaBolsillo} />

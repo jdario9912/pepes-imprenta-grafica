@@ -14,6 +14,8 @@ import InputSelect from "../input-select";
 const ImpresionesForm = () => {
   return (
     <>
+      <InputText label="ubicación del archivo" />
+
       <InputRadio label="impresión" opciones={impresionesImpesion} />
 
       <InputRadio label="faz" opciones={impresionesFaz} />

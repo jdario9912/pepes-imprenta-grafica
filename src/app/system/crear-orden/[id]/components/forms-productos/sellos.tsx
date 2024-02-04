@@ -1,5 +1,7 @@
 const SellosForm = () => {
-  return;
+  return(
+    <></>
+  );
 };
 
 export default SellosForm;

@@ -1,5 +1,5 @@
 const TalonariosForm = () => {
-  return;
+  return(<></>);
 };
 
 export default TalonariosForm;

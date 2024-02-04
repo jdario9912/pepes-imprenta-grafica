@@ -1,14 +1,17 @@
+import RadioCustom from "@/components/radio-custom";
 import { bonosLotes, bonosNumeradores, bonosTamano, bonosTipo } from "@/libs/listas";
-import { Input, Select, SelectItem } from "@nextui-org/react";
+import { Input, RadioGroup, Select, SelectItem } from "@nextui-org/react";
 
 const BonosForm = () => {
   return (
     <>
-      <Select label="tipo">
+      <RadioGroup label="tipo">
         {bonosTipo.map((tipo) => (
-          <SelectItem key={tipo}>{tipo}</SelectItem>
+          <RadioCustom key={tipo} value={tipo}>
+            {tipo}
+          </RadioCustom>
         ))}
-      </Select>
+      </RadioGroup>
 
       <Select label="tamaño">
         {bonosTamano.map((tipo) => (

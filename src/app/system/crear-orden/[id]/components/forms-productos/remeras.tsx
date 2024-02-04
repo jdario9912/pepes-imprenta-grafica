@@ -1,5 +1,5 @@
 const RemerasForm = () => {
-  return;
+  return(<></>);
 };
 
 export default RemerasForm;

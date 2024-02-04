@@ -1,5 +1,5 @@
 const VolantesForm = () => {
-  return;
+  return(<></>);
 };
 
 export default VolantesForm;

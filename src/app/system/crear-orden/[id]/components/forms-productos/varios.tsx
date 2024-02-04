@@ -1,5 +1,5 @@
 const VariosForm = () => {
-  return;
+  return(<></>);
 };
 
 export default VariosForm;

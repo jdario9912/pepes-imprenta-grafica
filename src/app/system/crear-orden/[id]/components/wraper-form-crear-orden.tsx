@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import BotonesProductos from "./botones-productos";
-import FormProductos from "./form-producto";
+import FormProducto from "./form-producto";
 import { productosModel } from "../services/productos-index";
 
 const WraperFormCrearOrden = () => {
@@ -11,11 +11,11 @@ const WraperFormCrearOrden = () => {
   return (
     <>
       <BotonesProductos setProductoElegido={setProductoElegido} />
-      <FormProductos>
+      <FormProducto>
         <div>
           {productoElegido && productosModel[productoElegido].inputs}
         </div>
-      </FormProductos>
+      </FormProducto>
     </>
   );
 };

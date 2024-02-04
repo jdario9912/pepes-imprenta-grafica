@@ -1,5 +1,5 @@
 const PlotterForm = () => {
-  return;
+  return(<></>);
 };
 
 export default PlotterForm;

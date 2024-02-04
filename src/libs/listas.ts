@@ -10,13 +10,13 @@ export const siNo: string[] = Object.values(enums.SiNo);
 export const bonosTipo: string[] = Object.values(enums.BonosTipo);
 export const bonosTamano: string[] = Object.values(enums.BonosTamano);
 
-export const bonosNumeradores: Array<number | string> = Object.values(
+export const bonosNumeradores: string[] = Object.values(
   enums.BonosNumeradores
-).filter((numerador) => !isNaN(Number(numerador)));
+).filter((numerador) => !isNaN(Number(numerador))).map((numerador) => numerador.toString());
 
-export const bonosLotes: Array<number | string> = Object.values(
+export const bonosLotes: string[] = Object.values(
   enums.BonosLotes
-).filter((numerador) => !isNaN(Number(numerador)));
+).filter((lote) => !isNaN(Number(lote))).map((lote) => lote.toString());
 
 // impresiones
 export const impresionesImpesion: string[] = Object.values(

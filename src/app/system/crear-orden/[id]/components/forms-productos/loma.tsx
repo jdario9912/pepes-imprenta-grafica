@@ -1,5 +1,5 @@
 const LomaForm = () => {
-  return;
+  return(<></>);
 };
 
 export default LomaForm;

@@ -1,42 +1,29 @@
-import {
-  Input,
-  Radio,
-  RadioGroup,
-  Select,
-  SelectItem,
-  Textarea,
-} from "@nextui-org/react";
 import { metodosPago } from "../services/metodo-pago";
 import { siNo } from "@/libs/listas";
-import RadioCustom from "@/components/radio-custom";
+import TextArea from "./text-area";
+import InputNum from "./input-num";
+import InputDate from "./input-date";
+import InputTime from "./input-time";
+import InputRadio from "./input-radio";
+import InputSelect from "./input-select";
 
 const FormProductos = ({ children }: { children: React.ReactNode }) => (
   <div>
-    <Input type="date" />
+    <InputDate />
 
-    <Input type="time" defaultValue="19:00" />
+    <InputTime />
 
-    <RadioGroup label="muestra">
-      {siNo.map((opcion) => (
-        <RadioCustom value={opcion} key={opcion}>
-          {opcion}
-        </RadioCustom>
-      ))}
-    </RadioGroup>
+    <InputRadio label="muestra" opciones={siNo} />
 
     {children}
 
-    <Textarea label="observaciones" />
+    <TextArea label="observaciones" />
 
-    <Input type="num" label="importe" />
+    <InputNum label="importe" />
 
-    <Input type="num" label="abono" />
+    <InputNum label="abono" />
 
-    <Select label="metodo de pago">
-      {metodosPago.map((metodo) => (
-        <SelectItem key={metodo}>{metodo}</SelectItem>
-      ))}
-    </Select>
+    <InputSelect label="método de pago" opciones={metodosPago} />
   </div>
 );
 

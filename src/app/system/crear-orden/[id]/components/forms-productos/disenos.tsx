@@ -1,9 +1,9 @@
-import { Textarea } from "@nextui-org/react";
+import TextArea from "../text-area";
 
 const DisenosForm = () => {
   return (
     <>
-      <Textarea label="detalles" />
+      <TextArea label="detalles" />
     </>
   );
 };

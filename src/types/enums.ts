@@ -94,6 +94,12 @@ export enum LomaOrientacion {
   horizontal = "horizontal",
 }
 
+export enum LomaBolsillo {
+  no = "no",
+  arriba = "arriba",
+  arribaAbajo = "arriba y abajo",
+}
+
 export enum PlotterMaterial {
   autoadhesivo = "autoadhesivo",
   termotransferible = "termotransferible",
@@ -209,5 +215,5 @@ export enum VolantesTamano {
 export enum Permiso {
   admin = "admin",
   user = "user",
-  externo = "externo"
+  externo = "externo",
 }

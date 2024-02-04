@@ -1,38 +1,27 @@
-import RadioCustom from "@/components/radio-custom";
-import { bonosLotes, bonosNumeradores, bonosTamano, bonosTipo } from "@/libs/listas";
-import { Input, RadioGroup, Select, SelectItem } from "@nextui-org/react";
+import {
+  bonosLotes,
+  bonosNumeradores,
+  bonosTamano,
+  bonosTipo,
+} from "@/libs/listas";
+import InputNum from "../input-num";
+import InputRadio from "../input-radio";
+import InputSelect from "../input-select";
 
 const BonosForm = () => {
   return (
     <>
-      <RadioGroup label="tipo">
-        {bonosTipo.map((tipo) => (
-          <RadioCustom key={tipo} value={tipo}>
-            {tipo}
-          </RadioCustom>
-        ))}
-      </RadioGroup>
+      <InputRadio label="tipo" opciones={bonosTipo} />
 
-      <Select label="tamaño">
-        {bonosTamano.map((tipo) => (
-          <SelectItem key={tipo}>{tipo}</SelectItem>
-        ))}
-      </Select>
+      <InputSelect label="tamaño" opciones={bonosTamano} />
 
-      <Select label="numeradores">
-        {bonosNumeradores.map((tipo) => (
-          <SelectItem key={tipo}>{tipo}</SelectItem>
-        ))}
-      </Select>
+      <InputSelect label="numeradores" opciones={bonosNumeradores} />
 
-      <Select label="en lotes de">
-        {bonosLotes.map((tipo) => (
-          <SelectItem key={tipo}>{tipo}</SelectItem>
-        ))}
-      </Select>
+      <InputSelect label="en lotes de" opciones={bonosLotes} />
 
-      <Input type="num" label="desde número" />
-      <Input type="num" label="cantidad" />
+      <InputNum label="desde número" />
+
+      <InputNum label="cantidad" />
     </>
   );
 };

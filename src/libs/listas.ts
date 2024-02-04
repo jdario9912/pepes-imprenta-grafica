@@ -10,13 +10,13 @@ export const siNo: string[] = Object.values(enums.SiNo);
 export const bonosTipo: string[] = Object.values(enums.BonosTipo);
 export const bonosTamano: string[] = Object.values(enums.BonosTamano);
 
-export const bonosNumeradores: string[] = Object.values(
-  enums.BonosNumeradores
-).filter((numerador) => !isNaN(Number(numerador))).map((numerador) => numerador.toString());
+export const bonosNumeradores: string[] = Object.values(enums.BonosNumeradores)
+  .filter((numerador) => !isNaN(Number(numerador)))
+  .map((numerador) => numerador.toString());
 
-export const bonosLotes: string[] = Object.values(
-  enums.BonosLotes
-).filter((lote) => !isNaN(Number(lote))).map((lote) => lote.toString());
+export const bonosLotes: string[] = Object.values(enums.BonosLotes)
+  .filter((lote) => !isNaN(Number(lote)))
+  .map((lote) => lote.toString());
 
 // impresiones
 export const impresionesImpesion: string[] = Object.values(
@@ -33,6 +33,7 @@ export const impresionesFaz: string[] = Object.values(enums.ImpresionesFaz);
 // loma
 export const lomaMaterial: string[] = Object.values(enums.LomaMaterial);
 export const lomaOrientacion: string[] = Object.values(enums.LomaOrientacion);
+export const lomaBolsillo: string[] = Object.values(enums.LomaBolsillo);
 
 // plotter
 export const plotterColor: number[] = plotterColores.map(

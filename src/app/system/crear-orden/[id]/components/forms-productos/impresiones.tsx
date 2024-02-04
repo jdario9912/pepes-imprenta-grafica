@@ -6,71 +6,29 @@ import {
   impresionesTamanoPapel,
   siNo,
 } from "@/libs/listas";
-import {
-  Input,
-  RadioGroup,
-  Select,
-  SelectItem,
-} from "@nextui-org/react";
+import { Input, RadioGroup, Select, SelectItem } from "@nextui-org/react";
+import InputRadio from "../input-radio";
+import InputText from "../input-text";
+import InputSelect from "../input-select";
 
 const ImpresionesForm = () => {
   return (
     <>
-      <RadioGroup label="impresiòn">
-        {impresionesImpesion.map((impresion) => (
-          <RadioCustom key={impresion} value={impresion}>
-            {impresion}
-          </RadioCustom>
-        ))}
-      </RadioGroup>
+      <InputRadio label="impresión" opciones={impresionesImpesion} />
 
-      <RadioGroup label="faz">
-        {impresionesFaz.map((faz) => (
-          <RadioCustom key={faz} value={faz}>
-            {faz}
-          </RadioCustom>
-        ))}
-      </RadioGroup>
+      <InputRadio label="faz" opciones={impresionesFaz} />
 
-      <Input type="text" label="tipo" />
+      <InputText label="tipo" />
 
-      <Select label="tamaño">
-        {impresionesTamanoPapel.map((tamano) => (
-          <SelectItem key={tamano}>{tamano}</SelectItem>
-        ))}
-      </Select>
+      <InputSelect label="tamaño" opciones={impresionesTamanoPapel} />
 
-      <RadioGroup label="orientación">
-        {impresionesOrientacion.map((orientacion) => (
-          <RadioCustom key={orientacion} value={orientacion}>
-            {orientacion}
-          </RadioCustom>
-        ))}
-      </RadioGroup>
+      <InputRadio label="orientación" opciones={impresionesOrientacion} />
 
-      <RadioGroup label="anillado">
-        {siNo.map((opcion) => (
-          <RadioCustom key={opcion} value={opcion}>
-            {opcion}
-          </RadioCustom>
-        ))}
-      </RadioGroup>
+      <InputRadio label="anillado" opciones={siNo} />
 
-      <RadioGroup label="abrochado">
-        {siNo.map((opcion) => (
-          <RadioCustom key={opcion} value={opcion}>
-            {opcion}
-          </RadioCustom>
-        ))}
-      </RadioGroup>
+      <InputRadio label="abrochado" opciones={siNo} />
 
-      <RadioGroup label="corte">
-        {siNo.map((opcion) => (
-          <RadioCustom key={opcion} value={opcion}>
-            {opcion}
-          </RadioCustom>
-        ))}
-      </RadioGroup>
+      <InputRadio label="corte" opciones={siNo} />
     </>
   );
 };

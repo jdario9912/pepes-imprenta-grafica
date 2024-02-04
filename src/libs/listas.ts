@@ -76,6 +76,9 @@ export const volantesImpresion: string[] = Object.values(
   enums.VolantesImpresion
 );
 export const volantesTamano: string[] = Object.values(enums.VolantesTamano);
+export const volantesCantidad: string[] = Object.values(enums.VolantesCantidad)
+  .filter((cantidad) => !isNaN(Number(cantidad)))
+  .map((cantidad) => cantidad.toString());
 
 // empleados
 export const permisosEmpleado: string[] = Object.values(enums.Permiso);

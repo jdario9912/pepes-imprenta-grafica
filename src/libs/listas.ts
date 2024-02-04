@@ -66,6 +66,9 @@ export const tarjetasPapel: string[] = Object.values(enums.TarjetasPapel);
 export const tarjetasTerminacion: string[] = Object.values(
   enums.TarjetasTerminacion
 );
+export const tarjetasCantidad: string[] = Object.values(enums.TarjetasCantidad)
+  .filter((cantidad) => !isNaN(Number(cantidad)))
+  .map((cantidad) => cantidad.toString());
 
 // volantes
 export const volantesTipo: string[] = Object.values(enums.VolantesTipo);

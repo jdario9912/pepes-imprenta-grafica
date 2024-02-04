@@ -1,5 +1,11 @@
+import TextArea from "../text-area";
+
 const VariosForm = () => {
-  return(<></>);
+  return (
+    <>
+      <TextArea label="detalle" />
+    </>
+  );
 };
 
 export default VariosForm;

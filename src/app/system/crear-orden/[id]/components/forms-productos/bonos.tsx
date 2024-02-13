@@ -48,10 +48,10 @@ const BonosForm = () => {
         />
 
         <InputRadio
+          label="Muestra"
           register={register("muestra", { required: "Muestra es requerido." })}
           error={errors.muestra ? true : false}
           errorMessage={errors.muestra?.message}
-          label="Muestra"
           opciones={siNo}
         />
 
@@ -142,7 +142,7 @@ const BonosForm = () => {
         <InputSelect
           error={errors.metodo_pago ? true : false}
           errorMessage={errors.metodo_pago?.message}
-          label="Metodo de pago"
+          label="Método de pago"
           opciones={metodosPago}
           register={register("metodo_pago", {
             required: "Falta el metodo de pago.",

@@ -1,20 +1,27 @@
-import RadioCustom from "@/components/radio-custom";
 import {
   impresionesFaz,
   impresionesImpesion,
   impresionesOrientacion,
   impresionesTamanoPapel,
+  metodosPago,
   siNo,
 } from "@/libs/listas";
-import { Input, RadioGroup, Select, SelectItem } from "@nextui-org/react";
+import { Input, Textarea } from "@nextui-org/react";
 import InputRadio from "../input-radio";
 import InputText from "../input-text";
 import InputSelect from "../input-select";
 import FormProducto from "../form-producto";
 import { useForm } from "react-hook-form";
-
+import { Impresiones } from "@/types/recursos/productos";
 
 const ImpresionesForm = () => {
+  const { handleSubmit, register, formState } = useForm<Impresiones>();
+  const { errors } = formState;
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
+
   return (
     <form onSubmit={onSubmit}>
       <FormProducto>
@@ -39,51 +46,102 @@ const ImpresionesForm = () => {
           defaultValue="19:00"
         />
 
-        <RadioGroup
-          label="Muestra"
-          {...register("muestra", { required: "Muestra es requerido." })}
-          isInvalid={errors.muestra ? true : false}
+        <InputRadio
+          register={register("muestra", { required: "Muestra es requerido." })}
+          error={errors.muestra ? true : false}
           errorMessage={errors.muestra?.message}
-        >
-          {siNo.map((opcion) => (
-            <RadioCustom value={opcion} key={opcion} />
-          ))}
-        </RadioGroup>
+          label="Muestra"
+          opciones={siNo}
+        />
+
         <InputText label="ubicación del archivo" name="ubicacion_archivo" />
 
         <InputRadio
-          label="impresión"
+          label="Impresión"
+          register={register("impresion", {
+            required: "El tipo de impresión es requerido.",
+          })}
+          error={errors.impresion ? true : false}
+          errorMessage={errors.impresion?.message}
           opciones={impresionesImpesion}
-          name="impresion"
-        />
-
-        <InputRadio label="faz" opciones={impresionesFaz} name="faz" />
-
-        <InputText label="tipo de papel" name="tipo_papel" />
-
-        <InputSelect
-          label="tamaño"
-          opciones={impresionesTamanoPapel}
-          name="tamano"
         />
 
         <InputRadio
-          label="orientación"
-          opciones={impresionesOrientacion}
-          name="orientacion"
+          label="Faz"
+          register={register("faz", { required: "Faz es requerido." })}
+          error={errors.faz ? true : false}
+          errorMessage={errors.faz?.message}
+          opciones={impresionesFaz}
         />
 
-        <InputRadio label="anillado" opciones={siNo} name="anillado" />
+        <Input
+          label="Tipo de papel"
+          {...register("tipo_papel", {
+            required: "El tipo de papel es obligatorio.",
+          })}
+          isInvalid={errors.tipo_papel ? true : false}
+          errorMessage={errors.tipo_papel?.message}
+          variant={errors.tipo_papel ? "bordered" : "flat"}
+        />
 
-        <InputRadio label="abrochado" opciones={siNo} name="abrochado" />
+        <InputSelect
+          label="Tamaño del papel"
+          error={errors.tamano_papel ? true : false}
+          errorMessage={errors.tamano_papel?.message}
+          opciones={impresionesTamanoPapel}
+          register={register("tamano_papel", {
+            required: "El tamaño del papel es requerido.",
+          })}
+        />
 
-        <InputRadio label="corte" opciones={siNo} name="corte" />
+        <InputRadio
+          label="Orientación"
+          register={register("orientacion", {
+            required: "La orientación es requerida.",
+          })}
+          error={errors.orientacion ? true : false}
+          errorMessage={errors.orientacion?.message}
+          opciones={impresionesOrientacion}
+        />
+
+        <InputRadio
+          label="Anillado"
+          register={register("anillado", {
+            required: "Completar esta opción.",
+          })}
+          error={errors.anillado ? true : false}
+          errorMessage={errors.anillado?.message}
+          opciones={siNo}
+        />
+
+        <InputRadio
+          label="Abrochado"
+          register={register("abrochado", {
+            required: "Completar esta opción.",
+          })}
+          error={errors.abrochado ? true : false}
+          errorMessage={errors.abrochado?.message}
+          opciones={siNo}
+        />
+
+        <InputRadio
+          label="Corte"
+          register={register("corte", {
+            required: "Completar esta opción.",
+          })}
+          error={errors.corte ? true : false}
+          errorMessage={errors.corte?.message}
+          opciones={siNo}
+        />
+
         <Textarea label="Observaciones" {...register("observaciones")} />
 
         <Input
           type="num"
           label="Total"
-          {...register("total", { required: "El importe total es requerido." })}
+          {...register("total", {
+            required: "El total es requerido.",
+          })}
           isInvalid={errors.total ? true : false}
           errorMessage={errors.total?.message}
           variant={errors.total ? "bordered" : "flat"}
@@ -93,26 +151,22 @@ const ImpresionesForm = () => {
           type="num"
           label="Entrega"
           {...register("entrega", {
-            required: "El monto de la entrega es requerido.",
+            required: "El monto que entrega el cliente es requerido.",
           })}
           isInvalid={errors.entrega ? true : false}
           errorMessage={errors.entrega?.message}
           variant={errors.entrega ? "bordered" : "flat"}
         />
 
-        <Select
+        <InputSelect
           label="Método de pago"
-          {...register("metodo_pago", {
-            required: "",
-          })}
-          isInvalid={errors.metodo_pago ? true : false}
+          error={errors.metodo_pago ? true : false}
           errorMessage={errors.metodo_pago?.message}
-          variant={errors.metodo_pago ? "bordered" : "flat"}
-        >
-          {metodosPago.map((opcion) => (
-            <SelectItem key={opcion}>{opcion}</SelectItem>
-          ))}
-        </Select>
+          opciones={metodosPago}
+          register={register("metodo_pago", {
+            required: "Falta el metodo de pago.",
+          })}
+        />
       </FormProducto>
     </form>
   );

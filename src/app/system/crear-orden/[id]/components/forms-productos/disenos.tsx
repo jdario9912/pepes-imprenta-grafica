@@ -91,9 +91,9 @@ const DisenosForm = () => {
         />
 
         <InputSelect
+          label="Método de pago"
           error={errors.metodo_pago ? true : false}
           errorMessage={errors.metodo_pago?.message}
-          label="Metodo de pago"
           opciones={metodosPago}
           register={register("metodo_pago", {
             required: "Falta el metodo de pago.",

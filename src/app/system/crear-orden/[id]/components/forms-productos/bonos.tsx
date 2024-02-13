@@ -1,28 +1,155 @@
+"use client";
+
 import {
   bonosLotes,
   bonosNumeradores,
   bonosTamano,
   bonosTipo,
+  metodosPago,
+  siNo,
 } from "@/libs/listas";
-import InputNum from "../input-num";
 import InputRadio from "../input-radio";
 import InputSelect from "../input-select";
+import { useForm } from "react-hook-form";
+import type { Bonos } from "@/types/recursos/productos";
+import FormProducto from "../form-producto";
+import { Input, Textarea } from "@nextui-org/react";
 
 const BonosForm = () => {
+  const { handleSubmit, register, formState } = useForm<Bonos>();
+  const { errors } = formState;
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
+
   return (
-    <>
-      <InputRadio label="tipo" opciones={bonosTipo} />
+    <form onSubmit={onSubmit}>
+      <FormProducto>
+        <Input
+          type="date"
+          {...register("fecha_entrega", {
+            required: "La fecha de entrega es obligatoria.",
+          })}
+          isInvalid={errors.fecha_entrega ? true : false}
+          errorMessage={errors.fecha_entrega?.message}
+          variant={errors.fecha_entrega ? "bordered" : "flat"}
+        />
 
-      <InputSelect label="tamaño" opciones={bonosTamano} />
+        <Input
+          type="time"
+          {...register("hora_entrega", {
+            required: "la hora de entrega es requerida.",
+          })}
+          isInvalid={errors.hora_entrega ? true : false}
+          errorMessage={errors.hora_entrega?.message}
+          variant={errors.hora_entrega ? "bordered" : "flat"}
+          defaultValue="19:00"
+        />
 
-      <InputSelect label="numeradores" opciones={bonosNumeradores} />
+        <InputRadio
+          register={register("muestra", { required: "Muestra es requerido." })}
+          error={errors.muestra ? true : false}
+          errorMessage={errors.muestra?.message}
+          label="Muestra"
+          opciones={siNo}
+        />
 
-      <InputSelect label="en lotes de" opciones={bonosLotes} />
+        <InputRadio
+          register={register("tipo", { required: "El tipo es requerido." })}
+          error={errors.tipo ? true : false}
+          errorMessage={errors.tipo?.message}
+          label="Tipo"
+          opciones={bonosTipo}
+        />
 
-      <InputNum label="desde número" />
+        <InputSelect
+          error={errors.tamano ? true : false}
+          errorMessage={errors.tamano?.message}
+          label="Tamaño"
+          opciones={bonosTamano}
+          register={register("tamano", {
+            required: "El tamaño es requerido.",
+          })}
+        />
 
-      <InputNum label="cantidad" />
-    </>
+        <InputSelect
+          error={errors.numeradores ? true : false}
+          errorMessage={errors.numeradores?.message}
+          label="Numeradores"
+          opciones={bonosNumeradores}
+          register={register("numeradores", {
+            required: "Los numeradores son requeridos.",
+          })}
+        />
+
+        <InputSelect
+          error={errors.lotes ? true : false}
+          errorMessage={errors.lotes?.message}
+          label="Lotes"
+          opciones={bonosLotes}
+          register={register("lotes", {
+            required: "Los lotes son requeridos.",
+          })}
+        />
+
+        <Input
+          type="num"
+          label="Desde número"
+          {...register("desde_numero", {
+            required: "El núnero inicial es requerido.",
+          })}
+          isInvalid={errors.desde_numero ? true : false}
+          errorMessage={errors.desde_numero?.message}
+          variant={errors.desde_numero ? "bordered" : "flat"}
+        />
+
+        <Input
+          type="num"
+          label="Cantidad"
+          {...register("cantidad", {
+            required: "El núnero inicial es requerido.",
+          })}
+          isInvalid={errors.cantidad ? true : false}
+          errorMessage={errors.cantidad?.message}
+          variant={errors.cantidad ? "bordered" : "flat"}
+        />
+
+        <Textarea label="Observaciones" {...register("observaciones")} />
+
+        <Input
+          type="num"
+          label="Total"
+          {...register("total", {
+            required: "El núnero inicial es requerido.",
+          })}
+          isInvalid={errors.total ? true : false}
+          errorMessage={errors.total?.message}
+          variant={errors.total ? "bordered" : "flat"}
+        />
+
+        <Input
+          type="num"
+          label="Entrega"
+          {...register("entrega", {
+            required: "El núnero inicial es requerido.",
+          })}
+          isInvalid={errors.entrega ? true : false}
+          errorMessage={errors.entrega?.message}
+          variant={errors.entrega ? "bordered" : "flat"}
+        />
+
+        <InputSelect
+          error={errors.metodo_pago ? true : false}
+          errorMessage={errors.metodo_pago?.message}
+          label="Metodo de pago"
+          opciones={metodosPago}
+          register={register("metodo_pago", {
+            required: "Falta el metodo de pago.",
+          })}
+        />
+      </FormProducto>
+    </form>
   );
 };
 

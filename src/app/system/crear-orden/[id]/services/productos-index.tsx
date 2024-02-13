@@ -19,7 +19,16 @@ import TarjetasForm from "../components/forms-productos/tarjetas";
 import VariosForm from "../components/forms-productos/varios";
 import VolantesForm from "../components/forms-productos/volantes";
 
-export const productosModel = {
+type Producto = {
+  icono: JSX.Element;
+  inputs: JSX.Element;
+};
+
+type ProductosModel = {
+  [key: string]: Producto;
+};
+
+export const productosModel: ProductosModel = {
   bonos: { icono: <RiCoupon3Line />, inputs: <BonosForm /> },
   diseños: { icono: <HiOutlineLightBulb />, inputs: <DisenosForm /> },
   impresiones: { icono: <AiOutlinePrinter />, inputs: <ImpresionesForm /> },

@@ -1,8 +1,8 @@
 import { Textarea } from "@nextui-org/react";
 
-const TextArea = ({ label }: { label: string }) => (
+const TextArea = ({ label, name }: { label: string; name: string }) => (
   <>
-    <Textarea label={label} />
+    <Textarea label={label} name={name} />
   </>
 );
 

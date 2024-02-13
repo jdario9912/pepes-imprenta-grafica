@@ -1,4 +1,4 @@
-import { estadoOrden, metodosPago } from "@/libs/api/listas";
+import { estadoOrden, metodosPago } from "@/libs/listas";
 import { z } from "zod";
 
 export const ProductoSchema = z.object({

@@ -1,4 +1,5 @@
 import { axiosBaseURL } from "@/config";
+import type { Bonos } from "@/types/recursos/productos";
 import axios from "axios";
 
 const query = axios.create({
@@ -16,3 +17,6 @@ export const obtenerCliente = async (id: string) =>
 
 export const obtenerClientes = async () =>
   (await query.get<Cliente[]>("/api/clientes")).data;
+
+export const crearBonoFetch = async (data: unknown) =>
+  query.post<Bonos>("/api/ordenes/bonos", data);

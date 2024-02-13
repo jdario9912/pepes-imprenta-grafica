@@ -1,8 +1,7 @@
 import { obtenerCliente } from "@/libs/client/axios";
-import BotonesProductos from "./components/botones-productos";
-import FormProductos from "./components/form-producto";
 import InfoCliente from "./components/info-cliente";
-import WraperFormCrearOrden from "./components/wraper-form-crear-orden";
+import FormCrearOrden from "./components/form-crear-orden";
+import { Suspense } from "react";
 
 const CrearOrden = async ({ params }: { params: { id: string } }) => {
   const id = params.id;
@@ -10,9 +9,11 @@ const CrearOrden = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="flex flex-col">
-      <InfoCliente cliente={cliente} />
-        
-      <WraperFormCrearOrden />
+      <Suspense key={id} fallback={<div>cargando cliente...</div>}>
+        <InfoCliente cliente={cliente} />
+      </Suspense>
+
+      <FormCrearOrden />
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import { Input } from "@nextui-org/react";
 
-const InputText = ({ label }: { label: string }) => (
+const InputText = ({ label, name }: { label: string; name: string }) => (
   <>
-    <Input type="text" label={label} />
+    <Input type="text" label={label} name={name} />
   </>
 );
 

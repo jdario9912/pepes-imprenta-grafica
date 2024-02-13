@@ -1,4 +1,5 @@
 import { plotterColores } from "@/types/const";
+import type { Plotter } from "@/types/recursos/productos";
 import {
   Button,
   Modal,
@@ -8,8 +9,9 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
+import { UseFormSetValue } from "react-hook-form";
 
-const PlotterColor = () => {
+const PlotterColor = ({ setValue }: { setValue: UseFormSetValue<Plotter> }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
@@ -22,9 +24,19 @@ const PlotterColor = () => {
               <ModalBody>
                 <div className="grid grid-cols-10 gap-x-6">
                   {plotterColores.map((color) => (
-                    <div key={color.codigo} onClick={onClose} className="cursor-pointer">
+                    <div
+                      key={color.codigo}
+                      onClick={() => {
+                        setValue("color", color.codigo);
+                        onClose;
+                      }}
+                      className="cursor-pointer"
+                    >
                       <p>{color.codigo}</p>
-                      <div className={`bg-[${color.color}] w-10 h-8`}></div>
+                      <div
+                        className="w-16 h-14"
+                        style={{ background: color.color }}
+                      />
                     </div>
                   ))}
                 </div>

@@ -1,4 +1,5 @@
 import {
+  metodosPago,
   volantesCantidad,
   volantesImpresion,
   volantesTamano,
@@ -8,13 +9,21 @@ import InputSelect from "../input-select";
 import InputText from "../input-text";
 import FormProducto from "../form-producto";
 import { useForm } from "react-hook-form";
-
+import type { Volantes } from "@/types/recursos/productos";
+import { Input, Textarea } from "@nextui-org/react";
 
 const VolantesForm = () => {
+  const { handleSubmit, register, formState } = useForm<Volantes>();
+  const { errors } = formState;
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
+
   return (
     <form onSubmit={onSubmit}>
       <FormProducto>
-        <Input
+      <Input
           type="date"
           {...register("fecha_entrega", {
             required: "La fecha de entrega es obligatoria.",
@@ -35,16 +44,14 @@ const VolantesForm = () => {
           defaultValue="19:00"
         />
 
-        <RadioGroup
+        <InputRadio
           label="Muestra"
-          {...register("muestra", { required: "Muestra es requerido." })}
-          isInvalid={errors.muestra ? true : false}
+          register={register("muestra", { required: "Muestra es requerido." })}
+          error={errors.muestra ? true : false}
           errorMessage={errors.muestra?.message}
-        >
-          {siNo.map((opcion) => (
-            <RadioCustom value={opcion} key={opcion} />
-          ))}
-        </RadioGroup>
+          opciones={siNo}
+        />
+
         <InputSelect label="tipo" opciones={volantesTipo} name="tipo" />
 
         <InputSelect label="tamaño" opciones={volantesTamano} name="tamano" />
@@ -62,12 +69,15 @@ const VolantesForm = () => {
         />
 
         <InputText label="ubicación del diseño" name="ubicacion_diseno" />
+        
         <Textarea label="Observaciones" {...register("observaciones")} />
 
         <Input
           type="num"
           label="Total"
-          {...register("total", { required: "El importe total es requerido." })}
+          {...register("total", {
+            required: "El total es requerido.",
+          })}
           isInvalid={errors.total ? true : false}
           errorMessage={errors.total?.message}
           variant={errors.total ? "bordered" : "flat"}
@@ -77,26 +87,22 @@ const VolantesForm = () => {
           type="num"
           label="Entrega"
           {...register("entrega", {
-            required: "El monto de la entrega es requerido.",
+            required: "El monto que entrega el cliente es requerido.",
           })}
           isInvalid={errors.entrega ? true : false}
           errorMessage={errors.entrega?.message}
           variant={errors.entrega ? "bordered" : "flat"}
         />
 
-        <Select
-          label="Método de pago"
-          {...register("metodo_pago", {
-            required: "",
-          })}
-          isInvalid={errors.metodo_pago ? true : false}
+        <InputSelect
+          error={errors.metodo_pago ? true : false}
           errorMessage={errors.metodo_pago?.message}
-          variant={errors.metodo_pago ? "bordered" : "flat"}
-        >
-          {metodosPago.map((opcion) => (
-            <SelectItem key={opcion}>{opcion}</SelectItem>
-          ))}
-        </Select>
+          label="Método de pago"
+          opciones={metodosPago}
+          register={register("metodo_pago", {
+            required: "Falta el metodo de pago.",
+          })}
+        />
       </FormProducto>
     </form>
   );

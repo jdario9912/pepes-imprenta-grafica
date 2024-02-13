@@ -12,7 +12,7 @@ import InputText from "../input-text";
 import InputSelect from "../input-select";
 import FormProducto from "../form-producto";
 import { useForm } from "react-hook-form";
-import { Impresiones } from "@/types/recursos/productos";
+import type { Impresiones } from "@/types/recursos/productos";
 
 const ImpresionesForm = () => {
   const { handleSubmit, register, formState } = useForm<Impresiones>();

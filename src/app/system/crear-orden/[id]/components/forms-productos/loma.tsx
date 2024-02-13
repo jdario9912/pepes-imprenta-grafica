@@ -2,16 +2,24 @@ import {
   lomaBolsillo,
   lomaMaterial,
   lomaOrientacion,
+  metodosPago,
   siNo,
 } from "@/libs/listas";
 import InputSelect from "../input-select";
 import InputRadio from "../input-radio";
-import InputText from "../input-text";
 import FormProducto from "../form-producto";
 import { useForm } from "react-hook-form";
-
+import { Input, Textarea } from "@nextui-org/react";
+import type { Loma } from "@/types/recursos/productos";
 
 const LomaForm = () => {
+  const { handleSubmit, register, formState } = useForm<Loma>();
+  const { errors } = formState;
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
+
   return (
     <form onSubmit={onSubmit}>
       <FormProducto>
@@ -36,41 +44,92 @@ const LomaForm = () => {
           defaultValue="19:00"
         />
 
-        <RadioGroup
-          label="Muestra"
-          {...register("muestra", { required: "Muestra es requerido." })}
-          isInvalid={errors.muestra ? true : false}
-          errorMessage={errors.muestra?.message}
-        >
-          {siNo.map((opcion) => (
-            <RadioCustom value={opcion} key={opcion} />
-          ))}
-        </RadioGroup>
-        <InputText label="ubicación del archivo" name="ubicacion_archivo" />
-
-        <InputSelect label="material" opciones={lomaMaterial} name="material" />
-
-        <InputSelect label="bolsillo" opciones={lomaBolsillo} name="bolsillo" />
-
         <InputRadio
-          label="orientación"
-          opciones={lomaOrientacion}
-          name="orientacion"
+          label="Muestra"
+          register={register("muestra", { required: "Muestra es requerido." })}
+          error={errors.muestra ? true : false}
+          errorMessage={errors.muestra?.message}
+          opciones={siNo}
         />
 
-        <InputRadio label="corte" opciones={siNo} name="corte" />
+        <Input
+          label="Ubicación del archivo"
+          {...register("ubicacion_archivo", {
+            required: "La ubicación del archivo es requerido.",
+          })}
+          isInvalid={errors.ubicacion_archivo ? true : false}
+          errorMessage={errors.ubicacion_archivo?.message}
+          variant={errors.ubicacion_archivo ? "bordered" : "flat"}
+        />
 
-        <InputRadio label="ojales" opciones={siNo} name="ojales" />
+        <InputSelect
+          label="Material"
+          error={errors.material ? true : false}
+          errorMessage={errors.material?.message}
+          opciones={lomaMaterial}
+          register={register("material", {
+            required: "El material es requerido.",
+          })}
+        />
 
-        <InputRadio label="troquelado" opciones={siNo} name="troquelado" />
+        <InputSelect
+          label="Bolsillo"
+          error={errors.bolsillo ? true : false}
+          errorMessage={errors.bolsillo?.message}
+          opciones={lomaBolsillo}
+          register={register("bolsillo", {
+            required: "El bolsillo es requerido.",
+          })}
+        />
 
-        <InputRadio label="portabaner" opciones={siNo} name="portabaner" />
+        <InputRadio
+          label="Orientación"
+          register={register("orientacion", { required: "La orientación es requerida." })}
+          error={errors.orientacion ? true : false}
+          errorMessage={errors.orientacion?.message}
+          opciones={lomaOrientacion}
+        />
+
+        <InputRadio
+          label="Corte"
+          register={register("corte", { required: "Completar esta opción." })}
+          error={errors.corte ? true : false}
+          errorMessage={errors.corte?.message}
+          opciones={siNo}
+        />
+
+        <InputRadio
+          label="Ojales"
+          register={register("ojales", { required: "Completar esta opción." })}
+          error={errors.ojales ? true : false}
+          errorMessage={errors.ojales?.message}
+          opciones={siNo}
+        />
+
+        <InputRadio
+          label="Troquelado"
+          register={register("troquelado", { required: "Completar esta opción." })}
+          error={errors.troquelado ? true : false}
+          errorMessage={errors.troquelado?.message}
+          opciones={siNo}
+        />
+
+        <InputRadio
+          label="Portabaner"
+          register={register("portabaner", { required: "Muestra es requerido." })}
+          error={errors.portabaner ? true : false}
+          errorMessage={errors.portabaner?.message}
+          opciones={siNo}
+        />
+
         <Textarea label="Observaciones" {...register("observaciones")} />
 
         <Input
           type="num"
           label="Total"
-          {...register("total", { required: "El importe total es requerido." })}
+          {...register("total", {
+            required: "El total es requerido.",
+          })}
           isInvalid={errors.total ? true : false}
           errorMessage={errors.total?.message}
           variant={errors.total ? "bordered" : "flat"}
@@ -80,26 +139,22 @@ const LomaForm = () => {
           type="num"
           label="Entrega"
           {...register("entrega", {
-            required: "El monto de la entrega es requerido.",
+            required: "El monto que entrega el cliente es requerido.",
           })}
           isInvalid={errors.entrega ? true : false}
           errorMessage={errors.entrega?.message}
           variant={errors.entrega ? "bordered" : "flat"}
         />
 
-        <Select
-          label="Método de pago"
-          {...register("metodo_pago", {
-            required: "",
-          })}
-          isInvalid={errors.metodo_pago ? true : false}
+        <InputSelect
+          error={errors.metodo_pago ? true : false}
           errorMessage={errors.metodo_pago?.message}
-          variant={errors.metodo_pago ? "bordered" : "flat"}
-        >
-          {metodosPago.map((opcion) => (
-            <SelectItem key={opcion}>{opcion}</SelectItem>
-          ))}
-        </Select>
+          label="Método de pago"
+          opciones={metodosPago}
+          register={register("metodo_pago", {
+            required: "Falta el metodo de pago.",
+          })}
+        />
       </FormProducto>
     </form>
   );

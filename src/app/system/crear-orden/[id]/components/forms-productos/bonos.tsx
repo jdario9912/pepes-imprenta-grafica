@@ -56,17 +56,17 @@ const BonosForm = () => {
         />
 
         <InputRadio
+          label="Tipo"
           register={register("tipo", { required: "El tipo es requerido." })}
           error={errors.tipo ? true : false}
           errorMessage={errors.tipo?.message}
-          label="Tipo"
           opciones={bonosTipo}
         />
 
         <InputSelect
+          label="Tamaño"
           error={errors.tamano ? true : false}
           errorMessage={errors.tamano?.message}
-          label="Tamaño"
           opciones={bonosTamano}
           register={register("tamano", {
             required: "El tamaño es requerido.",
@@ -74,9 +74,9 @@ const BonosForm = () => {
         />
 
         <InputSelect
+          label="Numeradores"
           error={errors.numeradores ? true : false}
           errorMessage={errors.numeradores?.message}
-          label="Numeradores"
           opciones={bonosNumeradores}
           register={register("numeradores", {
             required: "Los numeradores son requeridos.",
@@ -84,9 +84,9 @@ const BonosForm = () => {
         />
 
         <InputSelect
+          label="Lotes"
           error={errors.lotes ? true : false}
           errorMessage={errors.lotes?.message}
-          label="Lotes"
           opciones={bonosLotes}
           register={register("lotes", {
             required: "Los lotes son requeridos.",

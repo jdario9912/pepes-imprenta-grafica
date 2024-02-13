@@ -1,11 +1,19 @@
-import { useFormState } from "react-dom";
 import FormProducto from "../form-producto";
-import InputText from "../input-text";
-import TextArea from "../text-area";
 import { useForm } from "react-hook-form";
-
+import type { Disenos } from "@/types/recursos/productos";
+import { Input, Textarea } from "@nextui-org/react";
+import InputRadio from "../input-radio";
+import { metodosPago, siNo } from "@/libs/listas";
+import InputSelect from "../input-select";
 
 const DisenosForm = () => {
+  const { handleSubmit, register, formState } = useForm<Disenos>();
+  const { errors } = formState;
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
+
   return (
     <form onSubmit={onSubmit}>
       <FormProducto>
@@ -30,25 +38,42 @@ const DisenosForm = () => {
           defaultValue="19:00"
         />
 
-        <RadioGroup
-          label="Muestra"
-          {...register("muestra", { required: "Muestra es requerido." })}
-          isInvalid={errors.muestra ? true : false}
+        <InputRadio
+          register={register("muestra", { required: "Muestra es requerido." })}
+          error={errors.muestra ? true : false}
           errorMessage={errors.muestra?.message}
-        >
-          {siNo.map((opcion) => (
-            <RadioCustom value={opcion} key={opcion} />
-          ))}
-        </RadioGroup>
-        <InputText label="ubicación del archivo" name="ubicacion_archivo" />
+          label="Muestra"
+          opciones={siNo}
+        />
 
-        <TextArea label="detalles" name="detalles" />
+        <Input
+          label="Ubicación del archivo"
+          {...register("ubicacion_archivo", {
+            required: "La ubicación del archivo es requerida.",
+          })}
+          isInvalid={errors.ubicacion_archivo ? true : false}
+          errorMessage={errors.ubicacion_archivo?.message}
+          variant={errors.ubicacion_archivo ? "bordered" : "flat"}
+        />
+
+        <Textarea
+          label="Detalles"
+          {...register("detalles", {
+            required: "Los detalles son requeridos.",
+          })}
+          isInvalid={errors.detalles ? true : false}
+          errorMessage={errors.detalles?.message}
+          variant={errors.detalles ? "bordered" : "flat"}
+        />
+
         <Textarea label="Observaciones" {...register("observaciones")} />
 
         <Input
           type="num"
           label="Total"
-          {...register("total", { required: "El importe total es requerido." })}
+          {...register("total", {
+            required: "El total es requerido.",
+          })}
           isInvalid={errors.total ? true : false}
           errorMessage={errors.total?.message}
           variant={errors.total ? "bordered" : "flat"}
@@ -58,26 +83,22 @@ const DisenosForm = () => {
           type="num"
           label="Entrega"
           {...register("entrega", {
-            required: "El monto de la entrega es requerido.",
+            required: "El monto que entrega el cliente es requerido.",
           })}
           isInvalid={errors.entrega ? true : false}
           errorMessage={errors.entrega?.message}
           variant={errors.entrega ? "bordered" : "flat"}
         />
 
-        <Select
-          label="Método de pago"
-          {...register("metodo_pago", {
-            required: "",
-          })}
-          isInvalid={errors.metodo_pago ? true : false}
+        <InputSelect
+          error={errors.metodo_pago ? true : false}
           errorMessage={errors.metodo_pago?.message}
-          variant={errors.metodo_pago ? "bordered" : "flat"}
-        >
-          {metodosPago.map((opcion) => (
-            <SelectItem key={opcion}>{opcion}</SelectItem>
-          ))}
-        </Select>
+          label="Metodo de pago"
+          opciones={metodosPago}
+          register={register("metodo_pago", {
+            required: "Falta el metodo de pago.",
+          })}
+        />
       </FormProducto>
     </form>
   );

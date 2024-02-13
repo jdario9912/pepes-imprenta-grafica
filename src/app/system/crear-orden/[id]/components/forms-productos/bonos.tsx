@@ -121,7 +121,7 @@ const BonosForm = () => {
           type="num"
           label="Total"
           {...register("total", {
-            required: "El núnero inicial es requerido.",
+            required: "El total es requerido.",
           })}
           isInvalid={errors.total ? true : false}
           errorMessage={errors.total?.message}
@@ -132,7 +132,7 @@ const BonosForm = () => {
           type="num"
           label="Entrega"
           {...register("entrega", {
-            required: "El núnero inicial es requerido.",
+            required: "El monto que entrega el cliente es requerido.",
           })}
           isInvalid={errors.entrega ? true : false}
           errorMessage={errors.entrega?.message}

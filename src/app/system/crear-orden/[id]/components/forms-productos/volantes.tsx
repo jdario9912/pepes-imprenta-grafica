@@ -1,16 +1,17 @@
 import {
   metodosPago,
+  siNo,
   volantesCantidad,
   volantesImpresion,
   volantesTamano,
   volantesTipo,
 } from "@/libs/listas";
 import InputSelect from "../input-select";
-import InputText from "../input-text";
 import FormProducto from "../form-producto";
 import { useForm } from "react-hook-form";
 import type { Volantes } from "@/types/recursos/productos";
 import { Input, Textarea } from "@nextui-org/react";
+import InputRadio from "../input-radio";
 
 const VolantesForm = () => {
   const { handleSubmit, register, formState } = useForm<Volantes>();
@@ -23,7 +24,7 @@ const VolantesForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <FormProducto>
-      <Input
+        <Input
           type="date"
           {...register("fecha_entrega", {
             required: "La fecha de entrega es obligatoria.",
@@ -52,24 +53,56 @@ const VolantesForm = () => {
           opciones={siNo}
         />
 
-        <InputSelect label="tipo" opciones={volantesTipo} name="tipo" />
-
-        <InputSelect label="tamaño" opciones={volantesTamano} name="tamano" />
+        <InputSelect
+          label="Tipo"
+          error={errors.tipo ? true : false}
+          errorMessage={errors.tipo?.message}
+          opciones={volantesTipo}
+          register={register("tipo", {
+            required: "El tipo es requerido.",
+          })}
+        />
 
         <InputSelect
-          label="cantidad"
+          label="Tamaño"
+          error={errors.tamano ? true : false}
+          errorMessage={errors.tamano?.message}
+          opciones={volantesTamano}
+          register={register("tamano", {
+            required: "El tamaño es requerido.",
+          })}
+        />
+
+        <InputSelect
+          label="Cantidad"
+          error={errors.cantidad ? true : false}
+          errorMessage={errors.cantidad?.message}
           opciones={volantesCantidad}
-          name="cantidad"
+          register={register("cantidad", {
+            required: "La cantidad es requerida.",
+          })}
         />
 
         <InputSelect
-          label="impresión"
+          label="Impresión"
+          error={errors.impresion ? true : false}
+          errorMessage={errors.impresion?.message}
           opciones={volantesImpresion}
-          name="impresion"
+          register={register("impresion", {
+            required: "La impresión es requerida.",
+          })}
         />
 
-        <InputText label="ubicación del diseño" name="ubicacion_diseno" />
-        
+        <Input
+          label="Ubicación del diseño"
+          {...register("ubicacion_diseno", {
+            required: "La ubicación del diseño es requerida.",
+          })}
+          isInvalid={errors.ubicacion_diseno ? true : false}
+          errorMessage={errors.ubicacion_diseno?.message}
+          variant={errors.ubicacion_diseno ? "bordered" : "flat"}
+        />
+
         <Textarea label="Observaciones" {...register("observaciones")} />
 
         <Input
@@ -84,8 +117,8 @@ const VolantesForm = () => {
         />
 
         <Input
-          type="num"
           label="Entrega"
+          type="num"
           {...register("entrega", {
             required: "El monto que entrega el cliente es requerido.",
           })}
@@ -95,9 +128,9 @@ const VolantesForm = () => {
         />
 
         <InputSelect
+          label="Método de pago"
           error={errors.metodo_pago ? true : false}
           errorMessage={errors.metodo_pago?.message}
-          label="Método de pago"
           opciones={metodosPago}
           register={register("metodo_pago", {
             required: "Falta el metodo de pago.",

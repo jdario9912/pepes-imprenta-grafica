@@ -8,11 +8,10 @@ import {
 } from "@/libs/listas";
 import InputSelect from "../input-select";
 import InputRadio from "../input-radio";
-import InputText from "../input-text";
 import { useForm } from "react-hook-form";
 import type { Tarjetas } from "@/types/recursos/productos";
 import { Input, Textarea } from "@nextui-org/react";
-
+import FormProducto from "../form-producto";
 
 const TarjetasForm = () => {
   const { handleSubmit, register, formState } = useForm<Tarjetas>();
@@ -25,7 +24,7 @@ const TarjetasForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <FormProducto>
-      <Input
+        <Input
           type="date"
           {...register("fecha_entrega", {
             required: "La fecha de entrega es obligatoria.",
@@ -54,35 +53,69 @@ const TarjetasForm = () => {
           opciones={siNo}
         />
 
-        <InputText label="ubicación del archivo" name="ubicacion_archivo" />
-
-        <InputSelect label="tipo" opciones={tarjetasTipo} name="tipo" />
-
-        <InputSelect
-          label="cantidad"
-          opciones={tarjetasCantidad}
-          name="cantidad"
+        <Input
+          label="Ubicación del archivo"
+          {...register("ubicacion_archivo", {
+            required: "La ubicación del archivo es obligatoria.",
+          })}
+          isInvalid={errors.ubicacion_archivo ? true : false}
+          errorMessage={errors.ubicacion_archivo?.message}
+          variant={errors.ubicacion_archivo ? "bordered" : "flat"}
         />
 
-        <InputSelect label="papel" opciones={tarjetasPapel} name="papel" />
+        <InputSelect
+          label="Tipo"
+          error={errors.tipo ? true : false}
+          errorMessage={errors.tipo?.message}
+          opciones={tarjetasTipo}
+          register={register("tipo", {
+            required: "El tipo es obligatorio.",
+          })}
+        />
 
         <InputSelect
-          label="terminación"
+          label="Cantidad"
+          error={errors.cantidad ? true : false}
+          errorMessage={errors.cantidad?.message}
+          opciones={tarjetasCantidad}
+          register={register("cantidad", {
+            required: "La cantidad es obligatoria.",
+          })}
+        />
+
+        <InputSelect
+          label="Papel"
+          error={errors.papel ? true : false}
+          errorMessage={errors.papel?.message}
+          opciones={tarjetasPapel}
+          register={register("papel", {
+            required: "El papel es requerido.",
+          })}
+        />
+
+        <InputSelect
+          label="Terminación"
+          error={errors.terminacion ? true : false}
+          errorMessage={errors.terminacion?.message}
           opciones={tarjetasTerminacion}
-          name="terminacion"
+          register={register("terminacion", {
+            required: "La terminación es requerida.",
+          })}
         />
 
         <InputRadio
-          label="puntas redondeadas"
+          label="Puntas redondeadas"
+          register={register("puntas_redondeadas", { required: "Completar esta opción." })}
+          error={errors.puntas_redondeadas ? true : false}
+          errorMessage={errors.puntas_redondeadas?.message}
           opciones={siNo}
-          name="puntas_redondeadas"
         />
-        
+
         <Textarea label="Observaciones" {...register("observaciones")} />
 
         <Input
-          type="num"
           label="Total"
+          type="num"
           {...register("total", {
             required: "El total es requerido.",
           })}
@@ -92,8 +125,8 @@ const TarjetasForm = () => {
         />
 
         <Input
-          type="num"
           label="Entrega"
+          type="num"
           {...register("entrega", {
             required: "El monto que entrega el cliente es requerido.",
           })}
@@ -103,9 +136,9 @@ const TarjetasForm = () => {
         />
 
         <InputSelect
+          label="Método de pago"
           error={errors.metodo_pago ? true : false}
           errorMessage={errors.metodo_pago?.message}
-          label="Método de pago"
           opciones={metodosPago}
           register={register("metodo_pago", {
             required: "Falta el metodo de pago.",

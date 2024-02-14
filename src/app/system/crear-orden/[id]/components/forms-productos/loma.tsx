@@ -136,8 +136,8 @@ const LomaForm = () => {
         />
 
         <Input
-          type="num"
           label="Entrega"
+          type="num"
           {...register("entrega", {
             required: "El monto que entrega el cliente es requerido.",
           })}
@@ -147,9 +147,9 @@ const LomaForm = () => {
         />
 
         <InputSelect
+          label="Método de pago"
           error={errors.metodo_pago ? true : false}
           errorMessage={errors.metodo_pago?.message}
-          label="Método de pago"
           opciones={metodosPago}
           register={register("metodo_pago", {
             required: "Falta el metodo de pago.",

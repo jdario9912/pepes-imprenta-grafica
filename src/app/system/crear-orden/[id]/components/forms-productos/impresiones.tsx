@@ -148,8 +148,8 @@ const ImpresionesForm = () => {
         />
 
         <Input
-          type="num"
           label="Entrega"
+          type="num"
           {...register("entrega", {
             required: "El monto que entrega el cliente es requerido.",
           })}

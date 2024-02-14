@@ -1,10 +1,10 @@
-import { metodosPago, sellosTipo } from "@/libs/listas";
+import { metodosPago, sellosTipo, siNo } from "@/libs/listas";
 import InputSelect from "../input-select";
-import TextArea from "../text-area";
 import { useForm } from "react-hook-form";
 import type { Sellos } from "@/types/recursos/productos";
 import { Input, Textarea } from "@nextui-org/react";
-
+import FormProducto from "../form-producto";
+import InputRadio from "../input-radio";
 
 const SellosForm = () => {
   const { handleSubmit, register, formState } = useForm<Sellos>();
@@ -17,7 +17,7 @@ const SellosForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <FormProducto>
-      <Input
+        <Input
           type="date"
           {...register("fecha_entrega", {
             required: "La fecha de entrega es obligatoria.",
@@ -46,14 +46,46 @@ const SellosForm = () => {
           opciones={siNo}
         />
 
-        <InputSelect label="tipo" opciones={sellosTipo} name="tipo" />
+        <InputSelect
+          label="Tipo"
+          error={errors.tipo ? true : false}
+          errorMessage={errors.tipo?.message}
+          opciones={sellosTipo}
+          register={register("tipo", {
+            required: "El tipo es requerido.",
+          })}
+        />
 
-        <TextArea label="tamaño" name="tamano" />
+        <Textarea
+          label="Tamaño"
+          {...register("tamano", {
+            required: "El tamaño es requerido.",
+          })}
+          isInvalid={errors.tamano ? true : false}
+          errorMessage={errors.tamano?.message}
+          variant={errors.tamano ? "bordered" : "flat"}
+        />
 
-        <TextArea label="texto" name="texto" />
+        <Textarea
+          label="Texto"
+          {...register("texto", {
+            required: "El texto es requerido.",
+          })}
+          isInvalid={errors.texto ? true : false}
+          errorMessage={errors.texto?.message}
+          variant={errors.texto ? "bordered" : "flat"}
+        />
 
-        <TextArea label="dibujo" name="dibujo" />
-        
+        <Textarea
+          label="Dibujo"
+          {...register("dibujo", {
+            required: "El dibujo es requerido.",
+          })}
+          isInvalid={errors.dibujo ? true : false}
+          errorMessage={errors.dibujo?.message}
+          variant={errors.dibujo ? "bordered" : "flat"}
+        />
+
         <Textarea label="Observaciones" {...register("observaciones")} />
 
         <Input
@@ -68,8 +100,8 @@ const SellosForm = () => {
         />
 
         <Input
-          type="num"
           label="Entrega"
+          type="num"
           {...register("entrega", {
             required: "El monto que entrega el cliente es requerido.",
           })}
@@ -79,9 +111,9 @@ const SellosForm = () => {
         />
 
         <InputSelect
+          label="Método de pago"
           error={errors.metodo_pago ? true : false}
           errorMessage={errors.metodo_pago?.message}
-          label="Método de pago"
           opciones={metodosPago}
           register={register("metodo_pago", {
             required: "Falta el metodo de pago.",

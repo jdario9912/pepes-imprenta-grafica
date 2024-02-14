@@ -1,12 +1,10 @@
 import type { Remeras } from "@/types/recursos/productos";
 import FormProducto from "../form-producto";
-import InputNum from "../input-num";
-import InputText from "../input-text";
 import { useForm } from "react-hook-form";
-import { metodosPago } from "@/libs/listas";
+import { metodosPago, siNo } from "@/libs/listas";
 import InputSelect from "../input-select";
 import { Input, Textarea } from "@nextui-org/react";
-
+import InputRadio from "../input-radio";
 
 const RemerasForm = () => {
   const { handleSubmit, register, formState } = useForm<Remeras>();
@@ -19,7 +17,7 @@ const RemerasForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <FormProducto>
-      <Input
+        <Input
           type="date"
           {...register("fecha_entrega", {
             required: "La fecha de entrega es obligatoria.",
@@ -48,25 +46,82 @@ const RemerasForm = () => {
           opciones={siNo}
         />
 
-        <InputText label="ubicación del archivo" name="ubicacion_archivo" />
+        <Input
+          label="ubicación del archivo"
+          {...register("ubicacion_archivo", {
+            required: "La ubicación del archivo es requerida.",
+          })}
+          isInvalid={errors.ubicacion_archivo ? true : false}
+          errorMessage={errors.ubicacion_archivo?.message}
+          variant={errors.ubicacion_archivo ? "bordered" : "flat"}
+        />
 
-        <InputText label="talles" name="talles" />
+        <Input
+          label="talles"
+          {...register("talles", {
+            required: "Los talles son requeridos.",
+          })}
+          isInvalid={errors.talles ? true : false}
+          errorMessage={errors.talles?.message}
+          variant={errors.talles ? "bordered" : "flat"}
+        />
 
-        <InputText label="color" name="color" />
+        <Input
+          label="color"
+          {...register("color", {
+            required: "El color es requerido.",
+          })}
+          isInvalid={errors.color ? true : false}
+          errorMessage={errors.color?.message}
+          variant={errors.color ? "bordered" : "flat"}
+        />
 
-        <InputText label="estampa pecho" name="estampa_pecho" />
+        <Input
+          label="Estampa pecho"
+          {...register("estampa_pecho", {
+            required: "La estampa del pecho es requerida.",
+          })}
+          isInvalid={errors.estampa_pecho ? true : false}
+          errorMessage={errors.estampa_pecho?.message}
+          variant={errors.estampa_pecho ? "bordered" : "flat"}
+        />
 
-        <InputText label="estampa espalda" name="estampa_espalda" />
+        <Input
+          label="Estampa espalda"
+          {...register("estampa_espalda", {
+            required: "La estampa de espalda es requerida es requerida.",
+          })}
+          isInvalid={errors.estampa_espalda ? true : false}
+          errorMessage={errors.estampa_espalda?.message}
+          variant={errors.estampa_espalda ? "bordered" : "flat"}
+        />
 
-        <InputText label="color estampa" name="color_estampa" />
+        <Input
+          label="Color estampa"
+          {...register("color_estampa", {
+            required: "El color de la estampa es requerida.",
+          })}
+          isInvalid={errors.color_estampa ? true : false}
+          errorMessage={errors.color_estampa?.message}
+          variant={errors.color_estampa ? "bordered" : "flat"}
+        />
 
-        <InputNum label="cantidad" name="cantidad" />
-        
+        <Input
+          label="cantidad"
+          type="num"
+          {...register("cantidad", {
+            required: "La cantidad es requerida.",
+          })}
+          isInvalid={errors.cantidad ? true : false}
+          errorMessage={errors.cantidad?.message}
+          variant={errors.cantidad ? "bordered" : "flat"}
+        />
+
         <Textarea label="Observaciones" {...register("observaciones")} />
 
         <Input
-          type="num"
           label="Total"
+          type="num"
           {...register("total", {
             required: "El total es requerido.",
           })}

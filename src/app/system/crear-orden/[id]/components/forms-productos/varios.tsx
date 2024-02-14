@@ -1,10 +1,10 @@
 import type { Varios } from "@/types/recursos/productos";
-import TextArea from "../text-area";
 import { useForm } from "react-hook-form";
-import { metodosPago } from "@/libs/listas";
+import { metodosPago, siNo } from "@/libs/listas";
 import InputSelect from "../input-select";
 import { Input, Textarea } from "@nextui-org/react";
-
+import FormProducto from "../form-producto";
+import InputRadio from "../input-radio";
 
 const VariosForm = () => {
   const { handleSubmit, register, formState } = useForm<Varios>();
@@ -17,7 +17,7 @@ const VariosForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <FormProducto>
-      <Input
+        <Input
           type="date"
           {...register("fecha_entrega", {
             required: "La fecha de entrega es obligatoria.",
@@ -46,8 +46,16 @@ const VariosForm = () => {
           opciones={siNo}
         />
 
-        <TextArea label="detalle" name="detalle" />
-        
+        <Textarea
+          label="detalle"
+          {...register("detalle", {
+            required: "El detalle es requerido.",
+          })}
+          isInvalid={errors.detalle ? true : false}
+          errorMessage={errors.detalle?.message}
+          variant={errors.detalle ? "bordered" : "flat"}
+        />
+
         <Textarea label="Observaciones" {...register("observaciones")} />
 
         <Input

@@ -7,12 +7,14 @@ const InputRadio = ({
   error,
   errorMessage,
   register,
+  disabled = false,
 }: {
   label: string;
   opciones: string[];
   error: boolean;
   errorMessage: string | undefined;
   register: UseFormRegisterReturn;
+  disabled?: boolean
 }) => (
   <RadioGroup
     label={label}
@@ -23,7 +25,7 @@ const InputRadio = ({
     {opciones.map((opcion) => (
       <label key={opcion} htmlFor={opcion}>
         {opcion}
-        <input id={opcion} type="radio" {...register} value={opcion} />
+        <input id={opcion} type="radio" {...register} value={opcion} disabled={disabled} />
       </label>
     ))}
   </RadioGroup>

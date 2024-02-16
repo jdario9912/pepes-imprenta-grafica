@@ -1,18 +1,18 @@
-// "use client";
 import PepesLogo from "@/components/logo";
 import {
-  Button,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  NextUIProvider,
 } from "@nextui-org/react";
 import Link from "next/link";
+import Login from "@/components/login";
+import { getServerSession } from "next-auth";
+import Logout from "@/components/logout";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession();
   return (
-    // <NextUIProvider>
     <main>
       <Navbar shouldHideOnScroll>
         <NavbarBrand>
@@ -37,14 +37,12 @@ export default function Home() {
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem>
-            <Button as={Link} color="primary" href="/login" variant="flat">
-              Sistema
-            </Button>
+            {!!session && <Logout />}
+            {!session && <Login />}
           </NavbarItem>
         </NavbarContent>
       </Navbar>
       <h1>Home</h1>
     </main>
-    // </NextUIProvider>
   );
 }

@@ -1,16 +1,12 @@
-"use client";
+"use client"
 
-import { borrarToken } from "@/libs/client/localstorage";
 import { Button } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
-import React from "react";
+import { signOut } from "next-auth/react";
 
 export default function Logout() {
-  const router = useRouter();
   const handleClick = () => {
-    borrarToken()
-    router.push("/");
+    signOut();
   };
-  
+
   return <Button onClick={handleClick}>Cerrar sesion</Button>;
 }

@@ -55,10 +55,7 @@ export class EmpleadosModel {
     return result.affectedRows > 0;
   }
 
-  static async login(
-    emailInput: string,
-    passwordInput: string
-  ): Promise<EmpleadoDataToken> {
+  static async login(emailInput: string, passwordInput: string) {
     const [result]: any[] = await pool.query(
       "SELECT * FROM empleados WHERE email = ?",
       [emailInput]

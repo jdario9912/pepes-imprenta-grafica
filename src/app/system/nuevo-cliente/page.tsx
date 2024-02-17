@@ -1,9 +1,9 @@
-import FormNuevoCliente from "@/components/form-nuevo-cliente";
+import FormNuevoCliente from "@/app/system/nuevo-cliente/components/form-nuevo-cliente";
 
 const NuevoCliente = () => (
-  <div>
+  <>
     <FormNuevoCliente />
-  </div>
+  </>
 );
 
 export default NuevoCliente;

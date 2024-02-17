@@ -12,6 +12,7 @@ import Logout from "@/components/logout";
 
 export default async function Home() {
   const session = await getServerSession();
+
   return (
     <main>
       <Navbar shouldHideOnScroll>

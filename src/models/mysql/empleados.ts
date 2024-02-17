@@ -72,6 +72,6 @@ export class EmpleadosModel {
 
     if (!checkedPass) throw new Error("Contraseña incorrecta.");
 
-    return { id, nickname, permisos, email };
+    return { id, name: nickname, permisos, email };
   }
 }

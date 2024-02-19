@@ -1,5 +1,5 @@
 const PdfPage = () => {
-  return <div>pagina de pdf</div>;
+  return <div>Pdf Tarjetas</div>;
 };
 
 export default PdfPage;

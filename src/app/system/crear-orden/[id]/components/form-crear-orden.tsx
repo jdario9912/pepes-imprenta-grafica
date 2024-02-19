@@ -6,12 +6,13 @@ import { productosModel } from "../services/productos-index";
 import { Button } from "@nextui-org/react";
 import { FormProvider, useForm } from "react-hook-form";
 import * as querys from "@/libs/client/axios";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { AxiosError } from "axios";
 
 const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
   const [productoElegido, setProductoElegido] = useState("");
   const params = useParams();
+  const router = useRouter();
 
   const id_cliente = params.id;
 
@@ -47,7 +48,9 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
         }
         case "diseños": {
           const res = await querys.crearDisenoFetch(data);
-          console.log(res);
+
+          router.push(`/system/pdf/${res.data.nro_orden}`);
+
           break;
         }
         case "impresiones": {

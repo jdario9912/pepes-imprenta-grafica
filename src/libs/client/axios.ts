@@ -6,9 +6,6 @@ const query = axios.create({
   baseURL: axiosBaseURL,
 });
 
-export const login = async (credenciales: FormLogin) =>
-  await query.post<string>("/api/auth/login", credenciales);
-
 export const crearCliente = async (nuevoCliente: FormNuevoCliente) =>
   await query.post<Cliente>("/api/clientes", nuevoCliente);
 

@@ -1,9 +1,6 @@
 "use client";
 
-import { login } from "@/libs/client/axios";
-import { obtenerAuthtoken, setToken } from "@/libs/client/localstorage";
 import { Button, Input } from "@nextui-org/react";
-import { AxiosError } from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -30,8 +27,6 @@ export default function FormLogin() {
     } catch (error: unknown) {
       // tengo que manejar este error
 
-      // if (error instanceof AxiosError)
-      //   console.log(error.response?.data.mensaje);
       console.log(error);
     }
   });

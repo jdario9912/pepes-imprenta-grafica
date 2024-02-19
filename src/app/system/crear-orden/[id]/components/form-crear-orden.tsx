@@ -49,7 +49,9 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
         case "diseños": {
           const res = await querys.crearDisenoFetch(data);
 
-          router.push(`/system/pdf/${res.data.nro_orden}`);
+          // console.log(res.data);
+
+          router.push(`/system/pdf/${res.data.producto}/${res.data.id}`);
 
           break;
         }

@@ -1,5 +1,5 @@
-const PdfPage = () => {
+const BonosPdfPage = () => {
   return <div>Pdf Bonos</div>;
 };
 
-export default PdfPage;
+export default BonosPdfPage;

@@ -1,7 +1,7 @@
 import { axiosBaseURL } from "@/config";
-import {
+import type {
   Disenos,
-  type Bonos,
+  Bonos,
   Impresiones,
   Loma,
   Plotter,
@@ -60,4 +60,5 @@ export const crearVariosFetch = async (data: unknown) =>
 export const crearVolanteFetch = async (data: unknown) =>
   query.post<Volantes>("/api/ordenes/volantes", data);
 
-
+export const obtenerDisenoFetch = async (id: string) =>
+  (await query.get<Disenos>(`/api/ordenes/disenos/${id}`)).data;

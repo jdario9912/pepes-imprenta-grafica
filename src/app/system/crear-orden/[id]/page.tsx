@@ -1,11 +1,16 @@
 import { obtenerCliente } from "@/libs/client/axios";
 import InfoCliente from "./components/info-cliente";
-import FormCrearOrden from "./components/form-crear-orden";
+import FormCrearOrdenProvider from "./components/form-crear-orden";
 import { Suspense } from "react";
+import { getServerSession } from "next-auth";
 
 const CrearOrden = async ({ params }: { params: { id: string } }) => {
   const id = params.id;
   const cliente = await obtenerCliente(id);
+
+  const session = await getServerSession()
+
+  const empleado = session?.user?.name || ""
 
   return (
     <div className="flex flex-col">
@@ -13,7 +18,7 @@ const CrearOrden = async ({ params }: { params: { id: string } }) => {
         <InfoCliente cliente={cliente} />
       </Suspense>
 
-      <FormCrearOrden />
+      <FormCrearOrdenProvider atendido_por={empleado} />
     </div>
   );
 };

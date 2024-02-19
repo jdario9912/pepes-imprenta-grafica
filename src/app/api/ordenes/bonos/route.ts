@@ -15,8 +15,6 @@ export const POST = async (req: NextRequest) => {
 
     return NextResponse.json(ordenCreada);
   } catch (error) {
-    console.log(error);
-    
     return errorResponse(error);
   }
 };

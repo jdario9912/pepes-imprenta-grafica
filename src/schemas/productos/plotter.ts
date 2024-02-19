@@ -6,7 +6,7 @@ import type { Plotter } from "@/types/recursos/productos";
 const PlotterSchema = ProductoSchema.extend({
   ubicacion_archivo: z.string(),
   tamano: z.string(),
-  color: z.number().positive(),
+  color: z.coerce.number().positive(),
   material: z.string(z.enum(["", ...plotterMaterial])),
   terminacion: z.string(z.enum(["", ...plotterTerminacion])),
 });

@@ -1,5 +1,17 @@
 import { axiosBaseURL } from "@/config";
-import type { Bonos } from "@/types/recursos/productos";
+import {
+  Disenos,
+  type Bonos,
+  Impresiones,
+  Loma,
+  Plotter,
+  Remeras,
+  Sellos,
+  Talonarios,
+  Tarjetas,
+  Varios,
+  Volantes,
+} from "@/types/recursos/productos";
 import axios from "axios";
 
 const query = axios.create({
@@ -17,3 +29,33 @@ export const obtenerClientes = async () =>
 
 export const crearBonoFetch = async (data: unknown) =>
   query.post<Bonos>("/api/ordenes/bonos", data);
+
+export const crearDisenoFetch = async (data: unknown) =>
+  query.post<Disenos>("/api/ordenes/disenos", data);
+
+export const crearImpresionFetch = async (data: unknown) =>
+  query.post<Impresiones>("/api/ordenes/impresiones", data);
+
+export const crearLomaFetch = async (data: unknown) =>
+  query.post<Loma>("/api/ordenes/loma", data);
+
+export const crearPlotterFetch = async (data: unknown) =>
+  query.post<Plotter>("/api/ordenes/plotter", data);
+
+export const crearRemeraFetch = async (data: unknown) =>
+  query.post<Remeras>("/api/ordenes/remeras", data);
+
+export const crearSelloFetch = async (data: unknown) =>
+  query.post<Sellos>("/api/ordenes/sellos", data);
+
+export const crearTalonarioFetch = async (data: unknown) =>
+  query.post<Talonarios>("/api/ordenes/talonarios", data);
+
+export const crearTarjetaFetch = async (data: unknown) =>
+  query.post<Tarjetas>("/api/ordenes/tarjetas", data);
+
+export const crearVariosFetch = async (data: unknown) =>
+  query.post<Varios>("/api/ordenes/varios", data);
+
+export const crearVolanteFetch = async (data: unknown) =>
+  query.post<Volantes>("/api/ordenes/volantes", data);

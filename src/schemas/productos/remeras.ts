@@ -9,7 +9,7 @@ const RemerasSchema = ProductoSchema.extend({
   estampa_pecho: z.string(),
   estampa_espalda: z.string(),
   color_estampa: z.string(),
-  cantidad: z.number().positive(),
+  cantidad: z.coerce.number().positive(),
 });
 
 export const validarRemerasCrear = (object: unknown): Remeras =>

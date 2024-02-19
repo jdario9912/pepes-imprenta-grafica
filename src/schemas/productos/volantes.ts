@@ -10,7 +10,7 @@ import type { Volantes } from "@/types/recursos/productos";
 const VolantesSchema = ProductoSchema.extend({
   tipo: z.string(z.enum(["", ...volantesTipo])),
   tamano: z.string(z.enum(["", ...volantesTamano])),
-  cantidad: z.number().positive(),
+  cantidad: z.coerce.number().positive(),
   impresion: z.string(z.enum(["", ...volantesImpresion])),
   ubicacion_diseno: z.string(),
 });

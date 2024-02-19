@@ -12,12 +12,12 @@ import type { Talonarios } from "@/types/recursos/productos";
 
 const TalonariosSchema = ProductoSchema.extend({
   tipo: z.string(z.enum(["", ...talonariosTipo])),
-  cantidad: z.number().positive(),
+  cantidad: z.coerce.number().positive(),
   tamano: z.string(z.enum(["", ...talonariosTamano])),
   modelo_anterior: z.string(z.enum(["", ...siNo])),
   tiene_logo: z.string(z.enum(["", ...siNo])),
   ubicacion_logo: z.string(),
-  numero_desde: z.number().positive(),
+  numero_desde: z.coerce.number().positive(),
   puntillado_emblocado: z.string(
     z.enum(["", ...talonariosPuntilladoEmblocado])
   ),

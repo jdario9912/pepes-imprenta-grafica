@@ -7,14 +7,14 @@ const InputSelect = ({
   error,
   errorMessage,
   register,
-  disabled = false
+  disabled = false,
 }: {
   label: string;
   opciones: string[];
   error: boolean;
   errorMessage: string | undefined;
   register: UseFormRegisterReturn;
-  disabled?: boolean
+  disabled?: boolean;
 }) => (
   <Select
     label={label}

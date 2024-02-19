@@ -9,13 +9,23 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
-import { UseFormSetValue } from "react-hook-form";
+import { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
-const PlotterColor = ({ setValue }: { setValue: UseFormSetValue<Plotter> }) => {
+const PlotterColor = ({
+  setValue,
+  error,
+  watch,
+}: {
+  setValue: UseFormSetValue<Plotter>;
+  error: boolean;
+  watch: UseFormWatch<Plotter>;
+}) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
-      <Button onPress={onOpen}>Color</Button>
+      <Button onPress={onOpen} color={error ? "danger" : "default"}>
+        Color
+      </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
@@ -48,6 +58,21 @@ const PlotterColor = ({ setValue }: { setValue: UseFormSetValue<Plotter> }) => {
           )}
         </ModalContent>
       </Modal>
+      {watch().color !== undefined ? (
+        <div
+          className="w-16 h-14"
+          style={{
+            background: plotterColores.filter(
+              ({ codigo }) => codigo !== watch().color
+            )[0].color,
+          }}
+        />
+      ) : (
+        <div
+          className="w-16 h-14"
+          // style={{ background: color.color }}
+        />
+      )}
     </>
   );
 };

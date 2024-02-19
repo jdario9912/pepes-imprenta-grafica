@@ -1,5 +1,6 @@
 import PepesLogo from "@/components/logo";
 import {
+  Button,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -38,7 +39,14 @@ export default async function Home() {
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem>
-            {!!session && <Logout />}
+            {!!session && (
+              <>
+                <Button as={Link} href="/system">
+                  Sistema
+                </Button>
+                <Logout />
+              </>
+            )}
             {!session && <Login />}
           </NavbarItem>
         </NavbarContent>

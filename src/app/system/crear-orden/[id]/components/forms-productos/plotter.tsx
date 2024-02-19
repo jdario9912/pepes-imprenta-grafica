@@ -5,9 +5,10 @@ import FormConnectProductos from "../form-connect-productos";
 import { UseFormRegister, useFormContext } from "react-hook-form";
 import type { Plotter } from "@/types/recursos/productos";
 import { Input } from "@nextui-org/react";
+import AlertInvalidInput from "../alert-invalid-input";
 
 const PlotterForm = () => {
-  const { formState, setValue } = useFormContext<Plotter>();
+  const { formState, setValue, watch } = useFormContext<Plotter>();
   const { errors } = formState;
 
   return (
@@ -54,7 +55,14 @@ const PlotterForm = () => {
             opciones={plotterTerminacion}
           />
 
-          <PlotterColor setValue={setValue} />
+          <PlotterColor
+            setValue={setValue}
+            error={watch().color === undefined}
+            watch={watch}
+          />
+          {watch().color === undefined && (
+            <AlertInvalidInput texto="El color es requerido." />
+          )}
         </>
       )}
     </FormConnectProductos>

@@ -8,11 +8,26 @@ import { FormProvider, useForm } from "react-hook-form";
 
 const WraperFormCrearOrden = () => {
   const [productoElegido, setProductoElegido] = useState("");
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: {
+      entrega: 0,
+      total: 0,
+    },
+  });
 
-  const resetProducto = () => setProductoElegido("")
+  const resetProducto = () => {
+    setProductoElegido("");
+    methods.reset();
+  };
 
   const onSubmit = methods.handleSubmit((data) => {
+    if (data.total < data.entrega) {
+      methods.setError("entrega", {
+        message: "El monto de entrega es mayor al importe total.",
+      });
+      return;
+    }
+
     console.log(data);
   });
 
@@ -25,8 +40,7 @@ const WraperFormCrearOrden = () => {
       )}
       <FormProvider {...methods}>
         <form onSubmit={onSubmit}>
-
-        {productosModel[productoElegido]?.inputs}
+          {productosModel[productoElegido]?.inputs}
         </form>
       </FormProvider>
     </>

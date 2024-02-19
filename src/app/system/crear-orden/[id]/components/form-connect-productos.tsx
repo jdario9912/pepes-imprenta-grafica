@@ -34,7 +34,9 @@ const FormProducto = ({ children }: { children: any }) => {
 
       <InputRadio
         label="Muestra"
-        register={methods.register("muestra", { required: "Muestra es requerido." })}
+        register={methods.register("muestra", {
+          required: "Muestra es requerido.",
+        })}
         error={errors.muestra ? true : false}
         errorMessage={errors.muestra?.message}
         opciones={siNo}
@@ -43,28 +45,30 @@ const FormProducto = ({ children }: { children: any }) => {
 
       <Textarea label="Observaciones" {...methods.register("observaciones")} />
 
-        <Input
-          type="num"
-          label="Total"
-          {...methods.register("total", {
-            required: "El total es requerido.",
-          })}
-          isInvalid={errors.total ? true : false}
-          errorMessage={errors.total?.message}
-          variant={errors.total ? "bordered" : "flat"}
-        />
+      <Input
+        type="num"
+        label="Total"
+        {...methods.register("total", {
+          required: "El total es requerido.",
+        })}
+        isInvalid={errors.total ? true : false}
+        errorMessage={errors.total?.message}
+        variant={errors.total ? "bordered" : "flat"}
+      />
 
-        <Input
-          type="num"
-          label="Entrega"
-          {...methods.register("entrega", {
-            required: "El monto que entrega el cliente es requerido.",
-          })}
-          isInvalid={errors.entrega ? true : false}
-          errorMessage={errors.entrega?.message}
-          variant={errors.entrega ? "bordered" : "flat"}
-        />
+      <Input
+        type="num"
+        label="Entrega"
+        {...methods.register("entrega", {
+          required: "El monto que entrega el cliente es requerido.",
+        })}
+        isInvalid={errors.entrega ? true : false}
+        errorMessage={errors.entrega?.message}
+        variant={errors.entrega ? "bordered" : "flat"}
+      />
+      
 
+      {methods.watch().entrega !== 0 ? (
         <InputSelect
           label="Método de pago"
           error={errors.metodo_pago ? true : false}
@@ -74,7 +78,7 @@ const FormProducto = ({ children }: { children: any }) => {
             required: "Falta el metodo de pago.",
           })}
         />
-
+      ) : <></>}
       <Button type="submit">Crear orden</Button>
     </>
   );

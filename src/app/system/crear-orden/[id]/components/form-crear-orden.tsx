@@ -42,62 +42,68 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
       switch (productoElegido) {
         case "bonos": {
           const res = await querys.crearBonoFetch(data);
-          console.log(res);
+          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
 
           break;
         }
         case "diseños": {
           const res = await querys.crearDisenoFetch(data);
-
-          // console.log(res.data);
-
-          router.push(`/system/pdf/${res.data.producto}/${res.data.id}`);
+          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
 
           break;
         }
         case "impresiones": {
           const res = await querys.crearImpresionFetch(data);
-          console.log(res);
+          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+
           break;
         }
         case "loma": {
           const res = await querys.crearLomaFetch(data);
-          console.log(res);
+          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+
           break;
         }
         case "plotter": {
           const res = await querys.crearPlotterFetch(data);
-          console.log(res);
+          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+
           break;
         }
         case "remeras": {
           const res = await querys.crearRemeraFetch(data);
-          console.log(res);
+          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+
           break;
         }
         case "sellos": {
           const res = await querys.crearSelloFetch(data);
-          console.log(res);
+          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+
           break;
         }
         case "talonarios": {
           const res = await querys.crearTalonarioFetch(data);
-          console.log(res);
+          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+
           break;
         }
         case "tarjetas": {
           const res = await querys.crearTarjetaFetch(data);
-          console.log(res);
+          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+
           break;
         }
         case "varios": {
           const res = await querys.crearVariosFetch(data);
-          console.log(res);
+          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+
           break;
         }
         case "volantes": {
           const res = await querys.crearVolanteFetch(data);
-          console.log(res);
+          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+
           break;
         }
 

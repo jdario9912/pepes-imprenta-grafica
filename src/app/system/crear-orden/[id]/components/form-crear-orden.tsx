@@ -111,7 +111,7 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
           return;
       }
     } catch (error) {
-      if (error instanceof AxiosError) console.log(error.message);
+      if (error instanceof AxiosError) console.log(error.response?.data);
     }
   });
 

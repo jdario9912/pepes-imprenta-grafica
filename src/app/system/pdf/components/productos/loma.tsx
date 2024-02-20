@@ -79,9 +79,6 @@ const LomaPdf = ({ orden }: { orden: Loma }) => (
           </View>
         </View>
       </View>
-      <View style={estilos.observaciones}>
-        <Text>Observaciones: {orden.observaciones}.</Text>
-      </View>
     </View>
   </View>
 );

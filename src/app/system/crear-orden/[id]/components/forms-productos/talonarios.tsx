@@ -125,6 +125,7 @@ const TalonariosForm = () => {
                   watch("color_duplicado") === "solo original" ? false : true,
                 message: "Completar esta opción.",
               },
+              value: watch("color_duplicado") === "solo original" ? "" : "",
             })}
             error={errors.triplicado ? true : false}
             errorMessage={errors.triplicado?.message}

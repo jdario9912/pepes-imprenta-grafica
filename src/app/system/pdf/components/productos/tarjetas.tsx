@@ -63,9 +63,6 @@ const TarjetasPdf = ({ orden }: { orden: Tarjetas }) => (
           </View>
         </View>
       </View>
-      <View style={estilos.observaciones}>
-        <Text>Observaciones: {orden.observaciones}.</Text>
-      </View>
     </View>
   </View>
 );

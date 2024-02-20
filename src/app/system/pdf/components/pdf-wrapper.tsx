@@ -12,6 +12,7 @@ import {
 import { imagenes } from "../assets/imagenes";
 import moment from "moment";
 import PdfImportes from "./pdf-importes";
+import ObservacionesPdf from "./observaciones";
 
 const PdfWrapper = ({
   children,
@@ -109,6 +110,9 @@ const PdfWrapper = ({
               </View>
 
               {children}
+
+              {/* Observaciones */}
+              <ObservacionesPdf texto={orden.observaciones} />
 
               {/* Pago */}
               <PdfImportes orden={orden} />

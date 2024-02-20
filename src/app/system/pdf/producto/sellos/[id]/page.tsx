@@ -1,19 +1,16 @@
-import { obtenerCliente, obtenerDisenoFetch } from "@/libs/client/axios";
+import { obtenerCliente, obtenerSelloFetch } from "@/libs/client/axios";
 import PdfWrapper from "../../../components/pdf-wrapper";
-import DisenosPdf from "../../../components/productos/disenos";
+import SellosPdf from "../../../components/productos/sellos";
 
 const PdfPage = async ({ params }: { params: { id: string } }) => {
   const id = params.id;
 
-  const orden = await obtenerDisenoFetch(id);
+  const orden = await obtenerSelloFetch(id);
   const cliente = await obtenerCliente(JSON.stringify(orden.id_cliente));
 
   return (
-    <PdfWrapper
-      cliente={cliente}
-      orden={orden}
-    >
-      <DisenosPdf orden={orden} />
+    <PdfWrapper cliente={cliente} orden={orden}>
+      <SellosPdf orden={orden} />
     </PdfWrapper>
   );
 };

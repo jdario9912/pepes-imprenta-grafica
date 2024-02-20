@@ -87,9 +87,6 @@ const ImpresionesPdf = ({ orden }: { orden: Impresiones }) => (
           </View>
         </View>
       </View>
-      <View style={estilos.observaciones}>
-        <Text>Observaciones: {orden.observaciones}.</Text>
-      </View>
     </View>
   </View>
 );

@@ -55,9 +55,6 @@ const VolantesPdf = ({ orden }: { orden: Volantes }) => (
           </View>
         </View>
       </View>
-      <View style={estilos.observaciones}>
-        <Text>Observaciones: {orden.observaciones}.</Text>
-      </View>
     </View>
   </View>
 );

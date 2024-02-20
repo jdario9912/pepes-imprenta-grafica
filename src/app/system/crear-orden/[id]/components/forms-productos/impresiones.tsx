@@ -7,7 +7,6 @@ import {
 } from "@/libs/listas";
 import { Input } from "@nextui-org/react";
 import InputRadio from "../input-radio";
-import InputText from "../input-text";
 import InputSelect from "../input-select";
 import FormConnectProductos from "../form-connect-productos";
 import { UseFormRegister, useFormContext } from "react-hook-form";
@@ -21,7 +20,15 @@ const ImpresionesForm = () => {
     <FormConnectProductos>
       {({ register }: { register: UseFormRegister<Impresiones> }) => (
         <>
-          <InputText label="ubicación del archivo" name="ubicacion_archivo" />
+          <Input
+            label="ubicación del archivo"
+            {...register("ubicacion_archivo", {
+              required: "La ubicación del archivo es requerida.",
+            })}
+            isInvalid={errors.ubicacion_archivo ? true : false}
+            errorMessage={errors.ubicacion_archivo?.message}
+            variant={errors.ubicacion_archivo ? "bordered" : "flat"}
+          />
 
           <InputRadio
             label="Impresión"

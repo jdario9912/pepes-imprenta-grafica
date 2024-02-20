@@ -1,14 +1,24 @@
+import Session from "@/components/session";
 import { Button } from "@nextui-org/react";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-const HomeNotFound = () => (
-  <div>
-    <h2>not Found. 404!</h2>
-    <p>La pagina no existe o fue borrada</p>
-    <Button as={Link} href="/">
-      Ir al inicio
-    </Button>
-  </div>
-);
+const HomeNotFound = async () => {
+  const session = await getServerSession();
+  return (
+    <div>
+      <h2>not Found. 404!</h2>
+      <p>La pagina no existe o fue borrada</p>
+      <Button as={Link} href="/">
+        Inicio
+      </Button>
+      <Session>
+        <Button as={Link} href="/system">
+          Sistema
+        </Button>
+      </Session>
+    </div>
+  );
+};
 
 export default HomeNotFound;

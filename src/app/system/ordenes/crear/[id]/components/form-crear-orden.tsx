@@ -42,67 +42,89 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
       switch (productoElegido) {
         case "bonos": {
           const res = await querys.crearBonoFetch(data);
-          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+          router.push(
+            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
+          );
 
           break;
         }
         case "diseños": {
           const res = await querys.crearDisenoFetch(data);
-          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+          router.push(
+            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
+          );
 
           break;
         }
         case "impresiones": {
           const res = await querys.crearImpresionFetch(data);
-          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+          router.push(
+            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
+          );
 
           break;
         }
         case "loma": {
           const res = await querys.crearLomaFetch(data);
-          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+          router.push(
+            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
+          );
 
           break;
         }
         case "plotter": {
           const res = await querys.crearPlotterFetch(data);
-          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+          router.push(
+            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
+          );
 
           break;
         }
         case "remeras": {
           const res = await querys.crearRemeraFetch(data);
-          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+          router.push(
+            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
+          );
 
           break;
         }
         case "sellos": {
           const res = await querys.crearSelloFetch(data);
-          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+          router.push(
+            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
+          );
 
           break;
         }
         case "talonarios": {
           const res = await querys.crearTalonarioFetch(data);
-          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+          router.push(
+            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
+          );
 
           break;
         }
         case "tarjetas": {
           const res = await querys.crearTarjetaFetch(data);
-          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+          router.push(
+            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
+          );
 
           break;
         }
         case "varios": {
           const res = await querys.crearVariosFetch(data);
-          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+          router.push(
+            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
+          );
 
           break;
         }
         case "volantes": {
           const res = await querys.crearVolanteFetch(data);
-          router.push(`/system/pdf/producto/${res.data.producto}/${res.data.id}`);
+          router.push(
+            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
+          );
 
           break;
         }
@@ -120,7 +142,13 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
       {productoElegido == "" ? (
         <BotonesProductos setProductoElegido={setProductoElegido} />
       ) : (
-        <Button onClick={resetProducto}>cambiar producto</Button>
+        <>
+          <div>
+            {productosModel[productoElegido].icono}
+            {productoElegido}
+          </div>
+          <Button onClick={resetProducto}>cambiar producto</Button>
+        </>
       )}
       <FormProvider {...methods}>
         <form onSubmit={onSubmit}>

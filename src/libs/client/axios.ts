@@ -18,7 +18,7 @@ const query = axios.create({
   baseURL: axiosBaseURL,
 });
 
-export const crearCliente = async (nuevoCliente: FormNuevoCliente) =>
+export const crearCliente = async (nuevoCliente: Cliente) =>
   await query.post<Cliente>("/api/clientes", nuevoCliente);
 
 export const obtenerCliente = async (id: string) =>

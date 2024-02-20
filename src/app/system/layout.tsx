@@ -15,16 +15,16 @@ export default function SystemLayout({
               <Link href="/">Inicio</Link>
             </li>
             <li>
-              <Link href="/system/ordenes-pendientes">Ordenes pendientes</Link>
+              <Link href="/system/ordenes/pendientes">Ordenes pendientes</Link>
             </li>
             <li>
-              <Link href="/system/a-proveedor">A proveedor</Link>
+              <Link href="/system/ordenes/a-proveedor">A proveedor</Link>
             </li>
             <li>
               <Link href="/system/clientes">Clientes</Link>
             </li>
             <li>
-              <Link href="/system/nuevo-cliente">Nuevo cliente</Link>
+              <Link href="/system/clientes/nuevo">Nuevo cliente</Link>
             </li>
             <Logout />
           </ul>

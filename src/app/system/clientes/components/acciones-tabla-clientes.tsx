@@ -18,12 +18,15 @@ const AccionesTablaClientes = ({ cliente }: { cliente: Cliente }) => {
 
   const { id, nombre, telefono, email, observaciones } = cliente;
 
-  const handleClick = () => router.push(`/system/crear-orden/${id}`);
+  const handleCrear = () => router.push(`/system/ordenes/crear/${id}`);
+
+  const handleEditar = () => router.push(`/system/clientes/editar/${id}`);
 
   return (
     <div>
-      <Button onClick={handleClick}>crear orden</Button>
+      <Button onClick={handleCrear}>crear orden</Button>
       <Button>ver ordenes</Button>
+      <Button onClick={handleEditar}>editar</Button>
       <Button onPress={onOpen}>detalles</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>

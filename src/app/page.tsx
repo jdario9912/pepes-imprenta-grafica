@@ -10,6 +10,7 @@ import Link from "next/link";
 import Login from "@/components/login";
 import { getServerSession } from "next-auth";
 import Logout from "@/components/logout";
+import Session from "@/components/session";
 
 export default async function Home() {
   const session = await getServerSession();
@@ -39,14 +40,12 @@ export default async function Home() {
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem>
-            {!!session && (
-              <>
-                <Button as={Link} href="/system">
-                  Sistema
-                </Button>
-                <Logout />
-              </>
-            )}
+            <Session>
+              <Button as={Link} href="/system">
+                Sistema
+              </Button>
+              <Logout />
+            </Session>
             {!session && <Login />}
           </NavbarItem>
         </NavbarContent>

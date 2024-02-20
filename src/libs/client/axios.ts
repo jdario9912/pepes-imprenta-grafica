@@ -60,5 +60,35 @@ export const crearVariosFetch = async (data: unknown) =>
 export const crearVolanteFetch = async (data: unknown) =>
   query.post<Volantes>("/api/ordenes/volantes", data);
 
+export const obtenerBonoFetch = async (id: string) =>
+  (await query.get<Bonos>(`/api/ordenes/bonos/${id}`)).data;
+
 export const obtenerDisenoFetch = async (id: string) =>
   (await query.get<Disenos>(`/api/ordenes/disenos/${id}`)).data;
+
+export const obtenerImpresionFetch = async (id: string) =>
+  (await query.get<Impresiones>(`/api/ordenes/impresiones/${id}`)).data;
+
+export const obtenerLomaFetch = async (id: string) =>
+  (await query.get<Loma>(`/api/ordenes/loma/${id}`)).data;
+
+export const obtenerPlotterFetch = async (id: string) =>
+  (await query.get<Plotter>(`/api/ordenes/plotter/${id}`)).data;
+
+export const obtenerRemeraFetch = async (id: string) =>
+  (await query.get<Remeras>(`/api/ordenes/remeras/${id}`)).data;
+
+export const obtenerSelloFetch = async (id: string) =>
+  (await query.get<Sellos>(`/api/ordenes/sellos/${id}`)).data;
+
+export const obtenerTalonarioFetch = async (id: string) =>
+  (await query.get<Talonarios>(`/api/ordenes/talonarios/${id}`)).data;
+
+export const obtenerTarjetaFetch = async (id: string) =>
+  (await query.get<Tarjetas>(`/api/ordenes/tarjetas/${id}`)).data;
+
+export const obtenerVariosFetch = async (id: string) =>
+  (await query.get<Varios>(`/api/ordenes/varios/${id}`)).data;
+
+export const obtenerVolanteFetch = async (id: string) =>
+  (await query.get<Volantes>(`/api/ordenes/volantes/${id}`)).data;

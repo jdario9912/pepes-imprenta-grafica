@@ -10,7 +10,6 @@ interface Producto {
   hora_entrega: string;
   muestra: string;
   producto?: string; // actualmente esta propiedad se llama "tipo_trabajo" en la base de datos
-  ubicacion_archivo: string;
   observaciones: string;
   total: number;
   entrega: number;
@@ -18,7 +17,7 @@ interface Producto {
   metodo_pago: string; // actualmente esto se llama "abono" en la base de datos
 }
 
-export interface Bonos extends Omit<Producto, "ubicacion_archivo"> {
+export interface Bonos extends Producto {
   tipo: string;
   tamano: string;
   desde_numero: number;
@@ -28,6 +27,7 @@ export interface Bonos extends Omit<Producto, "ubicacion_archivo"> {
 }
 
 export interface Disenos extends Producto {
+  ubicacion_archivo: string;
   detalles: string;
 }
 
@@ -40,6 +40,7 @@ export interface Impresiones extends Producto {
   anillado: string;
   abrochado: string;
   corte: string;
+  ubicacion_archivo: string;
 }
 
 export interface Loma extends Producto {
@@ -50,6 +51,7 @@ export interface Loma extends Producto {
   ojales: string;
   troquelado: string;
   portabaner: string;
+  ubicacion_archivo: string;
 }
 
 export interface Plotter extends Producto {
@@ -57,6 +59,7 @@ export interface Plotter extends Producto {
   color: number;
   material: string;
   terminacion: string;
+  ubicacion_archivo: string;
 }
 
 export interface Remeras extends Producto {
@@ -66,16 +69,17 @@ export interface Remeras extends Producto {
   estampa_espalda: string;
   color_estampa: string;
   cantidad: number;
+  ubicacion_archivo: string;
 }
 
-export interface Sellos extends Omit<Producto, "ubicacion_archivo"> {
+export interface Sellos extends Producto {
   tipo: string;
   tamano: string;
   texto: string;
   dibujo: string;
 }
 
-export interface Talonarios extends Omit<Producto, "ubicacion_archivo"> {
+export interface Talonarios extends Producto {
   tipo: string;
   cantidad: number;
   tamano: string;
@@ -95,13 +99,14 @@ export interface Tarjetas extends Producto {
   papel: string;
   terminacion: string;
   puntas_redondeadas: string;
+  ubicacion_archivo: string;
 }
 
-export interface Varios extends Omit<Producto, "ubicacion_archivo"> {
+export interface Varios extends Producto {
   detalle: string;
 }
 
-export interface Volantes extends Omit<Producto, "ubicacion_archivo"> {
+export interface Volantes extends Producto {
   tipo: string;
   tamano: string;
   cantidad: number;

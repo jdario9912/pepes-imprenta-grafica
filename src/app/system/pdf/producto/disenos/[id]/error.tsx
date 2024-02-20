@@ -1,5 +1,7 @@
 "use client";
 
-const DisenosErrorPage = () => <div>algo salio mal con los disenos</div>;
+import PdfError from "../../../components/error";
+
+const DisenosErrorPage = () => <PdfError />
 
 export default DisenosErrorPage;

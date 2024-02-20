@@ -1,5 +1,7 @@
 "use client";
 
-const DisenosLoadingPage = () => <div>cargando orden disenos...</div>;
+import PdfLoading from "../../../components/loading";
+
+const DisenosLoadingPage = () => <PdfLoading />;
 
 export default DisenosLoadingPage;

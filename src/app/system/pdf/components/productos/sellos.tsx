@@ -1,8 +1,8 @@
-import { Disenos } from "@/types/recursos/productos";
-import { Text, View } from "@react-pdf/renderer";
+import { Sellos } from "@/types/recursos/productos";
 import estilos from "../estilos";
+import { Text, View } from "@react-pdf/renderer";
 
-const DisenosPdf = ({ orden }: { orden: Disenos }) => (
+const SellosPdf = ({ orden }: { orden: Sellos }) => (
   <View style={estilos.pedido}>
     <View style={estilos.items}>
       <View style={estilos.filas}>
@@ -16,18 +16,34 @@ const DisenosPdf = ({ orden }: { orden: Disenos }) => (
         </View>
         <View style={estilos.fila}>
           <View style={estilos.clave}>
-            <Text>Ubicacion archivo:</Text>
+            <Text>Tipo:</Text>
           </View>
           <View style={estilos.valor}>
-            <Text>{orden.ubicacion_archivo}</Text>
+            <Text>{orden.tipo}</Text>
           </View>
         </View>
         <View style={estilos.fila}>
           <View style={estilos.clave}>
-            <Text>Detalles:</Text>
+            <Text>Tamaño:</Text>
           </View>
           <View style={estilos.valor}>
-            <Text>{orden.detalles}</Text>
+            <Text>{orden.tamano}</Text>
+          </View>
+        </View>
+        <View style={estilos.fila}>
+          <View style={estilos.clave}>
+            <Text>Texto:</Text>
+          </View>
+          <View style={estilos.valor}>
+            <Text>{orden.texto}</Text>
+          </View>
+        </View>
+        <View style={estilos.fila}>
+          <View style={estilos.clave}>
+            <Text>Dibujo:</Text>
+          </View>
+          <View style={estilos.valor}>
+            <Text>{orden.dibujo}</Text>
           </View>
         </View>
       </View>
@@ -38,4 +54,4 @@ const DisenosPdf = ({ orden }: { orden: Disenos }) => (
   </View>
 );
 
-export default DisenosPdf;
+export default SellosPdf;

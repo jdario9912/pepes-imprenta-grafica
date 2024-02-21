@@ -9,25 +9,27 @@ import { useForm } from "react-hook-form";
 const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
   const router = useRouter();
 
-  const { register, handleSubmit, formState, watch, setValue } =
-    useForm<Cliente>({
-      defaultValues: cliente ? cliente : {},
-    });
+  const { register, handleSubmit, formState, watch } = useForm<Cliente>({
+    defaultValues: cliente ? cliente : {},
+  });
 
   const { errors, isSubmitting } = formState;
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      if (cliente) {
-        const clienteActualizado = await editarCliente(data, cliente.id || 0);
-        router.push(`/system/clientes?cliente=${clienteActualizado.nombre}`);
-        return;
-      }
+      // if (cliente) {
+      //   const clienteActualizado = await editarCliente(data, cliente.id || 0);
+      //   router.push(`/system/clientes?cliente=${clienteActualizado.nombre}`);
+      //   return;
+      // }
 
       const res = await crearCliente(data);
       const id = res.data.id;
       router.push(`/system/ordenes/crear-orden/${id}`);
+      return;
     } catch (error: unknown) {
+      console.log(error);
+
       if (error instanceof AxiosError)
         console.log(error.response?.data.mensaje);
     }

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 
 export const errorResponse = (error: any) => {
-  if (error && (error.code || error.errno)) 
+  if (error && (error.code || error.errno))
     return NextResponse.json({ mensaje: "Algo salio mal." }, { status: 400 });
 
   if (error instanceof ZodError)
@@ -27,3 +27,6 @@ export const empleado404Response = () =>
     { mensaje: "El cliente no está registrado." },
     { status: 404 }
   );
+
+export const noAutorizadoResponse = () =>
+  NextResponse.json({ mensaje: "necesitas autenticacion" }, { status: 401 });

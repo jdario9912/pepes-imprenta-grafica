@@ -1,4 +1,4 @@
-import { permisosEmpleado } from "@/libs/api/listas";
+import { permisosEmpleado } from "@/libs/listas";
 import { z } from "zod";
 
 const EmpleadoSchema = z.object({

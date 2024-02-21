@@ -1,5 +1,5 @@
 import Logout from "@/components/btn-logout";
-import Link from "next/link";
+import NavAside from "./components/nav-aside";
 
 export default function SystemLayout({
   children,
@@ -7,28 +7,12 @@ export default function SystemLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex">
+    <div className="flex min-h-screen">
       <aside className="bg-zinc-300">
-        <nav>
-          <ul>
-            <li>
-              <Link href="/">Inicio</Link>
-            </li>
-            <li>
-              <Link href="/system/ordenes/pendientes">Ordenes pendientes</Link>
-            </li>
-            <li>
-              <Link href="/system/ordenes/a-proveedor">A proveedor</Link>
-            </li>
-            <li>
-              <Link href="/system/clientes">Clientes</Link>
-            </li>
-            <li>
-              <Link href="/system/clientes/nuevo">Nuevo cliente</Link>
-            </li>
-            <Logout />
-          </ul>
-        </nav>
+        <div className="flex flex-col justify-between h-full">
+          <NavAside />
+          <Logout />
+        </div>
       </aside>
       {children}
     </div>

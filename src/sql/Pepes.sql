@@ -380,3 +380,78 @@ VALUES
 ('Arce Victoria',	'3517874871','' ,'munay danza'),
 ('Memory M',	'2043809755','', 'Fotografa'),
 ('Maru Pereyra', '157011540', 'maru@gmail.com', 'La one');
+
+-- ESTE PROCEDURE BUSCA TODAS LAS ORDENES PENDIENTES
+DROP PROCEDURE IF EXISTS buscar_ordenes_pendientes;
+
+DELIMITER $$
+CREATE PROCEDURE buscar_ordenes_pendientes()
+BEGIN
+SELECT *
+FROM clientes
+INNER JOIN impresiones
+ON clientes.id = impresiones.id_cliente
+WHERE impresiones.estado = 'pendiente';
+
+SELECT *
+FROM clientes
+INNER JOIN loma
+ON clientes.id = loma.id_cliente
+WHERE loma.estado = 'pendiente';
+
+SELECT *
+FROM clientes
+INNER JOIN talonarios
+ON clientes.id = talonarios.id_cliente
+WHERE talonarios.estado = 'pendiente';
+
+SELECT *
+FROM clientes
+INNER JOIN bonos
+ON clientes.id = bonos.id_cliente
+WHERE bonos.estado = 'pendiente';
+
+SELECT *
+FROM clientes
+INNER JOIN disenos
+ON clientes.id = disenos.id_cliente
+WHERE disenos.estado = 'pendiente';
+
+SELECT *
+FROM clientes
+INNER JOIN plotter
+ON clientes.id = plotter.id_cliente
+WHERE plotter.estado = 'pendiente';
+
+SELECT *
+FROM clientes
+INNER JOIN remeras
+ON clientes.id = remeras.id_cliente
+WHERE remeras.estado = 'pendiente';
+
+SELECT *
+FROM clientes
+INNER JOIN tarjetas
+ON clientes.id = tarjetas.id_cliente
+WHERE tarjetas.estado = 'pendiente';
+
+SELECT *
+FROM clientes
+INNER JOIN volantes
+ON clientes.id = volantes.id_cliente
+WHERE volantes.estado = 'pendiente';
+
+SELECT *
+FROM clientes
+INNER JOIN sellos
+ON clientes.id = sellos.id_cliente
+WHERE sellos.estado = 'pendiente';
+
+SELECT *
+FROM clientes
+INNER JOIN varios
+ON clientes.id = varios.id_cliente
+WHERE varios.estado = 'pendiente';
+END$$
+
+DELIMITER ;

@@ -8,7 +8,7 @@ const HomeNotFound = async () => {
   return (
     <div>
       <h2>not Found. 404!</h2>
-      <p>La pagina no existe o fue borrada</p>
+      <p>La pagina no existe o fue borrada!</p>
       <Button as={Link} href="/">
         Inicio
       </Button>

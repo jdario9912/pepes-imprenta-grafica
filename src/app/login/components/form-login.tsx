@@ -22,8 +22,7 @@ export default function FormLogin() {
         redirect: false,
       });
 
-      router.push("/system");
-      router.refresh();
+      router.push("/system/ordenes/pendientes");
     } catch (error: unknown) {
       // tengo que manejar este error
 

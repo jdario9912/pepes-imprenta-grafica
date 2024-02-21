@@ -1,26 +1,33 @@
 "use client";
 
-import { crearCliente } from "@/libs/client/axios";
+import { crearCliente, editarCliente } from "@/libs/client/axios";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { AxiosError } from "axios";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
-const FormCliente = () => {
+const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
   const router = useRouter();
-  const params = useParams();
-  const id = params.id;
-  // si el id existe, obtener el cliente y cargar el formulario para editar, si no crear uno nuevo
-  const { register, handleSubmit, formState } = useForm<Cliente>();
+
+  const { register, handleSubmit, formState, watch } = useForm<Cliente>({
+    defaultValues: cliente ? cliente : {},
+  });
 
   const { errors, isSubmitting } = formState;
 
   const onSubmit = handleSubmit(async (data) => {
+    console.log(data);
+
     try {
+      if (cliente) {
+        const clienteActualizado = await editarCliente(data, cliente.id || 0);
+        router.push(`/system/clientes?cliente=${clienteActualizado.nombre}`);
+
+        return;
+      }
+
       const res = await crearCliente(data);
-
       const id = res.data.id;
-
       router.push(`/system/ordenes/crear-orden/${id}`);
     } catch (error: unknown) {
       if (error instanceof AxiosError)
@@ -39,6 +46,7 @@ const FormCliente = () => {
         isInvalid={errors.nombre ? true : false}
         errorMessage={errors.nombre?.message}
         variant={errors.nombre ? "bordered" : "flat"}
+        defaultValue={watch().nombre}
       />
 
       <Input
@@ -50,11 +58,21 @@ const FormCliente = () => {
         isInvalid={errors.telefono ? true : false}
         errorMessage={errors.telefono?.message}
         variant={errors.telefono ? "bordered" : "flat"}
+        defaultValue={watch().telefono}
       />
 
-      <Input type="email" label="email" {...register("email")} />
+      <Input
+        type="email"
+        label="email"
+        {...register("email")}
+        defaultValue={watch().email}
+      />
 
-      <Textarea label="observaciones" {...register("observaciones")} />
+      <Textarea
+        label="observaciones"
+        {...register("observaciones")}
+        defaultValue={watch().observaciones}
+      />
 
       <Button type="submit" isDisabled={isSubmitting}>
         Guardar

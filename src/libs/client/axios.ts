@@ -24,6 +24,9 @@ export const crearCliente = async (nuevoCliente: Cliente) =>
 export const obtenerCliente = async (id: string) =>
   (await query.get<Cliente>(`/api/clientes/${id}`)).data;
 
+export const editarCliente = async (cliente: Cliente, id: number) =>
+  (await query.patch<Cliente>(`/api/clientes/${id}`, cliente)).data;
+
 export const obtenerClientes = async () =>
   (await query.get<Cliente[]>("/api/clientes")).data;
 

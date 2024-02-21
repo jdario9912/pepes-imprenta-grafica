@@ -1,4 +1,4 @@
-import Logout from "@/components/logout";
+import Logout from "@/components/btn-logout";
 import Link from "next/link";
 
 export default function SystemLayout({

@@ -1,3 +1,5 @@
+"use server"
+
 import { axiosBaseURL } from "@/config";
 import type {
   Disenos,
@@ -13,6 +15,7 @@ import type {
   Volantes,
 } from "@/types/recursos/productos";
 import axios from "axios";
+import { revalidatePath } from "next/cache";
 
 const query = axios.create({
   baseURL: axiosBaseURL,
@@ -24,8 +27,13 @@ export const crearCliente = async (nuevoCliente: Cliente) =>
 export const obtenerCliente = async (id: string) =>
   (await query.get<Cliente>(`/api/clientes/${id}`)).data;
 
-export const editarCliente = async (cliente: Cliente, id: number) =>
-  (await query.patch<Cliente>(`/api/clientes/${id}`, cliente)).data;
+export const editarCliente = async (cliente: Cliente, id: number) =>{
+
+  const clienteActualizado = await query.patch<Cliente>(`/api/clientes/${id}`, cliente);
+  revalidatePath(`/system/clientes/editar/${clienteActualizado.data.id}`)
+  revalidatePath("/system/clientes")
+  return clienteActualizado.data
+}
 
 export const obtenerClientes = async () =>
   (await query.get<Cliente[]>("/api/clientes")).data;

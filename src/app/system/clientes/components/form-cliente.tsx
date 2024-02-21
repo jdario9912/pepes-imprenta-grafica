@@ -9,20 +9,18 @@ import { useForm } from "react-hook-form";
 const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
   const router = useRouter();
 
-  const { register, handleSubmit, formState, watch } = useForm<Cliente>({
-    defaultValues: cliente ? cliente : {},
-  });
+  const { register, handleSubmit, formState, watch, setValue } =
+    useForm<Cliente>({
+      defaultValues: cliente ? cliente : {},
+    });
 
   const { errors, isSubmitting } = formState;
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
-
     try {
       if (cliente) {
         const clienteActualizado = await editarCliente(data, cliente.id || 0);
         router.push(`/system/clientes?cliente=${clienteActualizado.nombre}`);
-
         return;
       }
 

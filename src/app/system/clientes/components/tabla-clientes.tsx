@@ -21,15 +21,22 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { columns } from "../services/columns-tabla-clientes";
 
-const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
+const TablaClientes = ({
+  clientes,
+  clienteQuery = "",
+}: {
+  clientes: Cliente[];
+  clienteQuery: string;
+}) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
+  const [cliente, setCliente] = useState(clienteQuery);
 
   const table = useReactTable({
     data: clientes,
@@ -50,6 +57,10 @@ const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
     },
   });
 
+  useEffect(() => {
+    if (cliente) table.getColumn("nombre")?.setFilterValue(cliente);
+  }, []);
+
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
@@ -60,6 +71,8 @@ const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
             table.getColumn("nombre")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
+          isClearable
+          onClear={() => table.getColumn("nombre")?.setFilterValue("")}
         />
         {/* <DropdownMenu>
           <DropdownMenuTrigger asChild>

@@ -22,6 +22,7 @@ export const GET = async (req: NextRequest, { params }: any) => {
 export const PATCH = async (req: NextRequest, { params }: any) => {
   try {
     const body = await req.json();
+
     const { id }: { id: Id } = params;
 
     const clienteValidado = validarClienteActualizar(body);
@@ -37,6 +38,8 @@ export const PATCH = async (req: NextRequest, { params }: any) => {
 
     return NextResponse.json(clienteActualizado);
   } catch (error) {
+    console.log(error);
+    
     return errorResponse(error);
   }
 };

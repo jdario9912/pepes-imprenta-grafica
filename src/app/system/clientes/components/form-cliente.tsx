@@ -4,14 +4,30 @@ import { crearCliente } from "@/libs/client/axios";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { AxiosError } from "axios";
 import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const FormCliente = () => {
   const router = useRouter();
   const params = useParams();
+  const [addEmail, setAddEmail] = useState(false);
+  const [addObservaciones, setAddObservaciones] = useState(false);
   const id = params.id;
+  const { register, handleSubmit, formState, resetField } = useForm<Cliente>();
+
+  const mostrarInputEmail = () => setAddEmail(true);
+  const ocultarInputEmail = () => {
+    resetField("email");
+    setAddEmail(false);
+  };
+
+  const mostratInputObservaciones = () => setAddObservaciones(true);
+  const ocultarInputObservaciones = () => {
+    resetField("observaciones");
+    setAddObservaciones(false);
+  };
+
   // si el id existe, obtener el cliente y cargar el formulario para editar, si no crear uno nuevo
-  const { register, handleSubmit, formState } = useForm<Cliente>();
 
   const { errors, isSubmitting } = formState;
 
@@ -21,7 +37,7 @@ const FormCliente = () => {
 
       const id = res.data.id;
 
-      router.push(`/system/ordenes/crear-orden/${id}`);
+      router.push(`/system/ordenes/crear/${id}`);
     } catch (error: unknown) {
       if (error instanceof AxiosError)
         console.log(error.response?.data.mensaje);
@@ -52,9 +68,36 @@ const FormCliente = () => {
         variant={errors.telefono ? "bordered" : "flat"}
       />
 
-      <Input type="email" label="email" {...register("email")} />
+      {addEmail ? (
+        <>
+          <Input
+            type="email"
+            label="email"
+            {...(addEmail ? register("email") : null)}
+          />
+          <Button onClick={ocultarInputEmail}>ocultar</Button>
+        </>
+      ) : (
+        <>
+          <Button onClick={mostrarInputEmail}>agregar email</Button>
+        </>
+      )}
 
-      <Textarea label="observaciones" {...register("observaciones")} />
+      {addObservaciones ? (
+        <>
+          <Textarea
+            label="observaciones"
+            {...(addObservaciones ? register("observaciones") : null)}
+          />
+          <Button onClick={ocultarInputObservaciones}>ocultar</Button>
+        </>
+      ) : (
+        <>
+          <Button onClick={mostratInputObservaciones}>
+            agregar observaciones
+          </Button>
+        </>
+      )}
 
       <Button type="submit" isDisabled={isSubmitting}>
         Guardar

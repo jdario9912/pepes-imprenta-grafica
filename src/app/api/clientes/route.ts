@@ -17,6 +17,9 @@ export const POST = async (req: NextRequest) => {
   try {
     const body = (await req.json()) as Cliente;
 
+    console.log(body);
+    
+
     const clienteValidado = validarClienteCrear(body);
 
     const idCliente = await ClientesModel.crear(clienteValidado);

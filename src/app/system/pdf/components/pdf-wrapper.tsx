@@ -13,6 +13,7 @@ import { imagenes } from "../assets/imagenes";
 import moment from "moment";
 import PdfImportes from "./pdf-importes";
 import ObservacionesPdf from "./observaciones";
+import { formatearFecha, formatearHora } from "@/libs/client/moment";
 
 const PdfWrapper = ({
   children,
@@ -100,11 +101,11 @@ const PdfWrapper = ({
                 <View style={{ flexDirection: "row", gap: 3 }}>
                   <Text style={{ fontSize: 13 }}>
                     Retirar el{" "}
-                    {moment(orden.fecha_entrega).format("DD-MM-YYYY")}
+                    {formatearFecha(orden.fecha_entrega)}
                   </Text>
                   <Text style={{ fontSize: 13 }}>
                     a las{" "}
-                    {moment(orden.hora_entrega, "HH:mm:ss").format("HH:mm")}hs
+                    {formatearHora(orden.hora_entrega)}hs
                   </Text>
                 </View>
               </View>

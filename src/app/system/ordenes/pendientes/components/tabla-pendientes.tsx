@@ -1,5 +1,6 @@
 "use client";
 
+import { OrdenePendiente } from "@/types/ordenes-pendientes";
 import {
   ColumnFiltersState,
   SortingState,
@@ -11,6 +12,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { useState } from "react";
+import { columns } from "../services/columns-tabla-pendientes";
 import {
   Button,
   Input,
@@ -21,25 +24,15 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import { useEffect, useState } from "react";
 
-import { columns } from "../services/columns-tabla-clientes";
-
-const TablaClientes = ({
-  clientes,
-  clienteQuery = "",
-}: {
-  clientes: Cliente[];
-  clienteQuery: string;
-}) => {
+const TablaPendientes = ({ pendientes }: { pendientes: OrdenePendiente[] }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
-  const [cliente] = useState(clienteQuery);
 
   const table = useReactTable({
-    data: clientes,
+    data: pendientes,
     columns: columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -57,10 +50,6 @@ const TablaClientes = ({
     },
   });
 
-  useEffect(() => {
-    if (cliente) table.getColumn("nombre")?.setFilterValue(cliente);
-  }, []);
-
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
@@ -74,32 +63,6 @@ const TablaClientes = ({
           isClearable
           onClear={() => table.getColumn("nombre")?.setFilterValue("")}
         />
-        {/* <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu> */}
       </div>
 
       <div className="rounded-md border">
@@ -163,4 +126,5 @@ const TablaClientes = ({
     </div>
   );
 };
-export default TablaClientes;
+
+export default TablaPendientes;

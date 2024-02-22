@@ -1,5 +1,5 @@
-import TablaClientes from "./components/tabla-clientes";
-import { obtenerClientes } from "@/libs/client/axios";
+import TablaComponent from "./components/tabla-component";
+import { Suspense } from "react";
 
 const Clientes = async ({
   searchParams,
@@ -7,11 +7,13 @@ const Clientes = async ({
   searchParams?: { cliente: string };
 }) => {
   const cliente = searchParams?.cliente || "";
-  const clientes = await obtenerClientes();
 
   return (
     <div>
-      <TablaClientes clientes={clientes} clienteQuery={cliente} />
+      <h2>Clientes</h2>
+      <Suspense fallback={<div>Cargando tabla clientesssssssss....</div>}>
+        <TablaComponent cliente={cliente} />
+      </Suspense>
     </div>
   );
 };

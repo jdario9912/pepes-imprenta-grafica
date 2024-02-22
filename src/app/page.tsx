@@ -1,4 +1,3 @@
-import PepesLogo from "@/components/logo";
 import {
   Button,
   Navbar,
@@ -7,10 +6,12 @@ import {
   NavbarItem,
 } from "@nextui-org/react";
 import Link from "next/link";
-import Login from "@/components/login";
+import BtnLogin from "@/components/btn-login";
 import { getServerSession } from "next-auth";
-import Logout from "@/components/logout";
+import Logout from "@/components/btn-logout";
 import Session from "@/components/session";
+import PepesLogo from "@/components/logo-nombre";
+import Logo from "@/components/logo";
 
 export default async function Home() {
   const session = await getServerSession();
@@ -19,25 +20,27 @@ export default async function Home() {
     <main>
       <Navbar shouldHideOnScroll>
         <NavbarBrand>
-          <PepesLogo />
+          <Logo className="w-10" />
         </NavbarBrand>
+
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarItem>
+          {/* <NavbarItem>
             <Link color="foreground" href="#">
-              Productos
+            Productos
             </Link>
-          </NavbarItem>
-          <NavbarItem isActive>
+            </NavbarItem>
+            <NavbarItem isActive>
             <Link href="#" aria-current="page">
-              Contacto
+            Contacto
             </Link>
-          </NavbarItem>
+            </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="#">
-              Nosotros
+            Nosotros
             </Link>
-          </NavbarItem>
+          </NavbarItem> */}
         </NavbarContent>
+
         <NavbarContent justify="end">
           <NavbarItem>
             <Session>
@@ -46,11 +49,13 @@ export default async function Home() {
               </Button>
               <Logout />
             </Session>
-            {!session && <Login />}
+            {!session && <BtnLogin />}
           </NavbarItem>
         </NavbarContent>
       </Navbar>
-      <h1>Home</h1>
+      <section className="container">
+        <PepesLogo className="w-4/6 mx-auto mt-20" />
+      </section>
     </main>
   );
 }

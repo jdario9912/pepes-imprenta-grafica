@@ -1,10 +1,10 @@
+import LogoSvg from "@/img/logo-colores.svg";
 import Image from "next/image";
-import logoYNombre from "@/img/logo-nombre.png";
 
-const PepesLogo = () => (
-  <div>
-    <Image src={logoYNombre} alt="logo y nombre del negocio" />
+const Logo = ({ className }: { className?: string }) => (
+  <div className={className ? className : ""}>
+    <Image src={LogoSvg} alt="logo con colores" />
   </div>
 );
 
-export default PepesLogo;
+export default Logo;

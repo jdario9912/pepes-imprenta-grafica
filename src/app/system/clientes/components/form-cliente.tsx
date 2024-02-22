@@ -1,35 +1,52 @@
 "use client";
 
-import { crearCliente, editarCliente } from "@/libs/client/axios";
+import { crearCliente } from "@/libs/client/axios";
+import { editarCliente } from "@/libs/server-actions/axios";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
   const router = useRouter();
+  const { register, handleSubmit, formState, watch, resetField } =
+    useForm<Cliente>({
+      defaultValues: cliente ? cliente : {},
+    });
 
-  const { register, handleSubmit, formState, watch } = useForm<Cliente>({
-    defaultValues: cliente ? cliente : {},
-  });
+  const [addInputEmail, setAddInputEmail] = useState(!!cliente?.email);
+  const [addInputObservaciones, setAddInputObservaciones] = useState(
+    !!cliente?.observaciones
+  );
+
+  const mostrarInputEmail = () => setAddInputEmail(true);
+  const ocultarInputEmail = () => {
+    resetField("email");
+    setAddInputEmail(false);
+  };
+
+  const mostrarInputObservaciones = () => setAddInputObservaciones(true);
+  const ocultarInputObservaciones = () => {
+    resetField("observaciones");
+    setAddInputObservaciones(false);
+  };
 
   const { errors, isSubmitting } = formState;
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      // if (cliente) {
-      //   const clienteActualizado = await editarCliente(data, cliente.id || 0);
-      //   router.push(`/system/clientes?cliente=${clienteActualizado.nombre}`);
-      //   return;
-      // }
+      if (cliente) {
+        const clienteActualizado = await editarCliente(data, cliente.id || 0);
+        router.push(`/system/clientes?cliente=${clienteActualizado.nombre}`);
+        return;
+      }
 
       const res = await crearCliente(data);
       const id = res.data.id;
-      router.push(`/system/ordenes/crear-orden/${id}`);
+      router.push(`/system/ordenes/crear/${id}`);
       return;
     } catch (error: unknown) {
-      console.log(error);
-
       if (error instanceof AxiosError)
         console.log(error.response?.data.mensaje);
     }
@@ -61,18 +78,45 @@ const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
         defaultValue={watch().telefono}
       />
 
-      <Input
-        type="email"
-        label="email"
-        {...register("email")}
-        defaultValue={watch().email}
-      />
+      {addInputEmail ? (
+        <>
+          <Input
+            type="email"
+            label="user@email.com"
+            {...(addInputEmail
+              ? register("email", {
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "El formato de email es incorrecto.",
+                  },
+                })
+              : null)}
+            isInvalid={errors.email ? true : false}
+            errorMessage={errors.email?.message}
+            variant={errors.email ? "bordered" : "flat"}
+            defaultValue={watch().email}
+          />
 
-      <Textarea
-        label="observaciones"
-        {...register("observaciones")}
-        defaultValue={watch().observaciones}
-      />
+          <Button onClick={ocultarInputEmail}>ocultar</Button>
+        </>
+      ) : (
+        <Button onClick={mostrarInputEmail}>agregar email</Button>
+      )}
+
+      {addInputObservaciones ? (
+        <>
+          <Textarea
+            label="observaciones"
+            {...(addInputObservaciones ? register("observaciones") : null)}
+            defaultValue={watch().observaciones}
+          />
+          <Button onClick={ocultarInputObservaciones}>ocultar</Button>
+        </>
+      ) : (
+        <Button onClick={mostrarInputObservaciones}>
+          agregar observaciones
+        </Button>
+      )}
 
       <Button type="submit" isDisabled={isSubmitting}>
         Guardar

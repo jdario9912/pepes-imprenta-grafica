@@ -14,7 +14,7 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
   const params = useParams();
   const router = useRouter();
 
-  const id_cliente = params.id;
+  const id_cliente = params.id_cliente;
 
   const methods = useForm({
     defaultValues: {

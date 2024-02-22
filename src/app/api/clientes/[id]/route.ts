@@ -38,8 +38,6 @@ export const PATCH = async (req: NextRequest, { params }: any) => {
 
     return NextResponse.json(clienteActualizado);
   } catch (error) {
-    console.log(error);
-    
     return errorResponse(error);
   }
 };

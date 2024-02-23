@@ -1,14 +1,9 @@
 import InfoCliente from "./components/info-cliente";
-import FormCrearOrdenProvider from "./components/form-crear-orden";
 import { Suspense } from "react";
-import { getServerSession } from "next-auth";
+import FormCrearOrdenComponent from "./components/form-crear-orden-component";
 
 const CrearOrden = async ({ params }: { params: { id_cliente: string } }) => {
   const id = params.id_cliente;
-
-  const session = await getServerSession();
-
-  const empleado = session?.user?.name || "";
 
   return (
     <div className="flex flex-col">
@@ -16,7 +11,9 @@ const CrearOrden = async ({ params }: { params: { id_cliente: string } }) => {
         <InfoCliente id={id} />
       </Suspense>
 
-      <FormCrearOrdenProvider atendido_por={empleado} />
+      <Suspense fallback={<div>Cargando productos...</div>}>
+        <FormCrearOrdenComponent />
+      </Suspense>
     </div>
   );
 };

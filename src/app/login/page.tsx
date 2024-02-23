@@ -12,8 +12,8 @@ const Login = async () => {
   return (
     <div>
       <h2>login</h2>
-      <FormLogin />
       <Button as={Link} href="/">Inicio</Button>
+      <FormLogin />
     </div>
   );
 };

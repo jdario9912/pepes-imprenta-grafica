@@ -54,7 +54,7 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenePendiente[] }) => {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Buscar por nombre..."
+          placeholder="Buscar por nombre de cliente..."
           value={(table.getColumn("nombre")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("nombre")?.setFilterValue(event.target.value)

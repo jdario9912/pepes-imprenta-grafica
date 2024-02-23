@@ -9,13 +9,11 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import Link from "next/link";
+import CambiarEstado from "../../components/cambiar-estado";
 
 const AccionesTablaPendientes = ({ orden }: { orden: OrdenePendiente }) => {
   const id = orden.id;
   const producto = orden.producto;
-
-  const handleCambiarEstado = async (estado: string) =>
-    cambiarEstadoOrden(producto, id, estado);
 
   return (
     <div>
@@ -23,23 +21,7 @@ const AccionesTablaPendientes = ({ orden }: { orden: OrdenePendiente }) => {
         Ver orden
       </Button>
       <Button>Editar</Button>
-      <Dropdown>
-        <DropdownTrigger>
-          <Button>Cambiar estado</Button>
-        </DropdownTrigger>
-        <DropdownMenu aria-label="Static Actions">
-          {estadoOrden
-            .filter((estado) => estado !== "pendiente")
-            .map((estado) => (
-              <DropdownItem
-                key={estado}
-                onClick={() => handleCambiarEstado(estado)}
-              >
-                {estado}
-              </DropdownItem>
-            ))}
-        </DropdownMenu>
-      </Dropdown>
+      <CambiarEstado orden={orden} disabledKeys={["pendiente"]} />
     </div>
   );
 };

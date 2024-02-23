@@ -14,6 +14,14 @@ export const editarCliente = async (cliente: Cliente, id: number) => {
   return clienteActualizado.data;
 };
 
-export const obtenerOrdenesPendientes = async () => {
-  return (await axiosQuery.get<OrdenePendiente[]>("/api/ordenes/pendientes")).data;
+export const obtenerOrdenesPendientes = async () =>
+  (await axiosQuery.get<OrdenePendiente[]>("/api/ordenes/pendientes")).data;
+
+export const cambiarEstadoOrden = async (
+  producto: string,
+  id: number,
+  estado: string
+) => {
+  await axiosQuery.patch(`/api/ordenes/${producto}/${id}`, { estado });
+  revalidatePath("/system/ordenes/pendientes");
 };

@@ -1,13 +1,13 @@
-import { OrdenPendiente } from "@/types/orden-pendiente";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import CambiarEstado from "../../components/cambiar-estado";
+import { OrdenAProveedor } from "@/types/orden-a-proveedor";
 
-const AccionesTablaPendientes = ({
+const AccionesTablaAProveedor = ({
   orden,
   disabledKeys,
 }: {
-  orden: OrdenPendiente;
+  orden: OrdenAProveedor;
   disabledKeys: string[];
 }) => {
   const id = orden.id;
@@ -24,4 +24,4 @@ const AccionesTablaPendientes = ({
   );
 };
 
-export default AccionesTablaPendientes;
+export default AccionesTablaAProveedor;

@@ -1,9 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { axiosQuery } from "../axios";
-import { OrdenePendiente } from "@/types/ordenes-pendientes";
+import { OrdenPendiente } from "@/types/orden-pendiente";
 import {
   Bonos,
   Disenos,
@@ -18,6 +17,7 @@ import {
   Volantes,
 } from "@/types/recursos/productos";
 import { revalidarClientesYDireccionar } from "./libs";
+import { OrdenAProveedor } from "@/types/orden-a-proveedor";
 
 export const editarCliente = async (cliente: Cliente, id: number) => {
   const clienteActualizado = await axiosQuery.patch<Cliente>(
@@ -30,7 +30,10 @@ export const editarCliente = async (cliente: Cliente, id: number) => {
 };
 
 export const obtenerOrdenesPendientes = async () =>
-  (await axiosQuery.get<OrdenePendiente[]>("/api/ordenes/pendientes")).data;
+  (await axiosQuery.get<OrdenPendiente[]>("/api/ordenes/pendientes")).data;
+
+export const obtenerOrdenesAProveedor = async () =>
+  (await axiosQuery.get<OrdenAProveedor[]>("/api/ordenes/a-proveedor")).data;
 
 export const cambiarEstadoOrden = async (
   producto: string,

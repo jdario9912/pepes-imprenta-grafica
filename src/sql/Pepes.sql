@@ -543,3 +543,155 @@ WHERE varios.estado = 'pendiente';
 END$$
 
 DELIMITER ;
+
+-- ESTE PROCEDURE BUSCA TODAS LAS ORDENES A PROVEEDOR
+DROP PROCEDURE IF EXISTS buscar_ordenes_a_proveedor;
+
+DELIMITER $$
+CREATE PROCEDURE buscar_ordenes_a_proveedor()
+BEGIN
+SELECT 
+clientes.nombre,
+impresiones.id,
+impresiones.nro_orden,
+impresiones.fecha_creacion, 
+impresiones.producto, 
+impresiones.fecha_entrega, 
+impresiones.hora_entrega
+FROM clientes
+INNER JOIN impresiones
+ON clientes.id = impresiones.id_cliente
+WHERE impresiones.estado = 'proveedor';
+
+SELECT
+clientes.nombre,
+loma.id,
+loma.nro_orden,
+loma.fecha_creacion, 
+loma.producto, 
+loma.fecha_entrega, 
+loma.hora_entrega
+FROM clientes
+INNER JOIN loma
+ON clientes.id = loma.id_cliente
+WHERE loma.estado = 'proveedor';
+
+SELECT
+clientes.nombre,
+talonarios.id,
+talonarios.nro_orden,
+talonarios.fecha_creacion, 
+talonarios.producto, 
+talonarios.fecha_entrega, 
+talonarios.hora_entrega
+FROM clientes
+INNER JOIN talonarios
+ON clientes.id = talonarios.id_cliente
+WHERE talonarios.estado = 'proveedor';
+
+SELECT
+clientes.nombre,
+bonos.id,
+bonos.nro_orden,
+bonos.fecha_creacion, 
+bonos.producto, 
+bonos.fecha_entrega, 
+bonos.hora_entrega
+FROM clientes
+INNER JOIN bonos
+ON clientes.id = bonos.id_cliente
+WHERE bonos.estado = 'proveedor';
+
+SELECT
+clientes.nombre,
+disenos.id,
+disenos.nro_orden,
+disenos.fecha_creacion, 
+disenos.producto, 
+disenos.fecha_entrega, 
+disenos.hora_entrega
+FROM clientes
+INNER JOIN disenos
+ON clientes.id = disenos.id_cliente
+WHERE disenos.estado = 'proveedor';
+
+SELECT
+clientes.nombre,
+plotter.id,
+plotter.nro_orden,
+plotter.fecha_creacion, 
+plotter.producto, 
+plotter.fecha_entrega, 
+plotter.hora_entrega
+FROM clientes
+INNER JOIN plotter
+ON clientes.id = plotter.id_cliente
+WHERE plotter.estado = 'proveedor';
+
+SELECT
+clientes.nombre,
+remeras.id,
+remeras.nro_orden,
+remeras.fecha_creacion, 
+remeras.producto, 
+remeras.fecha_entrega, 
+remeras.hora_entrega
+FROM clientes
+INNER JOIN remeras
+ON clientes.id = remeras.id_cliente
+WHERE remeras.estado = 'proveedor';
+
+SELECT
+clientes.nombre,
+tarjetas.id,
+tarjetas.nro_orden,
+tarjetas.fecha_creacion, 
+tarjetas.producto, 
+tarjetas.fecha_entrega, 
+tarjetas.hora_entrega
+FROM clientes
+INNER JOIN tarjetas
+ON clientes.id = tarjetas.id_cliente
+WHERE tarjetas.estado = 'proveedor';
+
+SELECT
+clientes.nombre,
+volantes.id,
+volantes.nro_orden,
+volantes.fecha_creacion, 
+volantes.producto, 
+volantes.fecha_entrega, 
+volantes.hora_entrega
+FROM clientes
+INNER JOIN volantes
+ON clientes.id = volantes.id_cliente
+WHERE volantes.estado = 'proveedor';
+
+SELECT
+clientes.nombre,
+sellos.id,
+sellos.nro_orden,
+sellos.fecha_creacion, 
+sellos.producto, 
+sellos.fecha_entrega, 
+sellos.hora_entrega
+FROM clientes
+INNER JOIN sellos
+ON clientes.id = sellos.id_cliente
+WHERE sellos.estado = 'proveedor';
+
+SELECT
+clientes.nombre,
+varios.id,
+varios.nro_orden,
+varios.fecha_creacion, 
+varios.producto, 
+varios.fecha_entrega, 
+varios.hora_entrega
+FROM clientes
+INNER JOIN varios
+ON clientes.id = varios.id_cliente
+WHERE varios.estado = 'proveedor';
+END$$
+
+DELIMITER ;

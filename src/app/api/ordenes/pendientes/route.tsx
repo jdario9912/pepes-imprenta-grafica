@@ -1,12 +1,12 @@
 import { pool } from "@/db/mysql";
 import { noAutorizadoResponse } from "@/libs/api/responses";
-import { OrdenePendiente } from "@/types/ordenes-pendientes";
-import { FieldPacket, ProcedureCallPacket, ResultSetHeader } from "mysql2";
+import { OrdenPendiente } from "@/types/orden-pendiente";
+import { FieldPacket, ResultSetHeader } from "mysql2";
 import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
+import {  NextResponse } from "next/server";
 
 export const GET = async () => {
-  let pendientes: OrdenePendiente[] = []
+  let pendientes: OrdenPendiente[] = []
   try {
     // const session = await getServerSession();
 

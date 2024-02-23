@@ -1,4 +1,4 @@
-export type OrdenePendiente = {
+export type OrdenPendiente = {
   nombre: string;
   id: number;
   nro_orden: number;

@@ -1,36 +1,28 @@
-import { OrdenPendiente } from "@/types/orden-pendiente";
+import { formatearFecha, formatearHora } from "@/libs/client/moment";
+import { OrdenAProveedor } from "@/types/orden-a-proveedor";
 import { Button } from "@nextui-org/react";
 import { ColumnDef } from "@tanstack/react-table";
-import AccionesTablaPendientes from "../components/acciones-tabla-pendientes";
-import { formatearFecha, formatearHora } from "@/libs/client/moment";
 import Link from "next/link";
+import AccionesTablaAProveedor from "../components/acciones-tabla-a-proveedor";
 
-export const columns: ColumnDef<OrdenPendiente>[] = [
+export const columns: ColumnDef<OrdenAProveedor>[] = [
   {
-    accessorKey: "atendio",
+    accessorKey: "nro_orden",
     header: () => {
-      return <div>Atendio</div>;
+      return <div>Numero orden</div>;
     },
     cell: ({ row }) => (
-      <div className="capitalize">{row.original.atendido_por}</div>
-    ),
-  },
-  {
-    accessorKey: "fecha_creacion",
-    header: () => <div className="text-center">Creado</div>,
-    cell: ({ row }) => (
-      <div className="text-right">
-        {formatearFecha(row.original.fecha_creacion)}
-      </div>
+      <div className="capitalize">{row.original.nro_orden}</div>
     ),
   },
   {
     accessorKey: "producto",
     header: () => <div className="text-center">Producto</div>,
     cell: ({ row }) => (
-      <div className="text-right">{row.getValue("producto")}</div>
+      <div className="text-right">{row.original.producto}</div>
     ),
   },
+
   {
     accessorKey: "nombre",
     header: () => <div className="text-center">Cliente</div>,
@@ -56,6 +48,13 @@ export const columns: ColumnDef<OrdenPendiente>[] = [
     ),
   },
   {
+    accessorKey: "creado",
+    header: () => <div className="text-center">Creado</div>,
+    cell: ({ row }) => (
+      <div className="text-right">{formatearFecha(row.original.fecha_creacion)}</div>
+    ),
+  },
+  {
     id: "actions",
     enableHiding: false,
     header: () => <div className="text-center">Acciones</div>,
@@ -63,7 +62,7 @@ export const columns: ColumnDef<OrdenPendiente>[] = [
       const orden = row.original;
 
       return (
-        <AccionesTablaPendientes orden={orden} disabledKeys={["pendiente"]} />
+        <AccionesTablaAProveedor orden={orden} disabledKeys={["proveedor"]} />
       );
     },
   },

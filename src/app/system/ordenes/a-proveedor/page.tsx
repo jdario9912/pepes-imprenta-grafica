@@ -1,10 +1,12 @@
+import { Suspense } from "react";
+import TablaComponent from "./components/tabla-component";
+
 const AProveedor = () => <div>ordenes a proveedor
-  nro ordene
-  producto
-  cliente
-  entregar(fecha y hora)
-  creado
-  acciones
+  
+  <h2>Ordenes a proveedor</h2>
+  <Suspense fallback={<div>cargando tabla ordenes a proveedor...</div>}>
+    <TablaComponent />
+  </Suspense>
 </div>;
 
 export default AProveedor;

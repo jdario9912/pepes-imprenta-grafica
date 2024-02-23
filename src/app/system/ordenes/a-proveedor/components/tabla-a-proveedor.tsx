@@ -1,6 +1,6 @@
 "use client";
 
-import { OrdenPendiente } from "@/types/orden-pendiente";
+import { OrdenAProveedor } from "@/types/orden-a-proveedor";
 import {
   ColumnFiltersState,
   SortingState,
@@ -13,7 +13,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { columns } from "../services/columns-tabla-pendientes";
+import { columns } from "../services/columns-tabla-a-proveedor";
 import {
   Button,
   Input,
@@ -25,14 +25,14 @@ import {
   TableRow,
 } from "@nextui-org/react";
 
-const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
+const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
-    data: pendientes,
+    data: aProveedor,
     columns: columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -127,4 +127,4 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
   );
 };
 
-export default TablaPendientes;
+export default TablaAProveedor;

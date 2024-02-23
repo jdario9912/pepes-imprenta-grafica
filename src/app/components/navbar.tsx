@@ -37,16 +37,24 @@ const NavBar = async () => {
             </Link>
           </NavbarItem> */}
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem>
-          <Session>
+      <NavbarContent justify="end" className="gap-x-3">
+        <Session>
+          <NavbarItem>
             <Button as={Link} href="/system">
               Sistema
             </Button>
+            {!session && <Login />}
+          </NavbarItem>
+          <NavbarItem>
             <Logout />
-          </Session>
-          {!session && <Login />}
-        </NavbarItem>
+          </NavbarItem>
+        </Session>
+        
+        {!session && (
+          <NavbarItem>
+            <Login />
+          </NavbarItem>
+        )}
       </NavbarContent>
     </Navbar>
   );

@@ -24,6 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
+import NombrePagina from "@/app/system/components/nombre-pagina";
 
 const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -52,7 +53,7 @@ const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex justify-between items-center py-4">
         <Input
           placeholder="Buscar por nombre de cliente..."
           value={(table.getColumn("nombre")?.getFilterValue() as string) ?? ""}
@@ -63,10 +64,11 @@ const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
           isClearable
           onClear={() => table.getColumn("nombre")?.setFilterValue("")}
         />
+        <NombrePagina nombre="Ordenes enviadas a proveedor" />
       </div>
 
-      <div className="rounded-md border">
-        <Table aria-label="tabla clientes">
+      <div>
+        <Table aria-label="tabla ordenes a proveedor">
           <TableHeader>
             {table.getFlatHeaders().map((header) => (
               <TableColumn key={header.id}>
@@ -77,30 +79,19 @@ const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
               </TableColumn>
             ))}
           </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                {table.getFlatHeaders().map((header) => (
-                  <TableCell key={header.id}>No hay resultados</TableCell>
+          <TableBody emptyContent={"No hay resultados para mostrar."}>
+            {table.getRowModel().rows.map((row) => (
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && "selected"}
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
                 ))}
               </TableRow>
-            )}
+            ))}
           </TableBody>
         </Table>
       </div>

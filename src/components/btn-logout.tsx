@@ -8,5 +8,5 @@ export default function Logout() {
     signOut();
   };
 
-  return <Button onClick={handleClick}>Cerrar sesion</Button>;
+  return <Button onClick={handleClick} variant="flat" color="primary">Cerrar sesion</Button>;
 }

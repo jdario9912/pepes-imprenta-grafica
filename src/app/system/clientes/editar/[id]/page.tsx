@@ -1,5 +1,6 @@
 import { obtenerCliente } from "@/libs/client/axios";
 import FormCliente from "../../components/form-cliente";
+import NombrePagina from "@/app/system/components/nombre-pagina";
 
 const EditarCliente = async ({ params }: { params: { id: string } }) => {
   const id = params.id;
@@ -7,7 +8,7 @@ const EditarCliente = async ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      <h2>Editar cliente</h2>
+      <NombrePagina nombre="Editar cliente" />
       <FormCliente cliente={cliente} />
     </>
   );

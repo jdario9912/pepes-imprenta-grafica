@@ -10,7 +10,6 @@ const Clientes = async ({
 
   return (
     <div>
-      <h2>Clientes</h2>
       <Suspense fallback={<div>Cargando tabla clientesssssssss....</div>}>
         <TablaComponent cliente={cliente} />
       </Suspense>

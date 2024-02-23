@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { btnsNavAside } from "../libs/btns-nav-aside";
 import { usePathname } from "next/navigation";
+import classNames from "classnames";
 
 const NavAside = () => {
   const pathname = usePathname();
@@ -11,9 +12,15 @@ const NavAside = () => {
     <nav>
       <ul>
         {btnsNavAside.map(({ href, label }) => (
-          <li key={href} className={pathname === href ? "bg-blue-500" : ""}>
-            <Link href={href}>{label}</Link>
-          </li>
+          <Link href={href} key={href} className="whitespace-nowrap">
+            <li
+              className={classNames("p-2 hover:bg-blue-500/50", {
+                "bg-blue-500": pathname === href,
+              })}
+            >
+              {label}
+            </li>
+          </Link>
         ))}
       </ul>
     </nav>

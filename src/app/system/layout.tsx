@@ -11,10 +11,12 @@ export default function SystemLayout({
       <aside className="bg-zinc-300">
         <div className="flex flex-col justify-between h-full">
           <NavAside />
-          <Logout />
+          <div className="flex justify-center px-2 py-3">
+            <Logout />
+          </div>
         </div>
       </aside>
-      <div className="overflow-scroll min-w-full">{children}</div>
+      <div className="overflow-scroll w-full p-4">{children}</div>
     </div>
   );
 }

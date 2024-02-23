@@ -24,6 +24,7 @@ import {
 import { useEffect, useState } from "react";
 
 import { columns } from "../services/columns-tabla-clientes";
+import NombrePagina from "../../components/nombre-pagina";
 
 const TablaClientes = ({
   clientes,
@@ -63,7 +64,7 @@ const TablaClientes = ({
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex justify-between items-center py-4">
         <Input
           placeholder="Buscar por nombre..."
           value={(table.getColumn("nombre")?.getFilterValue() as string) ?? ""}
@@ -74,35 +75,10 @@ const TablaClientes = ({
           isClearable
           onClear={() => table.getColumn("nombre")?.setFilterValue("")}
         />
-        {/* <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu> */}
+        <NombrePagina nombre="Clientes" />
       </div>
 
-      <div className="rounded-md border">
+      <div>
         <Table aria-label="tabla clientes">
           <TableHeader>
             {table.getFlatHeaders().map((header) => (
@@ -114,30 +90,19 @@ const TablaClientes = ({
               </TableColumn>
             ))}
           </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                {table.getFlatHeaders().map((header) => (
-                  <TableCell key={header.id}>No hay resultados</TableCell>
+          <TableBody emptyContent={"No hay resultados para mostrar."}>
+            {table.getRowModel().rows.map((row) => (
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && "selected"}
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
                 ))}
               </TableRow>
-            )}
+            ))}
           </TableBody>
         </Table>
       </div>

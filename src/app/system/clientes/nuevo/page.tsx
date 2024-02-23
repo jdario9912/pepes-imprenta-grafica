@@ -1,8 +1,9 @@
+import NombrePagina from "../../components/nombre-pagina";
 import FormCliente from "../components/form-cliente";
 
 const NuevoCliente = () => (
   <>
-    <h2>Crear cliente</h2>
+    <NombrePagina nombre="Crear cliente" />
     <FormCliente />
   </>
 );

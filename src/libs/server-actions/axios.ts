@@ -1,8 +1,23 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { axiosQuery } from "../axios";
 import { OrdenePendiente } from "@/types/ordenes-pendientes";
+import {
+  Bonos,
+  Disenos,
+  Impresiones,
+  Loma,
+  Plotter,
+  Remeras,
+  Sellos,
+  Talonarios,
+  Tarjetas,
+  Varios,
+  Volantes,
+} from "@/types/recursos/productos";
+import { revalidarClientesYDireccionar } from "./libs";
 
 export const editarCliente = async (cliente: Cliente, id: number) => {
   const clienteActualizado = await axiosQuery.patch<Cliente>(
@@ -24,4 +39,70 @@ export const cambiarEstadoOrden = async (
 ) => {
   await axiosQuery.patch(`/api/ordenes/${producto}/${id}`, { estado });
   revalidatePath("/system/ordenes/pendientes");
+};
+
+export const crearBonoFetch = async (data: unknown) => {
+  const orden = (await axiosQuery.post<Bonos>("/api/ordenes/bonos", data)).data;
+  revalidarClientesYDireccionar(orden.id, orden.producto);
+};
+
+export const crearDisenoFetch = async (data: unknown) => {
+  const orden = (await axiosQuery.post<Disenos>("/api/ordenes/disenos", data))
+    .data;
+  revalidarClientesYDireccionar(orden.id, orden.producto);
+};
+
+export const crearImpresionFetch = async (data: unknown) => {
+  const orden = (
+    await axiosQuery.post<Impresiones>("/api/ordenes/impresiones", data)
+  ).data;
+  revalidarClientesYDireccionar(orden.id, orden.producto);
+};
+
+export const crearLomaFetch = async (data: unknown) => {
+  const orden = (await axiosQuery.post<Loma>("/api/ordenes/loma", data)).data;
+  revalidarClientesYDireccionar(orden.id, orden.producto);
+};
+
+export const crearPlotterFetch = async (data: unknown) => {
+  const orden = (await axiosQuery.post<Plotter>("/api/ordenes/plotter", data))
+    .data;
+  revalidarClientesYDireccionar(orden.id, orden.producto);
+};
+
+export const crearRemeraFetch = async (data: unknown) => {
+  const orden = (await axiosQuery.post<Remeras>("/api/ordenes/remeras", data))
+    .data;
+  revalidarClientesYDireccionar(orden.id, orden.producto);
+};
+
+export const crearSelloFetch = async (data: unknown) => {
+  const orden = (await axiosQuery.post<Sellos>("/api/ordenes/sellos", data))
+    .data;
+  revalidarClientesYDireccionar(orden.id, orden.producto);
+};
+
+export const crearTalonarioFetch = async (data: unknown) => {
+  const orden = (
+    await axiosQuery.post<Talonarios>("/api/ordenes/talonarios", data)
+  ).data;
+  revalidarClientesYDireccionar(orden.id, orden.producto);
+};
+
+export const crearTarjetaFetch = async (data: unknown) => {
+  const orden = (await axiosQuery.post<Tarjetas>("/api/ordenes/tarjetas", data))
+    .data;
+  revalidarClientesYDireccionar(orden.id, orden.producto);
+};
+
+export const crearVariosFetch = async (data: unknown) => {
+  const orden = (await axiosQuery.post<Varios>("/api/ordenes/varios", data))
+    .data;
+  revalidarClientesYDireccionar(orden.id, orden.producto);
+};
+
+export const crearVolanteFetch = async (data: unknown) => {
+  const orden = (await axiosQuery.post<Volantes>("/api/ordenes/volantes", data))
+    .data;
+  revalidarClientesYDireccionar(orden.id, orden.producto);
 };

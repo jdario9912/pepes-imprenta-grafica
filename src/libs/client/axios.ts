@@ -22,39 +22,6 @@ export const obtenerCliente = async (id: string) =>
 export const obtenerClientes = async () =>
   (await axiosQuery.get<Cliente[]>("/api/clientes")).data;
 
-export const crearBonoFetch = async (data: unknown) =>
-  axiosQuery.post<Bonos>("/api/ordenes/bonos", data);
-
-export const crearDisenoFetch = async (data: unknown) =>
-  axiosQuery.post<Disenos>("/api/ordenes/disenos", data);
-
-export const crearImpresionFetch = async (data: unknown) =>
-  axiosQuery.post<Impresiones>("/api/ordenes/impresiones", data);
-
-export const crearLomaFetch = async (data: unknown) =>
-  axiosQuery.post<Loma>("/api/ordenes/loma", data);
-
-export const crearPlotterFetch = async (data: unknown) =>
-  axiosQuery.post<Plotter>("/api/ordenes/plotter", data);
-
-export const crearRemeraFetch = async (data: unknown) =>
-  axiosQuery.post<Remeras>("/api/ordenes/remeras", data);
-
-export const crearSelloFetch = async (data: unknown) =>
-  axiosQuery.post<Sellos>("/api/ordenes/sellos", data);
-
-export const crearTalonarioFetch = async (data: unknown) =>
-  axiosQuery.post<Talonarios>("/api/ordenes/talonarios", data);
-
-export const crearTarjetaFetch = async (data: unknown) =>
-  axiosQuery.post<Tarjetas>("/api/ordenes/tarjetas", data);
-
-export const crearVariosFetch = async (data: unknown) =>
-  axiosQuery.post<Varios>("/api/ordenes/varios", data);
-
-export const crearVolanteFetch = async (data: unknown) =>
-  axiosQuery.post<Volantes>("/api/ordenes/volantes", data);
-
 export const obtenerBonoFetch = async (id: string) =>
   (await axiosQuery.get<Bonos>(`/api/ordenes/bonos/${id}`)).data;
 

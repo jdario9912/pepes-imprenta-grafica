@@ -5,7 +5,7 @@ import BotonesProductos from "./botones-productos";
 import { productosModel } from "../services/productos-index";
 import { Button } from "@nextui-org/react";
 import { FormProvider, useForm } from "react-hook-form";
-import * as querys from "@/libs/client/axios";
+import * as querys from "@/libs/server-actions/axios";
 import { useParams, useRouter } from "next/navigation";
 import { AxiosError } from "axios";
 
@@ -41,92 +41,59 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
     try {
       switch (productoElegido) {
         case "bonos": {
-          const res = await querys.crearBonoFetch(data);
-          router.push(
-            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
-          );
+          await querys.crearBonoFetch(data);
 
-          break;
+          return;
         }
         case "diseños": {
-          const res = await querys.crearDisenoFetch(data);
-          router.push(
-            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
-          );
+          await querys.crearDisenoFetch(data);
 
-          break;
+          return;
         }
         case "impresiones": {
-          const res = await querys.crearImpresionFetch(data);
-          router.push(
-            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
-          );
+          await querys.crearImpresionFetch(data);
 
-          break;
+          return;
         }
         case "loma": {
-          const res = await querys.crearLomaFetch(data);
-          router.push(
-            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
-          );
+          await querys.crearLomaFetch(data);
 
-          break;
+          return;
         }
         case "plotter": {
-          const res = await querys.crearPlotterFetch(data);
-          router.push(
-            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
-          );
+          await querys.crearPlotterFetch(data);
 
-          break;
+          return;
         }
         case "remeras": {
-          const res = await querys.crearRemeraFetch(data);
-          router.push(
-            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
-          );
+          await querys.crearRemeraFetch(data);
 
-          break;
+          return;
         }
         case "sellos": {
-          const res = await querys.crearSelloFetch(data);
-          router.push(
-            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
-          );
+          await querys.crearSelloFetch(data);
 
-          break;
+          return;
         }
         case "talonarios": {
-          const res = await querys.crearTalonarioFetch(data);
-          router.push(
-            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
-          );
+          await querys.crearTalonarioFetch(data);
 
-          break;
+          return;
         }
         case "tarjetas": {
-          const res = await querys.crearTarjetaFetch(data);
-          router.push(
-            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
-          );
+          await querys.crearTarjetaFetch(data);
 
-          break;
+          return;
         }
         case "varios": {
-          const res = await querys.crearVariosFetch(data);
-          router.push(
-            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
-          );
+          await querys.crearVariosFetch(data);
 
-          break;
+          return;
         }
         case "volantes": {
-          const res = await querys.crearVolanteFetch(data);
-          router.push(
-            `/system/pdf/producto/${res.data.producto}/${res.data.id}`
-          );
+          await querys.crearVolanteFetch(data);
 
-          break;
+          return;
         }
 
         default:

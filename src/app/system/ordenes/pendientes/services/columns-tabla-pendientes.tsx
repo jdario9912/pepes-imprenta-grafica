@@ -3,6 +3,7 @@ import { Button } from "@nextui-org/react";
 import { ColumnDef } from "@tanstack/react-table";
 import AccionesTablaPendientes from "../components/acciones-tabla-pendientes";
 import { formatearFecha, formatearHora } from "@/libs/client/moment";
+import Link from "next/link";
 
 export const columns: ColumnDef<OrdenePendiente>[] = [
   {
@@ -18,7 +19,9 @@ export const columns: ColumnDef<OrdenePendiente>[] = [
     accessorKey: "fecha_creacion",
     header: () => <div className="text-center">Creado</div>,
     cell: ({ row }) => (
-      <div className="text-right">{formatearFecha(row.original.fecha_creacion)}</div>
+      <div className="text-right">
+        {formatearFecha(row.original.fecha_creacion)}
+      </div>
     ),
   },
   {
@@ -31,9 +34,16 @@ export const columns: ColumnDef<OrdenePendiente>[] = [
   {
     accessorKey: "nombre",
     header: () => <div className="text-center">Cliente</div>,
-    cell: ({ row }) => (
-      <div className="text-right">{row.getValue("nombre")}</div>
-    ),
+    cell: ({ row }) => {
+      const cliente = row.original.nombre
+      return (
+        <div className="text-right">
+          <Button as={Link} href={`/system/clientes?cliente=${cliente}`}>
+            {cliente}
+          </Button>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "entregar",

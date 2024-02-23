@@ -6,12 +6,7 @@ const estilosPdf: ReactPDF.Styles = {
     gap: 4,
   },
   pedido: {
-    border: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
     height: "80%",
-    justifyContent: "space-between",
   },
   items: {
     flexDirection: "column",

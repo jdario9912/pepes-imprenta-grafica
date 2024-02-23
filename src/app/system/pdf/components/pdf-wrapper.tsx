@@ -25,7 +25,7 @@ const PdfWrapper = ({
   orden: Producto;
 }) => {
   return (
-    <div className="h-screen w-screen">
+    <div className="h-screen">
       <PDFViewer height="100%" width="100%">
         <Document>
           {/* Orden Cliente */}
@@ -100,20 +100,27 @@ const PdfWrapper = ({
                 </Text>
                 <View style={{ flexDirection: "row", gap: 3 }}>
                   <Text style={{ fontSize: 13 }}>
-                    Retirar el{" "}
-                    {formatearFecha(orden.fecha_entrega)}
+                    Retirar el {formatearFecha(orden.fecha_entrega)}
                   </Text>
                   <Text style={{ fontSize: 13 }}>
-                    a las{" "}
-                    {formatearHora(orden.hora_entrega)}hs
+                    a las {formatearHora(orden.hora_entrega)}hs
                   </Text>
                 </View>
               </View>
 
-              {children}
+              <View
+                style={{
+                  border: 1,
+                  borderRadius: 5,
+                  paddingHorizontal: 10,
+                  paddingVertical: 5,
+                }}
+              >
+                {children}
 
-              {/* Observaciones */}
-              <ObservacionesPdf texto={orden.observaciones} />
+                {/* Observaciones */}
+                <ObservacionesPdf texto={orden.observaciones} />
+              </View>
 
               {/* Pago */}
               <PdfImportes orden={orden} />
@@ -281,7 +288,19 @@ const PdfWrapper = ({
                 </View>
               </View>
 
-              {children}
+              <View
+                style={{
+                  border: 1,
+                  borderRadius: 5,
+                  paddingHorizontal: 10,
+                  paddingVertical: 5,
+                }}
+              >
+                {children}
+
+                {/* Observaciones */}
+                <ObservacionesPdf texto={orden.observaciones} />
+              </View>
 
               {/* Pago */}
               <PdfImportes orden={orden} />

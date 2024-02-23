@@ -1,7 +1,7 @@
 import { Productos } from "@/types/enums";
 import { Metadata } from "next";
 
-export const metadataInfo: Metadata = {
+export const metadataHome: Metadata = {
   title: "Pepe's",
   description: "Centro de impresión, gráfica y diseño.",
   category: "Imprenta y gráfica",
@@ -16,6 +16,13 @@ export const metadataInfo: Metadata = {
     "Quevedo",
     "fotocopias",
     "sublimados",
-    ...Object.values(Productos)
+    ...Object.values(Productos),
   ],
+};
+
+export const metadataSystem: Metadata = {
+  title: {
+    template: "Pepe's System | %s",
+    default: "Pepe's System",
+  },
 };

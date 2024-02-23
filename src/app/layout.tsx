@@ -1,10 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { metadataInfo } from "../libs/client/metadata";
+import { metadataHome } from "../libs/client/metadata";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = metadataInfo;
+export const metadata = metadataHome;
 
 export default function RootLayout({
   children,

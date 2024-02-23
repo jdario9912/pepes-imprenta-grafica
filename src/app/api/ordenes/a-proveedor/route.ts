@@ -11,7 +11,7 @@ export const GET = async () => {
     // if (!session) return noAutorizadoResponse();
 
     const [rows]: [ResultSetHeader[], FieldPacket[]] = await pool.query(
-      "CALL buscar_ordenes_pendientes()"
+      "CALL buscar_ordenes_a_proveedor()"
     );
 
     const productos = rows.filter((row) => row instanceof Array);

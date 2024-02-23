@@ -10,7 +10,7 @@ export const btnsNavAside: BtnNavAside[] = [
     label: "Ordenes pendientes",
   },
   {
-    href: "/system/ordenes/a-proveedor",
+    href: "/system/ordenes/proveedor",
     label: "A proveedor",
   },
   {

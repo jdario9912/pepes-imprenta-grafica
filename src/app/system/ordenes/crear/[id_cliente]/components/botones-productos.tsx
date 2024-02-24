@@ -15,7 +15,12 @@ const BotonesProductos = ({
   return (
     <>
       {botonesProductos.map(({ nombre, icono }) => (
-        <Button key={nombre} onClick={() => handleClick(nombre)}>
+        <Button
+          key={nombre}
+          onClick={() => handleClick(nombre)}
+          variant="flat"
+          color="primary"
+        >
           {icono}
           {nombre}
         </Button>

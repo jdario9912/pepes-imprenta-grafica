@@ -41,6 +41,7 @@ const FormProducto = ({ children }: { children: any }) => {
         errorMessage={errors.muestra?.message}
         opciones={siNo}
       />
+
       {children({ ...methods })}
 
       <Textarea label="Observaciones" {...methods.register("observaciones")} />
@@ -79,7 +80,7 @@ const FormProducto = ({ children }: { children: any }) => {
           })}
         />
       ) : <></>}
-      <Button type="submit">Crear orden</Button>
+      <Button type="submit" variant="flat" color="primary">Crear orden</Button>
     </>
   );
 };

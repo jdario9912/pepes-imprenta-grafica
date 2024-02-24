@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Button } from "@nextui-org/react";
 import { signOut } from "next-auth/react";
@@ -8,5 +8,9 @@ export default function Logout() {
     signOut();
   };
 
-  return <Button onClick={handleClick} variant="flat" color="primary">Cerrar sesion</Button>;
+  return (
+    <Button onClick={handleClick} variant="flat" color="primary">
+      Cerrar sesion
+    </Button>
+  );
 }

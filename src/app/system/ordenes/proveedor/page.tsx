@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const AProveedor = () => (
-  <div>
+  <div className="p-4">
     <Suspense fallback={<div>cargando tabla ordenes a proveedor...</div>}>
       <TablaComponent />
     </Suspense>

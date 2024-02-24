@@ -6,13 +6,12 @@ import { productosModel } from "../services/productos-index";
 import { Button } from "@nextui-org/react";
 import { FormProvider, useForm } from "react-hook-form";
 import * as querys from "@/libs/server-actions/axios";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { AxiosError } from "axios";
 
 const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
   const [productoElegido, setProductoElegido] = useState("");
   const params = useParams();
-  const router = useRouter();
 
   const id_cliente = params.id_cliente;
 
@@ -109,16 +108,18 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
       {productoElegido == "" ? (
         <BotonesProductos setProductoElegido={setProductoElegido} />
       ) : (
-        <>
-          <div>
+        <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center">
             {productosModel[productoElegido].icono}
             {productoElegido}
           </div>
-          <Button onClick={resetProducto}>cambiar producto</Button>
-        </>
+          <Button onClick={resetProducto} variant="flat" color="primary">
+            cambiar producto
+          </Button>
+        </div>
       )}
       <FormProvider {...methods}>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="flex flex-col gap-2">
           {productosModel[productoElegido]?.inputs}
         </form>
       </FormProvider>

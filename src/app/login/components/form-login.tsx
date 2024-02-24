@@ -6,27 +6,34 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { errorsLogin } from "../libs/errors";
+import { errorToast } from "@/libs/client/toast";
 
 export default function FormLogin() {
   const [esVisible, setEsVisible] = useState(false);
   const toggleVisibilidad = () => setEsVisible(!esVisible);
+  const [loginOk, setLoginOk] = useState(false);
   const router = useRouter();
   const { register, handleSubmit, formState } = useForm<FormLogin>();
 
-  const { errors } = formState;
+  const { errors, isSubmitting } = formState;
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await signIn("credentials", {
+      const res = await signIn("credentials", {
         ...data,
         redirect: false,
       });
 
+      if (res?.ok) setLoginOk(true);
+      errorsLogin(res?.status);
+
       router.push("/system/ordenes/pendientes");
     } catch (error: unknown) {
-      // tengo que manejar este error
-
-      console.log(error);
+      if (error instanceof Error) {
+        errorToast(error.message);
+        return;
+      }
     }
   });
 
@@ -74,8 +81,9 @@ export default function FormLogin() {
           </button>
         }
       />
-
-      <Button type="submit">Entrar</Button>
+      <Button type="submit" isLoading={isSubmitting} disabled={loginOk}>
+        Entrar
+      </Button>
     </form>
   );
 }

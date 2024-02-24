@@ -25,7 +25,7 @@ const AccionesTablaClientes = ({ cliente }: { cliente: Cliente }) => {
   return (
     <div>
       <Button onClick={handleCrear}>crear orden</Button>
-      <Button>ver ordenes</Button>
+      {/* <Button>ver ordenes</Button> */}
       <Button onClick={handleEditar}>editar</Button>
       <Button onPress={onOpen}>detalles</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>

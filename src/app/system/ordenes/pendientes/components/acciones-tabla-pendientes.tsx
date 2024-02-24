@@ -18,7 +18,12 @@ const AccionesTablaPendientes = ({
       <Button as={Link} href={`/system/pdf/producto/${producto}/${id}`}>
         Ver orden
       </Button>
-      <Button>Editar</Button>
+      <Button
+        as={Link}
+        href={`/system/ordenes/editar/producto/${producto}/${id}`}
+      >
+        Editar
+      </Button>
       <CambiarEstado orden={orden} disabledKeys={disabledKeys} />
     </div>
   );

@@ -30,9 +30,12 @@ export const columns: ColumnDef<OrdenAProveedor>[] = [
       const cliente = row.original.nombre;
       return (
         <div className="text-right">
-          <Button as={Link} href={`/system/clientes?cliente=${cliente}`}>
+          <Link
+            href={`/system/clientes?cliente=${cliente}`}
+            className="hover:underline hover:cursor-pointer"
+          >
             {cliente}
-          </Button>
+          </Link>
         </div>
       );
     },
@@ -51,7 +54,9 @@ export const columns: ColumnDef<OrdenAProveedor>[] = [
     accessorKey: "creado",
     header: () => <div className="text-center">Creado</div>,
     cell: ({ row }) => (
-      <div className="text-right">{formatearFecha(row.original.fecha_creacion)}</div>
+      <div className="text-right">
+        {formatearFecha(row.original.fecha_creacion)}
+      </div>
     ),
   },
   {

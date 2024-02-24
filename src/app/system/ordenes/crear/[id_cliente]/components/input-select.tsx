@@ -8,6 +8,7 @@ const InputSelect = ({
   errorMessage,
   register,
   disabled = false,
+  valorInicial = "",
 }: {
   label: string;
   opciones: string[];
@@ -15,6 +16,7 @@ const InputSelect = ({
   errorMessage: string | undefined;
   register: UseFormRegisterReturn;
   disabled?: boolean;
+  valorInicial?: string;
 }) => (
   <Select
     label={label}
@@ -23,6 +25,7 @@ const InputSelect = ({
     errorMessage={errorMessage}
     variant={error ? "bordered" : "flat"}
     isDisabled={disabled}
+    selectedKeys={[valorInicial]}
   >
     {opciones.map((opcion) => (
       <SelectItem key={opcion}>{opcion}</SelectItem>

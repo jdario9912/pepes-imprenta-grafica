@@ -9,6 +9,7 @@ const InputRadio = ({
   errorMessage,
   register,
   disabled = false,
+  valorInicial
 }: {
   label: string;
   opciones: string[];
@@ -16,6 +17,7 @@ const InputRadio = ({
   errorMessage: string | undefined;
   register: UseFormRegisterReturn;
   disabled?: boolean;
+  valorInicial?: string
 }) => (
   <RadioGroup
     // label={label}
@@ -43,6 +45,7 @@ const InputRadio = ({
                 value={opcion}
                 disabled={disabled}
                 className="hover:cursor-pointer"
+                checked={opcion === valorInicial}
               />
             </label>
           );

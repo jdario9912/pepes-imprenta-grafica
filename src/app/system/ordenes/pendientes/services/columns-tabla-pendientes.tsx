@@ -1,5 +1,4 @@
 import { OrdenPendiente } from "@/types/orden-pendiente";
-import { Button } from "@nextui-org/react";
 import { ColumnDef } from "@tanstack/react-table";
 import AccionesTablaPendientes from "../components/acciones-tabla-pendientes";
 import { formatearFecha, formatearHora } from "@/libs/client/moment";
@@ -38,9 +37,12 @@ export const columns: ColumnDef<OrdenPendiente>[] = [
       const cliente = row.original.nombre;
       return (
         <div className="text-right">
-          <Button as={Link} href={`/system/clientes?cliente=${cliente}`}>
+          <Link
+            href={`/system/clientes?cliente=${cliente}`}
+            className="hover:underline hover:cursor-pointer"
+          >
             {cliente}
-          </Button>
+          </Link>
         </div>
       );
     },

@@ -1,5 +1,11 @@
 "use client";
 
+import IconoBtnAccionesTablas from "@/components/icono-btn-acciones-tablas";
+import { iconos } from "@/components/icons";
+import LabelBtnAccionesTablas from "@/components/label-btn-acciones-tablas";
+import WrapperBtnAccionesTabla from "@/components/wrapper-btn-acciones-tabla";
+import { uuid } from "@/libs/uuid";
+import { BtnAccionesTabla } from "@/types/botones";
 import {
   Button,
   Modal,
@@ -22,12 +28,30 @@ const AccionesTablaClientes = ({ cliente }: { cliente: Cliente }) => {
 
   const handleEditar = () => router.push(`/system/clientes/editar/${id}`);
 
+  const botones: BtnAccionesTabla[] = [
+    {
+      id: uuid(),
+      accion: handleCrear,
+      icono: iconos.crearOrden,
+      texto: "crear orden",
+    },
+    { id: uuid(), accion: handleEditar, icono: iconos.editar, texto: "editar" },
+    { id: uuid(), accion: onOpen, icono: iconos.detalles, texto: "detalles" },
+  ];
+
   return (
-    <div>
-      <Button onClick={handleCrear}>crear orden</Button>
-      {/* <Button>ver ordenes</Button> */}
-      <Button onClick={handleEditar}>editar</Button>
-      <Button onPress={onOpen}>detalles</Button>
+    <>
+      <WrapperBtnAccionesTabla>
+        <>
+          {botones.map(({ id, accion, icono, texto }) => (
+            <Button key={id} onClick={accion}>
+              <IconoBtnAccionesTablas icono={icono} />
+              <LabelBtnAccionesTablas texto={texto} />
+            </Button>
+          ))}
+        </>
+      </WrapperBtnAccionesTabla>
+
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
@@ -45,7 +69,7 @@ const AccionesTablaClientes = ({ cliente }: { cliente: Cliente }) => {
           )}
         </ModalContent>
       </Modal>
-    </div>
+    </>
   );
 };
 

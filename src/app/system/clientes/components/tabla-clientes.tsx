@@ -79,7 +79,7 @@ const TablaClientes = ({
       </div>
 
       <div>
-        <Table aria-label="tabla clientes">
+        <Table aria-label="tabla clientes" selectionMode="single">
           <TableHeader>
             {table.getFlatHeaders().map((header) => (
               <TableColumn key={header.id}>

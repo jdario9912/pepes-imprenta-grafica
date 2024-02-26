@@ -1,4 +1,4 @@
-import { BtnNavAside } from "@/types/btn-nav-aside";
+import { BtnNavAside } from "@/types/botones";
 
 export const btnsNavAside: BtnNavAside[] = [
   {

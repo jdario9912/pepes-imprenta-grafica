@@ -1,6 +1,6 @@
+import { uuid } from "@/libs/uuid";
 import { RadioGroup } from "@nextui-org/react";
 import { UseFormRegisterReturn } from "react-hook-form";
-import { v4 as uuidv4 } from "uuid";
 
 const InputRadio = ({
   label,
@@ -9,7 +9,7 @@ const InputRadio = ({
   errorMessage,
   register,
   disabled = false,
-  valorInicial
+  valorInicial,
 }: {
   label: string;
   opciones: string[];
@@ -17,7 +17,7 @@ const InputRadio = ({
   errorMessage: string | undefined;
   register: UseFormRegisterReturn;
   disabled?: boolean;
-  valorInicial?: string
+  valorInicial?: string;
 }) => (
   <RadioGroup
     // label={label}
@@ -29,7 +29,7 @@ const InputRadio = ({
       <p>{label}</p>
       <div className="flex gap-2">
         {opciones.map((opcion) => {
-          const id = uuidv4();
+          const id = uuid();
 
           return (
             <label

@@ -1,6 +1,6 @@
 import { BsFillFileEarmarkPdfFill, BsClipboard2Plus } from "react-icons/bs";
 import { BiSolidEditAlt } from "react-icons/bi";
-import { MdAutorenew } from "react-icons/md";
+import { MdAutorenew, MdLightMode, MdNightlight } from "react-icons/md";
 import { CgUserList } from "react-icons/cg";
 
 export const iconos = {
@@ -9,4 +9,6 @@ export const iconos = {
   cambiarEstado: <MdAutorenew />,
   crearOrden: <BsClipboard2Plus />,
   detalles: <CgUserList />,
+  ligthMode: <MdLightMode />,
+  darkMode: <MdNightlight />,
 };

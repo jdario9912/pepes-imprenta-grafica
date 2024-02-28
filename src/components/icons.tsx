@@ -9,6 +9,4 @@ export const iconos = {
   cambiarEstado: <MdAutorenew />,
   crearOrden: <BsClipboard2Plus />,
   detalles: <CgUserList />,
-  ligthMode: <MdLightMode />,
-  darkMode: <MdNightlight />,
 };

@@ -12,10 +12,14 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { columns } from "../services/columns-tabla-pendientes";
 import {
   Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Input,
   Table,
   TableBody,
@@ -25,15 +29,58 @@ import {
   TableRow,
 } from "@nextui-org/react";
 import NombrePagina from "@/app/system/components/nombre-pagina";
+import { formatearFecha } from "@/libs/client/moment";
 
 const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
+  const [ordenes, setOrdenes] = useState<OrdenPendiente[]>(pendientes);
+  const hoy = "24-02-2024";
+
+  const hoyNumber = hoy.split("-").toReversed().join("");
+
+  type FechaOrden = "hoy" | "manana" | "ayer" | null;
+  const handleFiltroFecha = (fechaOrden: FechaOrden) => {
+    switch (fechaOrden) {
+      case "ayer":
+        setOrdenes(
+          ordenes.filter(
+            (orden) =>
+              formatearFecha(orden.fecha_entrega)
+                .split("-")
+                .toReversed()
+                .join("") < hoyNumber
+          )
+        );
+        break;
+
+      case "hoy":
+        setOrdenes(
+          ordenes.filter((orden) => formatearFecha(orden.fecha_entrega) == hoy)
+        );
+        break;
+
+      case "manana":
+        setOrdenes(
+          ordenes.filter(
+            (orden) =>
+              formatearFecha(orden.fecha_entrega)
+                .split("-")
+                .toReversed()
+                .join("") > hoyNumber
+          )
+        );
+
+      default:
+        setOrdenes(pendientes);
+        break;
+    }
+  };
 
   const table = useReactTable({
-    data: pendientes,
+    data: ordenes,
     columns: columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -64,6 +111,28 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
           isClearable
           onClear={() => table.getColumn("nombre")?.setFilterValue("")}
         />
+        <Dropdown>
+          <DropdownTrigger>
+            <Button variant="bordered">filtro</Button>
+          </DropdownTrigger>
+          <DropdownMenu aria-label="filtro ordenes">
+            <DropdownItem key="todas" onClick={() => handleFiltroFecha(null)}>
+              todas
+            </DropdownItem>
+            <DropdownItem key="ayer" onClick={() => handleFiltroFecha("ayer")}>
+              ayer
+            </DropdownItem>
+            <DropdownItem key="hoy" onClick={() => handleFiltroFecha("hoy")}>
+              hoy
+            </DropdownItem>
+            <DropdownItem
+              key="manana"
+              onClick={() => handleFiltroFecha("manana")}
+            >
+              manana
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
         <NombrePagina nombre="Ordenes pendientes" />
       </div>
 

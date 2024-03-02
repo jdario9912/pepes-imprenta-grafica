@@ -1,33 +1,32 @@
 import { pool } from "@/db/mysql";
-import { OrdenAProveedor } from "@/types/orden-a-proveedor";
-import { FieldPacket, ResultSetHeader } from "mysql2";
+import { formatearFecha } from "@/libs/client/moment";
+import { fechaANumero } from "@/libs/fechas";
+import { OrdenAProveedor } from "@/types/orden";
 import { NextResponse } from "next/server";
 
 export const GET = async () => {
-  let pendientes: OrdenAProveedor[] = []
+  let proveedor: OrdenAProveedor[] = [];
   try {
-    // const session = await getServerSession();
-
-    // if (!session) return noAutorizadoResponse();
-
-    const [rows]: [ResultSetHeader[], FieldPacket[]] = await pool.query(
+    const [result]: Array<unknown[]> = (await pool.query(
       "CALL buscar_ordenes_a_proveedor()"
-    );
+    )) as Array<unknown[]>;
 
-    const productos = rows.filter((row) => row instanceof Array);
+    const productos: Array<OrdenAProveedor[]> = result.filter((row) =>
+      Array.isArray(row)
+    ) as Array<OrdenAProveedor[]>;
 
-    const productosProveedor = productos.filter((producto) => producto.length > 0);
+    productos.forEach((producto) => {
+      producto.forEach((orden) => {
+        proveedor.push(orden);
+      });
+    });
 
-    productosProveedor.forEach((producto) => {
-      producto.forEach((proveedor) => {
-        pendientes.push(proveedor)
-      })
-    })
+    const ordenesProveedorSort = proveedor.sort(
+      (a, b) => fechaANumero(b.fecha_entrega) - fechaANumero(a.fecha_entrega)
+    );    
 
-    return NextResponse.json(pendientes);
+    return NextResponse.json(ordenesProveedorSort);
   } catch (error) {
-    console.log(error);
-    
     return NextResponse.json("algo salio mal en ordenes a proveedor");
   }
 };

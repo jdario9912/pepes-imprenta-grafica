@@ -1,6 +1,5 @@
 "use client";
 
-import { OrdenAProveedor } from "@/types/orden-a-proveedor";
 import {
   ColumnFiltersState,
   SortingState,
@@ -16,6 +15,10 @@ import { useState } from "react";
 import { columns } from "../services/columns-tabla-a-proveedor";
 import {
   Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Input,
   Table,
   TableBody,
@@ -25,15 +28,45 @@ import {
   TableRow,
 } from "@nextui-org/react";
 import NombrePagina from "@/app/system/components/nombre-pagina";
+import {
+  ordenesProveedorDeAyer,
+  ordenesProveedorDeHoy,
+  ordenesProveedorParaManana,
+} from "../../libs/filtros-ordenes-fecha";
+import { OrdenAProveedor } from "@/types/orden";
+import classNames from "classnames";
+import { estilosRowOrden } from "../../libs/estilos-row-orden";
 
 const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
+  const aProveedorSort = aProveedor.slice().reverse();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
+  const [ordenes, setOrdenes] = useState<OrdenAProveedor[]>(aProveedorSort);
+
+  const handleFiltroFecha = (fechaOrden: FechaOrden | null) => {
+    switch (fechaOrden) {
+      case "yesterday":
+        setOrdenes(ordenesProveedorDeAyer(aProveedorSort));
+        break;
+
+      case "today":
+        setOrdenes(ordenesProveedorDeHoy(aProveedorSort));
+        break;
+
+      case "tomorrow":
+        setOrdenes(ordenesProveedorParaManana(aProveedorSort));
+        break;
+
+      default:
+        setOrdenes(aProveedorSort);
+        break;
+    }
+  };
 
   const table = useReactTable({
-    data: aProveedor,
+    data: ordenes,
     columns: columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -64,6 +97,39 @@ const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
           isClearable
           onClear={() => table.getColumn("nombre")?.setFilterValue("")}
         />
+
+        <Dropdown>
+          <DropdownTrigger>
+            <Button variant="bordered">filtro</Button>
+          </DropdownTrigger>
+          <DropdownMenu aria-label="filtro ordenes">
+            <DropdownItem key="todas" onClick={() => handleFiltroFecha(null)}>
+              todas
+            </DropdownItem>
+            <DropdownItem
+              key="yesterday"
+              onClick={() => handleFiltroFecha("yesterday")}
+              className="text-danger"
+            >
+              ayer
+            </DropdownItem>
+            <DropdownItem
+              key="today"
+              onClick={() => handleFiltroFecha("today")}
+              className="text-warning"
+            >
+              hoy
+            </DropdownItem>
+            <DropdownItem
+              key="tomorrow"
+              onClick={() => handleFiltroFecha("tomorrow")}
+              className="text-success"
+            >
+              manana
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+
         <NombrePagina nombre="Ordenes enviadas a proveedor" />
       </div>
 
@@ -84,6 +150,9 @@ const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+                className={classNames(
+                  estilosRowOrden(row.original.fecha_entrega)
+                )}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>

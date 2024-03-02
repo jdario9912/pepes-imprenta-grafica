@@ -1,6 +1,5 @@
 "use client";
 
-import { OrdenPendiente } from "@/types/orden-pendiente";
 import {
   ColumnFiltersState,
   SortingState,
@@ -12,7 +11,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { columns } from "../services/columns-tabla-pendientes";
 import {
   Button,
@@ -29,52 +28,39 @@ import {
   TableRow,
 } from "@nextui-org/react";
 import NombrePagina from "@/app/system/components/nombre-pagina";
-import { formatearFecha } from "@/libs/client/moment";
+import {
+  ordenesPendientesDeAyer,
+  ordenesPendientesDeHoy,
+  ordenesPendientesParaManana,
+} from "../../libs/filtros-ordenes-fecha";
+import classNames from "classnames";
+import { OrdenPendiente } from "@/types/orden";
+import { estilosRowOrden } from "../../libs/estilos-row-orden";
 
 const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
+  const pendientesSort = pendientes.slice().reverse();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
-  const [ordenes, setOrdenes] = useState<OrdenPendiente[]>(pendientes);
-  const hoy = "24-02-2024";
+  const [ordenes, setOrdenes] = useState<OrdenPendiente[]>(pendientesSort);
 
-  const hoyNumber = hoy.split("-").toReversed().join("");
-
-  type FechaOrden = "hoy" | "manana" | "ayer" | null;
-  const handleFiltroFecha = (fechaOrden: FechaOrden) => {
+  const handleFiltroFecha = (fechaOrden: FechaOrden | null) => {
     switch (fechaOrden) {
-      case "ayer":
-        setOrdenes(
-          ordenes.filter(
-            (orden) =>
-              formatearFecha(orden.fecha_entrega)
-                .split("-")
-                .toReversed()
-                .join("") < hoyNumber
-          )
-        );
+      case "yesterday":
+        setOrdenes(ordenesPendientesDeAyer(pendientesSort));
         break;
 
-      case "hoy":
-        setOrdenes(
-          ordenes.filter((orden) => formatearFecha(orden.fecha_entrega) == hoy)
-        );
+      case "today":
+        setOrdenes(ordenesPendientesDeHoy(pendientesSort));
         break;
 
-      case "manana":
-        setOrdenes(
-          ordenes.filter(
-            (orden) =>
-              formatearFecha(orden.fecha_entrega)
-                .split("-")
-                .toReversed()
-                .join("") > hoyNumber
-          )
-        );
+      case "tomorrow":
+        setOrdenes(ordenesPendientesParaManana(pendientesSort));
+        break;
 
       default:
-        setOrdenes(pendientes);
+        setOrdenes(pendientesSort);
         break;
     }
   };
@@ -111,6 +97,7 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
           isClearable
           onClear={() => table.getColumn("nombre")?.setFilterValue("")}
         />
+
         <Dropdown>
           <DropdownTrigger>
             <Button variant="bordered">filtro</Button>
@@ -119,20 +106,30 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
             <DropdownItem key="todas" onClick={() => handleFiltroFecha(null)}>
               todas
             </DropdownItem>
-            <DropdownItem key="ayer" onClick={() => handleFiltroFecha("ayer")}>
+            <DropdownItem
+              key="yesterday"
+              onClick={() => handleFiltroFecha("yesterday")}
+              className="text-danger"
+            >
               ayer
             </DropdownItem>
-            <DropdownItem key="hoy" onClick={() => handleFiltroFecha("hoy")}>
+            <DropdownItem
+              key="today"
+              onClick={() => handleFiltroFecha("today")}
+              className="text-warning"
+            >
               hoy
             </DropdownItem>
             <DropdownItem
-              key="manana"
-              onClick={() => handleFiltroFecha("manana")}
+              key="tomorrow"
+              onClick={() => handleFiltroFecha("tomorrow")}
+              className="text-success"
             >
               manana
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
+
         <NombrePagina nombre="Ordenes pendientes" />
       </div>
 
@@ -153,6 +150,9 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+                className={classNames(
+                  estilosRowOrden(row.original.fecha_entrega)
+                )}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>

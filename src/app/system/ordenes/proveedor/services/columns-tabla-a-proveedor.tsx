@@ -1,9 +1,9 @@
 import { formatearFecha, formatearHora } from "@/libs/client/moment";
-import { OrdenAProveedor } from "@/types/orden-a-proveedor";
 import { Button } from "@nextui-org/react";
 import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
 import AccionesTablaAProveedor from "../components/acciones-tabla-a-proveedor";
+import { OrdenAProveedor } from "@/types/orden";
 
 export const columns: ColumnDef<OrdenAProveedor>[] = [
   {

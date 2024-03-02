@@ -40,7 +40,7 @@ const NavBar = async () => {
       <NavbarContent justify="end" className="gap-x-3">
         <Session>
           <NavbarItem>
-            <Button as={Link} href="/system">
+            <Button as={Link} href="/system/ordenes/pendientes">
               Sistema
             </Button>
             {!session && <Login />}

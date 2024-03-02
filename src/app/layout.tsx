@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { metadataHome } from "../libs/client/metadata";
 import ToastComponent from "../components/toast";
+import classNames from "classnames";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={inter.className}>
+      <body className={classNames("", inter.className)}>
         {children}
         <ToastComponent />
       </body>

@@ -4,7 +4,7 @@ import TablaAProveedor from "./tabla-a-proveedor";
 const TablaComponent = async () => {
   const aProveedor = await obtenerOrdenesAProveedor();
 
-  return <TablaAProveedor aProveedor={aProveedor} />
+  return <TablaAProveedor aProveedor={aProveedor} />;
 };
 
 export default TablaComponent;

@@ -3,6 +3,7 @@
 import { Switch } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { MdLightMode, MdNightlight } from "react-icons/md";
+import { estilosSystemBase } from "../services/estilos-system";
 
 const DarkMode = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -13,10 +14,13 @@ const DarkMode = () => {
 
   useEffect(() => {
     const containerSystem = document.getElementById("system-object-dom");
-    const dark = "flex min-h-screen max-h-screen dark";
-    const light = "flex min-h-screen max-h-screen";
+    const dark = "dark dark:text-white";
+    const light = "";
     const modo = darkMode ? dark : light;
-    containerSystem?.setAttribute("class", modo);
+    containerSystem?.setAttribute(
+      "class",
+      `${estilosSystemBase} ${modo}`
+    );
   });
 
   return (

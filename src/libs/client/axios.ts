@@ -54,3 +54,9 @@ export const obtenerVariosFetch = async (id: string) =>
 
 export const obtenerVolanteFetch = async (id: string) =>
   (await axiosQuery.get<Volantes>(`/api/ordenes/volantes/${id}`)).data;
+
+export const buscarOrden = async (numero: string) =>
+  (await axiosQuery.get(`/api/busqueda/orden/${numero}`)).data;
+
+export const buscarTelefono = async (numero: string): Promise<Cliente[]> =>
+  (await axiosQuery.get<Cliente[]>(`/api/busqueda/telefono/${numero}`)).data;

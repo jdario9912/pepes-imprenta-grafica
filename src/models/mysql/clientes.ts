@@ -16,7 +16,7 @@ export class ClientesModel {
 
     const respuesta: ResultSetHeader = result as ResultSetHeader;
 
-    if (respuesta.affectedRows === 0) errorGuardarCliente()
+    if (respuesta.affectedRows === 0) errorGuardarCliente();
 
     return respuesta.insertId;
   }
@@ -26,7 +26,7 @@ export class ClientesModel {
     return clientes;
   }
 
-  static async obtenerUno(id : Id): Promise<Cliente | null> {
+  static async obtenerUno(id: Id): Promise<Cliente | null> {
     const [cliente]: any[] = await pool.query(
       "SELECT * FROM clientes WHERE id = ?",
       [id]
@@ -34,7 +34,7 @@ export class ClientesModel {
     return cliente ? (cliente[0] as Cliente) : null;
   }
 
-  static async eliminar(id : Id): Promise<boolean> {
+  static async eliminar(id: Id): Promise<boolean> {
     const [result]: [ResultSetHeader, FieldPacket[]] = await pool.query(
       "DELETE FROM clientes WHERE id = ?",
       [id]
@@ -50,5 +50,22 @@ export class ClientesModel {
     );
 
     return result.affectedRows > 0;
+  }
+
+  static async buscarPorNombre(nombre: string): Promise<Cliente[] | null> {
+    const [clientes]: any[] = await pool.query(
+      `SELECT * FROM clientes WHERE nombre LIKE '%${nombre}%'`
+    );
+    return clientes ? (clientes as Cliente[]) : null;
+  }
+
+  static async buscarPorTelefono(telefono: string): Promise<Cliente[] | null> {
+    const [clientes]: any[] = await pool.query(
+      `SELECT * FROM clientes WHERE telefono LIKE '%${telefono}%'`
+    );
+
+    console.log(clientes);
+    
+    return clientes ? (clientes as Cliente[]) : null;
   }
 }

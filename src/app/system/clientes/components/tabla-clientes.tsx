@@ -26,6 +26,8 @@ import { useEffect, useState } from "react";
 import { columns } from "../services/columns-tabla-clientes";
 import NombrePagina from "../../components/nombre-pagina";
 
+type Busqueda = "nombre" | "telefono";
+
 const TablaClientes = ({
   clientes,
   clienteQuery = "",
@@ -38,6 +40,7 @@ const TablaClientes = ({
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const [cliente] = useState(clienteQuery);
+  const [busqueda, setBusqueda] = useState<Busqueda>("nombre");
 
   const table = useReactTable({
     data: clientes,
@@ -59,22 +62,32 @@ const TablaClientes = ({
   });
 
   useEffect(() => {
-    if (cliente) table.getColumn("nombre")?.setFilterValue(cliente);
+    if (cliente) {
+      table.getColumn("nombre")?.setFilterValue(cliente);
+    }
   }, []);
 
   return (
     <div className="w-full">
       <div className="flex justify-between items-center py-4">
-        <Input
-          placeholder="Buscar por nombre..."
-          value={(table.getColumn("nombre")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("nombre")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-          isClearable
-          onClear={() => table.getColumn("nombre")?.setFilterValue("")}
-        />
+        <div className="flex items-center gap-2">
+          <Input
+            placeholder={`Buscar por ${busqueda}...`}
+            value={
+              (table.getColumn(busqueda)?.getFilterValue() as string) ?? ""
+            }
+            onChange={(event) =>
+              table.getColumn(busqueda)?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+            isClearable
+            onClear={() => table.getColumn(busqueda)?.setFilterValue("")}
+          />
+
+          <Button onClick={() => setBusqueda("nombre")}>nombre</Button>
+          <Button onClick={() => setBusqueda("telefono")}>telefono</Button>
+        </div>
+
         <NombrePagina nombre="Clientes" />
       </div>
 

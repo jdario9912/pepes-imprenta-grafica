@@ -3,6 +3,7 @@ import NavAside from "./components/nav-aside";
 import { metadataSystem } from "@/libs/client/metadata";
 import DarkMode from "./components/dark-mode";
 import { estilosSystemBase } from "./services/estilos-system";
+import Busqueda from "./components/busqueda";
 
 export const metadata = metadataSystem;
 
@@ -12,7 +13,11 @@ const SystemLayout = ({ children }: { children: React.ReactNode }) => {
       <aside className="bg-zinc-300">
         <div className="flex flex-col justify-between h-full">
           <NavAside />
+          
+          <Busqueda />
+
           <DarkMode />
+
           <div className={"flex justify-center px-2 py-3"}>
             <Logout />
           </div>

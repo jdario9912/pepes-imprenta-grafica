@@ -51,21 +51,4 @@ export class ClientesModel {
 
     return result.affectedRows > 0;
   }
-
-  static async buscarPorNombre(nombre: string): Promise<Cliente[] | null> {
-    const [clientes]: any[] = await pool.query(
-      `SELECT * FROM clientes WHERE nombre LIKE '%${nombre}%'`
-    );
-    return clientes ? (clientes as Cliente[]) : null;
-  }
-
-  static async buscarPorTelefono(telefono: string): Promise<Cliente[] | null> {
-    const [clientes]: any[] = await pool.query(
-      `SELECT * FROM clientes WHERE telefono LIKE '%${telefono}%'`
-    );
-
-    console.log(clientes);
-    
-    return clientes ? (clientes as Cliente[]) : null;
-  }
 }

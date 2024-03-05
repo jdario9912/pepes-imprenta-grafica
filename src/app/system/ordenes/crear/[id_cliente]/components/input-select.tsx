@@ -1,40 +1,42 @@
 "use client";
 
-import { Select, SelectItem } from "@nextui-org/react";
-import { useState } from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
+import { UseFormRegisterReturn, Controller, Control, UseFormReset, UseFormSetValue } from "react-hook-form";
+import Select from "react-select";
 
 const InputSelect = ({
-  label,
-  opciones,
   error,
-  errorMessage,
-  register,
-  disabled = false,
-  valorInicial = "",
+  // errorMessage,
+  // register,
+  opciones,
+  name,
+  resetField,
+  setValue,
 }: {
-  label: string;
   opciones: string[];
   error: boolean;
-  errorMessage: string | undefined;
-  register: UseFormRegisterReturn;
-  disabled?: boolean;
-  valorInicial?: string;
+  // disabled?: boolean;
+  // valorInicial?: string;
+  name: string;
+  resetField: UseFormReset<any>
+  setValue: UseFormSetValue<any>
 }) => {
-
   return (
     <Select
-      label={label}
-      {...register}
-      isInvalid={error}
-      errorMessage={errorMessage}
-      variant={error ? "bordered" : "flat"}
-      isDisabled={disabled}
-    >
-      {opciones.map((opcion) => (
-        <SelectItem key={opcion}>{opcion}</SelectItem>
-      ))}
-    </Select>
+      classNames={{
+        container: () =>
+          error
+            ? "border border-2 border-danger rounded"
+            : "border-grey-300",
+      }}
+      options={opciones.map((opcion) => ({
+        value: opcion,
+        label: opcion,
+      }))}
+      onChange={(e) => {
+        resetField(name);
+        setValue(name, e?.value || "");
+      }}
+    />
   );
 };
 

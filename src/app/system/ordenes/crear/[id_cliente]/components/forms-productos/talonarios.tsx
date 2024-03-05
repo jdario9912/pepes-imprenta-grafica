@@ -25,7 +25,7 @@ const TalonariosForm = () => {
             label="Tipo"
             error={errors.tipo ? true : false}
             errorMessage={errors.tipo?.message}
-            opciones={talonariosTipo}
+            opciones={talonariosTipo.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("tipo", {
               required: "El tipo es requerido.",
             })}
@@ -46,7 +46,7 @@ const TalonariosForm = () => {
             label="Tamaño"
             error={errors.tamano ? true : false}
             errorMessage={errors.tamano?.message}
-            opciones={talonariosTamano}
+            opciones={talonariosTamano.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("tamano", {
               required: "El tamaño es requerido.",
             })}
@@ -101,7 +101,7 @@ const TalonariosForm = () => {
             label="Puntillado - Emblocado"
             error={errors.puntillado_emblocado ? true : false}
             errorMessage={errors.puntillado_emblocado?.message}
-            opciones={talonariosPuntilladoEmblocado}
+            opciones={talonariosPuntilladoEmblocado.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("puntillado_emblocado", {
               required: "Seleccionar una opción.",
             })}
@@ -111,7 +111,7 @@ const TalonariosForm = () => {
             label="Color duplicado"
             error={errors.color_duplicado ? true : false}
             errorMessage={errors.color_duplicado?.message}
-            opciones={talonariosColorDuplicado}
+            opciones={talonariosColorDuplicado.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("color_duplicado", {
               required: "El color del duplicado es requerido.",
             })}
@@ -139,7 +139,7 @@ const TalonariosForm = () => {
             label="Color triplicado"
             error={errors.color_triplicado ? true : false}
             errorMessage={errors.color_triplicado?.message}
-            opciones={talonariosColorTriplicado}
+            opciones={talonariosColorTriplicado.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("color_triplicado", {
               required: {
                 value:

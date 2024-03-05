@@ -34,7 +34,7 @@ const TarjetasForm = () => {
             label="Tipo"
             error={errors.tipo ? true : false}
             errorMessage={errors.tipo?.message}
-            opciones={tarjetasTipo}
+            opciones={tarjetasTipo.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("tipo", {
               required: "El tipo es obligatorio.",
             })}
@@ -44,7 +44,7 @@ const TarjetasForm = () => {
             label="Cantidad"
             error={errors.cantidad ? true : false}
             errorMessage={errors.cantidad?.message}
-            opciones={tarjetasCantidad}
+            opciones={tarjetasCantidad.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("cantidad", {
               required: "La cantidad es obligatoria.",
             })}
@@ -54,7 +54,7 @@ const TarjetasForm = () => {
             label="Papel"
             error={errors.papel ? true : false}
             errorMessage={errors.papel?.message}
-            opciones={tarjetasPapel}
+            opciones={tarjetasPapel.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("papel", {
               required: "El papel es requerido.",
             })}
@@ -64,7 +64,7 @@ const TarjetasForm = () => {
             label="Terminación"
             error={errors.terminacion ? true : false}
             errorMessage={errors.terminacion?.message}
-            opciones={tarjetasTerminacion}
+            opciones={tarjetasTerminacion.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("terminacion", {
               required: "La terminación es requerida.",
             })}

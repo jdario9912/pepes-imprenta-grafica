@@ -22,7 +22,7 @@ const VolantesForm = () => {
             label="Tipo"
             error={errors.tipo ? true : false}
             errorMessage={errors.tipo?.message}
-            opciones={volantesTipo}
+            opciones={volantesTipo.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("tipo", {
               required: "El tipo es requerido.",
             })}
@@ -32,7 +32,7 @@ const VolantesForm = () => {
             label="Tamaño"
             error={errors.tamano ? true : false}
             errorMessage={errors.tamano?.message}
-            opciones={volantesTamano}
+            opciones={volantesTamano.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("tamano", {
               required: "El tamaño es requerido.",
             })}
@@ -42,7 +42,7 @@ const VolantesForm = () => {
             label="Cantidad"
             error={errors.cantidad ? true : false}
             errorMessage={errors.cantidad?.message}
-            opciones={volantesCantidad}
+            opciones={volantesCantidad.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("cantidad", {
               required: "La cantidad es requerida.",
             })}
@@ -52,7 +52,7 @@ const VolantesForm = () => {
             label="Impresión"
             error={errors.impresion ? true : false}
             errorMessage={errors.impresion?.message}
-            opciones={volantesImpresion}
+            opciones={volantesImpresion.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("impresion", {
               required: "La impresión es requerida.",
             })}

@@ -33,8 +33,6 @@ export const GET = async (
 
     return NextResponse.json(ordenes[0][0]);
   } catch (error) {
-    console.log(error);
-
     return NextResponse.json("algo salio mal");
   }
 };

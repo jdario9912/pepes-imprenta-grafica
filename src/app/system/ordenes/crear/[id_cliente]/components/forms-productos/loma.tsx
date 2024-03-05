@@ -33,7 +33,7 @@ const LomaForm = () => {
             label="Material"
             error={errors.material ? true : false}
             errorMessage={errors.material?.message}
-            opciones={lomaMaterial}
+            opciones={lomaMaterial.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("material", {
               required: "El material es requerido.",
             })}
@@ -43,7 +43,7 @@ const LomaForm = () => {
             label="Bolsillo"
             error={errors.bolsillo ? true : false}
             errorMessage={errors.bolsillo?.message}
-            opciones={lomaBolsillo}
+            opciones={lomaBolsillo.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("bolsillo", {
               required: "El bolsillo es requerido.",
             })}

@@ -31,7 +31,7 @@ const BonosForm = () => {
             label="Tamaño"
             error={errors.tamano ? true : false}
             errorMessage={errors.tamano?.message}
-            opciones={bonosTamano}
+            opciones={bonosTamano.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("tamano", {
               required: "El tamaño es requerido.",
             })}
@@ -41,7 +41,7 @@ const BonosForm = () => {
             label="Numeradores"
             error={errors.numeradores ? true : false}
             errorMessage={errors.numeradores?.message}
-            opciones={bonosNumeradores}
+            opciones={bonosNumeradores.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("numeradores", {
               required: "Los numeradores son requeridos.",
             })}
@@ -51,7 +51,7 @@ const BonosForm = () => {
             label="Lotes"
             error={errors.lotes ? true : false}
             errorMessage={errors.lotes?.message}
-            opciones={bonosLotes}
+            opciones={bonosLotes.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("lotes", {
               required: "Los lotes son requeridos.",
             })}

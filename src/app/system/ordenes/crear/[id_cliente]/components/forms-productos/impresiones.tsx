@@ -62,7 +62,7 @@ const ImpresionesForm = () => {
             label="Tamaño del papel"
             error={errors.tamano_papel ? true : false}
             errorMessage={errors.tamano_papel?.message}
-            opciones={impresionesTamanoPapel}
+            opciones={impresionesTamanoPapel.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("tamano_papel", {
               required: "El tamaño del papel es requerido.",
             })}

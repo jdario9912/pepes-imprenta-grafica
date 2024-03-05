@@ -1,6 +1,6 @@
 import { Producto } from "@/types/recursos/productos";
 import { Button, Input, Textarea } from "@nextui-org/react";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import InputRadio from "./input-radio";
 import { metodosPago, siNo } from "@/libs/listas";
 import InputSelect from "./input-select";
@@ -67,20 +67,27 @@ const FormConnectProducto = ({ children }: { children: any }) => {
         errorMessage={errors.entrega?.message}
         variant={errors.entrega ? "bordered" : "flat"}
       />
-      
 
-      {methods.watch().entrega !== 0 ? (
-        <InputSelect
-          label="Método de pago"
-          error={errors.metodo_pago ? true : false}
-          errorMessage={errors.metodo_pago?.message}
-          opciones={metodosPago}
-          register={methods.register("metodo_pago", {
-            required: "Falta el metodo de pago.",
-          })}
-        />
-      ) : <></>}
-      <Button type="submit" variant="flat" color="primary">Crear orden</Button>
+      <Controller
+        name="metodo_pago"
+        control={methods.control}
+        rules={{
+          required: { value: true, message: "metodo de pago requerido" },
+        }}
+        render={() => (
+          <InputSelect
+            error={!!errors.metodo_pago}
+            name="metodo_pago"
+            opciones={metodosPago}
+            resetField={methods.resetField}
+            setValue={methods.setValue}
+          />
+        )}
+      />
+      
+      <Button type="submit" variant="flat" color="primary">
+        Crear orden
+      </Button>
     </>
   );
 };

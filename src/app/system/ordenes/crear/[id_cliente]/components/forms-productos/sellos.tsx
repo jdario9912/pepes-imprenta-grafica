@@ -17,7 +17,7 @@ const SellosForm = () => {
             label="Tipo"
             error={errors.tipo ? true : false}
             errorMessage={errors.tipo?.message}
-            opciones={sellosTipo}
+            opciones={sellosTipo.map((opcion) => ({value: opcion, label: opcion}))}
             register={register("tipo", {
               required: "El tipo es requerido.",
             })}

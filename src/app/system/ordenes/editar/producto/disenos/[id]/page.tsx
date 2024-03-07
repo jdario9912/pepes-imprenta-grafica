@@ -3,7 +3,7 @@ import FormComponent from "./components/form-component";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Editar Orden",
+  title: "Editar Orden: Diseños",
 };
 
 const Editar = async ({ params }: { params: { id: string } }) => {

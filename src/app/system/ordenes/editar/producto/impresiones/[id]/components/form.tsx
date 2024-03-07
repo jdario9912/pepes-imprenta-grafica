@@ -1,15 +1,15 @@
 "use client";
 
-import { Disenos } from "@/types/recursos/productos";
+import { Impresiones } from "@/types/recursos/productos";
 import { FormProvider, useForm } from "react-hook-form";
 import {
   formatearFechaFormEditar,
   formatearHoraFormEditar,
 } from "../../../../libs/moment";
-import DisenosForm from "../../../../components/forms-ordenes/disenos";
+import ImpresionesForm from "../../../../components/forms-ordenes/impresiones";
 
-const Form = ({ orden }: { orden: Disenos }) => {
-  const methods = useForm<Disenos>({
+const Form = ({ orden }: { orden: Impresiones }) => {
+  const methods = useForm<Impresiones>({
     defaultValues: {
       fecha_entrega: formatearFechaFormEditar(orden.fecha_entrega),
       hora_entrega: formatearHoraFormEditar(orden.hora_entrega),
@@ -19,7 +19,14 @@ const Form = ({ orden }: { orden: Disenos }) => {
       total: orden.total,
       entrega: orden.entrega,
       ubicacion_archivo: orden.ubicacion_archivo,
-      detalles: orden.detalles,
+      abrochado: orden.abrochado,
+      anillado: orden.anillado,
+      corte: orden.corte,
+      faz: orden.faz,
+      impresion: orden.impresion,
+      orientacion: orden.orientacion,
+      tamano_papel: orden.tamano_papel,
+      tipo_papel: orden.tipo_papel,
     },
   });
 
@@ -30,7 +37,7 @@ const Form = ({ orden }: { orden: Disenos }) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={onSubmit}>
-        <DisenosForm />
+        <ImpresionesForm />
       </form>
     </FormProvider>
   );

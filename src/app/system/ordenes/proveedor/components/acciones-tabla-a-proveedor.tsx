@@ -1,7 +1,5 @@
 import { Button } from "@nextui-org/react";
-import Link from "next/link";
 import CambiarEstado from "../../components/cambiar-estado";
-import { OrdenAProveedor } from "@/types/orden-a-proveedor";
 import { useRouter } from "next/navigation";
 import { BtnAccionesTabla } from "@/types/botones";
 import { uuid } from "@/libs/uuid";
@@ -9,6 +7,7 @@ import { iconos } from "@/components/icons";
 import WrapperBtnAccionesTabla from "@/components/wrapper-btn-acciones-tabla";
 import IconoBtnAccionesTablas from "@/components/icono-btn-acciones-tablas";
 import LabelBtnAccionesTablas from "@/components/label-btn-acciones-tablas";
+import { OrdenAProveedor } from "@/types/orden";
 
 const AccionesTablaAProveedor = ({
   orden,
@@ -52,7 +51,7 @@ const AccionesTablaAProveedor = ({
           </Button>
         ))}
 
-        <CambiarEstado orden={orden} disabledKeys={disabledKeys} />
+        <CambiarEstado id={orden.id} producto={orden.producto} disabledKeys={disabledKeys} />
       </>
     </WrapperBtnAccionesTabla>
   );

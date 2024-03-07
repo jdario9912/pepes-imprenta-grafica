@@ -1,6 +1,8 @@
+import IconoBtnAccionesTablas from "@/components/icono-btn-acciones-tablas";
+import { iconos } from "@/components/icons";
+import LabelBtnAccionesTablas from "@/components/label-btn-acciones-tablas";
 import { estadoOrden } from "@/libs/listas";
 import { cambiarEstadoOrden } from "@/libs/server-actions/axios";
-import { OrdenePendiente } from "@/types/ordenes-pendientes";
 import {
   Button,
   Dropdown,
@@ -10,22 +12,24 @@ import {
 } from "@nextui-org/react";
 
 const CambiarEstado = ({
-  orden,
+  producto,
+  id,
   disabledKeys,
 }: {
-  orden: OrdenePendiente;
   disabledKeys?: string[];
+  producto: string;
+  id: number;
 }) => {
-  const producto = orden.producto;
-  const id = orden.id;
-
   const handleCambiarEstado = async (estado: string) =>
     cambiarEstadoOrden(producto, id, estado);
 
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button>Cambiar estado</Button>
+        <Button>
+          <IconoBtnAccionesTablas icono={iconos.cambiarEstado} />
+          <LabelBtnAccionesTablas texto="estado" />
+        </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions" disabledKeys={disabledKeys}>
         {estadoOrden.map((estado) => (

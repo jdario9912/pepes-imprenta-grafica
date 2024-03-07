@@ -1,6 +1,4 @@
-import { OrdenPendiente } from "@/types/orden-pendiente";
 import { Button } from "@nextui-org/react";
-import Link from "next/link";
 import CambiarEstado from "../../components/cambiar-estado";
 import IconoBtnAccionesTablas from "@/components/icono-btn-acciones-tablas";
 import LabelBtnAccionesTablas from "@/components/label-btn-acciones-tablas";
@@ -9,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { iconos } from "@/components/icons";
 import { uuid } from "@/libs/uuid";
 import WrapperBtnAccionesTabla from "@/components/wrapper-btn-acciones-tabla";
+import { OrdenPendiente } from "@/types/orden";
 
 const AccionesTablaPendientes = ({
   orden,
@@ -52,7 +51,7 @@ const AccionesTablaPendientes = ({
           </Button>
         ))}
 
-        <CambiarEstado orden={orden} disabledKeys={disabledKeys} />
+        <CambiarEstado id={orden.id} producto={orden.producto} disabledKeys={disabledKeys} />
       </>
     </WrapperBtnAccionesTabla>
   );

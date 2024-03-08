@@ -5,15 +5,16 @@ import {
   tarjetasTerminacion,
   tarjetasTipo,
 } from "@/libs/listas";
-import InputSelect from "../input-select";
-import InputRadio from "../input-radio";
-import { UseFormRegister, useFormContext } from "react-hook-form";
+import InputRadio from "../../../../components/input-radio";
+import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import type { Tarjetas } from "@/types/recursos/productos";
 import { Input } from "@nextui-org/react";
 import FormConnectProductos from "../form-connect-productos";
+import InputSelect from "@/app/system/ordenes/components/input-select";
 
 const TarjetasForm = () => {
-  const { formState } = useFormContext<Tarjetas>();
+  const { formState, resetField, setValue, control } =
+    useFormContext<Tarjetas>();
   const { errors } = formState;
 
   return (
@@ -23,51 +24,79 @@ const TarjetasForm = () => {
           <Input
             label="Ubicación del archivo"
             {...register("ubicacion_archivo", {
-              required: "La ubicación del archivo es obligatoria.",
+              required: "La ubicación del archivo es requerida.",
             })}
-            isInvalid={errors.ubicacion_archivo ? true : false}
+            isInvalid={!!errors.ubicacion_archivo}
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
           />
 
-          <InputSelect
-            label="Tipo"
-            error={errors.tipo ? true : false}
-            errorMessage={errors.tipo?.message}
-            opciones={tarjetasTipo.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("tipo", {
-              required: "El tipo es obligatorio.",
-            })}
+          <Controller
+            name="tipo"
+            control={control}
+            rules={{
+              required: "El tipo es requerido.",
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.tipo}
+                opciones={tarjetasTipo}
+                name="tipo"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
-          <InputSelect
-            label="Cantidad"
-            error={errors.cantidad ? true : false}
-            errorMessage={errors.cantidad?.message}
-            opciones={tarjetasCantidad.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("cantidad", {
-              required: "La cantidad es obligatoria.",
-            })}
+          <Controller
+            name="cantidad"
+            control={control}
+            rules={{
+              required: "La cantidad es requerida.",
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.cantidad}
+                opciones={tarjetasCantidad}
+                name="cantidad"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
-          <InputSelect
-            label="Papel"
-            error={errors.papel ? true : false}
-            errorMessage={errors.papel?.message}
-            opciones={tarjetasPapel.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("papel", {
+          <Controller
+            name="papel"
+            control={control}
+            rules={{
               required: "El papel es requerido.",
-            })}
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.papel}
+                opciones={tarjetasPapel}
+                name="papel"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
-          <InputSelect
-            label="Terminación"
-            error={errors.terminacion ? true : false}
-            errorMessage={errors.terminacion?.message}
-            opciones={tarjetasTerminacion.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("terminacion", {
-              required: "La terminación es requerida.",
-            })}
+          <Controller
+            name="terminacion"
+            control={control}
+            rules={{
+              required: "La terminaciòn es requerida.",
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.terminacion}
+                opciones={tarjetasTerminacion}
+                name="terminacion"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
           <InputRadio
@@ -75,7 +104,7 @@ const TarjetasForm = () => {
             register={register("puntas_redondeadas", {
               required: "Completar esta opción.",
             })}
-            error={errors.puntas_redondeadas ? true : false}
+            error={!!errors.puntas_redondeadas}
             errorMessage={errors.puntas_redondeadas?.message}
             opciones={siNo}
           />

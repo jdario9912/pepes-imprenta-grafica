@@ -4,58 +4,87 @@ import {
   volantesTamano,
   volantesTipo,
 } from "@/libs/listas";
-import InputSelect from "../input-select";
 import FormConnectProductos from "../form-connect-productos";
-import { UseFormRegister, useFormContext } from "react-hook-form";
+import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import type { Volantes } from "@/types/recursos/productos";
 import { Input } from "@nextui-org/react";
+import InputSelect from "@/app/system/ordenes/components/input-select";
 
 const VolantesForm = () => {
-  const { formState } = useFormContext<Volantes>();
+  const { formState, resetField, setValue, control } =
+    useFormContext<Volantes>();
   const { errors } = formState;
 
   return (
     <FormConnectProductos>
       {({ register }: { register: UseFormRegister<Volantes> }) => (
         <>
-          <InputSelect
-            label="Tipo"
-            error={errors.tipo ? true : false}
-            errorMessage={errors.tipo?.message}
-            opciones={volantesTipo.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("tipo", {
+          <Controller
+            name="tipo"
+            control={control}
+            rules={{
               required: "El tipo es requerido.",
-            })}
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.tipo}
+                opciones={volantesTipo}
+                name="tipo"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
-          <InputSelect
-            label="Tamaño"
-            error={errors.tamano ? true : false}
-            errorMessage={errors.tamano?.message}
-            opciones={volantesTamano.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("tamano", {
+          <Controller
+            name="tamano"
+            control={control}
+            rules={{
               required: "El tamaño es requerido.",
-            })}
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.tamano}
+                opciones={volantesTamano}
+                name="tamano"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
-          <InputSelect
-            label="Cantidad"
-            error={errors.cantidad ? true : false}
-            errorMessage={errors.cantidad?.message}
-            opciones={volantesCantidad.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("cantidad", {
+          <Controller
+            name="cantidad"
+            control={control}
+            rules={{
               required: "La cantidad es requerida.",
-            })}
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.cantidad}
+                opciones={volantesCantidad}
+                name="cantidad"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
-          <InputSelect
-            label="Impresión"
-            error={errors.impresion ? true : false}
-            errorMessage={errors.impresion?.message}
-            opciones={volantesImpresion.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("impresion", {
+          <Controller
+            name="impresion"
+            control={control}
+            rules={{
               required: "La impresión es requerida.",
-            })}
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.impresion}
+                opciones={volantesImpresion}
+                name="impresion"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
           <Input
@@ -63,7 +92,7 @@ const VolantesForm = () => {
             {...register("ubicacion_diseno", {
               required: "La ubicación del diseño es requerida.",
             })}
-            isInvalid={errors.ubicacion_diseno ? true : false}
+            isInvalid={!!errors.ubicacion_diseno}
             errorMessage={errors.ubicacion_diseno?.message}
             variant={errors.ubicacion_diseno ? "bordered" : "flat"}
           />

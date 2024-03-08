@@ -4,15 +4,15 @@ import {
   bonosTamano,
   bonosTipo,
 } from "@/libs/listas";
-import InputRadio from "../input-radio";
-import InputSelect from "../input-select";
-import { UseFormRegister, useFormContext } from "react-hook-form";
+import InputRadio from "../../../../components/input-radio";
+import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import type { Bonos } from "@/types/recursos/productos";
 import FormConnectProductos from "../form-connect-productos";
 import { Input } from "@nextui-org/react";
+import InputSelect from "@/app/system/ordenes/components/input-select";
 
 const BonosForm = () => {
-  const { formState } = useFormContext<Bonos>();
+  const { formState, resetField, setValue, control } = useFormContext<Bonos>();
   const { errors } = formState;
 
   return (
@@ -22,39 +22,60 @@ const BonosForm = () => {
           <InputRadio
             label="Tipo"
             register={register("tipo", { required: "El tipo es requerido." })}
-            error={errors.tipo ? true : false}
+            error={!!errors.tipo}
             errorMessage={errors.tipo?.message}
             opciones={bonosTipo}
           />
 
-          <InputSelect
-            label="Tamaño"
-            error={errors.tamano ? true : false}
-            errorMessage={errors.tamano?.message}
-            opciones={bonosTamano.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("tamano", {
+          <Controller
+            name="tamano"
+            control={control}
+            rules={{
               required: "El tamaño es requerido.",
-            })}
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.tamano}
+                opciones={bonosTamano}
+                name="tamano"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
-          <InputSelect
-            label="Numeradores"
-            error={errors.numeradores ? true : false}
-            errorMessage={errors.numeradores?.message}
-            opciones={bonosNumeradores.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("numeradores", {
-              required: "Los numeradores son requeridos.",
-            })}
+          <Controller
+            name="numeradores"
+            control={control}
+            rules={{
+              required: "El numerador es requerido.",
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.numeradores}
+                opciones={bonosNumeradores}
+                name="numeradores"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
-          <InputSelect
-            label="Lotes"
-            error={errors.lotes ? true : false}
-            errorMessage={errors.lotes?.message}
-            opciones={bonosLotes.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("lotes", {
-              required: "Los lotes son requeridos.",
-            })}
+          <Controller
+            name="lotes"
+            control={control}
+            rules={{
+              required: "El tamaño es requerido.",
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.lotes}
+                opciones={bonosLotes}
+                name="lotes"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
           <Input
@@ -63,7 +84,7 @@ const BonosForm = () => {
             {...register("desde_numero", {
               required: "El núnero inicial es requerido.",
             })}
-            isInvalid={errors.desde_numero ? true : false}
+            isInvalid={!!errors.desde_numero}
             errorMessage={errors.desde_numero?.message}
             variant={errors.desde_numero ? "bordered" : "flat"}
           />
@@ -74,7 +95,7 @@ const BonosForm = () => {
             {...register("cantidad", {
               required: "El núnero inicial es requerido.",
             })}
-            isInvalid={errors.cantidad ? true : false}
+            isInvalid={!!errors.cantidad}
             errorMessage={errors.cantidad?.message}
             variant={errors.cantidad ? "bordered" : "flat"}
           />

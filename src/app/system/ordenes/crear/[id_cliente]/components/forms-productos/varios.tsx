@@ -16,7 +16,7 @@ const VariosForm = () => {
             {...register("detalle", {
               required: "El detalle es requerido.",
             })}
-            isInvalid={errors.detalle ? true : false}
+            isInvalid={!!errors.detalle}
             errorMessage={errors.detalle?.message}
             variant={errors.detalle ? "bordered" : "flat"}
           />

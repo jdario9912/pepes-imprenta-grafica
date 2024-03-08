@@ -16,7 +16,7 @@ const RemerasForm = () => {
             {...register("ubicacion_archivo", {
               required: "La ubicación del archivo es requerida.",
             })}
-            isInvalid={errors.ubicacion_archivo ? true : false}
+            isInvalid={!!errors.ubicacion_archivo}
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
           />
@@ -26,7 +26,7 @@ const RemerasForm = () => {
             {...register("talles", {
               required: "Los talles son requeridos.",
             })}
-            isInvalid={errors.talles ? true : false}
+            isInvalid={!!errors.talles}
             errorMessage={errors.talles?.message}
             variant={errors.talles ? "bordered" : "flat"}
           />
@@ -36,7 +36,7 @@ const RemerasForm = () => {
             {...register("color", {
               required: "El color es requerido.",
             })}
-            isInvalid={errors.color ? true : false}
+            isInvalid={!!errors.color}
             errorMessage={errors.color?.message}
             variant={errors.color ? "bordered" : "flat"}
           />
@@ -46,7 +46,7 @@ const RemerasForm = () => {
             {...register("estampa_pecho", {
               required: "La estampa del pecho es requerida.",
             })}
-            isInvalid={errors.estampa_pecho ? true : false}
+            isInvalid={!!errors.estampa_pecho}
             errorMessage={errors.estampa_pecho?.message}
             variant={errors.estampa_pecho ? "bordered" : "flat"}
           />
@@ -56,7 +56,7 @@ const RemerasForm = () => {
             {...register("estampa_espalda", {
               required: "La estampa de espalda es requerida es requerida.",
             })}
-            isInvalid={errors.estampa_espalda ? true : false}
+            isInvalid={!!errors.estampa_espalda}
             errorMessage={errors.estampa_espalda?.message}
             variant={errors.estampa_espalda ? "bordered" : "flat"}
           />
@@ -66,7 +66,7 @@ const RemerasForm = () => {
             {...register("color_estampa", {
               required: "El color de la estampa es requerida.",
             })}
-            isInvalid={errors.color_estampa ? true : false}
+            isInvalid={!!errors.color_estampa}
             errorMessage={errors.color_estampa?.message}
             variant={errors.color_estampa ? "bordered" : "flat"}
           />
@@ -77,7 +77,7 @@ const RemerasForm = () => {
             {...register("cantidad", {
               required: "La cantidad es requerida.",
             })}
-            isInvalid={errors.cantidad ? true : false}
+            isInvalid={!!errors.cantidad}
             errorMessage={errors.cantidad?.message}
             variant={errors.cantidad ? "bordered" : "flat"}
           />

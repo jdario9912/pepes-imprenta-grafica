@@ -6,29 +6,37 @@ import {
   talonariosTamano,
   talonariosTipo,
 } from "@/libs/listas";
-import InputSelect from "../input-select";
-import InputRadio from "../input-radio";
-import { UseFormRegister, useFormContext } from "react-hook-form";
+import InputRadio from "../../../../components/input-radio";
+import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import type { Talonarios } from "@/types/recursos/productos";
 import { Input } from "@nextui-org/react";
 import FormConnectProductos from "../form-connect-productos";
+import InputSelect from "@/app/system/ordenes/components/input-select";
 
 const TalonariosForm = () => {
-  const { formState, watch } = useFormContext<Talonarios>();
+  const { formState, resetField, setValue, control, watch } =
+    useFormContext<Talonarios>();
   const { errors } = formState;
 
   return (
     <FormConnectProductos>
       {({ register }: { register: UseFormRegister<Talonarios> }) => (
         <>
-          <InputSelect
-            label="Tipo"
-            error={errors.tipo ? true : false}
-            errorMessage={errors.tipo?.message}
-            opciones={talonariosTipo.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("tipo", {
+          <Controller
+            name="tipo"
+            control={control}
+            rules={{
               required: "El tipo es requerido.",
-            })}
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.tipo}
+                opciones={talonariosTipo}
+                name="tipo"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
           <Input
@@ -37,19 +45,26 @@ const TalonariosForm = () => {
             {...register("cantidad", {
               required: "La cantidad es requerida.",
             })}
-            isInvalid={errors.cantidad ? true : false}
+            isInvalid={!!errors.cantidad}
             errorMessage={errors.cantidad?.message}
             variant={errors.cantidad ? "bordered" : "flat"}
           />
 
-          <InputSelect
-            label="Tamaño"
-            error={errors.tamano ? true : false}
-            errorMessage={errors.tamano?.message}
-            opciones={talonariosTamano.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("tamano", {
+          <Controller
+            name="tamano"
+            control={control}
+            rules={{
               required: "El tamaño es requerido.",
-            })}
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.tamano}
+                opciones={talonariosTamano}
+                name="tamano"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
           <InputRadio
@@ -57,7 +72,7 @@ const TalonariosForm = () => {
             register={register("modelo_anterior", {
               required: "Completar esta opción.",
             })}
-            error={errors.modelo_anterior ? true : false}
+            error={!!errors.modelo_anterior}
             errorMessage={errors.modelo_anterior?.message}
             opciones={siNo}
           />
@@ -67,7 +82,7 @@ const TalonariosForm = () => {
             register={register("tiene_logo", {
               required: "Completar esta opción.",
             })}
-            error={errors.tiene_logo ? true : false}
+            error={!!errors.tiene_logo}
             errorMessage={errors.tiene_logo?.message}
             opciones={siNo}
           />
@@ -80,7 +95,7 @@ const TalonariosForm = () => {
                 message: "La ubicación del logo es requerida.",
               },
             })}
-            isInvalid={errors.ubicacion_logo ? true : false}
+            isInvalid={!!errors.ubicacion_logo}
             errorMessage={errors.ubicacion_logo?.message}
             variant={errors.ubicacion_logo ? "bordered" : "flat"}
             isDisabled={watch("tiene_logo") === "no" ? true : false}
@@ -92,29 +107,43 @@ const TalonariosForm = () => {
             {...register("numero_desde", {
               required: "Éste número es requerido.",
             })}
-            isInvalid={errors.numero_desde ? true : false}
+            isInvalid={!!errors.numero_desde}
             errorMessage={errors.numero_desde?.message}
             variant={errors.numero_desde ? "bordered" : "flat"}
           />
 
-          <InputSelect
-            label="Puntillado - Emblocado"
-            error={errors.puntillado_emblocado ? true : false}
-            errorMessage={errors.puntillado_emblocado?.message}
-            opciones={talonariosPuntilladoEmblocado.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("puntillado_emblocado", {
-              required: "Seleccionar una opción.",
-            })}
+          <Controller
+            name="puntillado_emblocado"
+            control={control}
+            rules={{
+              required: "Puntillado - emblocado requerido.",
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.puntillado_emblocado}
+                opciones={talonariosPuntilladoEmblocado}
+                name="puntillado_emblocado"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
-          <InputSelect
-            label="Color duplicado"
-            error={errors.color_duplicado ? true : false}
-            errorMessage={errors.color_duplicado?.message}
-            opciones={talonariosColorDuplicado.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("color_duplicado", {
-              required: "El color del duplicado es requerido.",
-            })}
+          <Controller
+            name="color_duplicado"
+            control={control}
+            rules={{
+              required: "El color duplicado es requerido.",
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.color_duplicado}
+                opciones={talonariosColorDuplicado}
+                name="color_duplicado"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
           <InputRadio
@@ -127,7 +156,7 @@ const TalonariosForm = () => {
               },
               value: watch("color_duplicado") === "solo original" ? "" : "",
             })}
-            error={errors.triplicado ? true : false}
+            error={!!errors.triplicado}
             errorMessage={errors.triplicado?.message}
             opciones={siNo}
             disabled={
@@ -135,21 +164,26 @@ const TalonariosForm = () => {
             }
           />
 
-          <InputSelect
-            label="Color triplicado"
-            error={errors.color_triplicado ? true : false}
-            errorMessage={errors.color_triplicado?.message}
-            opciones={talonariosColorTriplicado.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("color_triplicado", {
+          <Controller
+            name="color_triplicado"
+            control={control}
+            rules={{
               required: {
                 value:
                   watch("color_duplicado") === "solo original" ? false : true,
                 message: "El color del triplicado es requerido.",
               },
-            })}
-            disabled={
-              watch("color_duplicado") === "solo original" ? true : false
-            }
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.color_triplicado}
+                opciones={talonariosColorTriplicado}
+                name="color_triplicado"
+                resetField={resetField}
+                setValue={setValue}
+                isDisabled={watch("color_duplicado") === "solo original"}
+              />
+            )}
           />
         </>
       )}

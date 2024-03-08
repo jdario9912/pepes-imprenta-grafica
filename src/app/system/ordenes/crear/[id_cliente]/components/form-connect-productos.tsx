@@ -1,9 +1,9 @@
 import { Producto } from "@/types/recursos/productos";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { Controller, useFormContext } from "react-hook-form";
-import InputRadio from "./input-radio";
+import InputRadio from "../../../components/input-radio";
 import { metodosPago, siNo } from "@/libs/listas";
-import InputSelect from "./input-select";
+import InputSelect from "../../../components/input-select";
 
 const FormConnectProducto = ({ children }: { children: any }) => {
   const methods = useFormContext<Producto>();
@@ -72,7 +72,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
         name="metodo_pago"
         control={methods.control}
         rules={{
-          required: { value: true, message: "metodo de pago requerido" },
+          required: { value: true, message: "El método de pago requerido." },
         }}
         render={() => (
           <InputSelect

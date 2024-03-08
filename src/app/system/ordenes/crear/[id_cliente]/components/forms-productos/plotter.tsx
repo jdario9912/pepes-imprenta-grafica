@@ -1,5 +1,5 @@
 import { plotterMaterial, plotterTerminacion } from "@/libs/listas";
-import InputRadio from "../input-radio";
+import InputRadio from "../../../../components/input-radio";
 import PlotterColor from "../plotter-color";
 import FormConnectProductos from "../form-connect-productos";
 import { UseFormRegister, useFormContext } from "react-hook-form";
@@ -20,7 +20,7 @@ const PlotterForm = () => {
             {...register("ubicacion_archivo", {
               required: "La ubicación del archivo es requerida.",
             })}
-            isInvalid={errors.ubicacion_archivo ? true : false}
+            isInvalid={!!errors.ubicacion_archivo}
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
           />
@@ -30,7 +30,7 @@ const PlotterForm = () => {
             {...register("tamano", {
               required: "El tamaño es requerido.",
             })}
-            isInvalid={errors.tamano ? true : false}
+            isInvalid={!!errors.tamano}
             errorMessage={errors.tamano?.message}
             variant={errors.tamano ? "bordered" : "flat"}
           />
@@ -40,7 +40,7 @@ const PlotterForm = () => {
             register={register("material", {
               required: "El material es requerido.",
             })}
-            error={errors.material ? true : false}
+            error={!!errors.material}
             errorMessage={errors.material?.message}
             opciones={plotterMaterial}
           />
@@ -50,7 +50,7 @@ const PlotterForm = () => {
             register={register("terminacion", {
               required: "La terminación es requerida.",
             })}
-            error={errors.terminacion ? true : false}
+            error={!!errors.terminacion}
             errorMessage={errors.terminacion?.message}
             opciones={plotterTerminacion}
           />

@@ -4,15 +4,15 @@ import {
   lomaOrientacion,
   siNo,
 } from "@/libs/listas";
-import InputSelect from "../input-select";
-import InputRadio from "../input-radio";
+import InputRadio from "../../../../components/input-radio";
 import FormConnectProductos from "../form-connect-productos";
-import { UseFormRegister, useFormContext } from "react-hook-form";
+import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import { Input } from "@nextui-org/react";
 import type { Loma } from "@/types/recursos/productos";
+import InputSelect from "@/app/system/ordenes/components/input-select";
 
 const LomaForm = () => {
-  const { formState } = useFormContext<Loma>();
+  const { formState, resetField, setValue, control } = useFormContext<Loma>();
   const { errors } = formState;
 
   return (
@@ -24,29 +24,43 @@ const LomaForm = () => {
             {...register("ubicacion_archivo", {
               required: "La ubicación del archivo es requerido.",
             })}
-            isInvalid={errors.ubicacion_archivo ? true : false}
+            isInvalid={!!errors.ubicacion_archivo}
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
           />
 
-          <InputSelect
-            label="Material"
-            error={errors.material ? true : false}
-            errorMessage={errors.material?.message}
-            opciones={lomaMaterial.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("material", {
+          <Controller
+            name="material"
+            control={control}
+            rules={{
               required: "El material es requerido.",
-            })}
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.material}
+                opciones={lomaMaterial}
+                name="material"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
-          <InputSelect
-            label="Bolsillo"
-            error={errors.bolsillo ? true : false}
-            errorMessage={errors.bolsillo?.message}
-            opciones={lomaBolsillo.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("bolsillo", {
+          <Controller
+            name="bolsillo"
+            control={control}
+            rules={{
               required: "El bolsillo es requerido.",
-            })}
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.bolsillo}
+                opciones={lomaBolsillo}
+                name="bolsillo"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
           <InputRadio
@@ -54,7 +68,7 @@ const LomaForm = () => {
             register={register("orientacion", {
               required: "La orientación es requerida.",
             })}
-            error={errors.orientacion ? true : false}
+            error={!!errors.orientacion}
             errorMessage={errors.orientacion?.message}
             opciones={lomaOrientacion}
           />
@@ -62,7 +76,7 @@ const LomaForm = () => {
           <InputRadio
             label="Corte"
             register={register("corte", { required: "Completar esta opción." })}
-            error={errors.corte ? true : false}
+            error={!!errors.corte}
             errorMessage={errors.corte?.message}
             opciones={siNo}
           />
@@ -72,7 +86,7 @@ const LomaForm = () => {
             register={register("ojales", {
               required: "Completar esta opción.",
             })}
-            error={errors.ojales ? true : false}
+            error={!!errors.ojales}
             errorMessage={errors.ojales?.message}
             opciones={siNo}
           />
@@ -82,7 +96,7 @@ const LomaForm = () => {
             register={register("troquelado", {
               required: "Completar esta opción.",
             })}
-            error={errors.troquelado ? true : false}
+            error={!!errors.troquelado}
             errorMessage={errors.troquelado?.message}
             opciones={siNo}
           />
@@ -92,7 +106,7 @@ const LomaForm = () => {
             register={register("portabaner", {
               required: "Muestra es requerido.",
             })}
-            error={errors.portabaner ? true : false}
+            error={!!errors.portabaner}
             errorMessage={errors.portabaner?.message}
             opciones={siNo}
           />

@@ -1,26 +1,33 @@
 import { sellosTipo } from "@/libs/listas";
-import InputSelect from "../input-select";
-import { UseFormRegister, useFormContext } from "react-hook-form";
+import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import type { Sellos } from "@/types/recursos/productos";
 import { Textarea } from "@nextui-org/react";
 import FormConnectProductos from "../form-connect-productos";
+import InputSelect from "@/app/system/ordenes/components/input-select";
 
 const SellosForm = () => {
-  const { formState } = useFormContext<Sellos>();
+  const { formState, resetField, setValue, control } = useFormContext<Sellos>();
   const { errors } = formState;
 
   return (
     <FormConnectProductos>
       {({ register }: { register: UseFormRegister<Sellos> }) => (
         <>
-          <InputSelect
-            label="Tipo"
-            error={errors.tipo ? true : false}
-            errorMessage={errors.tipo?.message}
-            opciones={sellosTipo.map((opcion) => ({value: opcion, label: opcion}))}
-            register={register("tipo", {
+        <Controller
+            name="tipo"
+            control={control}
+            rules={{
               required: "El tipo es requerido.",
-            })}
+            }}
+            render={() => (
+              <InputSelect
+                error={!!errors.tipo}
+                opciones={sellosTipo}
+                name="tipo"
+                resetField={resetField}
+                setValue={setValue}
+              />
+            )}
           />
 
           <Textarea
@@ -28,7 +35,7 @@ const SellosForm = () => {
             {...register("tamano", {
               required: "El tamaño es requerido.",
             })}
-            isInvalid={errors.tamano ? true : false}
+            isInvalid={!!errors.tamano}
             errorMessage={errors.tamano?.message}
             variant={errors.tamano ? "bordered" : "flat"}
           />
@@ -38,7 +45,7 @@ const SellosForm = () => {
             {...register("texto", {
               required: "El texto es requerido.",
             })}
-            isInvalid={errors.texto ? true : false}
+            isInvalid={!!errors.texto}
             errorMessage={errors.texto?.message}
             variant={errors.texto ? "bordered" : "flat"}
           />
@@ -48,7 +55,7 @@ const SellosForm = () => {
             {...register("dibujo", {
               required: "El dibujo es requerido.",
             })}
-            isInvalid={errors.dibujo ? true : false}
+            isInvalid={!!errors.dibujo}
             errorMessage={errors.dibujo?.message}
             variant={errors.dibujo ? "bordered" : "flat"}
           />

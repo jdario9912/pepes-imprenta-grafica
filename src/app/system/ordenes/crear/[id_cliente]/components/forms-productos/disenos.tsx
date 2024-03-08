@@ -16,16 +16,17 @@ const DisenosForm = () => {
             {...register("ubicacion_archivo", {
               required: "La ubicación del archivo es requerida.",
             })}
-            isInvalid={errors.ubicacion_archivo ? true : false}
+            isInvalid={!!errors.ubicacion_archivo}
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
           />
+
           <Textarea
             label="Detalles"
             {...register("detalles", {
               required: "Los detalles son requeridos.",
             })}
-            isInvalid={errors.detalles ? true : false}
+            isInvalid={!!errors.detalles}
             errorMessage={errors.detalles?.message}
             variant={errors.detalles ? "bordered" : "flat"}
           />

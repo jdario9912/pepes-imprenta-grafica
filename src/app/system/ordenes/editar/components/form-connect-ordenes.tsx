@@ -1,7 +1,7 @@
 import { Producto } from "@/types/recursos/productos";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { Controller, useFormContext } from "react-hook-form";
-import InputRadio from "../../crear/[id_cliente]/components/input-radio";
+import InputRadio from "../../components/input-radio";
 import { metodosPago, siNo } from "@/libs/listas";
 import InputSelect from "../../crear/[id_cliente]/components/input-select";
 

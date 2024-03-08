@@ -1,4 +1,4 @@
-import { Disenos } from "@/types/recursos/productos";
+import type { Disenos } from "@/types/recursos/productos";
 import { UseFormRegister, useFormContext } from "react-hook-form";
 import FormConnectOrdenes from "../form-connect-ordenes";
 import { Input, Textarea } from "@nextui-org/react";

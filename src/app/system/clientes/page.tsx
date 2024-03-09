@@ -6,17 +6,11 @@ export const metadata: Metadata = {
   title: "Clientes",
 };
 
-const Clientes = async ({
-  searchParams,
-}: {
-  searchParams?: { cliente: string };
-}) => {
-  const cliente = searchParams?.cliente || "";
-
+const Clientes = async () => {
   return (
     <div>
       <Suspense fallback={<div>Cargando tabla clientesssssssss....</div>}>
-        <TablaComponent cliente={cliente} />
+        <TablaComponent />
       </Suspense>
     </div>
   );

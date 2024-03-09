@@ -1,10 +1,10 @@
 import { obtenerClientes } from "@/libs/client/axios";
 import TablaClientes from "./tabla-clientes";
 
-const TablaComponent = async ({ cliente }: { cliente: string }) => {
+const TablaComponent = async () => {
   const clientes = await obtenerClientes();
 
-  return <TablaClientes clientes={clientes} clienteQuery={cliente} />;
+  return <TablaClientes clientes={clientes} />;
 };
 
 export default TablaComponent;

@@ -30,16 +30,13 @@ type Busqueda = "nombre" | "telefono";
 
 const TablaClientes = ({
   clientes,
-  clienteQuery = "",
 }: {
   clientes: Cliente[];
-  clienteQuery: string;
 }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
-  const [cliente] = useState(clienteQuery);
   const [busqueda, setBusqueda] = useState<Busqueda>("nombre");
 
   const table = useReactTable({
@@ -60,12 +57,6 @@ const TablaClientes = ({
       rowSelection,
     },
   });
-
-  useEffect(() => {
-    if (cliente) {
-      table.getColumn("nombre")?.setFilterValue(cliente);
-    }
-  }, []);
 
   return (
     <div className="w-full">

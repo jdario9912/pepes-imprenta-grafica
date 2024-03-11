@@ -704,110 +704,154 @@ CREATE PROCEDURE buscar_orden(IN nro_orden BIGINT(15))
 BEGIN
 
 SELECT 
-impresiones.*,
+impresiones.id,
+impresiones.nro_orden,
+impresiones.producto, 
+impresiones.estado, 
+impresiones.fecha_creacion, 
+impresiones.atendido_por,
 clientes.nombre,
-clientes.telefono,
-clientes.email
+clientes.telefono
 FROM clientes
 INNER JOIN impresiones
 ON clientes.id = impresiones.id_cliente
 WHERE impresiones.nro_orden = nro_orden;
 
 SELECT 
-loma.*,
+loma.id,
+loma.nro_orden,
+loma.producto, 
+loma.estado, 
+loma.fecha_creacion, 
+loma.atendido_por,
 clientes.nombre,
-clientes.telefono,
-clientes.email
+clientes.telefono
 FROM clientes
 INNER JOIN loma
 ON clientes.id = loma.id_cliente
 WHERE loma.nro_orden = nro_orden;
 
 SELECT 
-talonarios.*,
+talonarios.id,
+talonarios.nro_orden,
+talonarios.producto, 
+talonarios.estado, 
+talonarios.fecha_creacion, 
+talonarios.atendido_por,
 clientes.nombre,
-clientes.telefono,
-clientes.email
+clientes.telefono
 FROM clientes
 INNER JOIN talonarios
 ON clientes.id = talonarios.id_cliente
 WHERE talonarios.nro_orden = nro_orden;
 
 SELECT 
-bonos.*,
+bonos.id,
+bonos.nro_orden,
+bonos.producto, 
+bonos.estado, 
+bonos.fecha_creacion, 
+bonos.atendido_por,
 clientes.nombre,
-clientes.telefono,
-clientes.email
+clientes.telefono
 FROM clientes
 INNER JOIN bonos
 ON clientes.id = bonos.id_cliente
 WHERE bonos.nro_orden = nro_orden;
 
 SELECT 
-disenos.*,
+disenos.id,
+disenos.nro_orden,
+disenos.producto, 
+disenos.estado, 
+disenos.fecha_creacion, 
+disenos.atendido_por,
 clientes.nombre,
-clientes.telefono,
-clientes.email
+clientes.telefono
 FROM clientes
 INNER JOIN disenos
 ON clientes.id = disenos.id_cliente
 WHERE disenos.nro_orden = nro_orden;
 
 SELECT 
-plotter.*,
+plotter.id,
+plotter.nro_orden,
+plotter.producto, 
+plotter.estado, 
+plotter.fecha_creacion, 
+plotter.atendido_por,
 clientes.nombre,
-clientes.telefono,
-clientes.email
+clientes.telefono
 FROM clientes
 INNER JOIN plotter
 ON clientes.id = plotter.id_cliente
 WHERE plotter.nro_orden = nro_orden;
 
 SELECT 
-remeras.*,
+remeras.id,
+remeras.nro_orden,
+remeras.producto, 
+remeras.estado, 
+remeras.fecha_creacion, 
+remeras.atendido_por,
 clientes.nombre,
-clientes.telefono,
-clientes.email
+clientes.telefono
 FROM clientes
 INNER JOIN remeras
 ON clientes.id = remeras.id_cliente
 WHERE remeras.nro_orden = nro_orden;
 
 SELECT 
-tarjetas.*,
+tarjetas.id,
+tarjetas.nro_orden,
+tarjetas.producto, 
+tarjetas.estado, 
+tarjetas.fecha_creacion, 
+tarjetas.atendido_por,
 clientes.nombre,
-clientes.telefono,
-clientes.email
+clientes.telefono
 FROM clientes
 INNER JOIN tarjetas
 ON clientes.id = tarjetas.id_cliente
 WHERE tarjetas.nro_orden = nro_orden;
 
 SELECT 
-volantes.*,
+volantes.id,
+volantes.nro_orden,
+volantes.producto, 
+volantes.estado, 
+volantes.fecha_creacion, 
+volantes.atendido_por,
 clientes.nombre,
-clientes.telefono,
-clientes.email
+clientes.telefono
 FROM clientes
 INNER JOIN volantes
 ON clientes.id = volantes.id_cliente
 WHERE volantes.nro_orden = nro_orden;
 
 SELECT 
-sellos.*,
+sellos.id,
+sellos.nro_orden,
+sellos.producto, 
+sellos.estado, 
+sellos.fecha_creacion, 
+sellos.atendido_por,
 clientes.nombre,
-clientes.telefono,
-clientes.email
+clientes.telefono
 FROM clientes
 INNER JOIN sellos
 ON clientes.id = sellos.id_cliente
 WHERE sellos.nro_orden = nro_orden;
 
 SELECT 
-varios.*,
+varios.id,
+varios.nro_orden,
+varios.producto, 
+varios.estado, 
+varios.fecha_creacion, 
+varios.atendido_por,
 clientes.nombre,
-clientes.telefono,
-clientes.email
+clientes.telefono
 FROM clientes
 INNER JOIN varios
 ON clientes.id = varios.id_cliente

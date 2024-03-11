@@ -3,9 +3,9 @@ interface Orden {
   nombre: string;
   nro_orden: number;
   producto: string;
+  fecha_creacion: string;
   fecha_entrega: string;
   hora_entrega: string;
-  fecha_creacion: string;
 }
 
 export interface OrdenPendiente extends Orden {
@@ -13,3 +13,10 @@ export interface OrdenPendiente extends Orden {
 }
 
 export interface OrdenAProveedor extends Orden {}
+
+export interface OrdenEncontrada
+  extends Omit<Orden, "fecha_entrega" | "hora_entrega"> {
+  atendido_por: string;
+  estado: string;
+  telefono: string;
+}

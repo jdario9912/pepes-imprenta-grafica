@@ -1,7 +1,5 @@
 import { formatearFecha, formatearHora } from "@/libs/client/moment";
-import { Button } from "@nextui-org/react";
 import { ColumnDef } from "@tanstack/react-table";
-import Link from "next/link";
 import AccionesTablaAProveedor from "../components/acciones-tabla-a-proveedor";
 import { OrdenAProveedor } from "@/types/orden";
 
@@ -28,16 +26,7 @@ export const columns: ColumnDef<OrdenAProveedor>[] = [
     header: () => <div className="text-center">Cliente</div>,
     cell: ({ row }) => {
       const cliente = row.original.nombre;
-      return (
-        <div className="text-right">
-          <Link
-            href={`/system/clientes?cliente=${cliente}`}
-            className="hover:underline hover:cursor-pointer"
-          >
-            {cliente}
-          </Link>
-        </div>
-      );
+      return <div className="text-right">{cliente}</div>;
     },
   },
   {

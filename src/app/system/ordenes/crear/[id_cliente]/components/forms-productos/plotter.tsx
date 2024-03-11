@@ -2,13 +2,13 @@ import { plotterMaterial, plotterTerminacion } from "@/libs/listas";
 import InputRadio from "../../../../components/input-radio";
 import PlotterColor from "../plotter-color";
 import FormConnectProductos from "../form-connect-productos";
-import { UseFormRegister, useFormContext } from "react-hook-form";
+import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import type { Plotter } from "@/types/recursos/productos";
 import { Input } from "@nextui-org/react";
 import AlertInvalidInput from "../alert-invalid-input";
 
 const PlotterForm = () => {
-  const { formState, setValue, watch } = useFormContext<Plotter>();
+  const { formState, setValue, watch, control } = useFormContext<Plotter>();
   const { errors } = formState;
 
   return (
@@ -35,24 +35,38 @@ const PlotterForm = () => {
             variant={errors.tamano ? "bordered" : "flat"}
           />
 
-          <InputRadio
-            label="Material"
-            register={register("material", {
+          <Controller
+            name="material"
+            control={control}
+            rules={{
               required: "El material es requerido.",
-            })}
-            error={!!errors.material}
-            errorMessage={errors.material?.message}
-            opciones={plotterMaterial}
+            }}
+            render={() => (
+              <InputRadio
+                label="Material"
+                register={register("material")}
+                error={!!errors.material}
+                errorMessage={errors.material?.message}
+                opciones={plotterMaterial}
+              />
+            )}
           />
 
-          <InputRadio
-            label="Terminación"
-            register={register("terminacion", {
+          <Controller
+            name="terminacion"
+            control={control}
+            rules={{
               required: "La terminación es requerida.",
-            })}
-            error={!!errors.terminacion}
-            errorMessage={errors.terminacion?.message}
-            opciones={plotterTerminacion}
+            }}
+            render={() => (
+              <InputRadio
+                label="Terminación"
+                register={register("terminacion")}
+                error={!!errors.terminacion}
+                errorMessage={errors.terminacion?.message}
+                opciones={plotterTerminacion}
+              />
+            )}
           />
 
           <PlotterColor

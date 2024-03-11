@@ -99,14 +99,21 @@ const TarjetasForm = () => {
             )}
           />
 
-          <InputRadio
-            label="Puntas redondeadas"
-            register={register("puntas_redondeadas", {
+          <Controller
+            name="puntas_redondeadas"
+            control={control}
+            rules={{
               required: "Completar esta opción.",
-            })}
-            error={!!errors.puntas_redondeadas}
-            errorMessage={errors.puntas_redondeadas?.message}
-            opciones={siNo}
+            }}
+            render={() => (
+              <InputRadio
+                label="Puntas redondeadas"
+                register={register("puntas_redondeadas")}
+                error={!!errors.puntas_redondeadas}
+                errorMessage={errors.puntas_redondeadas?.message}
+                opciones={siNo}
+              />
+            )}
           />
         </>
       )}

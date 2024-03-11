@@ -19,12 +19,21 @@ const BonosForm = () => {
     <FormConnectProductos>
       {({ register }: { register: UseFormRegister<Bonos> }) => (
         <>
-          <InputRadio
-            label="Tipo"
-            register={register("tipo", { required: "El tipo es requerido." })}
-            error={!!errors.tipo}
-            errorMessage={errors.tipo?.message}
-            opciones={bonosTipo}
+          <Controller
+            name="tipo"
+            control={control}
+            rules={{ required: "El tipo es requerido." }}
+            render={() => (
+              <InputRadio
+                label="Tipo"
+                register={register("tipo", {
+                  required: "El tipo es requerido.",
+                })}
+                error={!!errors.tipo}
+                errorMessage={errors.tipo?.message}
+                opciones={bonosTipo}
+              />
+            )}
           />
 
           <Controller

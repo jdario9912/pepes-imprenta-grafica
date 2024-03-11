@@ -31,22 +31,36 @@ const ImpresionesForm = () => {
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
           />
 
-          <InputRadio
-            label="Impresión"
-            register={register("impresion", {
+          <Controller
+            name="impresion"
+            control={control}
+            rules={{
               required: "El tipo de impresión es requerido.",
-            })}
-            error={!!errors.impresion}
-            errorMessage={errors.impresion?.message}
-            opciones={impresionesImpesion}
+            }}
+            render={() => (
+              <InputRadio
+                label="Impresión"
+                register={register("impresion")}
+                error={!!errors.impresion}
+                errorMessage={errors.impresion?.message}
+                opciones={impresionesImpesion}
+              />
+            )}
           />
 
-          <InputRadio
-            label="Faz"
-            register={register("faz", { required: "Faz es requerido." })}
-            error={!!errors.faz}
-            errorMessage={errors.faz?.message}
-            opciones={impresionesFaz}
+          <Controller
+            name="faz"
+            control={control}
+            rules={{ required: "Faz es requerido." }}
+            render={() => (
+              <InputRadio
+                label="Faz"
+                register={register("faz")}
+                error={!!errors.faz}
+                errorMessage={errors.faz?.message}
+                opciones={impresionesFaz}
+              />
+            )}
           />
 
           <Input
@@ -75,45 +89,72 @@ const ImpresionesForm = () => {
               />
             )}
           />
-
-          <InputRadio
-            label="Orientación"
-            register={register("orientacion", {
+          <Controller
+            name="orientacion"
+            control={control}
+            rules={{
               required: "La orientación es requerida.",
-            })}
-            error={!!errors.orientacion}
-            errorMessage={errors.orientacion?.message}
-            opciones={impresionesOrientacion}
+            }}
+            render={() => (
+              <InputRadio
+                label="Orientación"
+                register={register("orientacion")}
+                error={!!errors.orientacion}
+                errorMessage={errors.orientacion?.message}
+                opciones={impresionesOrientacion}
+              />
+            )}
           />
 
-          <InputRadio
-            label="Anillado"
-            register={register("anillado", {
+          <Controller
+            name="anillado"
+            control={control}
+            rules={{
               required: "Completar esta opción.",
-            })}
-            error={!!errors.anillado}
-            errorMessage={errors.anillado?.message}
-            opciones={siNo}
+            }}
+            render={() => (
+              <InputRadio
+                label="Anillado"
+                register={register("anillado")}
+                error={!!errors.anillado}
+                errorMessage={errors.anillado?.message}
+                opciones={siNo}
+              />
+            )}
           />
 
-          <InputRadio
-            label="Abrochado"
-            register={register("abrochado", {
+          <Controller
+            name="abrochado"
+            control={control}
+            rules={{
               required: "Completar esta opción.",
-            })}
-            error={!!errors.abrochado}
-            errorMessage={errors.abrochado?.message}
-            opciones={siNo}
+            }}
+            render={() => (
+              <InputRadio
+                label="Abrochado"
+                register={register("abrochado")}
+                error={!!errors.abrochado}
+                errorMessage={errors.abrochado?.message}
+                opciones={siNo}
+              />
+            )}
           />
 
-          <InputRadio
-            label="Corte"
-            register={register("corte", {
+          <Controller
+            name="corte"
+            control={control}
+            rules={{
               required: "Completar esta opción.",
-            })}
-            error={!!errors.corte}
-            errorMessage={errors.corte?.message}
-            opciones={siNo}
+            }}
+            render={() => (
+              <InputRadio
+                label="Corte"
+                register={register("corte")}
+                error={!!errors.corte}
+                errorMessage={errors.corte?.message}
+                opciones={siNo}
+              />
+            )}
           />
         </>
       )}

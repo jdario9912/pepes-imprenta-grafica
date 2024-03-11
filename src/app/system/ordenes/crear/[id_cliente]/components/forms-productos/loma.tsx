@@ -63,52 +63,87 @@ const LomaForm = () => {
             )}
           />
 
-          <InputRadio
-            label="Orientación"
-            register={register("orientacion", {
+          <Controller
+            name="orientacion"
+            control={control}
+            rules={{
               required: "La orientación es requerida.",
-            })}
-            error={!!errors.orientacion}
-            errorMessage={errors.orientacion?.message}
-            opciones={lomaOrientacion}
+            }}
+            render={() => (
+              <InputRadio
+                label="Orientación"
+                register={register("orientacion")}
+                error={!!errors.orientacion}
+                errorMessage={errors.orientacion?.message}
+                opciones={lomaOrientacion}
+              />
+            )}
           />
 
-          <InputRadio
-            label="Corte"
-            register={register("corte", { required: "Completar esta opción." })}
-            error={!!errors.corte}
-            errorMessage={errors.corte?.message}
-            opciones={siNo}
+          <Controller
+            name="corte"
+            control={control}
+            rules={{ required: "Completar esta opción." }}
+            render={() => (
+              <InputRadio
+                label="Corte"
+                register={register("corte")}
+                error={!!errors.corte}
+                errorMessage={errors.corte?.message}
+                opciones={siNo}
+              />
+            )}
           />
 
-          <InputRadio
-            label="Ojales"
-            register={register("ojales", {
+          <Controller
+            name="ojales"
+            control={control}
+            rules={{
               required: "Completar esta opción.",
-            })}
-            error={!!errors.ojales}
-            errorMessage={errors.ojales?.message}
-            opciones={siNo}
+            }}
+            render={() => (
+              <InputRadio
+                label="Ojales"
+                register={register("ojales")}
+                error={!!errors.ojales}
+                errorMessage={errors.ojales?.message}
+                opciones={siNo}
+              />
+            )}
           />
 
-          <InputRadio
-            label="Troquelado"
-            register={register("troquelado", {
+          <Controller
+            name="troquelado"
+            control={control}
+            rules={{
               required: "Completar esta opción.",
-            })}
-            error={!!errors.troquelado}
-            errorMessage={errors.troquelado?.message}
-            opciones={siNo}
+            }}
+            render={() => (
+              <InputRadio
+                label="Troquelado"
+                register={register("troquelado")}
+                error={!!errors.troquelado}
+                errorMessage={errors.troquelado?.message}
+                opciones={siNo}
+              />
+            )}
           />
 
-          <InputRadio
-            label="Portabaner"
-            register={register("portabaner", {
+          <Controller
+            name="portabaner"
+            control={control}
+            rules={{
               required: "Muestra es requerido.",
-            })}
-            error={!!errors.portabaner}
-            errorMessage={errors.portabaner?.message}
-            opciones={siNo}
+            }}
+            render={() => (
+              <InputRadio
+                label="Portabaner"
+                register={register("portabaner")}
+                error={!!errors.portabaner}
+                errorMessage={errors.portabaner?.message}
+                opciones={siNo}
+              />
+            )}
           />
         </>
       )}

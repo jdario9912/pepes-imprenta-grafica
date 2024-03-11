@@ -3,7 +3,7 @@ import { Button, Input, Textarea } from "@nextui-org/react";
 import { Controller, useFormContext } from "react-hook-form";
 import InputRadio from "../../components/input-radio";
 import { metodosPago, siNo } from "@/libs/listas";
-import InputSelect from "../../crear/[id_cliente]/components/input-select";
+import InputSelect from "../../components/input-select";
 
 const FormConnectOrdenes = ({ children }: { children: any }) => {
   const methods = useFormContext<Producto>();

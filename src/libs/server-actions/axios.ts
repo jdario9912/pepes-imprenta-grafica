@@ -2,7 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 import { axiosQuery } from "../axios";
-import { OrdenPendiente } from "@/types/orden-pendiente";
 import {
   Bonos,
   Disenos,
@@ -17,7 +16,7 @@ import {
   Volantes,
 } from "@/types/recursos/productos";
 import { revalidarClientesYDireccionar } from "./libs";
-import { OrdenAProveedor } from "@/types/orden-a-proveedor";
+import { OrdenAProveedor, OrdenPendiente } from "@/types/orden";
 
 export const editarCliente = async (cliente: Cliente, id: number) => {
   const clienteActualizado = await axiosQuery.patch<Cliente>(
@@ -43,6 +42,7 @@ export const cambiarEstadoOrden = async (
   await axiosQuery.patch(`/api/ordenes/${producto}/${id}`, { estado });
   revalidatePath("/system/ordenes/pendientes");
   revalidatePath("/system/ordenes/proveedor");
+  return;
 };
 
 export const crearBonoFetch = async (data: unknown) => {

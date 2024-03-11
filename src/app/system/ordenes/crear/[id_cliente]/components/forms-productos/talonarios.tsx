@@ -67,24 +67,38 @@ const TalonariosForm = () => {
             )}
           />
 
-          <InputRadio
-            label="Modelo anterior"
-            register={register("modelo_anterior", {
+          <Controller
+            name="modelo_anterior"
+            control={control}
+            rules={{
               required: "Completar esta opción.",
-            })}
-            error={!!errors.modelo_anterior}
-            errorMessage={errors.modelo_anterior?.message}
-            opciones={siNo}
+            }}
+            render={() => (
+              <InputRadio
+                label="Modelo anterior"
+                register={register("modelo_anterior")}
+                error={!!errors.modelo_anterior}
+                errorMessage={errors.modelo_anterior?.message}
+                opciones={siNo}
+              />
+            )}
           />
 
-          <InputRadio
-            label="Tiene logo"
-            register={register("tiene_logo", {
+          <Controller
+            name="tiene_logo"
+            control={control}
+            rules={{
               required: "Completar esta opción.",
-            })}
-            error={!!errors.tiene_logo}
-            errorMessage={errors.tiene_logo?.message}
-            opciones={siNo}
+            }}
+            render={() => (
+              <InputRadio
+                label="Tiene logo"
+                register={register("tiene_logo")}
+                error={!!errors.tiene_logo}
+                errorMessage={errors.tiene_logo?.message}
+                opciones={siNo}
+              />
+            )}
           />
 
           <Input
@@ -146,22 +160,29 @@ const TalonariosForm = () => {
             )}
           />
 
-          <InputRadio
-            label="Triplicado"
-            register={register("triplicado", {
+          <Controller
+            name="color_duplicado"
+            control={control}
+            rules={{
               required: {
                 value:
                   watch("color_duplicado") === "solo original" ? false : true,
                 message: "Completar esta opción.",
               },
               value: watch("color_duplicado") === "solo original" ? "" : "",
-            })}
-            error={!!errors.triplicado}
-            errorMessage={errors.triplicado?.message}
-            opciones={siNo}
-            disabled={
-              watch("color_duplicado") === "solo original" ? true : false
-            }
+            }}
+            render={() => (
+              <InputRadio
+                label="Triplicado"
+                register={register("triplicado")}
+                error={!!errors.triplicado}
+                errorMessage={errors.triplicado?.message}
+                opciones={siNo}
+                disabled={
+                  watch("color_duplicado") === "solo original" ? true : false
+                }
+              />
+            )}
           />
 
           <Controller

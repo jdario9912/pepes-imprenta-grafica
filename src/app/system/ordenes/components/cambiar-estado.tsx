@@ -10,6 +10,7 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/react";
+import { useState } from "react";
 
 const CambiarEstado = ({
   producto,
@@ -20,8 +21,12 @@ const CambiarEstado = ({
   producto: string;
   id: number;
 }) => {
-  const handleCambiarEstado = async (estado: string) =>
-    cambiarEstadoOrden(producto, id, estado);
+  const [actualizar, setActualizar] = useState(false)
+  const handleCambiarEstado = async (estado: string) =>{
+
+    await cambiarEstadoOrden(producto, id, estado);
+    setActualizar(!actualizar)
+  }
 
   return (
     <Dropdown>

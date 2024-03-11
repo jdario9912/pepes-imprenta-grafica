@@ -20,7 +20,6 @@ const InputRadio = ({
   valorInicial?: string;
 }) => (
   <RadioGroup
-    // label={label}
     isInvalid={error}
     errorMessage={errorMessage}
     orientation="horizontal"

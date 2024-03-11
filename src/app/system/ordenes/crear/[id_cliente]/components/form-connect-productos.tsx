@@ -7,7 +7,7 @@ import InputSelect from "../../../components/input-select";
 
 const FormConnectProducto = ({ children }: { children: any }) => {
   const methods = useFormContext<Producto>();
-  const { errors } = methods.formState;
+  const { errors, isSubmitting } = methods.formState;
 
   return (
     <>
@@ -16,7 +16,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
         {...methods.register("fecha_entrega", {
           required: "La fecha de entrega es obligatoria.",
         })}
-        isInvalid={errors.fecha_entrega ? true : false}
+        isInvalid={!!errors.fecha_entrega}
         errorMessage={errors.fecha_entrega?.message}
         variant={errors.fecha_entrega ? "bordered" : "flat"}
       />
@@ -26,20 +26,25 @@ const FormConnectProducto = ({ children }: { children: any }) => {
         {...methods.register("hora_entrega", {
           required: "la hora de entrega es requerida.",
         })}
-        isInvalid={errors.hora_entrega ? true : false}
+        isInvalid={!!errors.hora_entrega}
         errorMessage={errors.hora_entrega?.message}
         variant={errors.hora_entrega ? "bordered" : "flat"}
         defaultValue="19:00"
       />
 
-      <InputRadio
-        label="Muestra"
-        register={methods.register("muestra", {
-          required: "Muestra es requerido.",
-        })}
-        error={errors.muestra ? true : false}
-        errorMessage={errors.muestra?.message}
-        opciones={siNo}
+      <Controller
+        name="muestra"
+        rules={{required: "Muestra es requerida."}}
+        control={methods.control}
+        render={() => (
+          <InputRadio
+            label="Muestra"
+            register={methods.register("muestra")}
+            error={!!errors.muestra}
+            errorMessage={errors.muestra?.message}
+            opciones={siNo}
+          />
+        )}
       />
 
       {children({ ...methods })}
@@ -52,7 +57,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
         {...methods.register("total", {
           required: "El total es requerido.",
         })}
-        isInvalid={errors.total ? true : false}
+        isInvalid={!!errors.total}
         errorMessage={errors.total?.message}
         variant={errors.total ? "bordered" : "flat"}
       />
@@ -63,7 +68,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
         {...methods.register("entrega", {
           required: "El monto que entrega el cliente es requerido.",
         })}
-        isInvalid={errors.entrega ? true : false}
+        isInvalid={!!errors.entrega}
         errorMessage={errors.entrega?.message}
         variant={errors.entrega ? "bordered" : "flat"}
       />
@@ -84,8 +89,13 @@ const FormConnectProducto = ({ children }: { children: any }) => {
           />
         )}
       />
-      
-      <Button type="submit" variant="flat" color="primary">
+
+      <Button
+        type="submit"
+        variant="flat"
+        color="primary"
+        isLoading={isSubmitting}
+      >
         Crear orden
       </Button>
     </>

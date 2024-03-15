@@ -7,8 +7,12 @@ import {
   formatearHoraFormEditar,
 } from "../../../../libs/moment";
 import ImpresionesForm from "../../../../components/forms-ordenes/impresiones";
+import { useRouter } from "next/navigation";
+import { actualizarImpresionFetch } from "@/libs/client/axios";
 
 const Form = ({ orden }: { orden: Impresiones }) => {
+  const router = useRouter();
+
   const methods = useForm<Impresiones>({
     defaultValues: {
       fecha_entrega: formatearFechaFormEditar(orden.fecha_entrega),
@@ -30,8 +34,15 @@ const Form = ({ orden }: { orden: Impresiones }) => {
     },
   });
 
-  const onSubmit = methods.handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = methods.handleSubmit(async (data) => {
+    const ordenActualizada = await actualizarImpresionFetch(
+      data,
+      orden.id || 0
+    );
+
+    router.push(
+      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
+    );
   });
 
   return (

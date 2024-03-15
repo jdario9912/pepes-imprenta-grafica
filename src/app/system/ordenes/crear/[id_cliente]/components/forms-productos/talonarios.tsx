@@ -185,27 +185,32 @@ const TalonariosForm = () => {
             )}
           />
 
-          <Controller
-            name="color_triplicado"
-            control={control}
-            rules={{
-              required: {
-                value:
-                  watch("color_duplicado") === "solo original" ? false : true,
-                message: "El color del triplicado es requerido.",
-              },
-            }}
-            render={() => (
-              <InputSelect
-                error={!!errors.color_triplicado}
-                opciones={talonariosColorTriplicado}
-                name="color_triplicado"
-                resetField={resetField}
-                setValue={setValue}
-                isDisabled={watch("color_duplicado") === "solo original"}
-              />
-            )}
-          />
+          {!!(watch("triplicado") == "si") && (
+            <Controller
+              name="color_triplicado"
+              control={control}
+              rules={{
+                required: {
+                  value:
+                    watch("color_duplicado") === "solo original" ? false : true,
+                  message: "El color del triplicado es requerido.",
+                },
+              }}
+              render={() => (
+                <InputSelect
+                  error={!!errors.color_triplicado}
+                  opciones={talonariosColorTriplicado}
+                  name="color_triplicado"
+                  resetField={resetField}
+                  setValue={setValue}
+                  isDisabled={
+                    watch("color_duplicado") === "solo original" ||
+                    watch("triplicado") == "no"
+                  }
+                />
+              )}
+            />
+          )}
         </>
       )}
     </FormConnectProductos>

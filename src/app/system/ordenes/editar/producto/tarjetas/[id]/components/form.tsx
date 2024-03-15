@@ -7,8 +7,12 @@ import {
 } from "../../../../libs/moment";
 import { Tarjetas } from "@/types/recursos/productos";
 import TarjetasForm from "../../../../components/forms-ordenes/tarjetas";
+import { useRouter } from "next/navigation";
+import { actualizarTarjetaFetch } from "@/libs/client/axios";
 
 const Form = ({ orden }: { orden: Tarjetas }) => {
+  const router = useRouter();
+
   const methods = useForm<Tarjetas>({
     defaultValues: {
       fecha_entrega: formatearFechaFormEditar(orden.fecha_entrega),
@@ -27,8 +31,12 @@ const Form = ({ orden }: { orden: Tarjetas }) => {
     },
   });
 
-  const onSubmit = methods.handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = methods.handleSubmit(async (data) => {
+    const ordenActualizada = await actualizarTarjetaFetch(data, orden.id || 0);
+
+    router.push(
+      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
+    );
   });
 
   return (

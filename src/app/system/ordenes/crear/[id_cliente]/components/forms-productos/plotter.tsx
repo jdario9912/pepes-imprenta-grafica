@@ -6,10 +6,15 @@ import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import type { Plotter } from "@/types/recursos/productos";
 import { Input } from "@nextui-org/react";
 import AlertInvalidInput from "../alert-invalid-input";
+import { useEffect } from "react";
 
 const PlotterForm = () => {
   const { formState, setValue, watch, control } = useFormContext<Plotter>();
   const { errors } = formState;
+
+  useEffect(() => {
+    setValue("color", 0);
+  }, []);
 
   return (
     <FormConnectProductos>

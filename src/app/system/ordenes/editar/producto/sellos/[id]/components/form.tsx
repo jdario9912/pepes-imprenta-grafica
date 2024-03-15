@@ -7,8 +7,12 @@ import {
 } from "../../../../libs/moment";
 import { Sellos } from "@/types/recursos/productos";
 import SellosForm from "../../../../components/forms-ordenes/sellos";
+import { useRouter } from "next/navigation";
+import { actualizarSelloFetch } from "@/libs/client/axios";
 
 const Form = ({ orden }: { orden: Sellos }) => {
+  const router = useRouter();
+
   const methods = useForm<Sellos>({
     defaultValues: {
       fecha_entrega: formatearFechaFormEditar(orden.fecha_entrega),
@@ -25,8 +29,12 @@ const Form = ({ orden }: { orden: Sellos }) => {
     },
   });
 
-  const onSubmit = methods.handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = methods.handleSubmit(async (data) => {
+    const ordenActualizada = await actualizarSelloFetch(data, orden.id || 0);
+
+    router.push(
+      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
+    );
   });
 
   return (

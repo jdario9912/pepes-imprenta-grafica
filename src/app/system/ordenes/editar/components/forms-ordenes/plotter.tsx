@@ -6,10 +6,15 @@ import InputRadio from "../../../components/input-radio";
 import { plotterMaterial, plotterTerminacion } from "@/libs/listas";
 import PlotterColor from "../../../crear/[id_cliente]/components/plotter-color";
 import AlertInvalidInput from "../../../crear/[id_cliente]/components/alert-invalid-input";
+import { useState } from "react";
+import { plotterColores } from "@/types/const";
 
 const PlotterForm = () => {
   const { formState, watch, setValue } = useFormContext<Plotter>();
   const { errors } = formState;
+  const [plotterColor] = useState(
+    plotterColores.filter((color) => color.codigo == watch().color)[0].color
+  );
 
   return (
     <FormConnectOrdenes>
@@ -63,6 +68,7 @@ const PlotterForm = () => {
             setValue={setValue}
             error={watch().color === undefined}
             watch={watch}
+            color={plotterColor}
           />
           {watch().color === undefined && (
             <AlertInvalidInput texto="El color es requerido." />
@@ -71,6 +77,6 @@ const PlotterForm = () => {
       )}
     </FormConnectOrdenes>
   );
-}
+};
 
-export default PlotterForm
+export default PlotterForm;

@@ -7,8 +7,12 @@ import {
 } from "../../../../libs/moment";
 import { Talonarios } from "@/types/recursos/productos";
 import TalonariosForm from "../../../../components/forms-ordenes/talonarios";
+import { useRouter } from "next/navigation";
+import { actualizarTalonarioFetch } from "@/libs/client/axios";
 
 const Form = ({ orden }: { orden: Talonarios }) => {
+  const router = useRouter();
+
   const methods = useForm<Talonarios>({
     defaultValues: {
       fecha_entrega: formatearFechaFormEditar(orden.fecha_entrega),
@@ -32,8 +36,15 @@ const Form = ({ orden }: { orden: Talonarios }) => {
     },
   });
 
-  const onSubmit = methods.handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = methods.handleSubmit(async (data) => {
+    const ordenActualizada = await actualizarTalonarioFetch(
+      data,
+      orden.id || 0
+    );
+
+    router.push(
+      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
+    );
   });
 
   return (

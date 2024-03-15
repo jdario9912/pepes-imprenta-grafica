@@ -7,8 +7,12 @@ import {
 } from "../../../../libs/moment";
 import { Volantes } from "@/types/recursos/productos";
 import VolantesForm from "../../../../components/forms-ordenes/volantes";
+import { useRouter } from "next/navigation";
+import { actualizarVolanteFetch } from "@/libs/client/axios";
 
 const Form = ({ orden }: { orden: Volantes }) => {
+  const router = useRouter();
+
   const methods = useForm<Volantes>({
     defaultValues: {
       fecha_entrega: formatearFechaFormEditar(orden.fecha_entrega),
@@ -26,8 +30,12 @@ const Form = ({ orden }: { orden: Volantes }) => {
     },
   });
 
-  const onSubmit = methods.handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = methods.handleSubmit(async (data) => {
+    const ordenActualizada = await actualizarVolanteFetch(data, orden.id || 0);
+
+    router.push(
+      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
+    );
   });
 
   return (

@@ -7,8 +7,12 @@ import {
 } from "../../../../libs/moment";
 import { Loma } from "@/types/recursos/productos";
 import LomaForm from "../../../../components/forms-ordenes/loma";
+import { useRouter } from "next/navigation";
+import { actualizarLomaFetch } from "@/libs/client/axios";
 
 const Form = ({ orden }: { orden: Loma }) => {
+  const router = useRouter();
+
   const methods = useForm<Loma>({
     defaultValues: {
       fecha_entrega: formatearFechaFormEditar(orden.fecha_entrega),
@@ -29,8 +33,12 @@ const Form = ({ orden }: { orden: Loma }) => {
     },
   });
 
-  const onSubmit = methods.handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = methods.handleSubmit(async (data) => {
+    const ordenActualizada = await actualizarLomaFetch(data, orden.id || 0);
+
+    router.push(
+      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
+    );
   });
 
   return (

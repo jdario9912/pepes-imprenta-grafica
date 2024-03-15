@@ -7,8 +7,11 @@ import {
   formatearHoraFormEditar,
 } from "../../../../libs/moment";
 import BonosForm from "../../../../components/forms-ordenes/bonos";
+import { actualizarBonoFetch } from "@/libs/client/axios";
+import { useRouter } from "next/navigation";
 
 const Form = ({ orden }: { orden: Bonos }) => {
+  const router = useRouter();
   const methods = useForm<Bonos>({
     defaultValues: {
       fecha_entrega: formatearFechaFormEditar(orden.fecha_entrega),
@@ -27,8 +30,12 @@ const Form = ({ orden }: { orden: Bonos }) => {
     },
   });
 
-  const onSubmit = methods.handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = methods.handleSubmit(async (data) => {
+    const ordenActualizada = await actualizarBonoFetch(data, orden.id || 0);
+
+    router.push(
+      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
+    );
   });
 
   return (

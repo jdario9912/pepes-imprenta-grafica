@@ -15,7 +15,7 @@ const NavAside = () => {
           <Link href={href} key={href} className="whitespace-nowrap">
             <li
               className={classNames("p-2 hover:bg-blue-500/50", {
-                "bg-blue-500": pathname === href,
+                "bg-blue-500 dark:bg-blue-900 dark:text-white": pathname === href,
               })}
             >
               {label}

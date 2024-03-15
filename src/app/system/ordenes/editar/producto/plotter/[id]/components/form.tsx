@@ -7,8 +7,12 @@ import {
 } from "../../../../libs/moment";
 import { Plotter } from "@/types/recursos/productos";
 import PlotterForm from "../../../../components/forms-ordenes/plotter";
+import { useRouter } from "next/navigation";
+import { actualizarPlotterFetch } from "@/libs/client/axios";
 
 const Form = ({ orden }: { orden: Plotter }) => {
+  const router = useRouter();
+
   const methods = useForm<Plotter>({
     defaultValues: {
       fecha_entrega: formatearFechaFormEditar(orden.fecha_entrega),
@@ -26,8 +30,12 @@ const Form = ({ orden }: { orden: Plotter }) => {
     },
   });
 
-  const onSubmit = methods.handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = methods.handleSubmit(async (data) => {
+    const ordenActualizada = await actualizarPlotterFetch(data, orden.id || 0);
+
+    router.push(
+      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
+    );
   });
 
   return (

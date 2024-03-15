@@ -7,8 +7,12 @@ import {
 } from "../../../../libs/moment";
 import { Remeras } from "@/types/recursos/productos";
 import RemerasForm from "../../../../components/forms-ordenes/remeras";
+import { useRouter } from "next/navigation";
+import { actualizarRemeraFetch } from "@/libs/client/axios";
 
 const Form = ({ orden }: { orden: Remeras }) => {
+  const router = useRouter();
+
   const methods = useForm<Remeras>({
     defaultValues: {
       fecha_entrega: formatearFechaFormEditar(orden.fecha_entrega),
@@ -28,8 +32,12 @@ const Form = ({ orden }: { orden: Remeras }) => {
     },
   });
 
-  const onSubmit = methods.handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = methods.handleSubmit(async (data) => {
+    const ordenActualizada = await actualizarRemeraFetch(data, orden.id || 0);
+
+    router.push(
+      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
+    );
   });
 
   return (

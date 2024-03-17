@@ -14,6 +14,7 @@ import moment from "moment";
 import PdfImportes from "./pdf-importes";
 import ObservacionesPdf from "./observaciones";
 import { formatearFecha, formatearHora } from "@/libs/client/moment";
+import BtnEditarOrden from "./btn-editar-orden";
 
 const PdfWrapper = ({
   children,
@@ -26,6 +27,7 @@ const PdfWrapper = ({
 }) => {
   return (
     <div className="h-screen">
+      <BtnEditarOrden producto={orden.producto || ""} id={orden.id || 0} />
       <PDFViewer height="100%" width="100%">
         <Document>
           {/* Orden Cliente */}

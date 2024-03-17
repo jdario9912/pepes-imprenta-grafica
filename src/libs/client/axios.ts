@@ -13,6 +13,8 @@ import type {
 } from "@/types/recursos/productos";
 import { axiosQuery } from "../axios";
 import { OrdenEncontrada } from "@/types/orden";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export const crearCliente = async (nuevoCliente: Cliente) =>
   await axiosQuery.post<Cliente>("/api/clientes", nuevoCliente);
@@ -61,86 +63,3 @@ export const buscarOrden = async (numero: string): Promise<OrdenEncontrada> =>
 
 export const buscarTelefono = async (numero: string): Promise<Cliente[]> =>
   (await axiosQuery.get<Cliente[]>(`/api/busqueda/telefono/${numero}`)).data;
-
-export const actualizarBonoFetch = async (
-  actualizado: Bonos,
-  id: number
-): Promise<Bonos> =>
-  (await axiosQuery.patch(`/api/ordenes/bonos/${id}`, actualizado)).data;
-
-export const actualizarDisenoFetch = async (
-  actualizado: Disenos,
-  id: number
-): Promise<Disenos> =>
-  (await axiosQuery.patch<Disenos>(`/api/ordenes/disenos/${id}`, actualizado))
-    .data;
-
-export const actualizarImpresionFetch = async (
-  actualizado: Impresiones,
-  id: number
-): Promise<Impresiones> =>
-  (
-    await axiosQuery.patch<Impresiones>(
-      `/api/ordenes/impresiones/${id}`,
-      actualizado
-    )
-  ).data;
-
-export const actualizarLomaFetch = async (
-  actualizado: Loma,
-  id: number
-): Promise<Loma> =>
-  (await axiosQuery.patch<Loma>(`/api/ordenes/loma/${id}`, actualizado)).data;
-
-export const actualizarPlotterFetch = async (
-  actualizado: Plotter,
-  id: number
-): Promise<Plotter> =>
-  (await axiosQuery.patch<Plotter>(`/api/ordenes/plotter/${id}`, actualizado))
-    .data;
-
-export const actualizarRemeraFetch = async (
-  actualizado: Remeras,
-  id: number
-): Promise<Remeras> =>
-  (await axiosQuery.patch<Remeras>(`/api/ordenes/remeras/${id}`, actualizado))
-    .data;
-
-export const actualizarSelloFetch = async (
-  actualizado: Sellos,
-  id: number
-): Promise<Sellos> =>
-  (await axiosQuery.patch<Sellos>(`/api/ordenes/sellos/${id}`, actualizado))
-    .data;
-
-export const actualizarTalonarioFetch = async (
-  actualizado: Talonarios,
-  id: number
-): Promise<Talonarios> =>
-  (
-    await axiosQuery.patch<Talonarios>(
-      `/api/ordenes/talonarios/${id}`,
-      actualizado
-    )
-  ).data;
-
-export const actualizarTarjetaFetch = async (
-  actualizado: Tarjetas,
-  id: number
-): Promise<Tarjetas> =>
-  (await axiosQuery.patch<Tarjetas>(`/api/ordenes/tarjetas/${id}`, actualizado))
-    .data;
-
-export const actualizarVarioFetch = async (
-  actualizado: Varios,
-  id: number
-): Promise<Varios> =>
-  (await axiosQuery.patch<Varios>(`/api/ordenes/varios/${id}`, actualizado))
-    .data;
-
-export const actualizarVolanteFetch = async (
-  actualizado: Volantes,
-  id: number
-): Promise<Volantes> =>
-  (await axiosQuery.patch<Volantes>(`/api/ordenes/volantes/${id}`, actualizado))
-    .data;

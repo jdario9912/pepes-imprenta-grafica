@@ -7,8 +7,8 @@ import {
   formatearHoraFormEditar,
 } from "../../../../libs/moment";
 import DisenosForm from "../../../../components/forms-ordenes/disenos";
-import { actualizarDisenoFetch } from "@/libs/client/axios";
 import { useRouter } from "next/navigation";
+import { actualizarDisenoFetch } from "@/libs/server-actions/axios";
 
 const Form = ({ orden }: { orden: Disenos }) => {
   const router = useRouter()
@@ -27,9 +27,11 @@ const Form = ({ orden }: { orden: Disenos }) => {
   });
 
   const onSubmit = methods.handleSubmit(async (data) => {
-    const ordenActualizada = await actualizarDisenoFetch(data, orden.id || 0)
+    const ordenActualizada = await actualizarDisenoFetch(data, orden.id || 0);
+
+    const urlPdf = `/system/pdf/producto/disenos/${ordenActualizada.id}`
     
-    router.push(`/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`)
+    router.push(urlPdf)
   });
 
   return (

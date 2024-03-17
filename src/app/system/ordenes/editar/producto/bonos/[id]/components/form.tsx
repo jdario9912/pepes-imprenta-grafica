@@ -7,8 +7,8 @@ import {
   formatearHoraFormEditar,
 } from "../../../../libs/moment";
 import BonosForm from "../../../../components/forms-ordenes/bonos";
-import { actualizarBonoFetch } from "@/libs/client/axios";
 import { useRouter } from "next/navigation";
+import { actualizarBonoFetch } from "@/libs/server-actions/axios";
 
 const Form = ({ orden }: { orden: Bonos }) => {
   const router = useRouter();
@@ -33,9 +33,9 @@ const Form = ({ orden }: { orden: Bonos }) => {
   const onSubmit = methods.handleSubmit(async (data) => {
     const ordenActualizada = await actualizarBonoFetch(data, orden.id || 0);
 
-    router.push(
-      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
-    );
+    const urlPdf = `/system/pdf/producto/bonos/${ordenActualizada.id}`;
+
+    router.push(urlPdf);
   });
 
   return (

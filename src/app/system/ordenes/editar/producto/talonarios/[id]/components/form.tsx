@@ -8,7 +8,7 @@ import {
 import { Talonarios } from "@/types/recursos/productos";
 import TalonariosForm from "../../../../components/forms-ordenes/talonarios";
 import { useRouter } from "next/navigation";
-import { actualizarTalonarioFetch } from "@/libs/client/axios";
+import { actualizarTalonarioFetch } from "@/libs/server-actions/axios";
 
 const Form = ({ orden }: { orden: Talonarios }) => {
   const router = useRouter();
@@ -42,9 +42,7 @@ const Form = ({ orden }: { orden: Talonarios }) => {
       orden.id || 0
     );
 
-    router.push(
-      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
-    );
+    router.push(`/system/pdf/producto/talonarios/${ordenActualizada.id}`);
   });
 
   return (

@@ -8,7 +8,7 @@ import {
 import { Varios } from "@/types/recursos/productos";
 import VariosForm from "../../../../components/forms-ordenes/varios";
 import { useRouter } from "next/navigation";
-import { actualizarVarioFetch } from "@/libs/client/axios";
+import { actualizarVarioFetch } from "@/libs/server-actions/axios";
 
 const Form = ({ orden }: { orden: Varios }) => {
   const router = useRouter();
@@ -29,9 +29,7 @@ const Form = ({ orden }: { orden: Varios }) => {
   const onSubmit = methods.handleSubmit(async (data) => {
     const ordenActualizada = await actualizarVarioFetch(data, orden.id || 0);
 
-    router.push(
-      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
-    );
+    router.push(`/system/pdf/producto/varios/${ordenActualizada.id}`);
   });
 
   return (

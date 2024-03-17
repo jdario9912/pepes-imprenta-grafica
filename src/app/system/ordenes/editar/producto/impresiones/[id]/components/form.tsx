@@ -8,7 +8,7 @@ import {
 } from "../../../../libs/moment";
 import ImpresionesForm from "../../../../components/forms-ordenes/impresiones";
 import { useRouter } from "next/navigation";
-import { actualizarImpresionFetch } from "@/libs/client/axios";
+import { actualizarImpresionFetch } from "@/libs/server-actions/axios";
 
 const Form = ({ orden }: { orden: Impresiones }) => {
   const router = useRouter();
@@ -40,9 +40,7 @@ const Form = ({ orden }: { orden: Impresiones }) => {
       orden.id || 0
     );
 
-    router.push(
-      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
-    );
+    router.push(`/system/pdf/producto/impresiones/${ordenActualizada.id}`);
   });
 
   return (

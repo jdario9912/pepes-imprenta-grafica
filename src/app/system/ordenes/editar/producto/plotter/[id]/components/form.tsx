@@ -8,7 +8,7 @@ import {
 import { Plotter } from "@/types/recursos/productos";
 import PlotterForm from "../../../../components/forms-ordenes/plotter";
 import { useRouter } from "next/navigation";
-import { actualizarPlotterFetch } from "@/libs/client/axios";
+import { actualizarPlotterFetch } from "@/libs/server-actions/axios";
 
 const Form = ({ orden }: { orden: Plotter }) => {
   const router = useRouter();
@@ -33,9 +33,7 @@ const Form = ({ orden }: { orden: Plotter }) => {
   const onSubmit = methods.handleSubmit(async (data) => {
     const ordenActualizada = await actualizarPlotterFetch(data, orden.id || 0);
 
-    router.push(
-      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
-    );
+    router.push(`/system/pdf/producto/plotter/${ordenActualizada.id}`);
   });
 
   return (

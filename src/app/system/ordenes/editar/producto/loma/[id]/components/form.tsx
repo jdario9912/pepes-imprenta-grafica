@@ -8,7 +8,7 @@ import {
 import { Loma } from "@/types/recursos/productos";
 import LomaForm from "../../../../components/forms-ordenes/loma";
 import { useRouter } from "next/navigation";
-import { actualizarLomaFetch } from "@/libs/client/axios";
+import { actualizarLomaFetch } from "@/libs/server-actions/axios";
 
 const Form = ({ orden }: { orden: Loma }) => {
   const router = useRouter();
@@ -36,9 +36,7 @@ const Form = ({ orden }: { orden: Loma }) => {
   const onSubmit = methods.handleSubmit(async (data) => {
     const ordenActualizada = await actualizarLomaFetch(data, orden.id || 0);
 
-    router.push(
-      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
-    );
+    router.push(`/system/pdf/producto/loma/${ordenActualizada.id}`);
   });
 
   return (

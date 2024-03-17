@@ -17,7 +17,6 @@ import {
 } from "@/types/recursos/productos";
 import { revalidarClientesYDireccionar } from "./libs";
 import { OrdenAProveedor, OrdenPendiente } from "@/types/orden";
-import { redirect } from "next/navigation";
 
 export const editarCliente = async (cliente: Cliente, id: number) => {
   const clienteActualizado = await axiosQuery.patch<Cliente>(
@@ -119,9 +118,10 @@ export const actualizarBonoFetch = async (
   const urlApi = `/api/ordenes/bonos/${id}`;
   const urlPdf = `/system/pdf/producto/bonos/${id}`;
 
-  const res = await axiosQuery.patch(`/api/ordenes/bonos/${id}`, actualizado);
+  const res = await axiosQuery.patch(urlApi, actualizado);
 
   revalidatePath(urlPdf);
+
   return res.data;
 };
 
@@ -135,75 +135,132 @@ export const actualizarDisenoFetch = async (
   const res = await axiosQuery.patch<Disenos>(urlApi, actualizado);
 
   revalidatePath(urlPdf);
+
   return res.data;
 };
 
 export const actualizarImpresionFetch = async (
   actualizado: Impresiones,
   id: number
-): Promise<Impresiones> =>
-  (
-    await axiosQuery.patch<Impresiones>(
-      `/api/ordenes/impresiones/${id}`,
-      actualizado
-    )
-  ).data;
+): Promise<Impresiones> => {
+  const urlApi = `/api/ordenes/impresiones/${id}`;
+  const urlPdf = `/system/pdf/producto/impresiones/${id}`;
+
+  const res = await axiosQuery.patch<Impresiones>(urlApi, actualizado);
+
+  revalidatePath(urlPdf);
+
+  return res.data;
+};
 
 export const actualizarLomaFetch = async (
   actualizado: Loma,
   id: number
-): Promise<Loma> =>
-  (await axiosQuery.patch<Loma>(`/api/ordenes/loma/${id}`, actualizado)).data;
+): Promise<Loma> => {
+  const urlApi = `/api/ordenes/loma/${id}`;
+  const urlPdf = `/system/pdf/producto/loma/${id}`;
+
+  const res = await axiosQuery.patch<Loma>(urlApi, actualizado);
+
+  revalidatePath(urlPdf);
+
+  return res.data;
+};
 
 export const actualizarPlotterFetch = async (
   actualizado: Plotter,
   id: number
-): Promise<Plotter> =>
-  (await axiosQuery.patch<Plotter>(`/api/ordenes/plotter/${id}`, actualizado))
-    .data;
+): Promise<Plotter> => {
+  const urlApi = `/api/ordenes/plotter/${id}`;
+  const urlPdf = `/system/pdf/producto/plotter/${id}`;
+
+  const res = await axiosQuery.patch<Plotter>(urlApi, actualizado);
+
+  revalidatePath(urlPdf);
+
+  return res.data;
+};
 
 export const actualizarRemeraFetch = async (
   actualizado: Remeras,
   id: number
-): Promise<Remeras> =>
-  (await axiosQuery.patch<Remeras>(`/api/ordenes/remeras/${id}`, actualizado))
-    .data;
+): Promise<Remeras> => {
+  const urlApi = `/api/ordenes/remeras/${id}`;
+  const urlPdf = `/system/pdf/producto/remeras/${id}`;
+
+  const res = await axiosQuery.patch<Remeras>(urlApi, actualizado);
+
+  revalidatePath(urlPdf);
+
+  return res.data;
+};
 
 export const actualizarSelloFetch = async (
   actualizado: Sellos,
   id: number
-): Promise<Sellos> =>
-  (await axiosQuery.patch<Sellos>(`/api/ordenes/sellos/${id}`, actualizado))
-    .data;
+): Promise<Sellos> => {
+  const urlApi = `/api/ordenes/plotter/${id}`;
+  const urlPdf = `/system/pdf/producto/plotter/${id}`;
+
+  const res = await axiosQuery.patch<Sellos>(urlApi, actualizado);
+
+  revalidatePath(urlPdf);
+
+  return res.data;
+};
 
 export const actualizarTalonarioFetch = async (
   actualizado: Talonarios,
   id: number
-): Promise<Talonarios> =>
-  (
-    await axiosQuery.patch<Talonarios>(
-      `/api/ordenes/talonarios/${id}`,
-      actualizado
-    )
-  ).data;
+): Promise<Talonarios> => {
+  const urlApi = `/api/ordenes/talonarios/${id}`;
+  const urlPdf = `/system/pdf/producto/talonarios/${id}`;
+
+  const res = await axiosQuery.patch<Talonarios>(urlApi, actualizado);
+
+  revalidatePath(urlPdf);
+
+  return res.data;
+};
 
 export const actualizarTarjetaFetch = async (
   actualizado: Tarjetas,
   id: number
-): Promise<Tarjetas> =>
-  (await axiosQuery.patch<Tarjetas>(`/api/ordenes/tarjetas/${id}`, actualizado))
-    .data;
+): Promise<Tarjetas> => {
+  const urlApi = `/api/ordenes/tarjetas/${id}`;
+  const urlPdf = `/system/pdf/producto/tarjetas/${id}`;
+
+  const res = await axiosQuery.patch<Tarjetas>(urlApi, actualizado);
+
+  revalidatePath(urlPdf);
+
+  return res.data;
+};
 
 export const actualizarVarioFetch = async (
   actualizado: Varios,
   id: number
-): Promise<Varios> =>
-  (await axiosQuery.patch<Varios>(`/api/ordenes/varios/${id}`, actualizado))
-    .data;
+): Promise<Varios> => {
+  const urlApi = `/api/ordenes/varios/${id}`;
+  const urlPdf = `/system/pdf/producto/varios/${id}`;
+
+  const res = await axiosQuery.patch<Varios>(urlApi, actualizado);
+
+  revalidatePath(urlPdf);
+
+  return res.data;
+};
 
 export const actualizarVolanteFetch = async (
   actualizado: Volantes,
   id: number
-): Promise<Volantes> =>
-  (await axiosQuery.patch<Volantes>(`/api/ordenes/volantes/${id}`, actualizado))
-    .data;
+): Promise<Volantes> => {
+  const urlApi = `/api/ordenes/volantes/${id}`;
+  const urlPdf = `/system/pdf/producto/volantes/${id}`;
+
+  const res = await axiosQuery.patch<Volantes>(urlApi, actualizado);
+
+  revalidatePath(urlPdf);
+
+  return res.data;
+};

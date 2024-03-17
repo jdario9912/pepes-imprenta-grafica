@@ -8,7 +8,7 @@ import {
 import { Volantes } from "@/types/recursos/productos";
 import VolantesForm from "../../../../components/forms-ordenes/volantes";
 import { useRouter } from "next/navigation";
-import { actualizarVolanteFetch } from "@/libs/client/axios";
+import { actualizarVolanteFetch } from "@/libs/server-actions/axios";
 
 const Form = ({ orden }: { orden: Volantes }) => {
   const router = useRouter();
@@ -33,9 +33,7 @@ const Form = ({ orden }: { orden: Volantes }) => {
   const onSubmit = methods.handleSubmit(async (data) => {
     const ordenActualizada = await actualizarVolanteFetch(data, orden.id || 0);
 
-    router.push(
-      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
-    );
+    router.push(`/system/pdf/producto/volantes/${ordenActualizada.id}`);
   });
 
   return (

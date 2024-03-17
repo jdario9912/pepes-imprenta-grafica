@@ -8,7 +8,7 @@ import {
 import { Remeras } from "@/types/recursos/productos";
 import RemerasForm from "../../../../components/forms-ordenes/remeras";
 import { useRouter } from "next/navigation";
-import { actualizarRemeraFetch } from "@/libs/client/axios";
+import { actualizarRemeraFetch } from "@/libs/server-actions/axios";
 
 const Form = ({ orden }: { orden: Remeras }) => {
   const router = useRouter();
@@ -35,9 +35,7 @@ const Form = ({ orden }: { orden: Remeras }) => {
   const onSubmit = methods.handleSubmit(async (data) => {
     const ordenActualizada = await actualizarRemeraFetch(data, orden.id || 0);
 
-    router.push(
-      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
-    );
+    router.push(`/system/pdf/producto/remeras/${ordenActualizada.id}`);
   });
 
   return (

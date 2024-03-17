@@ -8,7 +8,7 @@ import {
 import { Sellos } from "@/types/recursos/productos";
 import SellosForm from "../../../../components/forms-ordenes/sellos";
 import { useRouter } from "next/navigation";
-import { actualizarSelloFetch } from "@/libs/client/axios";
+import { actualizarSelloFetch } from "@/libs/server-actions/axios";
 
 const Form = ({ orden }: { orden: Sellos }) => {
   const router = useRouter();
@@ -32,9 +32,7 @@ const Form = ({ orden }: { orden: Sellos }) => {
   const onSubmit = methods.handleSubmit(async (data) => {
     const ordenActualizada = await actualizarSelloFetch(data, orden.id || 0);
 
-    router.push(
-      `/system/pdf/producto/${ordenActualizada.producto}/${ordenActualizada.id}`
-    );
+    router.push(`/system/pdf/producto/sellos/${ordenActualizada.id}`);
   });
 
   return (

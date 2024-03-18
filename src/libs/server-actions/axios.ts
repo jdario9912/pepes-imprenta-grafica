@@ -17,6 +17,7 @@ import {
 } from "@/types/recursos/productos";
 import { revalidarClientesYDireccionar } from "./libs";
 import { OrdenAProveedor, OrdenPendiente } from "@/types/orden";
+import { redirect, permanentRedirect } from "next/navigation";
 
 export const editarCliente = async (cliente: Cliente, id: number) => {
   const clienteActualizado = await axiosQuery.patch<Cliente>(
@@ -42,7 +43,6 @@ export const cambiarEstadoOrden = async (
   await axiosQuery.patch(`/api/ordenes/${producto}/${id}`, { estado });
   revalidatePath("/system/ordenes/pendientes");
   revalidatePath("/system/ordenes/proveedor");
-  return;
 };
 
 export const crearBonoFetch = async (data: unknown) => {

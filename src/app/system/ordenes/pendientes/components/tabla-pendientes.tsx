@@ -145,6 +145,7 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
               </TableColumn>
             ))}
           </TableHeader>
+          
           <TableBody emptyContent={"No hay resultados para mostrar."}>
             {table.getRowModel().rows.map((row) => (
               <TableRow

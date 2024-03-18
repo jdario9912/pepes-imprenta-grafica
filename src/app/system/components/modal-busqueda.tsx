@@ -9,6 +9,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
+  Chip,
 } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -25,6 +26,14 @@ const ModalBusqueda = ({
   const router = useRouter();
 
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+
+  const handleEditar = () => {
+    router.push(
+      `/system/ordenes/editar/producto/${ordenEncontrada?.producto}/${ordenEncontrada?.id}`
+    );
+
+    (() => onClose())();
+  };
 
   const handleVerPdf = () => {
     router.push(
@@ -44,11 +53,30 @@ const ModalBusqueda = ({
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">Orden</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">
+              Orden nº: {ordenEncontrada?.nro_orden}
+            </ModalHeader>
             <ModalBody>
-              <p>{ordenEncontrada?.estado}</p>
-              <p>{ordenEncontrada?.nombre}</p>
-              <p>{ordenEncontrada?.producto}</p>
+              <p>
+                <span className="font-bold">Cliente: </span>
+                {ordenEncontrada?.nombre}
+              </p>
+              <p>
+                <span className="font-bold">Producto: </span>
+                {ordenEncontrada?.producto}
+              </p>
+              <p>
+                <span className="font-bold">Estado: </span>
+                <Chip
+                  size="md"
+                  color="secondary"
+                  classNames={{
+                    content: "capitalize",
+                  }}
+                >
+                  {ordenEncontrada?.estado}
+                </Chip>
+              </p>
             </ModalBody>
             <ModalFooter>
               <Button
@@ -61,6 +89,11 @@ const ModalBusqueda = ({
               >
                 Cerrar
               </Button>
+
+              <Button color="primary" onPress={handleEditar}>
+                Editar
+              </Button>
+
               <Button color="primary" onPress={handleVerPdf}>
                 Ver pdf
               </Button>

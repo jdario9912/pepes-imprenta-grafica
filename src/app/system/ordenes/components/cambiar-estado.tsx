@@ -1,3 +1,5 @@
+"use client";
+
 import IconoBtnAccionesTablas from "@/components/icono-btn-acciones-tablas";
 import { iconos } from "@/components/icons";
 import LabelBtnAccionesTablas from "@/components/label-btn-acciones-tablas";
@@ -10,7 +12,6 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/react";
-import { useState } from "react";
 
 const CambiarEstado = ({
   producto,
@@ -21,12 +22,9 @@ const CambiarEstado = ({
   producto: string;
   id: number;
 }) => {
-  const [actualizar, setActualizar] = useState(false)
-  const handleCambiarEstado = async (estado: string) =>{
-
+  const handleCambiarEstado = async (estado: string) => {
     await cambiarEstadoOrden(producto, id, estado);
-    setActualizar(!actualizar)
-  }
+  };
 
   return (
     <Dropdown>

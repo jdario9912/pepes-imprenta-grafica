@@ -39,6 +39,8 @@ export const PATCH = async (req: NextRequest, { params }: any) => {
 
     return NextResponse.json(ordenActualizada);
   } catch (error) {
+    console.log(error);
+    
     return errorResponse(error);
   }
 };

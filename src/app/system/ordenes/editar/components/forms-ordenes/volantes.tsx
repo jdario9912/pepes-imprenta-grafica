@@ -2,11 +2,17 @@ import { Volantes } from "@/types/recursos/productos";
 import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import FormConnectOrdenes from "../form-connect-ordenes";
 import InputSelect from "../../../components/input-select";
-import { volantesCantidad, volantesImpresion, volantesTamano, volantesTipo } from "@/libs/listas";
+import {
+  volantesCantidad,
+  volantesImpresion,
+  volantesTamano,
+  volantesTipo,
+} from "@/libs/listas";
 import { Input } from "@nextui-org/react";
 
 const VolantesForm = () => {
-  const { formState, watch, control, setValue, resetField } = useFormContext<Volantes>();
+  const { formState, watch, control, setValue, resetField } =
+    useFormContext<Volantes>();
   const { errors } = formState;
 
   return (
@@ -21,6 +27,7 @@ const VolantesForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tipo"
                 error={!!errors.tipo}
                 opciones={volantesTipo}
                 name="tipo"
@@ -39,6 +46,7 @@ const VolantesForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tamaño"
                 error={!!errors.tamano}
                 opciones={volantesTamano}
                 name="tamano"
@@ -57,6 +65,7 @@ const VolantesForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="cantidad"
                 error={!!errors.cantidad}
                 opciones={volantesCantidad}
                 name="cantidad"
@@ -75,6 +84,7 @@ const VolantesForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="impresión"
                 error={!!errors.impresion}
                 opciones={volantesImpresion}
                 name="impresion"

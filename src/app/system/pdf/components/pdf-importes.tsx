@@ -74,7 +74,9 @@ const PdfImportes = ({ orden }: { orden: Producto }) => (
             fontSize: 15,
           }}
         >
-          Entrega{" "}
+          Entrega <Text style={{
+            fontSize: 10
+          }}>({orden.metodo_pago})</Text>
         </Text>
       </View>
       <View

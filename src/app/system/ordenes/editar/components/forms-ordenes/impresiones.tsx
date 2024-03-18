@@ -1,13 +1,20 @@
-import type { Impresiones } from '@/types/recursos/productos';
-import { Controller, UseFormRegister, useFormContext } from 'react-hook-form';
-import FormConnectOrdenes from '../form-connect-ordenes';
-import { Input } from '@nextui-org/react';
-import InputRadio from '../../../components/input-radio';
-import { impresionesFaz, impresionesImpesion, impresionesOrientacion, impresionesTamanoPapel, siNo } from '@/libs/listas';
-import InputSelect from '../../../components/input-select';
+import type { Impresiones } from "@/types/recursos/productos";
+import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
+import FormConnectOrdenes from "../form-connect-ordenes";
+import { Input } from "@nextui-org/react";
+import InputRadio from "../../../components/input-radio";
+import {
+  impresionesFaz,
+  impresionesImpesion,
+  impresionesOrientacion,
+  impresionesTamanoPapel,
+  siNo,
+} from "@/libs/listas";
+import InputSelect from "../../../components/input-select";
 
 const ImpresionesForm = () => {
-  const { formState, watch, control, setValue, resetField } = useFormContext<Impresiones>();
+  const { formState, watch, control, setValue, resetField } =
+    useFormContext<Impresiones>();
   const { errors } = formState;
 
   return (
@@ -64,6 +71,7 @@ const ImpresionesForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tamaño"
                 error={!!errors.tamano_papel}
                 opciones={impresionesTamanoPapel}
                 name="tamano_papel"
@@ -121,6 +129,6 @@ const ImpresionesForm = () => {
       )}
     </FormConnectOrdenes>
   );
-}
+};
 
-export default ImpresionesForm
+export default ImpresionesForm;

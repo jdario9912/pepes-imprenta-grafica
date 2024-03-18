@@ -27,6 +27,7 @@ const VolantesForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tipo"
                 error={!!errors.tipo}
                 opciones={volantesTipo}
                 name="tipo"
@@ -44,6 +45,7 @@ const VolantesForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tamaño"
                 error={!!errors.tamano}
                 opciones={volantesTamano}
                 name="tamano"
@@ -61,6 +63,7 @@ const VolantesForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="cantidad"
                 error={!!errors.cantidad}
                 opciones={volantesCantidad}
                 name="cantidad"
@@ -78,6 +81,7 @@ const VolantesForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="impresión"
                 error={!!errors.impresion}
                 opciones={volantesImpresion}
                 name="impresion"

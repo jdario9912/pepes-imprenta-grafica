@@ -199,8 +199,8 @@ export const actualizarSelloFetch = async (
   actualizado: Sellos,
   id: number
 ): Promise<Sellos> => {
-  const urlApi = `/api/ordenes/plotter/${id}`;
-  const urlPdf = `/system/pdf/producto/plotter/${id}`;
+  const urlApi = `/api/ordenes/sellos/${id}`;
+  const urlPdf = `/system/pdf/producto/sellos/${id}`;
 
   const res = await axiosQuery.patch<Sellos>(urlApi, actualizado);
 

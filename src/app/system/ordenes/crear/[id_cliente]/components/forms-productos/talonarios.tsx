@@ -30,6 +30,7 @@ const TalonariosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tipo"
                 error={!!errors.tipo}
                 opciones={talonariosTipo}
                 name="tipo"
@@ -58,6 +59,7 @@ const TalonariosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tamaño"
                 error={!!errors.tamano}
                 opciones={talonariosTamano}
                 name="tamano"
@@ -134,6 +136,7 @@ const TalonariosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="puntillado-emblocado"
                 error={!!errors.puntillado_emblocado}
                 opciones={talonariosPuntilladoEmblocado}
                 name="puntillado_emblocado"
@@ -151,6 +154,7 @@ const TalonariosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="color duplicado"
                 error={!!errors.color_duplicado}
                 opciones={talonariosColorDuplicado}
                 name="color_duplicado"
@@ -161,7 +165,7 @@ const TalonariosForm = () => {
           />
 
           <Controller
-            name="color_duplicado"
+            name="triplicado"
             control={control}
             rules={{
               required: {
@@ -198,6 +202,7 @@ const TalonariosForm = () => {
               }}
               render={() => (
                 <InputSelect
+                  label="color triplicado"
                   error={!!errors.color_triplicado}
                   opciones={talonariosColorTriplicado}
                   name="color_triplicado"

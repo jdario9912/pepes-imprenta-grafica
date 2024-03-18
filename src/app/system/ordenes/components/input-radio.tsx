@@ -24,8 +24,8 @@ const InputRadio = ({
     errorMessage={errorMessage}
     orientation="horizontal"
   >
-    <div className="flex items-center gap-4">
-      <p>{label}</p>
+    <div className="flex items-center gap-x-4">
+      <p className="first-letter:capitalize text-xs">{label}</p>
       <div className="flex gap-2">
         {opciones.map((opcion) => {
           const id = uuid();
@@ -36,7 +36,7 @@ const InputRadio = ({
               htmlFor={id}
               className="flex gap-x-2 items-center p-2 rounded-sm hover:bg-blue-200 hover:underline hover:cursor-pointer"
             >
-              {opcion}
+              <p className="first-letter:capitalize">{opcion}</p>
               <input
                 id={id}
                 type="radio"

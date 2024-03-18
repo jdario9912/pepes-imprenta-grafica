@@ -13,7 +13,7 @@ const SellosForm = () => {
     <FormConnectProductos>
       {({ register }: { register: UseFormRegister<Sellos> }) => (
         <>
-        <Controller
+          <Controller
             name="tipo"
             control={control}
             rules={{
@@ -21,6 +21,7 @@ const SellosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tipo"
                 error={!!errors.tipo}
                 opciones={sellosTipo}
                 name="tipo"

@@ -2,12 +2,20 @@ import { Talonarios } from "@/types/recursos/productos";
 import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import FormConnectOrdenes from "../form-connect-ordenes";
 import InputSelect from "../../../components/input-select";
-import { siNo, talonariosColorDuplicado, talonariosColorTriplicado, talonariosPuntilladoEmblocado, talonariosTamano, talonariosTipo } from "@/libs/listas";
+import {
+  siNo,
+  talonariosColorDuplicado,
+  talonariosColorTriplicado,
+  talonariosPuntilladoEmblocado,
+  talonariosTamano,
+  talonariosTipo,
+} from "@/libs/listas";
 import { Input } from "@nextui-org/react";
 import InputRadio from "../../../components/input-radio";
 
 const TalonariosForm = () => {
-  const { formState, watch, control, setValue, resetField } = useFormContext<Talonarios>();
+  const { formState, watch, control, setValue, resetField } =
+    useFormContext<Talonarios>();
   const { errors } = formState;
 
   return (
@@ -22,6 +30,7 @@ const TalonariosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tipo"
                 error={!!errors.tipo}
                 opciones={talonariosTipo}
                 name="tipo"
@@ -52,6 +61,7 @@ const TalonariosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tamaño"
                 error={!!errors.tamano}
                 opciones={talonariosTamano}
                 name="tamano"
@@ -119,6 +129,7 @@ const TalonariosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="puntillado-emblocado"
                 error={!!errors.puntillado_emblocado}
                 opciones={talonariosPuntilladoEmblocado}
                 name="puntillado_emblocado"
@@ -137,6 +148,7 @@ const TalonariosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="color duplicado"
                 error={!!errors.color_duplicado}
                 opciones={talonariosColorDuplicado}
                 name="color_duplicado"
@@ -172,18 +184,25 @@ const TalonariosForm = () => {
             rules={{
               required: {
                 value:
-                  watch("color_duplicado") === "solo original" ? false : true,
+                  watch("color_duplicado") === "solo original" ||
+                  watch("triplicado") === "no"
+                    ? false
+                    : true,
                 message: "El color del triplicado es requerido.",
               },
             }}
             render={() => (
               <InputSelect
+                label="color triplicado"
                 error={!!errors.color_triplicado}
                 opciones={talonariosColorTriplicado}
                 name="color_triplicado"
                 resetField={resetField}
                 setValue={setValue}
-                isDisabled={watch("color_duplicado") === "solo original"}
+                isDisabled={
+                  watch("color_duplicado") === "solo original" ||
+                  watch("triplicado") === "no"
+                }
                 defaultValue={watch().color_triplicado}
               />
             )}

@@ -39,6 +39,7 @@ const TarjetasForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tipo"
                 error={!!errors.tipo}
                 opciones={tarjetasTipo}
                 name="tipo"
@@ -56,6 +57,7 @@ const TarjetasForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="cantidad"
                 error={!!errors.cantidad}
                 opciones={tarjetasCantidad}
                 name="cantidad"
@@ -73,6 +75,7 @@ const TarjetasForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="papel"
                 error={!!errors.papel}
                 opciones={tarjetasPapel}
                 name="papel"
@@ -90,6 +93,7 @@ const TarjetasForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="terminación"
                 error={!!errors.terminacion}
                 opciones={tarjetasTerminacion}
                 name="terminacion"

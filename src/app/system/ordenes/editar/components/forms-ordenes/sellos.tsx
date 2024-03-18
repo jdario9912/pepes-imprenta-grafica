@@ -6,7 +6,8 @@ import { sellosTipo } from "@/libs/listas";
 import { Textarea } from "@nextui-org/react";
 
 const SellosForm = () => {
-  const { formState, watch, control, setValue, resetField } = useFormContext<Sellos>();
+  const { formState, watch, control, setValue, resetField } =
+    useFormContext<Sellos>();
   const { errors } = formState;
 
   return (
@@ -21,6 +22,7 @@ const SellosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tipo"
                 error={!!errors.tipo}
                 opciones={sellosTipo}
                 name="tipo"

@@ -84,6 +84,7 @@ const FormConnectOrdenes = ({ children }: { children: any }) => {
         }}
         render={() => (
           <InputSelect
+            label="Metodo de pago"
             error={!!errors.metodo_pago}
             name="metodo_pago"
             opciones={metodosPago}

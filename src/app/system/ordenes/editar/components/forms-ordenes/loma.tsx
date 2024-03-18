@@ -3,11 +3,17 @@ import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import FormConnectOrdenes from "../form-connect-ordenes";
 import { Input } from "@nextui-org/react";
 import InputSelect from "../../../components/input-select";
-import { lomaBolsillo, lomaMaterial, lomaOrientacion, siNo } from "@/libs/listas";
+import {
+  lomaBolsillo,
+  lomaMaterial,
+  lomaOrientacion,
+  siNo,
+} from "@/libs/listas";
 import InputRadio from "../../../components/input-radio";
 
 const LomaForm = () => {
-  const { formState, watch, setValue, resetField, control } = useFormContext<Loma>();
+  const { formState, watch, setValue, resetField, control } =
+    useFormContext<Loma>();
   const { errors } = formState;
 
   return (
@@ -33,6 +39,7 @@ const LomaForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="material"
                 error={!!errors.material}
                 opciones={lomaMaterial}
                 name="material"
@@ -51,6 +58,7 @@ const LomaForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="bolsillo"
                 error={!!errors.bolsillo}
                 opciones={lomaBolsillo}
                 name="bolsillo"

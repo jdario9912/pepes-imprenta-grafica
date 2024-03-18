@@ -89,8 +89,8 @@ export interface Talonarios extends Producto {
   numero_desde: number;
   puntillado_emblocado: string;
   color_duplicado: string;
-  triplicado: string;
-  color_triplicado: string;
+  triplicado?: string;
+  color_triplicado?: string;
 }
 
 export interface Tarjetas extends Producto {

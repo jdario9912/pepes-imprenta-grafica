@@ -81,6 +81,7 @@ const ImpresionesForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tamaño"
                 error={!!errors.tamano_papel}
                 opciones={impresionesTamanoPapel}
                 name="tamano_papel"

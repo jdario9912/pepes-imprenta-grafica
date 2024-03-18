@@ -34,7 +34,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
 
       <Controller
         name="muestra"
-        rules={{required: "Muestra es requerida."}}
+        rules={{ required: "Muestra es requerida." }}
         control={methods.control}
         render={() => (
           <InputRadio
@@ -81,6 +81,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
         }}
         render={() => (
           <InputSelect
+            label="Metodo de pago"
             error={!!errors.metodo_pago}
             name="metodo_pago"
             opciones={metodosPago}

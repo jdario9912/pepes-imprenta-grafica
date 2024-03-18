@@ -3,11 +3,18 @@ import { Controller, UseFormRegister, useFormContext } from "react-hook-form";
 import FormConnectOrdenes from "../form-connect-ordenes";
 import { Input } from "@nextui-org/react";
 import InputSelect from "../../../components/input-select";
-import { siNo, tarjetasCantidad, tarjetasPapel, tarjetasTerminacion, tarjetasTipo } from "@/libs/listas";
+import {
+  siNo,
+  tarjetasCantidad,
+  tarjetasPapel,
+  tarjetasTerminacion,
+  tarjetasTipo,
+} from "@/libs/listas";
 import InputRadio from "../../../components/input-radio";
 
 const TarjetasForm = () => {
-  const { formState, watch, control, setValue, resetField } = useFormContext<Tarjetas>();
+  const { formState, watch, control, setValue, resetField } =
+    useFormContext<Tarjetas>();
   const { errors } = formState;
 
   return (
@@ -33,6 +40,7 @@ const TarjetasForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tipo"
                 error={!!errors.tipo}
                 opciones={tarjetasTipo}
                 name="tipo"
@@ -51,6 +59,7 @@ const TarjetasForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="cantidad"
                 error={!!errors.cantidad}
                 opciones={tarjetasCantidad}
                 name="cantidad"
@@ -69,6 +78,7 @@ const TarjetasForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="papel"
                 error={!!errors.papel}
                 opciones={tarjetasPapel}
                 name="papel"
@@ -87,6 +97,7 @@ const TarjetasForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="terminación"
                 error={!!errors.terminacion}
                 opciones={tarjetasTerminacion}
                 name="terminacion"
@@ -111,6 +122,6 @@ const TarjetasForm = () => {
       )}
     </FormConnectOrdenes>
   );
-}
+};
 
-export default TarjetasForm
+export default TarjetasForm;

@@ -44,6 +44,7 @@ const BonosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="tamaño"
                 error={!!errors.tamano}
                 opciones={bonosTamano}
                 name="tamano"
@@ -61,6 +62,7 @@ const BonosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="numeradores"
                 error={!!errors.numeradores}
                 opciones={bonosNumeradores}
                 name="numeradores"
@@ -78,6 +80,7 @@ const BonosForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="lotes"
                 error={!!errors.lotes}
                 opciones={bonosLotes}
                 name="lotes"

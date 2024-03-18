@@ -22,8 +22,13 @@ const TalonariosSchema = ProductoSchema.extend({
     z.enum(["", ...talonariosPuntilladoEmblocado])
   ),
   color_duplicado: z.string(z.enum(["", ...talonariosColorDuplicado])),
-  triplicado: z.string(z.enum(["", ...siNo])),
-  color_triplicado: z.string(z.enum(["", ...talonariosColorTriplicado])),
+  triplicado: z.string(z.enum(["", ...siNo])).nullable().default(""),
+  color_triplicado: z
+    .string(z.enum(["", ...talonariosColorTriplicado]))
+    .nullish()
+    .transform((valor) => {
+      if (!valor) return "";
+    }),
 });
 
 export const validarTalonariosCrear = (object: unknown): Talonarios =>

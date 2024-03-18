@@ -37,6 +37,7 @@ const LomaForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="material"
                 error={!!errors.material}
                 opciones={lomaMaterial}
                 name="material"
@@ -54,6 +55,7 @@ const LomaForm = () => {
             }}
             render={() => (
               <InputSelect
+                label="bolsillo"
                 error={!!errors.bolsillo}
                 opciones={lomaBolsillo}
                 name="bolsillo"

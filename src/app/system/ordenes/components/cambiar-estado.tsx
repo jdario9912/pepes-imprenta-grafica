@@ -12,18 +12,31 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const CambiarEstado = ({
   producto,
   id,
   disabledKeys,
+  nro_orden,
 }: {
   disabledKeys?: string[];
   producto: string;
   id: number;
+  nro_orden: number;
 }) => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
   const handleCambiarEstado = async (estado: string) => {
     await cambiarEstadoOrden(producto, id, estado);
+
+    const params = new URLSearchParams(searchParams);
+
+    params.set("nro-orden", nro_orden.toString());
+
+    replace(`${pathname}?${params.toString()}`);
   };
 
   return (

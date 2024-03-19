@@ -43,6 +43,7 @@ export const cambiarEstadoOrden = async (
   await axiosQuery.patch(`/api/ordenes/${producto}/${id}`, { estado });
   revalidatePath("/system/ordenes/pendientes");
   revalidatePath("/system/ordenes/proveedor");
+  return;
 };
 
 export const crearBonoFetch = async (data: unknown) => {

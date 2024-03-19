@@ -11,7 +11,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { columns } from "../services/columns-tabla-a-proveedor";
 import {
   Button,
@@ -36,14 +36,27 @@ import {
 import { OrdenAProveedor } from "@/types/orden";
 import classNames from "classnames";
 import { estilosRowOrden } from "../../libs/estilos-row-orden";
+import { useSearchParams } from "next/navigation";
 
 const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
+  const searchParams = useSearchParams();
+
   const aProveedorSort = aProveedor.slice().reverse();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const [ordenes, setOrdenes] = useState<OrdenAProveedor[]>(aProveedorSort);
+
+  const params = new URLSearchParams(searchParams);
+
+  const numero_orden = params.get("nro-orden") || "";
+
+  useEffect(() => {
+    setOrdenes(
+      ordenes.filter((orden) => orden.nro_orden !== Number(numero_orden))
+    );
+  }, [numero_orden]);
 
   const handleFiltroFecha = (fechaOrden: FechaOrden | null) => {
     switch (fechaOrden) {

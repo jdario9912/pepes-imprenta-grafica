@@ -51,7 +51,12 @@ const AccionesTablaPendientes = ({
           </Button>
         ))}
 
-        <CambiarEstado id={orden.id} producto={orden.producto} disabledKeys={disabledKeys} />
+        <CambiarEstado
+          id={orden.id}
+          producto={orden.producto}
+          disabledKeys={disabledKeys}
+          nro_orden={orden.nro_orden}
+        />
       </>
     </WrapperBtnAccionesTabla>
   );

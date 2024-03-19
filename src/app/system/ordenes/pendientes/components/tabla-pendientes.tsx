@@ -11,7 +11,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { columns } from "../services/columns-tabla-pendientes";
 import {
   Button,
@@ -36,14 +36,25 @@ import {
 import classNames from "classnames";
 import { OrdenPendiente } from "@/types/orden";
 import { estilosRowOrden } from "../../libs/estilos-row-orden";
+import { useSearchParams } from "next/navigation";
 
 const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
+  const searchParams = useSearchParams();
   const pendientesSort = pendientes.slice().reverse();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const [ordenes, setOrdenes] = useState<OrdenPendiente[]>(pendientesSort);
+
+  const params = new URLSearchParams(searchParams);
+  const numero_orden = params.get("nro-orden") || "";
+
+  useEffect(() => {
+    setOrdenes(
+      ordenes.filter((orden) => orden.nro_orden !== Number(numero_orden))
+    );
+  }, [numero_orden]);
 
   const handleFiltroFecha = (fechaOrden: FechaOrden | null) => {
     switch (fechaOrden) {
@@ -145,7 +156,7 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
               </TableColumn>
             ))}
           </TableHeader>
-          
+
           <TableBody emptyContent={"No hay resultados para mostrar."}>
             {table.getRowModel().rows.map((row) => (
               <TableRow

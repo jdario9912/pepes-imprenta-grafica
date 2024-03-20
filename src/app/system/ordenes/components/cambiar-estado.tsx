@@ -13,6 +13,7 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 const CambiarEstado = ({
   producto,
@@ -25,11 +26,14 @@ const CambiarEstado = ({
   id: number;
   nro_orden: number;
 }) => {
+  const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
   const handleCambiarEstado = async (estado: string) => {
+    setLoading(true);
+
     await cambiarEstadoOrden(producto, id, estado);
 
     const params = new URLSearchParams(searchParams);
@@ -37,12 +41,14 @@ const CambiarEstado = ({
     params.set("nro-orden", nro_orden.toString());
 
     replace(`${pathname}?${params.toString()}`);
+
+    setLoading(false);
   };
 
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button>
+        <Button isLoading={loading}>
           <IconoBtnAccionesTablas icono={iconos.cambiarEstado} />
           <LabelBtnAccionesTablas texto="estado" />
         </Button>

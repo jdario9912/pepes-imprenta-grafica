@@ -1,7 +1,12 @@
-import { BsFillFileEarmarkPdfFill, BsClipboard2Plus } from "react-icons/bs";
-import { BiSolidEditAlt } from "react-icons/bi";
-import { MdAutorenew, MdLightMode, MdNightlight } from "react-icons/md";
-import { CgUserList } from "react-icons/cg";
+import {
+  BsFillFileEarmarkPdfFill,
+  BsClipboard2Plus,
+  BsFillTelephoneFill,
+} from "react-icons/bs";
+import { BiSolidEditAlt, BiSolidUser } from "react-icons/bi";
+import { MdAlternateEmail, MdAutorenew } from "react-icons/md";
+import { CgNotes, CgUserList } from "react-icons/cg";
+import { AiOutlineStop } from "react-icons/ai";
 
 export const iconos = {
   verOrden: <BsFillFileEarmarkPdfFill />,
@@ -9,4 +14,9 @@ export const iconos = {
   cambiarEstado: <MdAutorenew />,
   crearOrden: <BsClipboard2Plus />,
   detalles: <CgUserList />,
+  telefono: <BsFillTelephoneFill />,
+  email: <MdAlternateEmail />,
+  observaciones: <CgNotes />,
+  empty: <AiOutlineStop />,
+  persona: <BiSolidUser />
 };

@@ -1,8 +1,16 @@
 "use client";
 
+import { iconos } from "@/components/icons";
 import { crearCliente } from "@/libs/client/axios";
 import { editarCliente } from "@/libs/server-actions/axios";
-import { Button, Input, Textarea } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Input,
+  Textarea,
+} from "@nextui-org/react";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -54,73 +62,89 @@ const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Input
-        type="text"
-        label="nombre"
-        {...register("nombre", {
-          required: "El nombre es requerido",
-        })}
-        isInvalid={errors.nombre ? true : false}
-        errorMessage={errors.nombre?.message}
-        variant={errors.nombre ? "bordered" : "flat"}
-        defaultValue={watch().nombre}
-      />
-
-      <Input
-        type="text"
-        label="telefono"
-        {...register("telefono", {
-          required: "El teléfono es requerido.",
-        })}
-        isInvalid={errors.telefono ? true : false}
-        errorMessage={errors.telefono?.message}
-        variant={errors.telefono ? "bordered" : "flat"}
-        defaultValue={watch().telefono}
-      />
-
-      {addInputEmail ? (
-        <>
+      <CardBody>
+        <div className="flex flex-col gap-y-4">
           <Input
-            type="email"
-            label="user@email.com"
-            {...(addInputEmail
-              ? register("email", {
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                    message: "El formato de email es incorrecto.",
-                  },
-                })
-              : null)}
-            isInvalid={errors.email ? true : false}
-            errorMessage={errors.email?.message}
-            variant={errors.email ? "bordered" : "flat"}
-            defaultValue={watch().email}
+            type="text"
+            label="nombre"
+            {...register("nombre", {
+              required: "El nombre es requerido",
+            })}
+            isInvalid={errors.nombre ? true : false}
+            errorMessage={errors.nombre?.message}
+            variant={errors.nombre ? "bordered" : "flat"}
+            defaultValue={watch().nombre}
+            endContent={iconos.persona}
           />
 
-          <Button onClick={ocultarInputEmail}>ocultar</Button>
-        </>
-      ) : (
-        <Button onClick={mostrarInputEmail}>agregar email</Button>
-      )}
-
-      {addInputObservaciones ? (
-        <>
-          <Textarea
-            label="observaciones"
-            {...(addInputObservaciones ? register("observaciones") : null)}
-            defaultValue={watch().observaciones}
+          <Input
+            type="text"
+            label="telefono"
+            {...register("telefono", {
+              required: "El teléfono es requerido.",
+            })}
+            isInvalid={errors.telefono ? true : false}
+            errorMessage={errors.telefono?.message}
+            variant={errors.telefono ? "bordered" : "flat"}
+            defaultValue={watch().telefono}
+            endContent={iconos.telefono}
           />
-          <Button onClick={ocultarInputObservaciones}>ocultar</Button>
-        </>
-      ) : (
-        <Button onClick={mostrarInputObservaciones}>
-          agregar observaciones
+
+          {addInputEmail ? (
+            <div className="flex items-center gap-x-2">
+              <Input
+                type="email"
+                label="user@email.com"
+                {...(addInputEmail
+                  ? register("email", {
+                      pattern: {
+                        value:
+                          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        message: "El formato de email es incorrecto.",
+                      },
+                    })
+                  : null)}
+                isInvalid={errors.email ? true : false}
+                errorMessage={errors.email?.message}
+                variant={errors.email ? "bordered" : "flat"}
+                defaultValue={watch().email}
+                endContent={iconos.email}
+              />
+
+              <Button onClick={ocultarInputEmail}>ocultar</Button>
+            </div>
+          ) : (
+            <Button onClick={mostrarInputEmail}>agregar email</Button>
+          )}
+
+          {addInputObservaciones ? (
+            <div className="flex items-center gap-x-2">
+              <Textarea
+                label="observaciones"
+                {...(addInputObservaciones ? register("observaciones") : null)}
+                defaultValue={watch().observaciones}
+                endContent={iconos.observaciones}
+              />
+              <Button onClick={ocultarInputObservaciones}>ocultar</Button>
+            </div>
+          ) : (
+            <Button onClick={mostrarInputObservaciones}>
+              agregar observaciones
+            </Button>
+          )}
+        </div>
+      </CardBody>
+      <CardFooter>
+        <Button
+          type="submit"
+          isDisabled={isSubmitting}
+          isLoading={isSubmitting}
+          variant="solid"
+          color="primary"
+        >
+          Guardar
         </Button>
-      )}
-
-      <Button type="submit" isDisabled={isSubmitting}>
-        Guardar
-      </Button>
+      </CardFooter>
     </form>
   );
 };

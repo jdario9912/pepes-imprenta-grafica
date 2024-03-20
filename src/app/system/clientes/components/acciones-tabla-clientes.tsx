@@ -16,6 +16,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import CampoVacio from "./campo-vacio";
 
 const AccionesTablaClientes = ({ cliente }: { cliente: Cliente }) => {
   const router = useRouter();
@@ -52,15 +53,36 @@ const AccionesTablaClientes = ({ cliente }: { cliente: Cliente }) => {
         </>
       </WrapperBtnAccionesTabla>
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader>{nombre}</ModalHeader>
+              <ModalHeader className="flex items-center gap-x-2">
+                <Button
+                  isIconOnly
+                  variant="solid"
+                  color="primary"
+                  onClick={handleEditar}
+                >
+                  {iconos.editar}
+                </Button>
+                <h2>{nombre}</h2>
+              </ModalHeader>
               <ModalBody>
-                <p>{telefono}</p>
-                <p>{email}</p>
-                <p>{observaciones}</p>
+                <div className="flex items-center gap-x-4">
+                  {iconos.telefono}
+                  {telefono ? <p>{telefono}</p> : <CampoVacio />}
+                </div>
+
+                <div className="flex items-center gap-x-4">
+                  {iconos.email}
+                  {email ? <p>{email}</p> : <CampoVacio />}
+                </div>
+
+                <div className="flex items-center gap-x-4">
+                  {iconos.observaciones}
+                  {observaciones ? <p>{observaciones}</p> : <CampoVacio />}
+                </div>
               </ModalBody>
               <ModalFooter>
                 <Button onPress={onClose}>Cerrar</Button>

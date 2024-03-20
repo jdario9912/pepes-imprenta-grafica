@@ -2,11 +2,13 @@ import {
   BsFillFileEarmarkPdfFill,
   BsClipboard2Plus,
   BsFillTelephoneFill,
+  BsPersonFillAdd,
 } from "react-icons/bs";
 import { BiSolidEditAlt, BiSolidUser } from "react-icons/bi";
 import { MdAlternateEmail, MdAutorenew } from "react-icons/md";
 import { CgNotes, CgUserList } from "react-icons/cg";
-import { AiOutlineStop } from "react-icons/ai";
+import { AiOutlineCloseCircle, AiOutlineStop } from "react-icons/ai";
+import { FaUserEdit } from "react-icons/fa";
 
 export const iconos = {
   verOrden: <BsFillFileEarmarkPdfFill />,
@@ -18,5 +20,8 @@ export const iconos = {
   email: <MdAlternateEmail />,
   observaciones: <CgNotes />,
   empty: <AiOutlineStop />,
-  persona: <BiSolidUser />
+  persona: <BiSolidUser />,
+  cerrar: <AiOutlineCloseCircle />,
+  agregarPersona: <BsPersonFillAdd />,
+  editarPersona: <FaUserEdit />,
 };

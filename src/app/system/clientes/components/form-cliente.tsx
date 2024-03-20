@@ -75,6 +75,7 @@ const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
             variant={errors.nombre ? "bordered" : "flat"}
             defaultValue={watch().nombre}
             endContent={iconos.persona}
+            color="primary"
           />
 
           <Input
@@ -88,10 +89,11 @@ const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
             variant={errors.telefono ? "bordered" : "flat"}
             defaultValue={watch().telefono}
             endContent={iconos.telefono}
+            color="primary"
           />
 
           {addInputEmail ? (
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-start gap-x-2">
               <Input
                 type="email"
                 label="user@email.com"
@@ -109,26 +111,53 @@ const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
                 variant={errors.email ? "bordered" : "flat"}
                 defaultValue={watch().email}
                 endContent={iconos.email}
+                color="primary"
               />
 
-              <Button onClick={ocultarInputEmail}>ocultar</Button>
+              <Button
+                onClick={ocultarInputEmail}
+                variant="flat"
+                color="primary"
+                isIconOnly
+              >
+                {iconos.cerrar}
+              </Button>
             </div>
           ) : (
-            <Button onClick={mostrarInputEmail}>agregar email</Button>
+            <Button
+              onClick={mostrarInputEmail}
+              variant="bordered"
+              color="primary"
+            >
+              agregar email
+            </Button>
           )}
 
           {addInputObservaciones ? (
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-start gap-x-2">
               <Textarea
                 label="observaciones"
                 {...(addInputObservaciones ? register("observaciones") : null)}
                 defaultValue={watch().observaciones}
                 endContent={iconos.observaciones}
+                color="primary"
               />
-              <Button onClick={ocultarInputObservaciones}>ocultar</Button>
+
+              <Button
+                onClick={ocultarInputObservaciones}
+                variant="flat"
+                color="primary"
+                isIconOnly
+              >
+                {iconos.cerrar}
+              </Button>
             </div>
           ) : (
-            <Button onClick={mostrarInputObservaciones}>
+            <Button
+              onClick={mostrarInputObservaciones}
+              variant="bordered"
+              color="primary"
+            >
               agregar observaciones
             </Button>
           )}

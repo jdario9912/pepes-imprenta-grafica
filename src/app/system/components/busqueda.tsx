@@ -60,6 +60,8 @@ const Busqueda = () => {
               <AiOutlineLoading3Quarters className="animate-spin" />
             )
           }
+          variant="flat"
+          color="primary"
         />
       </form>
     </section>

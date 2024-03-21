@@ -17,10 +17,7 @@ const DarkMode = () => {
     const dark = "dark dark:text-white";
     const light = "";
     const modo = darkMode ? dark : light;
-    containerSystem?.setAttribute(
-      "class",
-      `${estilosSystemBase} ${modo}`
-    );
+    containerSystem?.setAttribute("class", `${estilosSystemBase} ${modo}`);
   });
 
   return (

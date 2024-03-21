@@ -53,7 +53,7 @@ const AccionesTablaClientes = ({ cliente }: { cliente: Cliente }) => {
         </>
       </WrapperBtnAccionesTabla>
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>

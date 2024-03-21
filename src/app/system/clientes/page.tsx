@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 const Clientes = async () => {
   return (
-    <div>
-      <Suspense fallback={<div>Cargando tabla clientesssssssss....</div>}>
+    <div className="p-4">
+      <Suspense fallback={<div>Cargando tabla clientes...</div>}>
         <TablaComponent />
       </Suspense>
     </div>

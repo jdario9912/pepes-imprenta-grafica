@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Input } from "@nextui-org/react";
+import { Button, CardBody, CardFooter, Input } from "@nextui-org/react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { errorsLogin } from "../libs/errors";
 import { errorToast } from "@/libs/client/toast";
+import { iconos } from "@/components/icons";
 
 export default function FormLogin() {
   const [esVisible, setEsVisible] = useState(false);
@@ -39,51 +40,64 @@ export default function FormLogin() {
 
   return (
     <form onSubmit={onSubmit}>
-      <Input
-        label="Email"
-        type="email"
-        placeholder="usuario@email.com"
-        isInvalid={errors.email ? true : false}
-        {...register("email", {
-          required: {
-            value: true,
-            message: "Email requerido.",
-          },
-        })}
-        errorMessage={errors.email?.message}
-        variant={errors.email ? "bordered" : "flat"}
-      />
+      <CardBody className="gap-y-4">
+        <Input
+          label="Email"
+          type="email"
+          placeholder="usuario@email.com"
+          isInvalid={errors.email ? true : false}
+          {...register("email", {
+            required: {
+              value: true,
+              message: "Email requerido.",
+            },
+          })}
+          errorMessage={errors.email?.message}
+          variant={errors.email ? "bordered" : "flat"}
+          endContent={iconos.email}
+          color="primary"
+        />
 
-      <Input
-        type={esVisible ? "text" : "password"}
-        label="password"
-        placeholder="*******"
-        isInvalid={errors.password ? true : false}
-        {...register("password", {
-          required: {
-            value: true,
-            message: "Password requerida",
-          },
-        })}
-        errorMessage={errors.password?.message}
-        variant={errors.password ? "bordered" : "flat"}
-        endContent={
-          <button
-            className="focus:outline-none"
-            type="button"
-            onClick={toggleVisibilidad}
-          >
-            {esVisible ? (
-              <AiFillEyeInvisible className="text-2xl text-default-400 pointer-events-none" />
-            ) : (
-              <AiFillEye className="text-2xl text-default-400 pointer-events-none" />
-            )}
-          </button>
-        }
-      />
-      <Button type="submit" isLoading={isSubmitting} disabled={loginOk}>
-        Entrar
-      </Button>
+        <Input
+          type={esVisible ? "text" : "password"}
+          label="password"
+          placeholder="*******"
+          isInvalid={errors.password ? true : false}
+          {...register("password", {
+            required: {
+              value: true,
+              message: "Password requerida",
+            },
+          })}
+          errorMessage={errors.password?.message}
+          variant={errors.password ? "bordered" : "flat"}
+          endContent={
+            <button
+              className="focus:outline-none"
+              type="button"
+              onClick={toggleVisibilidad}
+            >
+              {esVisible ? (
+                <AiFillEyeInvisible className="text-2xl text-default-400 pointer-events-none" />
+              ) : (
+                <AiFillEye className="text-2xl text-default-400 pointer-events-none" />
+              )}
+            </button>
+          }
+          color="primary"
+        />
+      </CardBody>
+      <CardFooter>
+        <Button
+          type="submit"
+          isLoading={isSubmitting}
+          disabled={loginOk}
+          variant="solid"
+          color="primary"
+        >
+          Entrar
+        </Button>
+      </CardFooter>
     </form>
   );
 }

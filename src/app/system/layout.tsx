@@ -4,26 +4,34 @@ import { metadataSystem } from "@/libs/client/metadata";
 import DarkMode from "./components/dark-mode";
 import { estilosSystemBase } from "./services/estilos-system";
 import Busqueda from "./components/busqueda";
+import { Card, CardBody } from "@nextui-org/react";
 
 export const metadata = metadataSystem;
 
 const SystemLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div id="system-object-dom" className={estilosSystemBase}>
-      <aside className="bg-zinc-300">
-        <div className="flex flex-col justify-between h-full">
-          <NavAside />
-          
-          <Busqueda />
+      <aside className="p-4 dark:bg-neutral-800 dark:text-white">
+        <Card className="h-full">
+          <CardBody>
+            <div className="flex flex-col justify-between h-full">
+              <NavAside />
 
-          <DarkMode />
+              <Busqueda />
 
-          <div className={"flex justify-center px-2 py-3"}>
-            <Logout />
-          </div>
-        </div>
+              <DarkMode />
+
+              <div className={"flex justify-center px-2 py-3"}>
+                <Logout />
+              </div>
+            </div>
+          </CardBody>
+        </Card>
       </aside>
-      <div className="overflow-scroll w-full">{children}</div>
+      
+      <div className="overflow-scroll w-full dark:bg-neutral-800 dark:text-white">
+        {children}
+      </div>
     </div>
   );
 };

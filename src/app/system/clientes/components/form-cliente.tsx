@@ -126,10 +126,11 @@ const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
           ) : (
             <Button
               onClick={mostrarInputEmail}
-              variant="bordered"
+              variant="flat"
               color="primary"
+              startContent={iconos.plus}
             >
-              agregar email
+              email
             </Button>
           )}
 
@@ -155,10 +156,11 @@ const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
           ) : (
             <Button
               onClick={mostrarInputObservaciones}
-              variant="bordered"
+              variant="flat"
               color="primary"
+              startContent={iconos.plus}
             >
-              agregar observaciones
+              observaciones
             </Button>
           )}
         </div>

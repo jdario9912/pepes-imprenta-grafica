@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { btnsNavAside } from "../libs/btns-nav-aside";
 import { usePathname } from "next/navigation";
-import classNames from "classnames";
+import { Button } from "@nextui-org/react";
 
 const NavAside = () => {
   const pathname = usePathname();
@@ -11,16 +11,19 @@ const NavAside = () => {
   return (
     <nav>
       <ul>
-        {btnsNavAside.map(({ href, label }) => (
-          <Link href={href} key={href} className="whitespace-nowrap">
-            <li
-              className={classNames("p-2 hover:bg-blue-500/50", {
-                "bg-blue-500 dark:bg-blue-900 dark:text-white": pathname === href,
-              })}
+        {btnsNavAside.map(({ href, label, icono }) => (
+          <li key={href}>
+            <Button
+              as={Link}
+              href={href}
+              className="w-full mt-1 whitespace-nowrap"
+              variant={pathname === href ? "flat" : "light"}
+              color="primary"
+              startContent={icono}
             >
-              {label}
-            </li>
-          </Link>
+              <span className="w-full text-left">{label}</span>
+            </Button>
+          </li>
         ))}
       </ul>
     </nav>

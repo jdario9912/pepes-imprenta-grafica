@@ -80,7 +80,7 @@ const ModalBusqueda = ({
             </ModalBody>
             <ModalFooter>
               <Button
-                color="danger"
+                color="primary"
                 variant="light"
                 onPress={() => {
                   onClose();

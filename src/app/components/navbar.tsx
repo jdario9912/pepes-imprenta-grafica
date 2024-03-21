@@ -16,31 +16,20 @@ const NavBar = async () => {
   const session = await getServerSession();
 
   return (
-    <Navbar shouldHideOnScroll>
+    <Navbar shouldHideOnScroll className="bg-transparent">
       <NavbarBrand>
         <Logo className="w-10" />
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {/* <NavbarItem>
-            <Link color="foreground" href="#">
-              Productos
-            </Link>
-          </NavbarItem>
-          <NavbarItem isActive>
-            <Link href="#" aria-current="page">
-              Contacto
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Nosotros
-            </Link>
-          </NavbarItem> */}
-      </NavbarContent>
+
       <NavbarContent justify="end" className="gap-x-3">
         <Session>
           <NavbarItem>
-            <Button as={Link} href="/system/ordenes/pendientes">
+            <Button
+              as={Link}
+              href="/system/ordenes/pendientes"
+              color="primary"
+              variant="solid"
+            >
               Sistema
             </Button>
             {!session && <Login />}
@@ -49,7 +38,7 @@ const NavBar = async () => {
             <Logout />
           </NavbarItem>
         </Session>
-        
+
         {!session && (
           <NavbarItem>
             <Login />

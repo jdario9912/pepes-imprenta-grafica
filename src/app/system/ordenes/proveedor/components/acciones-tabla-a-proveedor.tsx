@@ -1,13 +1,12 @@
-import { Button } from "@nextui-org/react";
+import { Button, Tooltip } from "@nextui-org/react";
 import CambiarEstado from "../../components/cambiar-estado";
 import { useRouter } from "next/navigation";
 import { BtnAccionesTabla } from "@/types/botones";
 import { uuid } from "@/libs/uuid";
 import { iconos } from "@/components/icons";
 import WrapperBtnAccionesTabla from "@/components/wrapper-btn-acciones-tabla";
-import IconoBtnAccionesTablas from "@/components/icono-btn-acciones-tablas";
-import LabelBtnAccionesTablas from "@/components/label-btn-acciones-tablas";
 import { OrdenAProveedor } from "@/types/orden";
+import LabelBtnAccion from "@/app/system/components/label-btn-accion";
 
 const AccionesTablaAProveedor = ({
   orden,
@@ -45,13 +44,23 @@ const AccionesTablaAProveedor = ({
     <WrapperBtnAccionesTabla>
       <>
         {botones.map(({ id, accion, icono, texto }) => (
-          <Button key={id} onClick={accion}>
-            <IconoBtnAccionesTablas icono={icono} />
-            <LabelBtnAccionesTablas texto={texto} />
+          <Button
+            key={id}
+            onClick={accion}
+            startContent={icono}
+            color="secondary"
+            variant="solid"
+          >
+            <LabelBtnAccion>{texto}</LabelBtnAccion>
           </Button>
         ))}
 
-        <CambiarEstado id={orden.id} producto={orden.producto} disabledKeys={disabledKeys} nro_orden={orden.nro_orden} />
+        <CambiarEstado
+          id={orden.id}
+          producto={orden.producto}
+          disabledKeys={disabledKeys}
+          nro_orden={orden.nro_orden}
+        />
       </>
     </WrapperBtnAccionesTabla>
   );

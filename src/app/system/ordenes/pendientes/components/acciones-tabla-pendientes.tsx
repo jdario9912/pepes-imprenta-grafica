@@ -1,13 +1,12 @@
-import { Button } from "@nextui-org/react";
+import { Button, Tooltip } from "@nextui-org/react";
 import CambiarEstado from "../../components/cambiar-estado";
-import IconoBtnAccionesTablas from "@/components/icono-btn-acciones-tablas";
-import LabelBtnAccionesTablas from "@/components/label-btn-acciones-tablas";
 import { BtnAccionesTabla } from "@/types/botones";
 import { useRouter } from "next/navigation";
 import { iconos } from "@/components/icons";
 import { uuid } from "@/libs/uuid";
 import WrapperBtnAccionesTabla from "@/components/wrapper-btn-acciones-tabla";
 import { OrdenPendiente } from "@/types/orden";
+import LabelBtnAccion from "@/app/system/components/label-btn-accion";
 
 const AccionesTablaPendientes = ({
   orden,
@@ -45,9 +44,14 @@ const AccionesTablaPendientes = ({
     <WrapperBtnAccionesTabla>
       <>
         {botones.map(({ id, accion, icono, texto }) => (
-          <Button key={id} onClick={accion}>
-            <IconoBtnAccionesTablas icono={icono} />
-            <LabelBtnAccionesTablas texto={texto} />
+          <Button
+            key={id}
+            onClick={accion}
+            startContent={icono}
+            color="secondary"
+            variant="solid"
+          >
+            <LabelBtnAccion>{texto}</LabelBtnAccion>
           </Button>
         ))}
 

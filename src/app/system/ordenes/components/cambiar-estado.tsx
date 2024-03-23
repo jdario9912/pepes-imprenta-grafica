@@ -1,8 +1,6 @@
 "use client";
 
-import IconoBtnAccionesTablas from "@/components/icono-btn-acciones-tablas";
 import { iconos } from "@/components/icons";
-import LabelBtnAccionesTablas from "@/components/label-btn-acciones-tablas";
 import { estadoOrden } from "@/libs/listas";
 import { cambiarEstadoOrden } from "@/libs/server-actions/axios";
 import {
@@ -14,6 +12,7 @@ import {
 } from "@nextui-org/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import LabelBtnAccion from "../../components/label-btn-accion";
 
 const CambiarEstado = ({
   producto,
@@ -48,9 +47,13 @@ const CambiarEstado = ({
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button isLoading={loading}>
-          <IconoBtnAccionesTablas icono={iconos.cambiarEstado} />
-          <LabelBtnAccionesTablas texto="estado" />
+        <Button
+          isLoading={loading}
+          startContent={iconos.cambiarEstado}
+          color="secondary"
+          variant="solid"
+        >
+          <LabelBtnAccion>cambiar estado</LabelBtnAccion>
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions" disabledKeys={disabledKeys}>

@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 
 export const GET = async () => {
   let pendientes: OrdenPendiente[] = [];
+
   try {
     const [result]: Array<unknown[]> = (await pool.query(
       "CALL buscar_ordenes_pendientes()"
@@ -30,6 +31,8 @@ export const GET = async () => {
 
     return NextResponse.json(ordenesPendientesSort);
   } catch (error) {
-    return NextResponse.json("algo salio mal en ordenes pendientes");
+    return NextResponse.json({
+      mensaje: "Algo salio mal en ordenes pendientes.",
+    });
   }
 };

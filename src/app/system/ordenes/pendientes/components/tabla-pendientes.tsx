@@ -37,6 +37,8 @@ import classNames from "classnames";
 import { OrdenPendiente } from "@/types/orden";
 import { estilosRowOrden } from "../../libs/estilos-row-orden";
 import { useSearchParams } from "next/navigation";
+import { iconos } from "@/components/icons";
+import DropdownFiltroOrdenes from "../../components/dropdown-filtro-ordenes";
 
 const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
   const searchParams = useSearchParams();
@@ -48,7 +50,7 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
   const [ordenes, setOrdenes] = useState<OrdenPendiente[]>(pendientesSort);
 
   const params = new URLSearchParams(searchParams);
-  const numero_orden = params.get("nro-orden") || "";
+  const numero_orden = params.get("nro-orden");
 
   useEffect(() => {
     setOrdenes(
@@ -99,7 +101,8 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
     <div className="w-full">
       <div className="flex justify-between items-center py-4">
         <Input
-          placeholder="Buscar por nombre de cliente..."
+          label="Buscar"
+          placeholder="Nombre de cliente..."
           value={(table.getColumn("nombre")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("nombre")?.setFilterValue(event.target.value)
@@ -107,41 +110,12 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
           className="max-w-sm"
           isClearable
           onClear={() => table.getColumn("nombre")?.setFilterValue("")}
+          color="primary"
         />
 
-        <Dropdown>
-          <DropdownTrigger>
-            <Button variant="bordered">filtro</Button>
-          </DropdownTrigger>
-          <DropdownMenu aria-label="filtro ordenes">
-            <DropdownItem key="todas" onClick={() => handleFiltroFecha(null)}>
-              todas
-            </DropdownItem>
-            <DropdownItem
-              key="yesterday"
-              onClick={() => handleFiltroFecha("yesterday")}
-              className="text-danger"
-            >
-              ayer
-            </DropdownItem>
-            <DropdownItem
-              key="today"
-              onClick={() => handleFiltroFecha("today")}
-              className="text-warning"
-            >
-              hoy
-            </DropdownItem>
-            <DropdownItem
-              key="tomorrow"
-              onClick={() => handleFiltroFecha("tomorrow")}
-              className="text-success"
-            >
-              manana
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-
         <NombrePagina nombre="Ordenes pendientes" />
+
+        <DropdownFiltroOrdenes handleFiltroFecha={handleFiltroFecha} />
       </div>
 
       <div>
@@ -183,15 +157,24 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            isIconOnly
+            color="primary"
+            variant="ghost"
+            isDisabled={!table.getCanPreviousPage()}
           >
-            atras
+            {iconos.previous}
           </Button>
+
           <Button
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
+            isIconOnly
+            color="primary"
+            variant="ghost"
+            isDisabled={!table.getCanNextPage()}
           >
-            siguiente
+            {iconos.next}
           </Button>
         </div>
       </div>

@@ -21,23 +21,28 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { columns } from "../services/columns-tabla-clientes";
 import NombrePagina from "../../components/nombre-pagina";
+import { iconos } from "@/components/icons";
 
 type Busqueda = "nombre" | "telefono";
 
-const TablaClientes = ({
-  clientes,
-}: {
-  clientes: Cliente[];
-}) => {
+const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const [busqueda, setBusqueda] = useState<Busqueda>("nombre");
+
+  const handleBusquedaNombre = () => {
+    setBusqueda("nombre");
+  };
+
+  const handleBusquedaTelefono = () => {
+    setBusqueda("telefono");
+  };
 
   const table = useReactTable({
     data: clientes,
@@ -61,9 +66,10 @@ const TablaClientes = ({
   return (
     <div className="w-full">
       <div className="flex justify-between items-center py-4">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 bg-cyan-500/10 rounded-md p-1">
           <Input
-            placeholder={`Buscar por ${busqueda}...`}
+            label="Buscar"
+            placeholder={busqueda}
             value={
               (table.getColumn(busqueda)?.getFilterValue() as string) ?? ""
             }
@@ -73,10 +79,27 @@ const TablaClientes = ({
             className="max-w-sm"
             isClearable
             onClear={() => table.getColumn(busqueda)?.setFilterValue("")}
+            startContent={
+              busqueda == "nombre" ? iconos.persona : iconos.telefono
+            }
+            color="primary"
           />
 
-          <Button onClick={() => setBusqueda("nombre")}>nombre</Button>
-          <Button onClick={() => setBusqueda("telefono")}>telefono</Button>
+          <Button
+            onClick={handleBusquedaNombre}
+            color="primary"
+            variant={busqueda == "nombre" ? "ghost" : "light"}
+          >
+            nombre
+          </Button>
+
+          <Button
+            onClick={handleBusquedaTelefono}
+            color="primary"
+            variant={busqueda == "telefono" ? "ghost" : "light"}
+          >
+            telefono
+          </Button>
         </div>
 
         <NombrePagina nombre="Clientes" />
@@ -117,15 +140,24 @@ const TablaClientes = ({
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            isIconOnly
+            color="primary"
+            variant="ghost"
+            isDisabled={!table.getCanPreviousPage()}
           >
-            atras
+            {iconos.previous}
           </Button>
+          
           <Button
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
+            isIconOnly
+            color="primary"
+            variant="ghost"
+            isDisabled={!table.getCanNextPage()}
           >
-            siguiente
+            {iconos.next}
           </Button>
         </div>
       </div>

@@ -4,12 +4,15 @@ import {
   BsFillTelephoneFill,
   BsPersonFillAdd,
   BsFillPeopleFill,
+  BsCardChecklist,
+  BsFilter,
 } from "react-icons/bs";
 import { BiSolidEditAlt, BiSolidTruck, BiSolidUser } from "react-icons/bi";
 import { MdAlternateEmail, MdAutorenew, MdOutlinePendingActions } from "react-icons/md";
 import { CgNotes, CgUserList } from "react-icons/cg";
 import { AiFillHome, AiOutlineCloseCircle, AiOutlinePlus, AiOutlineStop } from "react-icons/ai";
 import { FaUserEdit } from "react-icons/fa";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 export const iconos = {
   verOrden: <BsFillFileEarmarkPdfFill />,
@@ -29,5 +32,9 @@ export const iconos = {
   home: <AiFillHome />,
   personas: <BsFillPeopleFill />,
   aProveedor: <BiSolidTruck />,
-  pendientes: <MdOutlinePendingActions />
+  pendientes: <MdOutlinePendingActions />,
+  ordenes: <BsCardChecklist />,
+  next: <GrFormNext />,
+  previous: <GrFormPrevious />,
+  filtro: <BsFilter />
 };

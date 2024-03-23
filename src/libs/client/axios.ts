@@ -12,9 +12,7 @@ import type {
   Volantes,
 } from "@/types/recursos/productos";
 import { axiosQuery } from "../axios";
-import { OrdenEncontrada } from "@/types/orden";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { OrdenCliente, OrdenEncontrada } from "@/types/orden";
 
 export const crearCliente = async (nuevoCliente: Cliente) =>
   await axiosQuery.post<Cliente>("/api/clientes", nuevoCliente);
@@ -63,3 +61,6 @@ export const buscarOrden = async (numero: string): Promise<OrdenEncontrada> =>
 
 export const buscarTelefono = async (numero: string): Promise<Cliente[]> =>
   (await axiosQuery.get<Cliente[]>(`/api/busqueda/telefono/${numero}`)).data;
+
+export const obtenerOrdenesCliente = async (id: number): Promise<OrdenCliente[]> =>
+  (await axiosQuery.get(`/api/clientes/${id}/ordenes`)).data;

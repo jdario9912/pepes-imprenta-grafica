@@ -17,8 +17,8 @@ const Login = async () => {
   if (session) redirect("/system/ordenes/pendientes");
 
   return (
-    <div className="p-4 h-screen">
-      <Card className="w-full mx-auto md:w-4/5 lg:w-1/2">
+    <div className="p-4 h-screen flex items-center">
+      <Card className="w-full mx-auto md:w-4/5">
         <CardHeader className="flex items-center justify-between">
           <NombrePagina nombre="Login" />
           <Button

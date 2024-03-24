@@ -7,11 +7,17 @@ import { BtnAccionesTabla } from "@/types/botones";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import LabelBtnAccion from "../../components/label-btn-accion";
-import { obtenerOrdenesCliente } from "@/libs/client/axios";
 import ModalDetallesCliente from "./modal-detalles-cliente";
 import ModalVerOrdenesCliente from "./modal-ver-ordenes-cliente";
+import { eliminarCliente } from "@/libs/client/axios";
+import ModalEliminarCliente from "./modal-eliminar-cliente";
 
-const AccionesTablaClientes = ({ cliente }: { cliente: Cliente }) => {
+type AccionesTablaClientesProps = { cliente: Cliente; isAdmin: boolean };
+
+const AccionesTablaClientes = ({
+  cliente,
+  isAdmin,
+}: AccionesTablaClientesProps) => {
   const router = useRouter();
   const { id } = cliente;
 
@@ -44,12 +50,16 @@ const AccionesTablaClientes = ({ cliente }: { cliente: Cliente }) => {
               <LabelBtnAccion>{texto}</LabelBtnAccion>
             </Button>
           ))}
+
           <ModalVerOrdenesCliente cliente={cliente} />
+
           <ModalDetallesCliente cliente={cliente} />
+
+          {isAdmin && (
+            <ModalEliminarCliente cliente={cliente} />
+          )}
         </>
       </WrapperBtnAccionesTabla>
-
-      {/* Ordenes cliente */}
     </>
   );
 };

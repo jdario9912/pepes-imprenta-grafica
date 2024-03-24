@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Clientes",
 };
 
-const Clientes = async () => {
+const Clientes = () => {
   return (
     <div className="p-4">
       <Suspense fallback={<div>Cargando tabla clientes...</div>}>

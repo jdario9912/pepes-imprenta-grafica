@@ -23,6 +23,7 @@ import {
 import { FaUserEdit } from "react-icons/fa";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { IoMdSettings } from "react-icons/io";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 export const iconos = {
   verOrden: <BsFillFileEarmarkPdfFill />,
@@ -48,4 +49,5 @@ export const iconos = {
   previous: <GrFormPrevious />,
   filtro: <BsFilter />,
   settings: <IoMdSettings />,
+  eliminar: <RiDeleteBin6Fill />
 };

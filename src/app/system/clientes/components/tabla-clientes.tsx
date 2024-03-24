@@ -27,9 +27,10 @@ import { columns } from "../services/columns-tabla-clientes";
 import NombrePagina from "../../components/nombre-pagina";
 import { iconos } from "@/components/icons";
 
+type TablaClientesProps = { clientes: Cliente[]; userIsAdmin: boolean };
 type Busqueda = "nombre" | "telefono";
 
-const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
+const TablaClientes = ({ clientes, userIsAdmin }: TablaClientesProps) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -61,6 +62,7 @@ const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
       columnVisibility,
       rowSelection,
     },
+    isAdmin: userIsAdmin,
   });
 
   return (
@@ -147,7 +149,7 @@ const TablaClientes = ({ clientes }: { clientes: Cliente[] }) => {
           >
             {iconos.previous}
           </Button>
-          
+
           <Button
             size="sm"
             onClick={() => table.nextPage()}

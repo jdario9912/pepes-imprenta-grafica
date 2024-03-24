@@ -12,9 +12,13 @@ const Usuario = async ({ email, nombre }: UsuarioProps) => {
 
   return (
     <div className="flex items-center gap-x-2">
-      <User name={nombre} description={email} avatarProps={{
-        src: "https://raw.githubusercontent.com/jdario9912/pepes/master/src/img/logo.png"
-      }} />
+      <User
+        name={nombre}
+        description={email}
+        avatarProps={{
+          src: "https://raw.githubusercontent.com/jdario9912/pepes/master/src/img/logo.png",
+        }}
+      />
       {admin && <BtnSettingsAdmin />}
     </div>
   );

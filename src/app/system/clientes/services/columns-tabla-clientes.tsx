@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { Button, Checkbox } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import AccionesTablaClientes from "../components/acciones-tabla-clientes";
 
 export const columns: ColumnDef<Cliente>[] = [
@@ -30,10 +30,12 @@ export const columns: ColumnDef<Cliente>[] = [
     id: "actions",
     enableHiding: false,
     header: () => <div className="text-center">Acciones</div>,
-    cell: ({ row }) => {
+    cell: ({ row, table }) => {
       const cliente = row.original;
+      
+      const isAdmin = table.options.isAdmin
 
-      return <AccionesTablaClientes cliente={cliente} />;
+      return <AccionesTablaClientes cliente={cliente} isAdmin={isAdmin} />;
     },
   },
 ];

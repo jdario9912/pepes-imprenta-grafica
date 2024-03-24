@@ -62,5 +62,10 @@ export const buscarOrden = async (numero: string): Promise<OrdenEncontrada> =>
 export const buscarTelefono = async (numero: string): Promise<Cliente[]> =>
   (await axiosQuery.get<Cliente[]>(`/api/busqueda/telefono/${numero}`)).data;
 
-export const obtenerOrdenesCliente = async (id: number): Promise<OrdenCliente[]> =>
+export const obtenerOrdenesCliente = async (
+  id: number
+): Promise<OrdenCliente[]> =>
   (await axiosQuery.get(`/api/clientes/${id}/ordenes`)).data;
+
+export const eliminarCliente = async (id: number) =>
+  await axiosQuery.delete(`/api/clientes/${id}`);

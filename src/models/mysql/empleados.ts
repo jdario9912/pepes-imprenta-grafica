@@ -72,6 +72,19 @@ export class EmpleadosModel {
 
     if (!checkedPass) throw new Error("Contraseña incorrecta.");
 
-    return { id, name: nickname, permisos, email };
+    return { id, name: nickname, permisos, email, image: "" };
+  }
+
+  static async isAdmin(email: string): Promise<boolean> {
+    const [usuario]: any[] = await pool.query(
+      "SELECT permisos FROM empleados WHERE email = ?",
+      [email]
+    );
+
+    usuario ? (usuario[0] as Empleado) : null;
+
+    const empleado = usuario[0];
+
+    return empleado.permisos === "admin";
   }
 }

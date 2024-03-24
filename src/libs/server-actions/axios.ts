@@ -17,7 +17,6 @@ import {
 } from "@/types/recursos/productos";
 import { revalidarClientesYDireccionar } from "./libs";
 import { OrdenAProveedor, OrdenPendiente } from "@/types/orden";
-import { redirect, permanentRedirect } from "next/navigation";
 
 export const editarCliente = async (cliente: Cliente, id: number) => {
   const clienteActualizado = await axiosQuery.patch<Cliente>(

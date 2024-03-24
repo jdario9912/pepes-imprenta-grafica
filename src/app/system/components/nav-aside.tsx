@@ -4,6 +4,7 @@ import Link from "next/link";
 import { btnsNavAside } from "../libs/btns-nav-aside";
 import { usePathname } from "next/navigation";
 import { Button } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
 
 const NavAside = () => {
   const pathname = usePathname();

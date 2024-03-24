@@ -2,7 +2,9 @@ import { EmpleadosModel } from "@/models/mysql/empleados";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions = {
+// export const authOptions =
+
+const handler = NextAuth({
   session: {
     strategy: "jwt",
   },
@@ -27,8 +29,6 @@ export const authOptions = {
       },
     }),
   ],
-}
-
-const handler = NextAuth(authOptions);
+});
 
 export { handler as GET, handler as POST };

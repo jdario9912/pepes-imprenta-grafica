@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { iconos } from "@/components/icons";
 import {
@@ -31,7 +31,7 @@ const ModalDetallesCliente = ({ cliente }: { cliente: Cliente }) => {
         color="primary"
         variant="solid"
       >
-        <LabelBtnAccion>detalles</LabelBtnAccion> detalles
+        <LabelBtnAccion>detalles</LabelBtnAccion>
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
@@ -65,7 +65,9 @@ const ModalDetallesCliente = ({ cliente }: { cliente: Cliente }) => {
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button onPress={onClose}>Cerrar</Button>
+                <Button onPress={onClose} color="primary" variant="light">
+                  Cerrar
+                </Button>
               </ModalFooter>
             </>
           )}

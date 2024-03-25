@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import LabelBtnAccion from "../../components/label-btn-accion";
 import ModalDetallesCliente from "./modal-detalles-cliente";
 import ModalVerOrdenesCliente from "./modal-ver-ordenes-cliente";
-import { eliminarCliente } from "@/libs/client/axios";
 import ModalEliminarCliente from "./modal-eliminar-cliente";
 
 type AccionesTablaClientesProps = { cliente: Cliente; isAdmin: boolean };

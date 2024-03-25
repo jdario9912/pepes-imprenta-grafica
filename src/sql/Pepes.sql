@@ -862,11 +862,13 @@ DELIMITER ;
 
 
 -- ESTE PROCEDURE BUSCA ORDENES POR EL ID DEL CLIENTE
+DROP PROCEDURE IF EXISTS ordenes_cliente;
 
 DELIMITER $$
 CREATE PROCEDURE ordenes_cliente(IN id INT(2))
 BEGIN
 SELECT 
+impresiones.id,
 impresiones.nro_orden, 
 impresiones.producto, 
 impresiones.fecha_entrega, 
@@ -878,7 +880,8 @@ INNER JOIN impresiones
 ON clientes.id = impresiones.id_cliente
 WHERE clientes.id = id;
 
-SELECT 
+SELECT
+loma.id, 
 loma.nro_orden, 
 loma.producto, 
 loma.fecha_entrega, 
@@ -891,6 +894,7 @@ ON clientes.id = loma.id_cliente
 WHERE clientes.id = id;
 
 SELECT 
+talonarios.id,
 talonarios.nro_orden, 
 talonarios.producto, 
 talonarios.fecha_entrega, 
@@ -903,6 +907,7 @@ ON clientes.id = talonarios.id_cliente
 WHERE clientes.id = id;
 
 SELECT 
+bonos.id,
 bonos.nro_orden, 
 bonos.producto, 
 bonos.fecha_entrega, 
@@ -915,6 +920,7 @@ ON clientes.id = bonos.id_cliente
 WHERE clientes.id = id;
 
 SELECT 
+disenos.id,
 disenos.nro_orden, 
 disenos.producto, 
 disenos.fecha_entrega, 
@@ -927,6 +933,7 @@ ON clientes.id = disenos.id_cliente
 WHERE clientes.id = id;
 
 SELECT 
+plotter.id,
 plotter.nro_orden, 
 plotter.producto, 
 plotter.fecha_entrega, 
@@ -939,6 +946,7 @@ ON clientes.id = plotter.id_cliente
 WHERE clientes.id = id;
 
 SELECT 
+remeras.id,
 remeras.nro_orden, 
 remeras.producto, 
 remeras.fecha_entrega, 
@@ -951,6 +959,7 @@ ON clientes.id = remeras.id_cliente
 WHERE clientes.id = id;
 
 SELECT 
+tarjetas.id,
 tarjetas.nro_orden, 
 tarjetas.producto, 
 tarjetas.fecha_entrega, 
@@ -963,6 +972,7 @@ ON clientes.id = tarjetas.id_cliente
 WHERE clientes.id = id;
 
 SELECT 
+volantes.id,
 volantes.nro_orden, 
 volantes.producto, 
 volantes.fecha_entrega, 
@@ -975,6 +985,7 @@ ON clientes.id = volantes.id_cliente
 WHERE clientes.id = id;
 
 SELECT 
+sellos.id,
 sellos.nro_orden, 
 sellos.producto, 
 sellos.fecha_entrega, 
@@ -987,6 +998,7 @@ ON clientes.id = sellos.id_cliente
 WHERE clientes.id = id;
 
 SELECT 
+varios.id,
 varios.nro_orden, 
 varios.producto, 
 varios.fecha_entrega, 

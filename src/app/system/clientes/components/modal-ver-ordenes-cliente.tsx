@@ -24,10 +24,18 @@ import { useState } from "react";
 import { OrdenCliente } from "@/types/orden";
 import { formatearFecha } from "@/libs/client/moment";
 import { ContadorPedidos, agruparOrdenes } from "../libs/agrupar-ordenes";
+import { useRouter } from "next/navigation";
 
-const columns: string[] = ["atendió", "producto", "creado", "entrega"];
+const columns: string[] = [
+  "atendió",
+  "producto",
+  "creado",
+  "entrega",
+  "acciones",
+];
 
 const ModalVerOrdenesCliente = ({ cliente }: { cliente: Cliente }) => {
+  const router = useRouter();
   const { id, nombre } = cliente;
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [loading, setLoading] = useState<boolean>(false);
@@ -36,7 +44,10 @@ const ModalVerOrdenesCliente = ({ cliente }: { cliente: Cliente }) => {
     []
   );
 
-  const handleClick = async () => {
+  const handleVerOrden = (producto: string, id: number) =>
+    router.push(`/system/pdf/producto/${producto}/${id}`);
+
+  const handleModal = async () => {
     onOpen();
     setLoading(true);
 
@@ -52,7 +63,7 @@ const ModalVerOrdenesCliente = ({ cliente }: { cliente: Cliente }) => {
   return (
     <>
       <Button
-        onClick={handleClick}
+        onClick={handleModal}
         startContent={iconos.ordenes}
         color="primary"
         variant="solid"
@@ -73,7 +84,11 @@ const ModalVerOrdenesCliente = ({ cliente }: { cliente: Cliente }) => {
                   <>
                     <div className="flex flex-wrap gap-2">
                       {ordenesAgrupadas.map((orden) => (
-                        <Chip key={orden.producto} color="primary" variant="bordered">
+                        <Chip
+                          key={orden.producto}
+                          color="primary"
+                          variant="bordered"
+                        >
                           {orden.producto}
                           <span className="p-1 font-semibold">
                             {orden.cantidad}
@@ -81,6 +96,7 @@ const ModalVerOrdenesCliente = ({ cliente }: { cliente: Cliente }) => {
                         </Chip>
                       ))}
                     </div>
+
                     <Table aria-label="Ordenes de cliente">
                       <TableHeader>
                         {columns.map((columna) => (
@@ -93,12 +109,26 @@ const ModalVerOrdenesCliente = ({ cliente }: { cliente: Cliente }) => {
                         {ordenes.map((orden) => (
                           <TableRow key={orden.nro_orden}>
                             <TableCell>{orden.atendido_por}</TableCell>
+
                             <TableCell>{orden.producto}</TableCell>
+
                             <TableCell>
                               {formatearFecha(orden.fecha_creacion)}
                             </TableCell>
+
                             <TableCell>
                               {formatearFecha(orden.fecha_entrega)}
+                            </TableCell>
+
+                            <TableCell>
+                              <Button
+                                onClick={() =>
+                                  handleVerOrden(orden.producto, orden.id)
+                                }
+                                startContent={iconos.verOrden}
+                              >
+                                <LabelBtnAccion>ver ordenes</LabelBtnAccion>
+                              </Button>
                             </TableCell>
                           </TableRow>
                         ))}
@@ -108,7 +138,7 @@ const ModalVerOrdenesCliente = ({ cliente }: { cliente: Cliente }) => {
                 )}
               </ModalBody>
               <ModalFooter>
-                <Button onPress={onClose}>Cerrar</Button>
+                <Button onPress={onClose} color="primary" variant="light">Cerrar</Button>
               </ModalFooter>
             </>
           )}

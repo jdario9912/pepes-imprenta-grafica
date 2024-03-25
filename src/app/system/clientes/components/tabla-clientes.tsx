@@ -21,21 +21,33 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { columns } from "../services/columns-tabla-clientes";
 import NombrePagina from "../../components/nombre-pagina";
 import { iconos } from "@/components/icons";
+import { useSearchParams } from "next/navigation";
 
 type TablaClientesProps = { clientes: Cliente[]; userIsAdmin: boolean };
 type Busqueda = "nombre" | "telefono";
 
 const TablaClientes = ({ clientes, userIsAdmin }: TablaClientesProps) => {
+  const searchParams = useSearchParams();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const [busqueda, setBusqueda] = useState<Busqueda>("nombre");
+  const [clientesTabla, setClientesTabla] = useState(clientes);
+
+  const params = new URLSearchParams(searchParams);
+  const idCliente = params.get("id-cliente");
+
+  useEffect(() => {
+    setClientesTabla(
+      clientesTabla.filter((cliente) => cliente.id !== Number(idCliente))
+    );
+  }, [idCliente]);
 
   const handleBusquedaNombre = () => {
     setBusqueda("nombre");
@@ -46,7 +58,7 @@ const TablaClientes = ({ clientes, userIsAdmin }: TablaClientesProps) => {
   };
 
   const table = useReactTable({
-    data: clientes,
+    data: clientesTabla,
     columns: columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,

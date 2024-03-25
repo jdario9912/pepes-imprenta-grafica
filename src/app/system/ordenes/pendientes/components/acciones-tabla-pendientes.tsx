@@ -1,4 +1,4 @@
-import { Button, Tooltip } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import CambiarEstado from "../../components/cambiar-estado";
 import { BtnAccionesTabla } from "@/types/botones";
 import { useRouter } from "next/navigation";

@@ -21,7 +21,7 @@ export interface OrdenEncontrada
   telefono: string;
 }
 
-export interface OrdenCliente extends Omit<Orden, 'id' | 'nombre' | 'hora_entrega'>{
+export interface OrdenCliente extends Omit<Orden, "nombre" | "hora_entrega"> {
   estado: string;
   atendido_por: string;
 }

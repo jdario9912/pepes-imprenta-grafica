@@ -1,7 +1,6 @@
 "use client";
 
 import { iconos } from "@/components/icons";
-import { estadoOrden } from "@/libs/listas";
 import { cambiarEstadoOrden } from "@/libs/server-actions/axios";
 import {
   Button,
@@ -13,18 +12,21 @@ import {
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import LabelBtnAccion from "../../components/label-btn-accion";
+import { botonesCambiarEstado } from "../libs/botones-cambiar-estado";
+
+type CambiarEstadoProps = {
+  disabledKeys?: string[];
+  producto: string;
+  id: number;
+  nro_orden: number;
+};
 
 const CambiarEstado = ({
   producto,
   id,
   disabledKeys,
   nro_orden,
-}: {
-  disabledKeys?: string[];
-  producto: string;
-  id: number;
-  nro_orden: number;
-}) => {
+}: CambiarEstadoProps) => {
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -57,12 +59,13 @@ const CambiarEstado = ({
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions" disabledKeys={disabledKeys}>
-        {estadoOrden.map((estado) => (
+        {botonesCambiarEstado().map(({ icono, label }) => (
           <DropdownItem
-            key={estado}
-            onClick={() => handleCambiarEstado(estado)}
+            key={label}
+            onClick={() => handleCambiarEstado(label)}
+            startContent={loading ? null : icono}
           >
-            {estado}
+            {label}
           </DropdownItem>
         ))}
       </DropdownMenu>

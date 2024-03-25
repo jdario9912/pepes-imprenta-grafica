@@ -20,10 +20,11 @@ import {
   AiOutlinePlus,
   AiOutlineStop,
 } from "react-icons/ai";
-import { FaUserEdit } from "react-icons/fa";
+import { FaHandshake, FaUserEdit } from "react-icons/fa";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { IoMdSettings } from "react-icons/io";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { GiCheckMark } from "react-icons/gi";
 
 export const iconos = {
   verOrden: <BsFillFileEarmarkPdfFill />,
@@ -49,5 +50,7 @@ export const iconos = {
   previous: <GrFormPrevious />,
   filtro: <BsFilter />,
   settings: <IoMdSettings />,
-  eliminar: <RiDeleteBin6Fill />
+  eliminar: <RiDeleteBin6Fill />,
+  entregado: <FaHandshake />,
+  realizado: <GiCheckMark />,
 };

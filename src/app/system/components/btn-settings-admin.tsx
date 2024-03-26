@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 const BtnSettingsAdmin = () => {
   const router = useRouter();
-  const handleClick = () => router.push("/system");
+  const handleClick = () => router.push("/system/panel-admin");
 
   return (
     <Button isIconOnly color="primary" variant="light" onClick={handleClick}>

@@ -11,6 +11,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 type ModalEliminarEmpleadoProps = { empleado: Empleado };
@@ -18,20 +19,20 @@ type ModalEliminarEmpleadoProps = { empleado: Empleado };
 const ModalEliminarEmpleado = ({empleado}: ModalEliminarEmpleadoProps) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const [loading, setLoading] = useState(false);
-  // const searchParams = useSearchParams();
-  // const pathname = usePathname();
-  // const { replace } = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
   const handleEliminar = async (id: number) => {
     setLoading(true);
 
     // await eliminarEmpleado(id);
 
-    // const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams);
 
-    // params.set("id-cliente", id.toString());
+    params.set("id-empleado", id.toString());
 
-    // replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`);
     setLoading(false);
     onClose();
   };

@@ -1,10 +1,7 @@
-import { Suspense } from "react";
+"use client";
+
 import Empleados from "./empleados";
 
-const TabEmpleados = () => (
-  <Suspense fallback="cargando empleados...">
-    <Empleados />
-  </Suspense>
-);
+const TabEmpleados = () => <Empleados />;
 
 export default TabEmpleados;

@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@nextui-org/react";
-import { useEffect } from "react";
 
 type ErrorProps = {
   error: Error & { digest?: string };

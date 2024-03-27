@@ -47,9 +47,10 @@ export class EmpleadosModel {
   }
 
   static async actualizar(id: Id, input: Empleado): Promise<boolean> {
+    const { password, ...resEmpleado } = input;
     const [result]: [ResultSetHeader, FieldPacket[]] = await pool.query(
       "UPDATE empleados SET ? WHERE id = ?",
-      [input, id]
+      [resEmpleado, id]
     );
 
     return result.affectedRows > 0;
@@ -86,5 +87,17 @@ export class EmpleadosModel {
     const empleado = usuario[0];
 
     return empleado.permisos === "admin";
+  }
+
+  static async actualizarPassword(
+    id: Id,
+    password: string
+  ): Promise<boolean> {
+    const [result]: [ResultSetHeader, FieldPacket[]] = await pool.query(
+      "UPDATE empleados SET password = ? WHERE id = ?",
+      [hashPass(password), id]
+    );
+
+    return result.affectedRows > 0;
   }
 }

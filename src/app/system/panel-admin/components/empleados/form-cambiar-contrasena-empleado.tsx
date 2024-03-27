@@ -1,4 +1,8 @@
+"use client";
+
 import { iconos } from "@/components/icons";
+import { actualizarPassword } from "@/libs/client/axios";
+import { errorToast, succesToast } from "@/libs/client/toast";
 import {
   Button,
   Input,
@@ -6,25 +10,25 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  useDisclosure,
 } from "@nextui-org/react";
+import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 
 type FormEditarEmpleadoProps = { empleado: Empleado };
 
 const FormEditarEmpleado = ({ empleado }: FormEditarEmpleadoProps) => {
   const { handleSubmit, formState, register } = useForm<Empleado>();
-  const { isLoading, errors } = formState;
+  const { isLoading, errors, isSubmitSuccessful } = formState;
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
+    try {
+      await actualizarPassword(empleado.id || 0, data);
 
-    // CONTINUAR ACA
-
-    // await editarEmpleado(id);
-    // const params = new URLSearchParams(searchParams);
-    // params.set("id-cliente", id.toString());
-    // replace(`${pathname}?${params.toString()}`);
-    // onClose();
+      succesToast("Contraseña actualizada");
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) errorToast(error.response?.data.mensaje);
+    }
   });
 
   return (
@@ -50,19 +54,21 @@ const FormEditarEmpleado = ({ empleado }: FormEditarEmpleadoProps) => {
             </ModalBody>
             <ModalFooter>
               <Button color="primary" variant="solid" onPress={onClose}>
-                cancelar
+                {isSubmitSuccessful ? "cerrar" : "cancelar"}
               </Button>
 
-              <Button
-                color="primary"
-                variant="bordered"
-                type="submit"
-                startContent={iconos.guardar}
-                isLoading={isLoading}
-                isDisabled={isLoading}
-              >
-                guardar
-              </Button>
+              {!isSubmitSuccessful && (
+                <Button
+                  color="primary"
+                  variant="bordered"
+                  type="submit"
+                  startContent={iconos.guardar}
+                  isLoading={isLoading}
+                  isDisabled={isLoading}
+                >
+                  guardar
+                </Button>
+              )}
             </ModalFooter>
           </>
         )}

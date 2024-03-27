@@ -73,5 +73,8 @@ export const eliminarCliente = async (id: number) =>
 export const eliminarEmpleado = async (id: number) =>
   await axiosQuery.delete(`/api/empleados/${id}`);
 
-export const editarEmpleado = async (id: number): Promise<Empleado> =>
-  await axiosQuery.patch(`/api/empleados/${id}`);
+export const actualizarPassword = async (
+  id: number,
+  password: { password: string }
+): Promise<Empleado> =>
+  await axiosQuery.put(`/api/empleados/${id}`, password);

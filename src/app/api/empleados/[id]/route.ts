@@ -36,8 +36,6 @@ export const PATCH = async (req: NextRequest, { params }: any) => {
 
     return NextResponse.json(empleadoActualizado);
   } catch (error) {
-    console.log(error);
-    
     return errorResponse(error);
   }
 };
@@ -55,3 +53,25 @@ export const DELETE = async (_: NextRequest, { params }: any) => {
     return errorResponse(error);
   }
 };
+
+export const PUT = async (req:NextRequest, {params}: any) => {
+  try {
+    const body = await req.json();
+    const { id }: { id: Id } = params;
+
+    const empeadoValidado = validarEmpleadoActualizar(body);
+
+    const actualizaEmpleado = await EmpleadosModel.actualizarPassword(
+      id,
+      empeadoValidado.password
+    );
+
+    if (!actualizaEmpleado) return empleado404Response();
+
+    const empleadoActualizado = await EmpleadosModel.obtenerUno(id);
+
+    return NextResponse.json(empleadoActualizado);
+  } catch (error) {
+    return errorResponse(error);
+  }
+}

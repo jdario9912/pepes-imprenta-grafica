@@ -13,7 +13,7 @@ export default function Logout() {
   };
 
   return (
-    <Button onClick={handleClick} isLoading={loading} variant="flat" color="primary">
+    <Button onClick={handleClick} isLoading={loading} variant="flat" color="primary" className="shadow-md">
       Cerrar sesion
     </Button>
   );

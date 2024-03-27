@@ -112,10 +112,11 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
           onClear={() => table.getColumn("nombre")?.setFilterValue("")}
           color="primary"
         />
+        <div className="flex items-center gap-x-2">
+          <NombrePagina nombre="Ordenes pendientes" />
 
-        <NombrePagina nombre="Ordenes pendientes" />
-
-        <DropdownFiltroOrdenes handleFiltroFecha={handleFiltroFecha} />
+          <DropdownFiltroOrdenes handleFiltroFecha={handleFiltroFecha} />
+        </div>
       </div>
 
       <div>

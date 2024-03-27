@@ -113,10 +113,11 @@ const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
           onClear={() => table.getColumn("nombre")?.setFilterValue("")}
           color="primary"
         />
+        <div className="flex items-center gap-x-2">
+          <NombrePagina nombre="Ordenes a proveedor" />
 
-        <NombrePagina nombre="Ordenes enviadas a proveedor" />
-
-        <DropdownFiltroOrdenes handleFiltroFecha={handleFiltroFecha} />
+          <DropdownFiltroOrdenes handleFiltroFecha={handleFiltroFecha} />
+        </div>
       </div>
 
       <div>

@@ -6,6 +6,7 @@ import {
   BsFillPeopleFill,
   BsCardChecklist,
   BsFilter,
+  BsGraphUpArrow,
 } from "react-icons/bs";
 import { BiSolidEditAlt, BiSolidTruck, BiSolidUser } from "react-icons/bi";
 import {
@@ -20,11 +21,12 @@ import {
   AiOutlinePlus,
   AiOutlineStop,
 } from "react-icons/ai";
-import { FaHandshake, FaUserEdit } from "react-icons/fa";
+import { FaHandshake, FaPeopleCarry, FaUserEdit } from "react-icons/fa";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { IoMdSettings } from "react-icons/io";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { GiCheckMark } from "react-icons/gi";
+import { VscSaveAs } from "react-icons/vsc";
 
 export const iconos = {
   verOrden: <BsFillFileEarmarkPdfFill />,
@@ -53,4 +55,7 @@ export const iconos = {
   eliminar: <RiDeleteBin6Fill />,
   entregado: <FaHandshake />,
   realizado: <GiCheckMark />,
+  guardar: <VscSaveAs />,
+  empleados: <FaPeopleCarry />,
+  graficas: <BsGraphUpArrow />,
 };

@@ -264,3 +264,6 @@ export const actualizarVolanteFetch = async (
 
   return res.data;
 };
+
+export const obtenerEmpleados = async (): Promise<Empleado[]> =>
+  (await axiosQuery.get("/api/empleados")).data;

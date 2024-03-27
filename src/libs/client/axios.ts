@@ -69,3 +69,9 @@ export const obtenerOrdenesCliente = async (
 
 export const eliminarCliente = async (id: number) =>
   await axiosQuery.delete(`/api/clientes/${id}`);
+
+export const eliminarEmpleado = async (id: number) =>
+  await axiosQuery.delete(`/api/empleados/${id}`);
+
+export const editarEmpleado = async (id: number): Promise<Empleado> =>
+  await axiosQuery.patch(`/api/empleados/${id}`);

@@ -1,7 +1,6 @@
 "use client";
 
 import { iconos } from "@/components/icons";
-import { actualizarPassword } from "@/libs/client/axios";
 import { errorToast, succesToast } from "@/libs/client/toast";
 import {
   Button,
@@ -10,20 +9,22 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  useDisclosure,
 } from "@nextui-org/react";
 import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
+import { cambiarPassword } from "../../libs/server-actions";
 
-type FormEditarEmpleadoProps = { empleado: Empleado };
+type FormEditarEmpleadoProps = { empleado: Empleado; onClose: () => void };
 
-const FormEditarEmpleado = ({ empleado }: FormEditarEmpleadoProps) => {
-  const { handleSubmit, formState, register } = useForm<Empleado>();
+const FormEditarEmpleado = ({ empleado, onClose }: FormEditarEmpleadoProps) => {
+  const { handleSubmit, formState, register } = useForm<{ password: string }>();
   const { isLoading, errors, isSubmitSuccessful } = formState;
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await actualizarPassword(empleado.id || 0, data);
+      await cambiarPassword(empleado.id || 0, data.password);
+
+      onClose();
 
       succesToast("Contraseña actualizada");
     } catch (error: unknown) {

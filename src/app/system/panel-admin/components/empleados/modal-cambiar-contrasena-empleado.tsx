@@ -14,7 +14,7 @@ const ModalEditarEmpleado = ({ empleado }: ModalEditarEmpleadoProps) => {
         editar
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <FormCambiarContrasenaEmpleado empleado={empleado} />
+        <FormCambiarContrasenaEmpleado empleado={empleado} onClose={onClose} />
       </Modal>
     </>
   );

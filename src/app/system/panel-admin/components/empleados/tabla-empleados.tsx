@@ -13,6 +13,7 @@ import {
 } from "@nextui-org/react";
 import ModalEliminarEmpleado from "./modal-eliminar-empleado";
 import ModalEditarEmpleado from "./modal-cambiar-contrasena-empleado";
+import ModalAgregarEmpleado from "./modal-agregar-empleado";
 
 type TablaEmpleadosProps = { empleados: Empleado[] };
 
@@ -26,10 +27,10 @@ const TablaEmpleados = ({ empleados }: TablaEmpleadosProps) => {
         }}
         topContent={
           <div className="text-right">
-            <Button startContent={iconos.plus}>empleado</Button>
+            <ModalAgregarEmpleado />
           </div>
         }
-        topContentPlacement="outside"
+        topContentPlacement="inside"
       >
         <TableHeader>
           <TableColumn key="nickname">Empleado</TableColumn>

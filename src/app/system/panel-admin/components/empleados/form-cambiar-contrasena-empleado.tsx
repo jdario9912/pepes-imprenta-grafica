@@ -42,6 +42,7 @@ const FormEditarEmpleado = ({ empleado, onClose }: FormEditarEmpleadoProps) => {
             </ModalHeader>
             <ModalBody>
               <Input
+                autoFocus
                 label="Nueva contraseña"
                 type="password"
                 placeholder="******"

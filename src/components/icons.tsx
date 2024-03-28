@@ -17,6 +17,7 @@ import {
 import { CgNotes, CgUserList } from "react-icons/cg";
 import {
   AiFillHome,
+  AiFillLock,
   AiOutlineCloseCircle,
   AiOutlinePlus,
   AiOutlineStop,
@@ -58,4 +59,5 @@ export const iconos = {
   guardar: <VscSaveAs />,
   empleados: <FaPeopleCarry />,
   graficas: <BsGraphUpArrow />,
+  lock: <AiFillLock />,
 };

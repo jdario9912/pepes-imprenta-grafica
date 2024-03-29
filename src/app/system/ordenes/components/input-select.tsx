@@ -1,7 +1,6 @@
 import { UseFormResetField, UseFormSetValue } from "react-hook-form";
 import Select from "react-select";
-
-const formatoOpcion = (opcion: string) => ({ value: opcion, label: opcion });
+import { formatoOpcion } from "../../libs/formate-opciones-input-select";
 
 const InputSelect = ({
   label,

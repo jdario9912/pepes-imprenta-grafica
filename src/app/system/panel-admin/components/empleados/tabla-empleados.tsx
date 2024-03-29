@@ -1,6 +1,5 @@
 "use client";
 
-import { iconos } from "@/components/icons";
 import WrapperBtnAccionesTabla from "@/components/wrapper-btn-acciones-tabla";
 import {
   Button,

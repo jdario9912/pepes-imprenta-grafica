@@ -1,7 +1,10 @@
 "use server";
 
 import { EmpleadosModel } from "@/models/mysql/empleados";
-import { validarEmpleadoActualizar } from "@/schemas/empleado";
+import {
+  validarEmpleadoActualizar,
+  validarEmpleadoCrear,
+} from "@/schemas/empleado";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -20,4 +23,10 @@ export const cambiarPassword = async (id: number, password: string) => {
 
 export const eliminarEmpleado = async (id: number) => {
   await EmpleadosModel.eliminar(id);
+};
+
+export const agregarEmpleado = async (empleado: Empleado) => {
+  const empleadoValidado = validarEmpleadoCrear(empleado);
+
+  await EmpleadosModel.crear(empleadoValidado);
 };

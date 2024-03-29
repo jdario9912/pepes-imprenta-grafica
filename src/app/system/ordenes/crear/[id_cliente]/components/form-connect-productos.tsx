@@ -87,6 +87,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
             opciones={metodosPago}
             resetField={methods.resetField}
             setValue={methods.setValue}
+            menuPlacement="top"
           />
         )}
       />

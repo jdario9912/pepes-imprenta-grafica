@@ -1,6 +1,18 @@
 import { UseFormResetField, UseFormSetValue } from "react-hook-form";
-import Select from "react-select";
+import Select, { MenuPlacement } from "react-select";
 import { formatoOpcion } from "../../libs/formate-opciones-input-select";
+
+type Props = {
+  opciones: string[];
+  error: boolean;
+  defaultValue?: string;
+  name: string;
+  resetField: UseFormResetField<any>;
+  setValue: UseFormSetValue<any>;
+  isDisabled?: boolean;
+  label?: string;
+  menuPlacement?: MenuPlacement
+};
 
 const InputSelect = ({
   label,
@@ -11,16 +23,8 @@ const InputSelect = ({
   resetField,
   setValue,
   isDisabled = false,
-}: {
-  opciones: string[];
-  error: boolean;
-  defaultValue?: string;
-  name: string;
-  resetField: UseFormResetField<any>;
-  setValue: UseFormSetValue<any>;
-  isDisabled?: boolean;
-  label?: string;
-}) => (
+  menuPlacement = "auto"
+}: Props) => (
   <label className="flex items-center gap-x-2">
     <p className="first-letter:capitalize text-xs">{label}</p>
     <Select
@@ -41,9 +45,11 @@ const InputSelect = ({
         },
         menu: (styles) => {
           styles.zIndex = 15;
+          styles.color = "#1d4ed8";
           return styles;
         },
       }}
+      menuPlacement={menuPlacement}
     />
   </label>
 );

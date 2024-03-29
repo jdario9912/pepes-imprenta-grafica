@@ -127,6 +127,7 @@ const FormAgregarEmpleado = ({ onClose }: Props) => {
                         return styles;
                       },
                     }}
+                    menuPlacement="top"
                   />
                 </label>
               )}

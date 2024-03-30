@@ -1,6 +1,7 @@
 import { UseFormResetField, UseFormSetValue } from "react-hook-form";
 import Select, { MenuPlacement } from "react-select";
 import { formatoOpcion } from "../../libs/formate-opciones-input-select";
+import WraperInputLabel from "./wraper-input-label";
 
 type Props = {
   opciones: string[];
@@ -11,7 +12,7 @@ type Props = {
   setValue: UseFormSetValue<any>;
   isDisabled?: boolean;
   label?: string;
-  menuPlacement?: MenuPlacement
+  menuPlacement?: MenuPlacement;
 };
 
 const InputSelect = ({
@@ -23,10 +24,9 @@ const InputSelect = ({
   resetField,
   setValue,
   isDisabled = false,
-  menuPlacement = "auto"
+  menuPlacement = "auto",
 }: Props) => (
-  <label className="flex items-center gap-x-2">
-    <p className="first-letter:capitalize text-xs">{label}</p>
+  <WraperInputLabel label={label!}>
     <Select
       options={opciones.map((opcion) => formatoOpcion(opcion))}
       classNames={{
@@ -51,7 +51,7 @@ const InputSelect = ({
       }}
       menuPlacement={menuPlacement}
     />
-  </label>
+  </WraperInputLabel>
 );
 
 export default InputSelect;

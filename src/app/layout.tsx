@@ -3,6 +3,7 @@ import "./globals.css";
 import { metadataHome } from "../libs/client/metadata";
 import ToastComponent from "../components/toast";
 import classNames from "classnames";
+import Providers from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,8 +17,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={classNames("", inter.className)}>
-        {children}
-        <ToastComponent />
+        <Providers>
+          {children}
+          <ToastComponent />
+        </Providers>
       </body>
     </html>
   );

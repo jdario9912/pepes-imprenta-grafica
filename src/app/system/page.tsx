@@ -1,3 +1,3 @@
-const System = () => <div></div>;
+const System = () => (<div></div>);
 
 export default System;

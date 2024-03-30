@@ -1,9 +1,10 @@
 import { Producto } from "@/types/recursos/productos";
-import { Button, Input, Textarea } from "@nextui-org/react";
+import { Input, Textarea } from "@nextui-org/react";
 import { Controller, useFormContext } from "react-hook-form";
 import InputRadio from "../../../components/input-radio";
 import { metodosPago, siNo } from "@/libs/listas";
 import InputSelect from "../../../components/input-select";
+import WraperInputLabel from "../../../components/wraper-input-label";
 
 const FormConnectProducto = ({ children }: { children: any }) => {
   const methods = useFormContext<Producto>();
@@ -11,8 +12,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
 
   return (
     <div className="flex flex-col gap-y-3">
-      <label className="flex items-center gap-x-2">
-        <p className="first-letter:capitalize text-xs">fecha</p>
+      <WraperInputLabel label="fecha">
         <Input
           type="date"
           {...methods.register("fecha_entrega", {
@@ -23,10 +23,9 @@ const FormConnectProducto = ({ children }: { children: any }) => {
           variant={errors.fecha_entrega ? "bordered" : "flat"}
           color="primary"
         />
-      </label>
+      </WraperInputLabel>
 
-      <label className="flex items-center gap-x-2">
-        <p className="first-letter:capitalize text-xs">hora</p>
+      <WraperInputLabel label="hora">
         <Input
           type="time"
           {...methods.register("hora_entrega", {
@@ -38,7 +37,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
           defaultValue="19:00"
           color="primary"
         />
-      </label>
+      </WraperInputLabel>
 
       <Controller
         name="muestra"
@@ -95,7 +94,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
         }}
         render={() => (
           <InputSelect
-            label="Metodo de pago"
+            label="Método de pago"
             error={!!errors.metodo_pago}
             name="metodo_pago"
             opciones={metodosPago}

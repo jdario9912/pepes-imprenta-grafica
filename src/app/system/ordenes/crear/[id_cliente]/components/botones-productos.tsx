@@ -13,7 +13,7 @@ const BotonesProductos = ({
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-y-2">
       {botonesProductos.map(({ nombre, icono }) => (
         <Button
           key={nombre}
@@ -25,7 +25,7 @@ const BotonesProductos = ({
           {nombre}
         </Button>
       ))}
-    </>
+    </div>
   );
 };
 

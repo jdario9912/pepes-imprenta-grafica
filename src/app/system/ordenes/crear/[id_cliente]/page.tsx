@@ -11,7 +11,7 @@ const CrearOrden = async ({ params }: { params: { id_cliente: string } }) => {
   const id = params.id_cliente;
 
   return (
-    <div className="flex flex-col gap-2 p-4">
+    <div className="flex gap-3 p-4">
       <Suspense fallback={<div>Cargando cliente...</div>}>
         <InfoCliente id={id} />
       </Suspense>

@@ -116,90 +116,15 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
       if (error instanceof AxiosError) console.log(error.response?.data);
     }
   };
-  // };
-
-  // const onSubmit = methods.handleSubmit(async (data) => {
-  //   if (Number(data.total) < Number(data.entrega)) {
-  //     methods.setError("entrega", {
-  //       message: "El monto de entrega es mayor al importe total.",
-  //     });
-  //     return;
-  //   }
-
-  //   try {
-  //     switch (productoElegido) {
-  //       case "bonos": {
-  //         await querys.crearBonoFetch(data);
-
-  //         return;
-  //       }
-  //       case "diseños": {
-  //         await querys.crearDisenoFetch(data);
-
-  //         return;
-  //       }
-  //       case "impresiones": {
-  //         await querys.crearImpresionFetch(data);
-
-  //         return;
-  //       }
-  //       case "loma": {
-  //         await querys.crearLomaFetch(data);
-
-  //         return;
-  //       }
-  //       case "plotter": {
-  //         await querys.crearPlotterFetch(data);
-
-  //         return;
-  //       }
-  //       case "remeras": {
-  //         await querys.crearRemeraFetch(data);
-
-  //         return;
-  //       }
-  //       case "sellos": {
-  //         await querys.crearSelloFetch(data);
-
-  //         return;
-  //       }
-  //       case "talonarios": {
-  //         await querys.crearTalonarioFetch(data);
-
-  //         return;
-  //       }
-  //       case "tarjetas": {
-  //         await querys.crearTarjetaFetch(data);
-
-  //         return;
-  //       }
-  //       case "varios": {
-  //         await querys.crearVariosFetch(data);
-
-  //         return;
-  //       }
-  //       case "volantes": {
-  //         await querys.crearVolanteFetch(data);
-
-  //         return;
-  //       }
-
-  //       default:
-  //         return;
-  //     }
-  //   } catch (error) {
-  //     if (error instanceof AxiosError) console.log(error.response?.data);
-  //   }
-  // });
 
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         {productoElegido == "" ? (
           <BotonesProductos setProductoElegido={setProductoElegido} />
         ) : (
           <>
-            <div className="flex gap-4 items-center">
+            <div className="flex flex-row-reverse gap-4 items-center">
               <Chip
                 color="primary"
                 startContent={productosModel[productoElegido].icono}
@@ -225,7 +150,7 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
         )}
       </CardHeader>
       {!!productoElegido && (
-        <>
+        <div>
           <FormProvider {...methods}>
             <form
               onSubmit={methods.handleSubmit(onSubmit)}
@@ -244,7 +169,7 @@ const FormCrearOrdenProvider = ({ atendido_por }: { atendido_por: string }) => {
               </CardFooter>
             </form>
           </FormProvider>
-        </>
+        </div>
       )}
     </Card>
   );

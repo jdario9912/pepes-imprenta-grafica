@@ -8,8 +8,8 @@ const InfoCliente = async ({ id }: { id: string }) => {
   const { nombre, telefono, email, observaciones } = cliente;
 
   return (
-    <Card>
-      <CardBody className="flex-row flex-wrap w-full gap-4">
+    <Card className="w-60">
+      <CardBody className="flex-column flex-wrap w-full gap-4 overflow-x-hidden">
         <DetalleCliente
           icono={iconos.persona}
           texto={nombre}

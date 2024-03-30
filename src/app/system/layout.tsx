@@ -4,7 +4,7 @@ import { metadataSystem } from "@/libs/client/metadata";
 import DarkMode from "./components/dark-mode";
 import { estilosSystemBase } from "./services/estilos-system";
 import Busqueda from "./components/busqueda";
-import {  Card, CardBody} from "@nextui-org/react";
+import { Card, CardBody } from "@nextui-org/react";
 import { getServerSession } from "next-auth";
 import { Suspense } from "react";
 import Usuario from "./components/usuario";
@@ -39,7 +39,6 @@ const SystemLayout = async ({ children }: { children: React.ReactNode }) => {
           </CardBody>
         </Card>
       </aside>
-
       <div className="overflow-scroll w-full dark:bg-neutral-800 dark:text-white">
         {children}
       </div>

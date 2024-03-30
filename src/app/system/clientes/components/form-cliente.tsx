@@ -2,6 +2,7 @@
 
 import { iconos } from "@/components/icons";
 import { crearCliente } from "@/libs/client/axios";
+import { errorToast } from "@/libs/client/toast";
 import { editarCliente } from "@/libs/server-actions/axios";
 import {
   Button,
@@ -55,8 +56,7 @@ const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
       router.push(`/system/ordenes/crear/${id}`);
       return;
     } catch (error: unknown) {
-      if (error instanceof AxiosError)
-        console.log(error.response?.data.mensaje);
+      errorToast("Algo salio mal.")
     }
   });
 
@@ -172,8 +172,9 @@ const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
           isLoading={isSubmitting}
           variant="solid"
           color="primary"
+          startContent={iconos.guardar}
         >
-          Guardar
+          guardar
         </Button>
       </CardFooter>
     </form>

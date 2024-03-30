@@ -15,12 +15,14 @@ const handler = NextAuth({
         email: {},
         password: {},
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         try {
           const empleado = await EmpleadosModel.login(
             credentials?.email || "",
             credentials?.password || ""
           );
+
+          if(!empleado) throw new Error("Credenciales incorrectas.")
 
           return empleado;
         } catch (error) {

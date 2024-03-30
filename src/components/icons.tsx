@@ -7,6 +7,7 @@ import {
   BsCardChecklist,
   BsFilter,
   BsGraphUpArrow,
+  BsArrowLeftRight,
 } from "react-icons/bs";
 import { BiSolidEditAlt, BiSolidTruck, BiSolidUser } from "react-icons/bi";
 import {
@@ -60,4 +61,5 @@ export const iconos = {
   empleados: <FaPeopleCarry />,
   graficas: <BsGraphUpArrow />,
   lock: <AiFillLock />,
+  cambiarProducto: <BsArrowLeftRight />,
 };

@@ -7,30 +7,38 @@ import InputSelect from "../../../components/input-select";
 
 const FormConnectProducto = ({ children }: { children: any }) => {
   const methods = useFormContext<Producto>();
-  const { errors, isSubmitting } = methods.formState;
+  const { errors } = methods.formState;
 
   return (
-    <>
-      <Input
-        type="date"
-        {...methods.register("fecha_entrega", {
-          required: "La fecha de entrega es obligatoria.",
-        })}
-        isInvalid={!!errors.fecha_entrega}
-        errorMessage={errors.fecha_entrega?.message}
-        variant={errors.fecha_entrega ? "bordered" : "flat"}
-      />
+    <div className="flex flex-col gap-y-3">
+      <label className="flex items-center gap-x-2">
+        <p className="first-letter:capitalize text-xs">fecha</p>
+        <Input
+          type="date"
+          {...methods.register("fecha_entrega", {
+            required: "La fecha de entrega es obligatoria.",
+          })}
+          isInvalid={!!errors.fecha_entrega}
+          errorMessage={errors.fecha_entrega?.message}
+          variant={errors.fecha_entrega ? "bordered" : "flat"}
+          color="primary"
+        />
+      </label>
 
-      <Input
-        type="time"
-        {...methods.register("hora_entrega", {
-          required: "la hora de entrega es requerida.",
-        })}
-        isInvalid={!!errors.hora_entrega}
-        errorMessage={errors.hora_entrega?.message}
-        variant={errors.hora_entrega ? "bordered" : "flat"}
-        defaultValue="19:00"
-      />
+      <label className="flex items-center gap-x-2">
+        <p className="first-letter:capitalize text-xs">hora</p>
+        <Input
+          type="time"
+          {...methods.register("hora_entrega", {
+            required: "la hora de entrega es requerida.",
+          })}
+          isInvalid={!!errors.hora_entrega}
+          errorMessage={errors.hora_entrega?.message}
+          variant={errors.hora_entrega ? "bordered" : "flat"}
+          defaultValue="19:00"
+          color="primary"
+        />
+      </label>
 
       <Controller
         name="muestra"
@@ -49,7 +57,11 @@ const FormConnectProducto = ({ children }: { children: any }) => {
 
       {children({ ...methods })}
 
-      <Textarea label="Observaciones" {...methods.register("observaciones")} />
+      <Textarea
+        label="Observaciones"
+        {...methods.register("observaciones")}
+        color="primary"
+      />
 
       <Input
         type="num"
@@ -60,6 +72,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
         isInvalid={!!errors.total}
         errorMessage={errors.total?.message}
         variant={errors.total ? "bordered" : "flat"}
+        color="primary"
       />
 
       <Input
@@ -71,6 +84,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
         isInvalid={!!errors.entrega}
         errorMessage={errors.entrega?.message}
         variant={errors.entrega ? "bordered" : "flat"}
+        color="primary"
       />
 
       <Controller
@@ -91,16 +105,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
           />
         )}
       />
-
-      <Button
-        type="submit"
-        variant="flat"
-        color="primary"
-        isLoading={isSubmitting}
-      >
-        Crear orden
-      </Button>
-    </>
+    </div>
   );
 };
 

@@ -20,8 +20,8 @@ const BotonesProductos = ({
           onClick={() => handleClick(nombre)}
           variant="flat"
           color="primary"
+          startContent={<span>{icono}</span>}
         >
-          {icono}
           {nombre}
         </Button>
       ))}

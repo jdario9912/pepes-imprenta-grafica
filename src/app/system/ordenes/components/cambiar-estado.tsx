@@ -55,7 +55,7 @@ const CambiarEstado = ({
           color="secondary"
           variant="solid"
         >
-          <LabelBtnAccion>cambiar estado</LabelBtnAccion>
+          <LabelBtnAccion>estado</LabelBtnAccion>
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions" disabledKeys={disabledKeys}>

@@ -9,10 +9,16 @@ import {
   BsGraphUpArrow,
   BsArrowLeftRight,
 } from "react-icons/bs";
-import { BiSolidEditAlt, BiSolidTruck, BiSolidUser } from "react-icons/bi";
+import {
+  BiSolidEditAlt,
+  BiSolidTruck,
+  BiSolidUser,
+  BiTimeFive,
+} from "react-icons/bi";
 import {
   MdAlternateEmail,
   MdAutorenew,
+  MdDateRange,
   MdOutlinePendingActions,
 } from "react-icons/md";
 import { CgNotes, CgUserList } from "react-icons/cg";
@@ -62,4 +68,6 @@ export const iconos = {
   graficas: <BsGraphUpArrow />,
   lock: <AiFillLock />,
   cambiarProducto: <BsArrowLeftRight />,
+  calendario: <MdDateRange />,
+  reloj: <BiTimeFive />,
 };

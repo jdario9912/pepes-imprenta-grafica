@@ -13,7 +13,7 @@ const NuevoCliente = () => (
     <Card className="w-full md:w-4/5 lg:w-1/2">
       <CardHeader className="flex items-center justify-between">
         <NombrePagina nombre="Crear cliente" />
-        <p className="text-4xl">{iconos.agregarPersona}</p>
+        <p className="text-2xl text-zinc-700">{iconos.agregarPersona}</p>
       </CardHeader>
       <FormCliente />
     </Card>

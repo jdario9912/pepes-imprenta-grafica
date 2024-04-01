@@ -11,7 +11,7 @@ const FormConnectProducto = ({ children }: { children: any }) => {
   const { errors } = methods.formState;
 
   return (
-    <div className="flex flex-col gap-y-3">
+    <div className="flex flex-col gap-y-2">
       <WraperInputLabel label="fecha">
         <Input
           type="date"
@@ -64,8 +64,10 @@ const FormConnectProducto = ({ children }: { children: any }) => {
             message: "Solo se admiten hasta 500 caracteres.",
           },
         })}
+        variant={errors.observaciones ? "bordered" : "flat"}
         color="primary"
         isInvalid={!!errors.observaciones}
+
       />
 
       <Input

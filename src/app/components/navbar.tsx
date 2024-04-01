@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import Usuario from "../system/components/usuario";
 
 const NavBar = async () => {
   const session = await getServerSession();
@@ -18,7 +19,11 @@ const NavBar = async () => {
   return (
     <Navbar shouldHideOnScroll className="bg-transparent">
       <NavbarBrand>
-        <Logo className="w-10" />
+        {!session ? (
+          <Logo className="w-10" />
+        ) : (
+          <Usuario email={session.user?.email!} nombre={session.user?.name!} />
+        )}
       </NavbarBrand>
 
       <NavbarContent justify="end" className="gap-x-3">

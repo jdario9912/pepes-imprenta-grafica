@@ -2,12 +2,12 @@ import { EmpleadosModel } from "@/models/mysql/empleados";
 import { User } from "@nextui-org/react";
 import BtnSettingsAdmin from "./btn-settings-admin";
 
-type UsuarioProps = {
+type Props = {
   nombre: string;
   email: string;
 };
 
-const Usuario = async ({ email, nombre }: UsuarioProps) => {
+const Usuario = async ({ email, nombre }: Props) => {
   const admin = await EmpleadosModel.isAdmin(email || "");
 
   return (

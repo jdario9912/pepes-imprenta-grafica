@@ -96,6 +96,7 @@ const BonosForm = () => {
             errorMessage={errors.desde_numero?.message}
             variant={errors.desde_numero ? "bordered" : "flat"}
             defaultValue={watch().desde_numero.toString()}
+            color="primary"
           />
 
           <Input
@@ -108,6 +109,7 @@ const BonosForm = () => {
             errorMessage={errors.cantidad?.message}
             variant={errors.cantidad ? "bordered" : "flat"}
             defaultValue={watch().cantidad.toString()}
+            color="primary"
           />
         </>
       )}

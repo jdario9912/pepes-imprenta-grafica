@@ -20,6 +20,7 @@ const DisenosForm = () => {
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
             defaultValue={watch().ubicacion_archivo}
+            color="primary"
           />
 
           <Textarea
@@ -31,6 +32,7 @@ const DisenosForm = () => {
             errorMessage={errors.detalles?.message}
             variant={errors.detalles ? "bordered" : "flat"}
             defaultValue={watch().detalles}
+            color="primary"
           />
         </>
       )}

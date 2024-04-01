@@ -29,6 +29,7 @@ const PlotterForm = () => {
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
             defaultValue={watch().ubicacion_archivo}
+            color="primary"
           />
 
           <Input
@@ -40,6 +41,7 @@ const PlotterForm = () => {
             errorMessage={errors.tamano?.message}
             variant={errors.tamano ? "bordered" : "flat"}
             defaultValue={watch().tamano}
+            color="primary"
           />
 
           <InputRadio

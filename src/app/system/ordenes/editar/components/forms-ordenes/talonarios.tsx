@@ -51,6 +51,7 @@ const TalonariosForm = () => {
             errorMessage={errors.cantidad?.message}
             variant={errors.cantidad ? "bordered" : "flat"}
             defaultValue={watch().cantidad.toString()}
+            color="primary"
           />
 
           <Controller
@@ -107,6 +108,7 @@ const TalonariosForm = () => {
             variant={errors.ubicacion_logo ? "bordered" : "flat"}
             isDisabled={watch("tiene_logo") === "no" ? true : false}
             defaultValue={watch().ubicacion_logo}
+            color="primary"
           />
 
           <Input
@@ -119,6 +121,7 @@ const TalonariosForm = () => {
             errorMessage={errors.numero_desde?.message}
             variant={errors.numero_desde ? "bordered" : "flat"}
             defaultValue={watch().numero_desde.toString()}
+            color="primary"
           />
 
           <Controller

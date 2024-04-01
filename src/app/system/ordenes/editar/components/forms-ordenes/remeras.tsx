@@ -20,6 +20,7 @@ const RemerasForm = () => {
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
             defaultValue={watch().ubicacion_archivo}
+            color="primary"
           />
 
           <Input
@@ -31,6 +32,7 @@ const RemerasForm = () => {
             errorMessage={errors.talles?.message}
             variant={errors.talles ? "bordered" : "flat"}
             defaultValue={watch().talles}
+            color="primary"
           />
 
           <Input
@@ -42,6 +44,7 @@ const RemerasForm = () => {
             errorMessage={errors.color?.message}
             variant={errors.color ? "bordered" : "flat"}
             defaultValue={watch().color}
+            color="primary"
           />
 
           <Input
@@ -53,6 +56,7 @@ const RemerasForm = () => {
             errorMessage={errors.estampa_pecho?.message}
             variant={errors.estampa_pecho ? "bordered" : "flat"}
             defaultValue={watch().estampa_pecho}
+            color="primary"
           />
 
           <Input
@@ -64,6 +68,7 @@ const RemerasForm = () => {
             errorMessage={errors.estampa_espalda?.message}
             variant={errors.estampa_espalda ? "bordered" : "flat"}
             defaultValue={watch().estampa_espalda}
+            color="primary"
           />
 
           <Input
@@ -75,6 +80,7 @@ const RemerasForm = () => {
             errorMessage={errors.color_estampa?.message}
             variant={errors.color_estampa ? "bordered" : "flat"}
             defaultValue={watch().color_estampa}
+            color="primary"
           />
 
           <Input
@@ -87,6 +93,7 @@ const RemerasForm = () => {
             errorMessage={errors.cantidad?.message}
             variant={errors.cantidad ? "bordered" : "flat"}
             defaultValue={watch().cantidad.toString()}
+            color="primary"
           />
         </>
       )}

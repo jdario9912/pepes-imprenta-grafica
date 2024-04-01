@@ -104,6 +104,7 @@ const VolantesForm = () => {
             errorMessage={errors.ubicacion_diseno?.message}
             variant={errors.ubicacion_diseno ? "bordered" : "flat"}
             defaultValue={watch().ubicacion_diseno}
+            color="primary"
           />
         </>
       )}

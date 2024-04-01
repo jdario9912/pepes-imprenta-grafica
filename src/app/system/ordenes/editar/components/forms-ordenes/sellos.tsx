@@ -42,6 +42,7 @@ const SellosForm = () => {
             errorMessage={errors.tamano?.message}
             variant={errors.tamano ? "bordered" : "flat"}
             defaultValue={watch().tamano}
+            color="primary"
           />
 
           <Textarea
@@ -53,6 +54,7 @@ const SellosForm = () => {
             errorMessage={errors.texto?.message}
             variant={errors.texto ? "bordered" : "flat"}
             defaultValue={watch().texto}
+            color="primary"
           />
 
           <Textarea
@@ -64,6 +66,7 @@ const SellosForm = () => {
             errorMessage={errors.dibujo?.message}
             variant={errors.dibujo ? "bordered" : "flat"}
             defaultValue={watch().dibujo}
+            color="primary"
           />
         </>
       )}

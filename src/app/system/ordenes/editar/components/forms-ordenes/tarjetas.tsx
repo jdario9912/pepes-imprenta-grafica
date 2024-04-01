@@ -30,6 +30,7 @@ const TarjetasForm = () => {
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
             defaultValue={watch().ubicacion_archivo}
+            color="primary"
           />
 
           <Controller

@@ -20,6 +20,7 @@ const VariosForm = () => {
             errorMessage={errors.detalle?.message}
             variant={errors.detalle ? "bordered" : "flat"}
             defaultValue={watch().detalle}
+            color="primary"
           />
         </>
       )}

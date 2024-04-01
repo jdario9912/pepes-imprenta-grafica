@@ -30,6 +30,7 @@ const ImpresionesForm = () => {
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
             defaultValue={watch().ubicacion_archivo}
+            color="primary"
           />
 
           <InputRadio
@@ -61,6 +62,7 @@ const ImpresionesForm = () => {
             errorMessage={errors.tipo_papel?.message}
             variant={errors.tipo_papel ? "bordered" : "flat"}
             defaultValue={watch().tipo_papel}
+            color="primary"
           />
 
           <Controller

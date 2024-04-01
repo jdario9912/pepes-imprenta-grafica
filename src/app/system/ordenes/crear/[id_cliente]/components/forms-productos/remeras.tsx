@@ -19,6 +19,7 @@ const RemerasForm = () => {
             isInvalid={!!errors.ubicacion_archivo}
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Input
@@ -29,6 +30,7 @@ const RemerasForm = () => {
             isInvalid={!!errors.talles}
             errorMessage={errors.talles?.message}
             variant={errors.talles ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Input
@@ -39,6 +41,7 @@ const RemerasForm = () => {
             isInvalid={!!errors.color}
             errorMessage={errors.color?.message}
             variant={errors.color ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Input
@@ -49,6 +52,7 @@ const RemerasForm = () => {
             isInvalid={!!errors.estampa_pecho}
             errorMessage={errors.estampa_pecho?.message}
             variant={errors.estampa_pecho ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Input
@@ -59,6 +63,7 @@ const RemerasForm = () => {
             isInvalid={!!errors.estampa_espalda}
             errorMessage={errors.estampa_espalda?.message}
             variant={errors.estampa_espalda ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Input
@@ -69,6 +74,7 @@ const RemerasForm = () => {
             isInvalid={!!errors.color_estampa}
             errorMessage={errors.color_estampa?.message}
             variant={errors.color_estampa ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Input
@@ -80,6 +86,7 @@ const RemerasForm = () => {
             isInvalid={!!errors.cantidad}
             errorMessage={errors.cantidad?.message}
             variant={errors.cantidad ? "bordered" : "flat"}
+            color="primary"
           />
         </>
       )}

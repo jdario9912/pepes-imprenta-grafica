@@ -49,6 +49,7 @@ const TalonariosForm = () => {
             isInvalid={!!errors.cantidad}
             errorMessage={errors.cantidad?.message}
             variant={errors.cantidad ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Controller
@@ -115,6 +116,7 @@ const TalonariosForm = () => {
             errorMessage={errors.ubicacion_logo?.message}
             variant={errors.ubicacion_logo ? "bordered" : "flat"}
             isDisabled={watch("tiene_logo") === "no" ? true : false}
+            color="primary"
           />
 
           <Input
@@ -126,6 +128,7 @@ const TalonariosForm = () => {
             isInvalid={!!errors.numero_desde}
             errorMessage={errors.numero_desde?.message}
             variant={errors.numero_desde ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Controller

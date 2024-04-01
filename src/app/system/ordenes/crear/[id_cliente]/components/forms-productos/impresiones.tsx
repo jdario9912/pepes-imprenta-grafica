@@ -71,6 +71,7 @@ const ImpresionesForm = () => {
             isInvalid={!!errors.tipo_papel}
             errorMessage={errors.tipo_papel?.message}
             variant={errors.tipo_papel ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Controller

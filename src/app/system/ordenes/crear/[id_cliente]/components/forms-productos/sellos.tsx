@@ -39,6 +39,7 @@ const SellosForm = () => {
             isInvalid={!!errors.tamano}
             errorMessage={errors.tamano?.message}
             variant={errors.tamano ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Textarea
@@ -49,6 +50,7 @@ const SellosForm = () => {
             isInvalid={!!errors.texto}
             errorMessage={errors.texto?.message}
             variant={errors.texto ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Textarea
@@ -59,6 +61,7 @@ const SellosForm = () => {
             isInvalid={!!errors.dibujo}
             errorMessage={errors.dibujo?.message}
             variant={errors.dibujo ? "bordered" : "flat"}
+            color="primary"
           />
         </>
       )}

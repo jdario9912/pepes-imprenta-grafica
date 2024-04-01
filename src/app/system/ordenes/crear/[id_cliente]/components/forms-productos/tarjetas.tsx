@@ -29,6 +29,7 @@ const TarjetasForm = () => {
             isInvalid={!!errors.ubicacion_archivo}
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Controller

@@ -99,6 +99,7 @@ const BonosForm = () => {
             isInvalid={!!errors.desde_numero}
             errorMessage={errors.desde_numero?.message}
             variant={errors.desde_numero ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Input
@@ -110,6 +111,7 @@ const BonosForm = () => {
             isInvalid={!!errors.cantidad}
             errorMessage={errors.cantidad?.message}
             variant={errors.cantidad ? "bordered" : "flat"}
+            color="primary"
           />
         </>
       )}

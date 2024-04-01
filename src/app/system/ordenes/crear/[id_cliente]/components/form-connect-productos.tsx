@@ -58,8 +58,14 @@ const FormConnectProducto = ({ children }: { children: any }) => {
 
       <Textarea
         label="Observaciones"
-        {...methods.register("observaciones")}
+        {...methods.register("observaciones", {
+          maxLength: {
+            value: 500,
+            message: "Solo se admiten hasta 500 caracteres.",
+          },
+        })}
         color="primary"
+        isInvalid={!!errors.observaciones}
       />
 
       <Input

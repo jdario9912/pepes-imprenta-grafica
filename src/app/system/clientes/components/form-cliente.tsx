@@ -56,7 +56,7 @@ const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
       router.push(`/system/ordenes/crear/${id}`);
       return;
     } catch (error: unknown) {
-      errorToast("Algo salio mal.")
+      errorToast("Algo salio mal.");
     }
   });
 
@@ -138,10 +138,18 @@ const FormCliente = ({ cliente }: { cliente?: Cliente }) => {
             <div className="flex items-start gap-x-2">
               <Textarea
                 label="observaciones"
-                {...(addInputObservaciones ? register("observaciones") : null)}
+                {...(addInputObservaciones
+                  ? register("observaciones", {
+                      maxLength: {
+                        value: 255,
+                        message: "Solo se admiten hasta 255 caracteres.",
+                      },
+                    })
+                  : null)}
                 defaultValue={watch().observaciones}
                 endContent={iconos.observaciones}
                 color="primary"
+                isInvalid={!!errors.observaciones}
               />
 
               <Button

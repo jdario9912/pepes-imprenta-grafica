@@ -99,6 +99,7 @@ const VolantesForm = () => {
             isInvalid={!!errors.ubicacion_diseno}
             errorMessage={errors.ubicacion_diseno?.message}
             variant={errors.ubicacion_diseno ? "bordered" : "flat"}
+            color="primary"
           />
         </>
       )}

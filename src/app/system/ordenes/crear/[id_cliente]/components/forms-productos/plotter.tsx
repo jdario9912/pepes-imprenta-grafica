@@ -28,6 +28,7 @@ const PlotterForm = () => {
             isInvalid={!!errors.ubicacion_archivo}
             errorMessage={errors.ubicacion_archivo?.message}
             variant={errors.ubicacion_archivo ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Input
@@ -38,6 +39,7 @@ const PlotterForm = () => {
             isInvalid={!!errors.tamano}
             errorMessage={errors.tamano?.message}
             variant={errors.tamano ? "bordered" : "flat"}
+            color="primary"
           />
 
           <Controller

@@ -19,6 +19,7 @@ const VariosForm = () => {
             isInvalid={!!errors.detalle}
             errorMessage={errors.detalle?.message}
             variant={errors.detalle ? "bordered" : "flat"}
+            color="primary"
           />
         </>
       )}

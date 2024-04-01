@@ -22,7 +22,6 @@ import {
   TableRow,
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-
 import { columns } from "../services/columns-tabla-clientes";
 import NombrePagina from "../../components/nombre-pagina";
 import { iconos } from "@/components/icons";
@@ -73,6 +72,7 @@ const TablaClientes = ({ clientes, userIsAdmin }: TablaClientesProps) => {
       columnFilters,
       columnVisibility,
       rowSelection,
+
     },
     isAdmin: userIsAdmin,
   });

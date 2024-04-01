@@ -5,67 +5,53 @@ import { OrdenPendiente } from "@/types/orden";
 import {
   HeaderTextCenter,
   HeaderTextLeft,
-} from "../../components/headers-tabla";
-import { Chip } from "@nextui-org/react";
-import { iconos } from "@/components/icons";
+} from "../../components/text-headers-tabla";
+import { TextRowTabla } from "../../components/text-row-tabla";
 
 export const columns: ColumnDef<OrdenPendiente>[] = [
   {
     accessorKey: "atendio",
-    header: () => <HeaderTextLeft texto="Atendió" />,
-    cell: ({ row }) => (
-      <p className="text-left text-slate-800 dark:text-slate-300">
-        {row.original.atendido_por}
-      </p>
-    ),
+    header: () => <HeaderTextLeft>Atendió</HeaderTextLeft>,
+    cell: ({ row }) => <TextRowTabla>{row.original.atendido_por}</TextRowTabla>,
   },
   {
     accessorKey: "fecha_creacion",
-    header: () => <HeaderTextLeft texto="Creado" />,
+    header: () => <HeaderTextLeft>Creado</HeaderTextLeft>,
     cell: ({ row }) => (
-      <p className="text-left text-slate-800 dark:text-slate-300">
-        {formatearFecha(row.original.fecha_creacion)}
-      </p>
+      <TextRowTabla>{formatearFecha(row.original.fecha_creacion)}</TextRowTabla>
     ),
   },
   {
     accessorKey: "producto",
-    header: () => <HeaderTextLeft texto="Producto" />,
-    cell: ({ row }) => (
-      <p className="text-left text-slate-800 dark:text-slate-300">
-        {row.getValue("producto")}
-      </p>
-    ),
+    header: () => <HeaderTextLeft>Producto</HeaderTextLeft>,
+    cell: ({ row }) => <TextRowTabla>{row.getValue("producto")}</TextRowTabla>,
   },
   {
     accessorKey: "nombre",
-    header: () => <HeaderTextLeft texto="Cliente" />,
-    cell: ({ row }) => (
-      <p className="w-20 text-left overflow-hidden text-slate-800 dark:text-slate-300">
-        {row.original.nombre}
-      </p>
-    ),
+    header: () => <HeaderTextLeft>Cliente</HeaderTextLeft>,
+    cell: ({ row }) => <TextRowTabla>{row.original.nombre}</TextRowTabla>,
   },
   {
     accessorKey: "entregar",
-    header: () => <HeaderTextLeft texto="Entregar" />,
+    header: () => <HeaderTextLeft>Entregar</HeaderTextLeft>,
     cell: ({ row }) => (
-      <div className="flex items-center gap-x-2 text-slate-800 dark:text-slate-300">
-        <p>{formatearFecha(row.original.fecha_entrega)}</p>
-        <p>{formatearHora(row.original.hora_entrega)}hs</p>
-      </div>
+      <TextRowTabla>
+        <div className="flex items-center gap-x-2">
+          <p>{formatearFecha(row.original.fecha_entrega)}</p>
+          <p>{formatearHora(row.original.hora_entrega)}hs</p>
+        </div>
+      </TextRowTabla>
     ),
   },
   {
     id: "actions",
     enableHiding: false,
-    header: () => <HeaderTextCenter texto="Acciones" />,
-    cell: ({ row }) => {
-      const orden = row.original;
-
-      return (
-        <AccionesTablaPendientes orden={orden} disabledKeys={["pendiente"]} />
-      );
-    },
+    header: () => <HeaderTextCenter>Acciones</HeaderTextCenter>,
+    cell: ({ row }) => (
+      <AccionesTablaPendientes
+        orden={row.original}
+        disabledKeys={["pendiente"]}
+      />
+    ),
   },
 ];

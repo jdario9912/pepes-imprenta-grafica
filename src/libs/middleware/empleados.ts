@@ -1,3 +1,4 @@
+// revisar
 import { Permiso } from "@/types/enums";
 import { dataDesdeToken } from "../api/jwt";
 

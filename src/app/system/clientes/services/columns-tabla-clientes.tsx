@@ -1,41 +1,45 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@nextui-org/react";
 import AccionesTablaClientes from "../components/acciones-tabla-clientes";
+import {
+  HeaderTextCenter,
+  HeaderTextLeft,
+} from "../../ordenes/components/text-headers-tabla";
+import { TextRowTabla } from "../../ordenes/components/text-row-tabla";
 
 export const columns: ColumnDef<Cliente>[] = [
   {
     accessorKey: "nombre",
-    header: ({ column }) => {
-      return (
+    header: ({ column }) => (
+      <HeaderTextLeft>
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Nombre
         </Button>
-      );
-    },
+      </HeaderTextLeft>
+    ),
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("nombre")}</div>
+      <TextRowTabla>
+        <div className="w-28">{row.getValue("nombre")}</div>
+      </TextRowTabla>
     ),
   },
   {
     accessorKey: "telefono",
-    header: () => <div className="text-center">Telefono</div>,
-    cell: ({ row }) => (
-      <div className="text-right">{row.getValue("telefono")}</div>
-    ),
+    header: () => <HeaderTextLeft>Teléfono</HeaderTextLeft>,
+    cell: ({ row }) => <TextRowTabla>{row.getValue("telefono")}</TextRowTabla>,
   },
   {
     id: "actions",
     enableHiding: false,
-    header: () => <div className="text-center">Acciones</div>,
-    cell: ({ row, table }) => {
-      const cliente = row.original;
-      
-      const isAdmin = table.options.isAdmin
-
-      return <AccionesTablaClientes cliente={cliente} isAdmin={isAdmin} />;
-    },
+    header: () => <HeaderTextCenter>Acciones</HeaderTextCenter>,
+    cell: ({ row, table }) => (
+      <AccionesTablaClientes
+        cliente={row.original}
+        isAdmin={table.options.isAdmin}
+      />
+    ),
   },
 ];

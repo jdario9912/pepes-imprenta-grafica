@@ -16,22 +16,35 @@ const PlotterColor = ({
   setValue,
   error,
   watch,
-  color
+  color,
 }: {
   setValue: UseFormSetValue<Plotter>;
   error: boolean;
   watch: UseFormWatch<Plotter>;
-  color?: string
+  color?: string;
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [colorPlotter, setColorPlotter] = useState(color);
 
   return (
     <>
-      <Button onPress={onOpen} color={error ? "danger" : "default"}>
-        Color
-      </Button>
-      
+      <div className="flex items-center gap-2 border border-blue-300 rounded-md p-2">
+        <Button onPress={onOpen} color={error ? "danger" : "primary"} variant="flat">
+          Color
+        </Button>
+
+        {watch().color !== undefined ? (
+          <div
+            className="h-10 w-28 rounded-md"
+            style={{
+              background: colorPlotter,
+            }}
+          />
+        ) : (
+          <div className="w-16 h-14" />
+        )}
+      </div>
+
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
         <ModalContent>
           {(onClose) => (
@@ -65,17 +78,6 @@ const PlotterColor = ({
           )}
         </ModalContent>
       </Modal>
-
-      {watch().color !== undefined ? (
-        <div
-          className="h-16 w-16"
-          style={{
-            background: colorPlotter,
-          }}
-        />
-      ) : (
-        <div className="w-16 h-14" />
-      )}
     </>
   );
 };

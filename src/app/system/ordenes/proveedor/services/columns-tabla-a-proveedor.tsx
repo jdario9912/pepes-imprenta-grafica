@@ -5,60 +5,53 @@ import { OrdenAProveedor } from "@/types/orden";
 import {
   HeaderTextCenter,
   HeaderTextLeft,
-} from "../../components/headers-tabla";
+} from "../../components/text-headers-tabla";
+import { TextRowTabla } from "../../components/text-row-tabla";
 
 export const columns: ColumnDef<OrdenAProveedor>[] = [
   {
     accessorKey: "nro_orden",
-    header: () => <HeaderTextLeft texto="Orden" />,
-    cell: ({ row }) => (
-      <p className="text-left text-slate-800 dark:text-slate-300">
-        {row.original.nro_orden}
-      </p>
-    ),
+    header: () => <HeaderTextLeft>Orden</HeaderTextLeft>,
+    cell: ({ row }) => <TextRowTabla>{row.original.nro_orden}</TextRowTabla>,
   },
   {
     accessorKey: "producto",
-    header: () => <HeaderTextLeft texto="Producto" />,
-    cell: ({ row }) => (
-      <p className="text-left text-slate-800 dark:text-slate-300">
-        {row.original.producto}
-      </p>
-    ),
+    header: () => <HeaderTextLeft>Producto</HeaderTextLeft>,
+    cell: ({ row }) => <TextRowTabla>{row.original.producto}</TextRowTabla>,
   },
 
   {
     accessorKey: "nombre",
-    header: () => <HeaderTextLeft texto="Cliente" />,
+    header: () => <HeaderTextLeft>Cliente</HeaderTextLeft>,
     cell: ({ row }) => (
-      <p className="w-24 text-left overflow-hidden text-slate-800 dark:text-slate-300">
-        {row.original.nombre}
-      </p>
+      <TextRowTabla>
+        <div className="w-24">{row.original.nombre}</div>
+      </TextRowTabla>
     ),
   },
   {
     accessorKey: "entregar",
-    header: () => <HeaderTextLeft texto="Entregar" />,
+    header: () => <HeaderTextLeft>Entregar</HeaderTextLeft>,
     cell: ({ row }) => (
-      <div className="flex gap-x-2 text-slate-800 dark:text-slate-300">
-        <p>{formatearFecha(row.original.fecha_entrega)}</p>
-        <p>{formatearHora(row.original.hora_entrega)}</p>
-      </div>
+      <TextRowTabla>
+        <div className="flex gap-x-2">
+          <p>{formatearFecha(row.original.fecha_entrega)}</p>
+          <p>{formatearHora(row.original.hora_entrega)}</p>
+        </div>
+      </TextRowTabla>
     ),
   },
   {
     accessorKey: "creado",
-    header: () => <HeaderTextLeft texto="Creado" />,
+    header: () => <HeaderTextLeft>Creado</HeaderTextLeft>,
     cell: ({ row }) => (
-      <p className="text-left text-slate-800 dark:text-slate-300">
-        {formatearFecha(row.original.fecha_creacion)}
-      </p>
+      <TextRowTabla>{formatearFecha(row.original.fecha_creacion)}</TextRowTabla>
     ),
   },
   {
     id: "actions",
     enableHiding: false,
-    header: () => <HeaderTextCenter texto="Acciones" />,
+    header: () => <HeaderTextCenter>Acciones</HeaderTextCenter>,
     cell: ({ row }) => (
       <AccionesTablaAProveedor
         orden={row.original}

@@ -1,8 +1,6 @@
-import jwt, { Jwt } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { jwtSecret } from "@/config";
 import { jwtVerify } from "jose";
-import { EmpleadosModel } from "@/models/mysql/empleados";
-import { unknown } from "zod";
 
 export const generarToken = async (
   dataToken: EmpleadoDataToken

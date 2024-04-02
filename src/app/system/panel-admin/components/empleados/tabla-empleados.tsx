@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@nextui-org/react";
 import ModalEliminarEmpleado from "./modal-eliminar-empleado";
-import ModalEditarEmpleado from "./modal-cambiar-contrasena-empleado";
+import ModalEditarEmpleado from "./modal-editar-empleado";
 import ModalAgregarEmpleado from "./modal-agregar-empleado";
 
 type TablaEmpleadosProps = { empleados: Empleado[] };
@@ -43,10 +43,12 @@ const TablaEmpleados = ({ empleados }: TablaEmpleadosProps) => {
           {(empleado) => (
             <TableRow key={empleado.id}>
               <TableCell>
-                <h3>{empleado.nickname}</h3>
-                <span className="text-xs">{empleado.email}</span>
+                <h3 className="text-slate-800">{empleado.nickname}</h3>
+                <span className="text-xs text-slate-800">{empleado.email}</span>
               </TableCell>
-              <TableCell>{empleado.permisos}</TableCell>
+              <TableCell>
+                <p className="text-slate-800">{empleado.permisos}</p>
+              </TableCell>
               <TableCell>
                 <WrapperBtnAccionesTabla>
                   <>

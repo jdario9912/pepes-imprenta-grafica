@@ -46,21 +46,21 @@ const ModalDetallesCliente = ({ cliente }: { cliente: Cliente }) => {
                 >
                   {iconos.editar}
                 </Button>
-                <h2>{nombre}</h2>
+                <h2 className="text-slate-800">{nombre}</h2>
               </ModalHeader>
               <ModalBody>
                 <div className="flex items-center gap-x-4">
-                  {iconos.telefono}
+                  <span className="text-slate-800">{iconos.telefono}</span>
                   {telefono ? <p>{telefono}</p> : <CampoVacio />}
                 </div>
 
                 <div className="flex items-center gap-x-4">
-                  {iconos.email}
+                  <span className="text-slate-800">{iconos.email}</span>
                   {email ? <p>{email}</p> : <CampoVacio />}
                 </div>
 
                 <div className="flex items-center gap-x-4">
-                  {iconos.observaciones}
+                  <span className="text-slate-800">{iconos.observaciones}</span>
                   {observaciones ? <p>{observaciones}</p> : <CampoVacio />}
                 </div>
               </ModalBody>

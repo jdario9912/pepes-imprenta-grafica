@@ -33,7 +33,7 @@ const DarkMode = () => {
       }
       onChange={handleDarkMode}
     >
-      <span>dark mode</span>
+      <span className="text-slate-800">dark</span>
     </Switch>
   );
 };

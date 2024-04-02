@@ -20,7 +20,11 @@ const DropdownFiltroOrdenes = ({
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="filtro ordenes">
-        <DropdownItem key="todas" onClick={() => handleFiltroFecha(null)}>
+        <DropdownItem
+          key="todas"
+          onClick={() => handleFiltroFecha(null)}
+          className="text-slate-800"
+        >
           Todas
         </DropdownItem>
         <DropdownItem

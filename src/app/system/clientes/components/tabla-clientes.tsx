@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -22,10 +23,15 @@ import {
   TableRow,
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { columns } from "../services/columns-tabla-clientes";
 import NombrePagina from "../../components/nombre-pagina";
 import { iconos } from "@/components/icons";
 import { useSearchParams } from "next/navigation";
+import {
+  HeaderTextCenter,
+  HeaderTextLeft,
+} from "../../ordenes/components/text-headers-tabla";
+import { TextRowTabla } from "../../ordenes/components/text-row-tabla";
+import AccionesTablaClientes from "./acciones-tabla-clientes";
 
 type TablaClientesProps = { clientes: Cliente[]; userIsAdmin: boolean };
 type Busqueda = "nombre" | "telefono";
@@ -38,6 +44,40 @@ const TablaClientes = ({ clientes, userIsAdmin }: TablaClientesProps) => {
   const [rowSelection, setRowSelection] = useState({});
   const [busqueda, setBusqueda] = useState<Busqueda>("nombre");
   const [clientesTabla, setClientesTabla] = useState(clientes);
+
+  const columns: ColumnDef<Cliente>[] = [
+    {
+      accessorKey: "nombre",
+      header: ({ column }) => (
+        <HeaderTextLeft>
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Nombre
+          </Button>
+        </HeaderTextLeft>
+      ),
+      cell: ({ row }) => (
+        <TextRowTabla className="w-28">{row.getValue("nombre")}</TextRowTabla>
+      ),
+    },
+    {
+      accessorKey: "telefono",
+      header: () => <HeaderTextLeft>Teléfono</HeaderTextLeft>,
+      cell: ({ row }) => (
+        <TextRowTabla>{row.getValue("telefono")}</TextRowTabla>
+      ),
+    },
+    {
+      id: "actions",
+      enableHiding: false,
+      header: () => <HeaderTextCenter>Acciones</HeaderTextCenter>,
+      cell: ({ row }) => (
+        <AccionesTablaClientes cliente={row.original} isAdmin={userIsAdmin} />
+      ),
+    },
+  ];
 
   const params = new URLSearchParams(searchParams);
   const idCliente = params.get("id-cliente");
@@ -58,7 +98,7 @@ const TablaClientes = ({ clientes, userIsAdmin }: TablaClientesProps) => {
 
   const table = useReactTable({
     data: clientesTabla,
-    columns: columns,
+    columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -72,9 +112,7 @@ const TablaClientes = ({ clientes, userIsAdmin }: TablaClientesProps) => {
       columnFilters,
       columnVisibility,
       rowSelection,
-
     },
-    isAdmin: userIsAdmin,
   });
 
   return (

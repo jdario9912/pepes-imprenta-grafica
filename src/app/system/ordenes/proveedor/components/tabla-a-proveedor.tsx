@@ -100,7 +100,7 @@ const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
 
   return (
     <div className="w-full">
-      <div className="flex justify-between items-center py-4">
+      <div className="flex justify-between items-center gap-2 py-4">
         <Input
           label="Buscar"
           placeholder="Nombre de cliente..."
@@ -113,6 +113,7 @@ const TablaAProveedor = ({ aProveedor }: { aProveedor: OrdenAProveedor[] }) => {
           onClear={() => table.getColumn("nombre")?.setFilterValue("")}
           color="primary"
         />
+
         <div className="flex items-center gap-x-2">
           <NombrePagina nombre="Ordenes a proveedor" />
 

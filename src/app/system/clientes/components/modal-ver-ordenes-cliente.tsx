@@ -107,7 +107,7 @@ const ModalVerOrdenesCliente = ({ cliente }: { cliente: Cliente }) => {
                         emptyContent={`${cliente.nombre} no tiene órdenes registradas.`}
                       >
                         {ordenes.map((orden) => (
-                          <TableRow key={orden.nro_orden}>
+                          <TableRow key={orden.nro_orden} className="text-slate-800">
                             <TableCell>{orden.atendido_por}</TableCell>
 
                             <TableCell>{orden.producto}</TableCell>
@@ -127,7 +127,7 @@ const ModalVerOrdenesCliente = ({ cliente }: { cliente: Cliente }) => {
                                 }
                                 startContent={iconos.verOrden}
                               >
-                                <LabelBtnAccion>ver ordenes</LabelBtnAccion>
+                                <LabelBtnAccion>ver orden</LabelBtnAccion>
                               </Button>
                             </TableCell>
                           </TableRow>

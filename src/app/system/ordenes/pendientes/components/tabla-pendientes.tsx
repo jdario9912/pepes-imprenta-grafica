@@ -99,7 +99,7 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
 
   return (
     <div className="w-full">
-      <div className="flex justify-between items-center py-4">
+      <div className="flex justify-between items-center gap-2 py-4">
         <Input
           label="Buscar"
           placeholder="Nombre de cliente..."
@@ -112,6 +112,7 @@ const TablaPendientes = ({ pendientes }: { pendientes: OrdenPendiente[] }) => {
           onClear={() => table.getColumn("nombre")?.setFilterValue("")}
           color="primary"
         />
+        
         <div className="flex items-center gap-x-2">
           <NombrePagina nombre="Ordenes pendientes" />
 

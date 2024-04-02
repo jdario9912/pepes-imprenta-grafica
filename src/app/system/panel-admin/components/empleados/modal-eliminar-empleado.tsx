@@ -18,7 +18,7 @@ import { errorToast } from "@/libs/client/toast";
 
 type ModalEliminarEmpleadoProps = { empleado: Empleado };
 
-const ModalEliminarEmpleado = ({empleado}: ModalEliminarEmpleadoProps) => {
+const ModalEliminarEmpleado = ({ empleado }: ModalEliminarEmpleadoProps) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
@@ -27,22 +27,21 @@ const ModalEliminarEmpleado = ({empleado}: ModalEliminarEmpleadoProps) => {
 
   const handleEliminar = async (id: number) => {
     try {
-      
       setLoading(true);
-  
+
       await eliminarEmpleado(id);
-  
+
       const params = new URLSearchParams(searchParams);
-  
+
       params.set("id-empleado", id.toString());
-  
+
       replace(`${pathname}?${params.toString()}`);
       setLoading(false);
       onClose();
     } catch (error) {
       setLoading(false);
 
-      errorToast("Algo salio mal.")
+      errorToast("Algo salio mal.");
     }
   };
 
@@ -56,10 +55,10 @@ const ModalEliminarEmpleado = ({empleado}: ModalEliminarEmpleadoProps) => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Eliminar empleado
+                <h2 className="text-slate-800">Eliminar empleado</h2>
               </ModalHeader>
               <ModalBody>
-                <p>¿Estás seguro de eliminar a {empleado.nickname}?</p>
+                <p className="text-slate-800">¿Estás seguro de eliminar a {empleado.nickname}?</p>
               </ModalBody>
               <ModalFooter>
                 <Button color="primary" variant="solid" onPress={onClose}>

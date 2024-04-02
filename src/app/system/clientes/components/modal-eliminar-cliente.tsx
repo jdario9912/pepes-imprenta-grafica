@@ -46,10 +46,10 @@ const ModalEliminarCliente = ({ cliente }: ModalEliminarClienteProps) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
+              <ModalHeader className="flex flex-col gap-1 text-slate-800">
                 Eliminar cliente
               </ModalHeader>
-              <ModalBody>
+              <ModalBody className="text-slate-800">
                 <p>¿Estás seguro de eliminar a {cliente.nombre}?</p>
                 <p>Se borrarán todas sus órdenes.</p>
               </ModalBody>

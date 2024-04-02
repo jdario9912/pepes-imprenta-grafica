@@ -37,7 +37,7 @@ const FormEditarEmpleado = ({ empleado, onClose }: FormEditarEmpleadoProps) => {
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">
+            <ModalHeader className="flex flex-col gap-1 text-slate-800">
               Cambiar contraseña de {empleado.nickname}
             </ModalHeader>
             <ModalBody>

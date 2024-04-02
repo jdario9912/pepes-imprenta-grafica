@@ -1,6 +1,15 @@
-type Props = { children: React.ReactNode };
-export const TextRowTabla = ({ children }: Props) => {
+import classNames from "classnames";
+
+type Props = { children: React.ReactNode; className?: string };
+
+export const TextRowTabla = ({ children, className }: Props) => {
   return (
-    <div className="text-left text-slate-800 dark:text-slate-300">{children}</div>
+    <p
+      className={classNames(
+        "text-left text-slate-800 dark:text-slate-300 " + className
+      )}
+    >
+      {children}
+    </p>
   );
 };

@@ -64,6 +64,7 @@ const CambiarEstado = ({
             key={label}
             onClick={() => handleCambiarEstado(label)}
             startContent={loading ? null : icono}
+            className="text-slate-800"
           >
             {label}
           </DropdownItem>

@@ -1,10 +1,8 @@
 import { EmpleadosModel } from "@/models/mysql/empleados";
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-// export const authOptions =
-
-const handler = NextAuth({
+export const authOptions: AuthOptions = {
   session: {
     strategy: "jwt",
   },
@@ -22,7 +20,7 @@ const handler = NextAuth({
             credentials?.password || ""
           );
 
-          if(!empleado) throw new Error("Credenciales incorrectas.")
+          if (!empleado) throw new Error("Credenciales incorrectas.");
 
           return empleado;
         } catch (error) {
@@ -31,6 +29,8 @@ const handler = NextAuth({
       },
     }),
   ],
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

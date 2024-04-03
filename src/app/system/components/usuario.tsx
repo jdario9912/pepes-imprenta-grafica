@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Usuario = async ({ email, nombre }: Props) => {
-  const admin = await EmpleadosModel.isAdmin(email || "");
+  const admin = await EmpleadosModel.isAdmin(email);
 
   return (
     <div className="flex items-center gap-x-2">

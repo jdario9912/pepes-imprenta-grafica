@@ -2,7 +2,7 @@ name: Pepes imprenta y grafica
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:

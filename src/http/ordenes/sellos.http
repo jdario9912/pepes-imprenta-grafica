@@ -1,0 +1,40 @@
+@baseUrl= http://localhost:3000/api/ordenes/sellos
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": 5,
+  "atendido_por": "Yo",
+  "fecha_entrega": "2024-02-05",
+  "hora_entrega": "19:00",
+  "muestra": "si",
+  "tipo": "pocket",
+  "tamano": "mediano",
+  "texto": "escudo de river",
+  "dibujo": "numero 10", 
+  "observaciones": "suave al tacto",
+  "total": 4000,
+  "entrega": 3000,
+  "metodo_pago": "efectivo"
+}
+
+###
+PATCH  {{baseUrl}}
+Content-Type: application/json
+
+{
+  "fecha_entrega": ,
+  "hora_entrega": ,
+  "muestra": ,
+  "tipo": ,
+  "tamano": ,
+  "texto": ,
+  "dibujo": , 
+  "observaciones": ,
+  "total": ,
+  "entrega": ,
+  "estado": ,
+  "metodo_pago": 
+}

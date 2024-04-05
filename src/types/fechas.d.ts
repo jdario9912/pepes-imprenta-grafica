@@ -1,0 +1,1 @@
+type FechaOrden = "today" | "tomorrow" | "yesterday";

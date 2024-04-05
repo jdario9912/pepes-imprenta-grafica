@@ -1,0 +1,34 @@
+@baseUrl= http://localhost:3000/api/ordenes/varios
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": 38,
+  "atendido_por": "Laura",
+  "fecha_entrega": "2024-02-03",
+  "hora_entrega": "19:00",
+  "muestra": "si",
+  "detalle": "tiene cola de pescado",
+  "observaciones": "sin escamas",
+  "total": 200,
+  "entrega": 4,
+  "metodo_pago": "efectivo"
+}
+
+###
+PATCH  {{baseUrl}}
+Content-Type: application/json
+
+{
+  "fecha_entrega": ,
+  "hora_entrega": ,
+  "muestra": ,
+  "detalles": ,
+  "observaciones": ,
+  "total": ,
+  "entrega": ,
+  "estado": ,
+  "metodo_pago": 
+}

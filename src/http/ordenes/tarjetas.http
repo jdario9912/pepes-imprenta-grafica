@@ -1,0 +1,44 @@
+@baseUrl= http://localhost:3000/api/ordenes/tarjetas
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": 3,
+  "atendido_por": "Lucia",
+  "fecha_entrega": "2024-03-10",
+  "hora_entrega": "19:00",
+  "muestra": "si",
+  "ubicacion_archivo": "compu",
+  "tipo": "1000 4/1",
+  "cantidad": 200,
+  "papel": "obra",
+  "terminacion": "ninguna",
+  "puntas_redondeadas": "no", 
+  "observaciones": "",
+  "total": 5000,
+  "entrega": 2000,
+  "metodo_pago": "débito"
+}
+
+###
+PATCH  {{baseUrl}}
+Content-Type: application/json
+
+{
+  "fecha_entrega": ,
+  "hora_entrega": ,
+  "muestra": ,
+  "ubicacion_archivo": ,
+  "tipo": ,
+  "cantidad": ,
+  "papel": ,
+  "terminacion": ,
+  "puntas_redondeadas": , 
+  "observaciones": ,
+  "total": ,
+  "entrega": ,
+  "estado": ,
+  "metodo_pago": 
+}

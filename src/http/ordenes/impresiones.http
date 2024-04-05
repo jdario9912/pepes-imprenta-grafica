@@ -1,0 +1,35 @@
+@baseUrl= http://localhost:3000/api/ordenes/impresiones
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": 3,
+  "atendido_por": "Pepo",
+  "fecha_entrega": "2024-02-23",
+  "hora_entrega": "19:00",
+  "muestra": "no",
+  "ubicacion_archivo": "wathsapp",
+  "impresion": "blanco y negro",
+  "faz": "simple",
+  "tipo_papel": "cualquiera",
+  "tamano_papel": "A4",
+  "orientacion": "vertical",
+  "anillado": "no",
+  "abrochado": "no",
+  "corte": "si", 
+  "observaciones": "wasi waso",
+  "total": 2450,
+  "entrega": 1400,
+  "metodo_pago": "efectivo"
+}
+
+###
+PATCH  {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  
+  "estado": "proveedor"
+}

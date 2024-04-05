@@ -1,0 +1,48 @@
+@baseUrl= http://localhost:3000/api/ordenes/loma
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": 4,
+  "atendido_por": "Selena",
+  "fecha_entrega": "2024-05-10",
+  "hora_entrega": "19:00",
+  "muestra": "no",
+  "ubicacion_archivo": "que se yo",
+  "material": "vinilo sobre corrugado",
+  "orientacion": "horizontal",
+  "bolsillo": "no",
+  "corte": "no",
+  "ojales": "si",
+  "troquelado": "si",
+  "portabaner": "no", 
+  "observaciones": "",
+  "total": 3540,
+  "entrega": 345,
+  "metodo_pago": "transferencia"
+}
+
+###
+PATCH  {{baseUrl}}
+Content-Type: application/json
+
+{
+  "fecha_entrega": ,
+  "hora_entrega": ,
+  "muestra": ,
+  "ubicacion_archivo": ,
+  "material": ,
+  "orientacion": ,
+  "bolsillo": ,
+  "corte": ,
+  "ojales": ,
+  "troquelado": ,
+  "portabaner": , 
+  "observaciones": ,
+  "total": ,
+  "entrega": ,
+  "estado": ,
+  "metodo_pago": 
+}

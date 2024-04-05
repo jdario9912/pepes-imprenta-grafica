@@ -1,0 +1,40 @@
+@baseUrl= http://localhost:3000/api/ordenes/talonarios
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": 4,
+  "atendido_por": "Lucia",
+  "fecha_entrega": "2024-02-05",
+  "hora_entrega": "19:00",
+  "muestra": "si",
+  "tipo": "factura C",
+  "cantidad": 5,
+  "tamano": "A4",
+  "modelo_anterior": "si",
+  "tiene_logo": "si",
+  "ubicacion_logo": "celu",
+  "numero_desde": 40,
+  "puntillado_emblocado": "sueltas",
+  "color_duplicado": "amarillo",
+  "triplicado": "si",
+  "color_triplicado": "azul", 
+  "observaciones": "no tiene",
+  "total": 64000,
+  "entrega": 40000,
+  "metodo_pago": "transferencia"
+}
+
+###
+PATCH  {{baseUrl}}/2
+Content-Type: application/json
+
+{
+  
+  "triplicado": "no"
+}
+
+### obtener una
+GET {{baseUrl}}/2

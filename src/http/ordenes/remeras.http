@@ -1,0 +1,46 @@
+@baseUrl= http://localhost:3000/api/ordenes/remeras
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": 6,
+  "atendido_por": "Dua Lipa",
+  "fecha_entrega": "2024-02-04",
+  "hora_entrega": "19:00",
+  "muestra": "si",
+  "ubicacion_archivo": "ni idea",
+  "talles": "s, m, xl",
+  "color": "blanco",
+  "estampa_pecho": "superman",
+  "estampa_espalda": "no tiene",
+  "color_estampa": "rojo",
+  "cantidad": 24, 
+  "observaciones": "corte de gordo",
+  "total": 54000,
+  "entrega": 50000,
+  "metodo_pago": "efectivo"
+}
+
+###
+PATCH  {{baseUrl}}
+Content-Type: application/json
+
+{
+  "fecha_entrega": ,
+  "hora_entrega": ,
+  "muestra": ,
+  "ubicacion_archivo": ,
+  "talles": ,
+  "color": ,
+  "estampa_pecho": ,
+  "estampa_espalda": ,
+  "color_estampa": ,
+  "cantidad": , 
+  "observaciones": ,
+  "total": ,
+  "entrega": ,
+  "estado": ,
+  "metodo_pago": 
+}

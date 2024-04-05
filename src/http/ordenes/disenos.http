@@ -1,0 +1,34 @@
+@baseUrl= http://localhost:3000/api/ordenes/disenos
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": 4,
+  "atendido_por": "Chespirito",
+  "fecha_entrega": "2024-02-08",
+  "hora_entrega": "19:00",
+  "muestra": "no",
+  "ubicacion_archivo": "pc 500",
+  "detalles": "Celulares cuadrados", 
+  "observaciones": "cuadrados no tan cuadrados",
+  "total": 54000,
+  "entrega": 10000,
+  "metodo_pago": "débito"
+}
+
+###
+PATCH  {{baseUrl}}/9
+Content-Type: application/json
+
+{
+  
+  "metodo_pago": "transferencia"
+}
+
+### obtener uno
+GET {{baseUrl}}/9
+
+### eliminar una
+DELETE {{baseUrl}}/2

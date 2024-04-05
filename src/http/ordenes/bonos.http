@@ -1,0 +1,51 @@
+@baseUrl= http://localhost:3000/api/ordenes/bonos
+
+### crear
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id_cliente": 1,
+  "atendido_por": "Carlota",
+  "fecha_entrega": "2023-02-02",
+  "hora_entrega": "19:00",
+  "muestra": "no",
+  "tipo": "obra",
+  "tamano": "1/4",
+  "desde_numero": 2,
+  "cantidad": 3,
+  "numeradores": 1,
+  "lotes": 50,
+  "observaciones": "Bonos super grosos plus wasi waso",
+  "total": 3000,
+  "entrega": 2000,
+  "metodo_pago": "efectivo"
+}
+
+###
+PATCH {{baseUrl}}/4
+Content-Type: application/json
+
+{
+  "fecha_entrega": "2023-02-02",
+  "hora_entrega": "19:00",
+  "muestra": "no",
+  "tipo": "obra",
+  "tamano": "1/4",
+  "desde_numero": 2,
+  "cantidad": 3,
+  "numeradores": 1,
+  "lotes": 50,
+  "observaciones": "Bonos super grosos plus wasi waso",
+  "total": 3000,
+  "entrega": 2000,
+  "metodo_pago": "tranferencia"
+}
+
+### obtener uno
+GET {{baseUrl}}/12
+
+### eliminar una
+DELETE {{baseUrl}}/4
+
+

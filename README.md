@@ -1,10 +1,27 @@
-# Pepes: imprenta y grafica
+# Pepes imprenta y grafica
 
-Sistema para generar ordenes de trabajo express en pdf.
+Sistema que permite generar ordenes de trabajo express en pdf.
 
-Version: 2.0
+Version: 2.0.
 
-## Correr servidor para desarrollo
+## Comenzando
+
+### Modo desarrollo
+
+> Para ejecutar el entorno de desarrollo es necesario tener Docker instalado ya que implementa un contenedor de MySQL para la base de datos.
+
+Variables de entorno:
+
+```sql
+MYSQL_HOST_DEV
+MYSQL_PORT_DEV
+MYSQL_USER_DEV
+MYSQL_ROOT_PASSWORD_DEV
+MYSQL_DATABASE_DEV
+MYSQL_CONTAINER_NAME_DEV
+```
+
+Ejecuta el entorno de desarrollo:
 
 ```bash
 npm run dev
@@ -16,4 +33,4 @@ pnpm dev
 bun dev
 ```
 
-Abrir [http://localhost:3000](http://localhost:3000) con el explorador para ver los resultados.
+Abrir [http://localhost:3000](http://localhost:3000) en el navegador para ver los resultados.

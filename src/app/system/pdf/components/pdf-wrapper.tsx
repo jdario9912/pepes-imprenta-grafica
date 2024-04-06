@@ -10,10 +10,13 @@ import {
   View,
 } from "@react-pdf/renderer";
 import { imagenes } from "../assets/imagenes";
-import moment from "moment";
 import PdfImportes from "./pdf-importes";
 import ObservacionesPdf from "./observaciones";
-import { formatearFecha, formatearHora } from "@/libs/client/moment";
+import {
+  formatearFecha,
+  formatearHora,
+  obtenerNombreDia,
+} from "@/libs/client/moment";
 import BtnEditarOrden from "./btn-editar-orden";
 
 const PdfWrapper = ({
@@ -91,7 +94,7 @@ const PdfWrapper = ({
                 }}
               >
                 <Text style={{ fontSize: 13 }}>
-                  Atendido por:{" "}
+                  Atendió:{" "}
                   <Text
                     style={{
                       textTransform: "capitalize",
@@ -101,12 +104,13 @@ const PdfWrapper = ({
                   </Text>
                 </Text>
                 <View style={{ flexDirection: "row", gap: 3 }}>
-                  <Text style={{ fontSize: 13 }}>
-                    Retirar el {formatearFecha(orden.fecha_entrega)}
+                  <Text style={{fontSize: 13}}>
+                    Retirar {obtenerNombreDia(orden.fecha_entrega)}{" "}
                   </Text>
-                  <Text style={{ fontSize: 13 }}>
-                    a las {formatearHora(orden.hora_entrega)}hs
+                  <Text style={{ fontSize: 17 }}>
+                    {formatearFecha(orden.fecha_entrega)}
                   </Text>
+                  <Text style={{fontSize: 13}}>a las {formatearHora(orden.hora_entrega)}hs</Text>
                 </View>
               </View>
 
@@ -143,7 +147,7 @@ const PdfWrapper = ({
               }}
             >
               <Text>
-                Horario de Lunes a Viernes de 9:00hs a 13:00hs y de 16:00hs a
+                Horario de Lunes a Viernes de :00hs a 12:50hs y de 16:00hs a
                 19:50hs
               </Text>
               <Text>
@@ -256,7 +260,7 @@ const PdfWrapper = ({
                   }}
                 >
                   <Text>
-                    Atendido por:{" "}
+                    Creado por:{" "}
                     <Text
                       style={{
                         textTransform: "capitalize",
@@ -265,9 +269,7 @@ const PdfWrapper = ({
                       {orden.atendido_por}
                     </Text>
                   </Text>
-                  <Text>
-                    Creado: {moment(orden.fecha_creacion).format("DD-MM-YYYY")}
-                  </Text>
+                  <Text>el {formatearFecha(orden.fecha_creacion!)}</Text>
                 </View>
 
                 <View
@@ -275,18 +277,17 @@ const PdfWrapper = ({
                     gap: 2,
                   }}
                 >
-                  <Text>Entregar:</Text>
+                  <Text>Entregar el </Text>
                   <Text
                     style={{
                       fontSize: 18,
                       backgroundColor: "#ffff00",
                     }}
                   >
-                    {moment(orden.fecha_entrega).format("DD-MM-YYYY")}
+                    {obtenerNombreDia(orden.fecha_entrega)}{" "}
+                    {formatearFecha(orden.fecha_entrega)}
                   </Text>
-                  <Text>
-                    {moment(orden.hora_entrega, "HH:mm:ss").format("HH:mm")}hs
-                  </Text>
+                  <Text>{formatearHora(orden.hora_entrega)}hs</Text>
                 </View>
               </View>
 

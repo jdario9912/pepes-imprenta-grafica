@@ -1,7 +1,6 @@
 "use client";
 
 import { iconos } from "@/components/icons";
-// import { eliminarEmpleado } from "@/libs/client/axios";
 import {
   Button,
   Modal,

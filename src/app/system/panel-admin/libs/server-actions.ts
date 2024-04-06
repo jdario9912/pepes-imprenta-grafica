@@ -21,6 +21,30 @@ export const cambiarPassword = async (id: number, password: string) => {
   revalidateYredirec("/system/panel-admin");
 };
 
+export const cambiarEmail = async (id: number, email: string) => {
+  const empeadoValidado = validarEmpleadoActualizar({ email });
+
+  await EmpleadosModel.actualizar(id, empeadoValidado);
+
+  revalidateYredirec("/system/panel-admin");
+}
+
+export const cambiarNombre = async (id: number, nickname: string) => {
+  const empeadoValidado = validarEmpleadoActualizar({ nickname });
+
+  await EmpleadosModel.actualizar(id, empeadoValidado);
+
+  revalidateYredirec("/system/panel-admin");
+}
+
+export const cambiarPermisos = async (id: number, permisos: string) => {
+  const empeadoValidado = validarEmpleadoActualizar({ permisos });
+
+  await EmpleadosModel.actualizar(id, empeadoValidado);
+
+  revalidateYredirec("/system/panel-admin");
+}
+
 export const eliminarEmpleado = async (id: number) => {
   await EmpleadosModel.eliminar(id);
 };

@@ -31,9 +31,7 @@ const Login = async () => {
             Inicio
           </Button>
         </CardHeader>
-        <CardBody>
-          <FormLogin />
-        </CardBody>
+        <FormLogin />
       </Card>
     </div>
   );

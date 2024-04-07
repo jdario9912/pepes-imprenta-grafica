@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import TablaComponent from "./components/tabla-component";
 import { Suspense } from "react";
+import ClientesLoader from "@/app/components/loaders/clientes";
 
 export const metadata: Metadata = {
   title: "Clientes",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 const Clientes = () => {
   return (
     <div className="p-4">
-      <Suspense fallback={<div>Cargando tabla clientes...</div>}>
+      <Suspense fallback={<ClientesLoader />}>
         <TablaComponent />
       </Suspense>
     </div>

@@ -37,27 +37,23 @@ const AccionesTablaClientes = ({
   return (
     <>
       <WrapperBtnAccionesTabla>
-        <>
-          {botones.map(({ id, accion, icono, texto }) => (
-            <Button
-              key={id}
-              onClick={accion}
-              startContent={icono}
-              color="primary"
-              variant="solid"
-            >
-              <LabelBtnAccion>{texto}</LabelBtnAccion>
-            </Button>
-          ))}
+        {botones.map(({ id, accion, icono, texto }) => (
+          <Button
+            key={id}
+            onClick={accion}
+            startContent={icono}
+            color="primary"
+            variant="solid"
+          >
+            <LabelBtnAccion>{texto}</LabelBtnAccion>
+          </Button>
+        ))}
 
-          <ModalVerOrdenesCliente cliente={cliente} />
+        <ModalVerOrdenesCliente cliente={cliente} />
 
-          <ModalDetallesCliente cliente={cliente} />
+        <ModalDetallesCliente cliente={cliente} />
 
-          {isAdmin && (
-            <ModalEliminarCliente cliente={cliente} />
-          )}
-        </>
+        {isAdmin && <ModalEliminarCliente cliente={cliente} />}
       </WrapperBtnAccionesTabla>
     </>
   );

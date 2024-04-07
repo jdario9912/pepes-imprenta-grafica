@@ -13,6 +13,7 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import Usuario from "../system/components/usuario";
 import { Suspense } from "react";
+import UserLoader from "./loaders/user";
 
 const NavBar = async () => {
   const session = await getServerSession();
@@ -23,7 +24,7 @@ const NavBar = async () => {
         {!session ? (
           <Logo className="w-10" />
         ) : (
-          <Suspense fallback={"cargando usuario..."}>
+          <Suspense fallback={<UserLoader />}>
             <Usuario
               email={session.user?.email!}
               nombre={session.user?.name!}

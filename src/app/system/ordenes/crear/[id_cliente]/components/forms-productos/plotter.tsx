@@ -1,3 +1,5 @@
+"use client";
+
 import { plotterMaterial, plotterTerminacion } from "@/libs/listas";
 import InputRadio from "../../../../components/input-radio";
 import PlotterColor from "../plotter-color";

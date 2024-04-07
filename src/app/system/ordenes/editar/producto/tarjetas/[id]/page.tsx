@@ -1,17 +1,12 @@
 import { Metadata } from "next";
-import { Suspense } from "react";
 import FormComponent from "./components/form-component";
 
 export const metadata: Metadata = {
   title: "Editar Orden: Tarjetas",
 };
 
-const Editar = async ({ params }: { params: { id: string } }) => {
-  return (
-    <Suspense fallback={<div>cargando formulario editar producto...</div>}>
-      <FormComponent id={params.id} />
-    </Suspense>
-  );
-};
+const Editar = async ({ params }: { params: { id: string } }) => (
+  <FormComponent id={params.id} />
+);
 
 export default Editar;

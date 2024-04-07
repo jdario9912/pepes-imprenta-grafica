@@ -20,8 +20,8 @@ import VariosForm from "../components/forms-productos/varios";
 import VolantesForm from "../components/forms-productos/volantes";
 
 type Producto = {
-  icono: JSX.Element;
-  inputs: JSX.Element;
+  icono: React.ReactNode;
+  inputs: React.ReactNode;
 };
 
 type ProductosModel = {
@@ -42,7 +42,7 @@ export const productosModel: ProductosModel = {
   volantes: { icono: <GiPapers />, inputs: <VolantesForm /> },
 };
 
-const productos = Object.values(Productos);
+export const productos = Object.values(Productos);
 
 export const botonesProductos = productos.map((producto) => ({
   nombre: producto,

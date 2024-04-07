@@ -1,8 +1,9 @@
+import EditarOrdenLoader from "@/app/components/loaders/editar-orden";
 
-const LoadingEditarOrden = () => {
-  return (
-    <div>Cargando orden...</div>
-  )
-}
+const LoadingEditarOrden = () => (
+  <div className="p-4">
+    <EditarOrdenLoader />
+  </div>
+);
 
-export default LoadingEditarOrden
+export default LoadingEditarOrden;

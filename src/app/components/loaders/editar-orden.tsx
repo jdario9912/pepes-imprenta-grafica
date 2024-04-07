@@ -7,17 +7,17 @@ const EditarOrdenLoader = () => (
   <>
     <Card>
       <CardBody>
-        <NombrePaginaLoader size="full" />
+        <NombrePaginaLoader full />
       </CardBody>
     </Card>
 
     <Card className="mt-4">
       <CardBody className="gap-y-2">
-        <InputLoader size="full" />
-        <InputLoader size="full" />
+        <InputLoader full />
+        <InputLoader full />
         <InputLoader />
-        <InputLoader size="full" />
-        <InputLoader size="full" />
+        <InputLoader full />
+        <InputLoader full />
         <InputLoader />
       </CardBody>
       <CardFooter>

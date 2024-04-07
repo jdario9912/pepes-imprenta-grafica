@@ -1,7 +1,9 @@
-"use client";
+import EditarClienteLoader from "@/app/components/loaders/editar-cliente";
 
 const LoadingEditarCliente = () => (
-  <div>Cargando formulario para editar un cliente...</div>
+  <div className="p-4">
+    <EditarClienteLoader />
+  </div>
 );
 
 export default LoadingEditarCliente;

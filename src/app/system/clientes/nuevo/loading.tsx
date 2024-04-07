@@ -1,3 +1,9 @@
-const ClientesLoading = () => <div>Cargando crear cliente...</div>
+import CrearClienteLoader from "@/app/components/loaders/crear-cliente";
 
-export default ClientesLoading
+const ClientesLoading = () => (
+  <div className="p-4">
+    <CrearClienteLoader />
+  </div>
+);
+
+export default ClientesLoading;

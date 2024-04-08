@@ -1,26 +1,26 @@
-import ButtonLoader from "./button";
-import ButtonIconLoader from "./button-icon";
-import HeaderTableLoader from "./header-table";
+import { deflate } from "zlib";
 import InputLoader from "./input";
 import NombrePaginaLoader from "./nombre-pagina";
-import RowClientesLoader from "./row-cliente";
+import ButtonLoader from "./button";
+import HeaderTableLoader from "./header-table";
+import ButtonIconLoader from "./button-icon";
+import RowProveedorLoader from "./row-proveedor";
 
-const ClientesLoader = () => (
+const ProveedorLoader = () => (
   <div className="p-4">
     <div className="flex items-center justify-between">
+      <InputLoader />
       <div className="flex items-center gap-x-2">
-        <InputLoader />
-        <ButtonLoader />
+        <NombrePaginaLoader />
         <ButtonLoader />
       </div>
-      <NombrePaginaLoader />
     </div>
 
     <div className="border border-slate-200 rounded-lg mt-8 p-4 overflow-hidden">
       <HeaderTableLoader />
       <div className="py-4">
         {Array.from({ length: 10 }).map((_, i) => (
-          <RowClientesLoader key={i} />
+          <RowProveedorLoader key={i} />
         ))}
       </div>
     </div>
@@ -31,4 +31,4 @@ const ClientesLoader = () => (
   </div>
 );
 
-export default ClientesLoader;
+export default ProveedorLoader;

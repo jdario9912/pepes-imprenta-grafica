@@ -3,6 +3,7 @@ import TablaEmpleados from "./tabla-empleados";
 import { useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import EmpleadosLoader from "@/app/components/loaders/empleados";
 
 const Empleados = () => {
   const [empleados, setEmpleados] = useState<Empleado[]>([]);
@@ -37,7 +38,7 @@ const Empleados = () => {
     })();
   }, [revalidar]);
 
-  if (empleados.length == 0) return "cargando empleados...";
+  if (empleados.length == 0) return <EmpleadosLoader />;
 
   return <TablaEmpleados empleados={empleados} />;
 };

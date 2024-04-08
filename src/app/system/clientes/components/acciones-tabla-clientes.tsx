@@ -2,7 +2,6 @@
 
 import { iconos } from "@/components/icons";
 import WrapperBtnAccionesTabla from "@/components/wrapper-btn-acciones-tabla";
-import { uuid } from "@/libs/uuid";
 import { BtnAccionesTabla } from "@/types/botones";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -10,6 +9,8 @@ import LabelBtnAccion from "../../components/label-btn-accion";
 import ModalDetallesCliente from "./modal-detalles-cliente";
 import ModalVerOrdenesCliente from "./modal-ver-ordenes-cliente";
 import ModalEliminarCliente from "./modal-eliminar-cliente";
+import { useId } from "react";
+import { uuid } from "@/libs/uuid";
 
 type AccionesTablaClientesProps = { cliente: Cliente; isAdmin: boolean };
 
@@ -18,6 +19,7 @@ const AccionesTablaClientes = ({
   isAdmin,
 }: AccionesTablaClientesProps) => {
   const router = useRouter();
+  const idBtn = uuid();
   const { id } = cliente;
 
   const handleCrear = () => router.push(`/system/ordenes/crear/${id}`);
@@ -26,12 +28,12 @@ const AccionesTablaClientes = ({
 
   const botones: BtnAccionesTabla[] = [
     {
-      id: uuid(),
+      id: idBtn,
       accion: handleCrear,
       icono: iconos.crearOrden,
       texto: "crear orden",
     },
-    { id: uuid(), accion: handleEditar, icono: iconos.editar, texto: "editar" },
+    { id: idBtn, accion: handleEditar, icono: iconos.editar, texto: "editar" },
   ];
 
   return (

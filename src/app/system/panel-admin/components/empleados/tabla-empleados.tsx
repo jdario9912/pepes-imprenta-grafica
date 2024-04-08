@@ -2,7 +2,6 @@
 
 import WrapperBtnAccionesTabla from "@/components/wrapper-btn-acciones-tabla";
 import {
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -43,11 +42,11 @@ const TablaEmpleados = ({ empleados }: TablaEmpleadosProps) => {
           {(empleado) => (
             <TableRow key={empleado.id}>
               <TableCell>
-                <h3 className="text-slate-800">{empleado.nickname}</h3>
-                <span className="text-xs text-slate-800">{empleado.email}</span>
+                <h3 className="text-slate-800 dark:text-slate-300">{empleado.nickname}</h3>
+                <span className="text-xs text-slate-800 dark:text-slate-300">{empleado.email}</span>
               </TableCell>
               <TableCell>
-                <p className="text-slate-800">{empleado.permisos}</p>
+                <p className="text-slate-800 dark:text-slate-300">{empleado.permisos}</p>
               </TableCell>
               <TableCell>
                 <WrapperBtnAccionesTabla>

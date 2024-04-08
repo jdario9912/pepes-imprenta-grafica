@@ -4,8 +4,6 @@ import { uuid } from "@/libs/uuid";
 import { RadioGroup } from "@nextui-org/react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import WraperInputLabel from "./wraper-input-label";
-import { useState } from "react";
-import classNames from "classnames";
 
 const InputRadio = ({
   label,
@@ -24,8 +22,6 @@ const InputRadio = ({
   disabled?: boolean;
   valorInicial?: string;
 }) => {
-  const [seleccion, setSeleccion] = useState(false);
-
   return (
     <RadioGroup
       isInvalid={error}

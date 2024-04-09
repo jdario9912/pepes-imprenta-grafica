@@ -31,10 +31,12 @@ import {
 } from "react-icons/ai";
 import { FaHandshake, FaPeopleCarry, FaUserEdit } from "react-icons/fa";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { IoMdSettings } from "react-icons/io";
+import { IoMdSettings, IoMdWarning } from "react-icons/io";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { GiCheckMark } from "react-icons/gi";
 import { VscSaveAs } from "react-icons/vsc";
+import { IoArrowRedoSharp } from "react-icons/io5";
+import { RxLinkBreak2, RxReload } from "react-icons/rx";
 
 export const iconos = {
   verOrden: <BsFillFileEarmarkPdfFill />,
@@ -70,4 +72,8 @@ export const iconos = {
   cambiarProducto: <BsArrowLeftRight />,
   calendario: <MdDateRange />,
   reloj: <BiTimeFive />,
+  ir: <IoArrowRedoSharp />,
+  reload: <RxReload />,
+  break: <RxLinkBreak2 />,
+  warning: <IoMdWarning />,
 };

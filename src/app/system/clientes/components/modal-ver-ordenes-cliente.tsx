@@ -126,6 +126,8 @@ const ModalVerOrdenesCliente = ({ cliente }: { cliente: Cliente }) => {
                                   handleVerOrden(orden.producto, orden.id)
                                 }
                                 startContent={iconos.verOrden}
+                                color="primary"
+                                variant="flat"
                               >
                                 <LabelBtnAccion>ver orden</LabelBtnAccion>
                               </Button>

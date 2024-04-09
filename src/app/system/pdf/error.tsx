@@ -25,7 +25,7 @@ const Error = ({ reset }: Props) => {
         </h2>
 
         <p className="text-slate-500 italic mt-5">
-          Algo salió mal al intentar crear una orden.
+          Algo salió mal al generar el pdf.
         </p>
 
         <div className="w-fit container mt-7">
@@ -35,7 +35,7 @@ const Error = ({ reset }: Props) => {
 
           <ul className="pl-6">
             <li className="list-disc text-slate-500 text-left">
-              El cliente no existe.
+              La orden no existe.
             </li>
             <li className="list-disc text-slate-500 text-left">
               Ocurrió un problema en el servidor.

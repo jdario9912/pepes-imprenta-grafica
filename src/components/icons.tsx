@@ -10,6 +10,7 @@ import {
   BsArrowLeftRight,
 } from "react-icons/bs";
 import {
+  BiArrowBack,
   BiSolidEditAlt,
   BiSolidTruck,
   BiSolidUser,
@@ -76,4 +77,5 @@ export const iconos = {
   reload: <RxReload />,
   break: <RxLinkBreak2 />,
   warning: <IoMdWarning />,
+  back: <BiArrowBack />,
 };

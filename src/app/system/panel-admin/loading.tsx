@@ -1,7 +1,5 @@
-const Loading = () => {
-  return (
-    <div>Cargando panel admin...</div>
-  )
-}
+import PanelAdminLoader from "@/app/components/loaders/panel-admin";
 
-export default Loading  
+const Loading = () => <PanelAdminLoader />;
+
+export default Loading;

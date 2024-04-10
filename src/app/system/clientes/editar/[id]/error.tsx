@@ -11,7 +11,7 @@ type Props = {
   };
 };
 
-const ErrorEditarCliente = ({ error, reset }: Props) => {
+const ErrorEditarCliente = ({ reset }: Props) => {
   const router = useRouter();
 
   return (
@@ -38,16 +38,12 @@ const ErrorEditarCliente = ({ error, reset }: Props) => {
             </h3>
 
             <ul className="pl-6">
-              {error.message.includes("404") && (
-                <li className="list-disc text-slate-500 text-left">
-                  El cliente no existe.
-                </li>
-              )}
-              {error.message.includes("500") && (
-                <li className="list-disc text-slate-500 text-left">
-                  Ocurrió un error en el servidor.
-                </li>
-              )}
+              <li className="list-disc text-slate-500 text-left">
+                El cliente no existe.
+              </li>
+              <li className="list-disc text-slate-500 text-left">
+                Ocurrió un error en el servidor.
+              </li>
             </ul>
           </div>
 

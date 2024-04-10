@@ -4,6 +4,7 @@ import NombrePagina from "@/app/system/components/nombre-pagina";
 import { Metadata } from "next";
 import { Card, CardHeader } from "@nextui-org/react";
 import { iconos } from "@/components/icons";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Editar Cliente",
@@ -11,7 +12,10 @@ export const metadata: Metadata = {
 
 const EditarCliente = async ({ params }: { params: { id: string } }) => {
   const id = params.id;
+
   const cliente = await obtenerCliente(id);
+
+  if (!cliente) notFound();
 
   return (
     <div className="p-4">

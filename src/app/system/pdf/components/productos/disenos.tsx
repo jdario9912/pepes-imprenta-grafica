@@ -1,3 +1,5 @@
+"use client";
+
 import { Disenos } from "@/types/recursos/productos";
 import { Text, View } from "@react-pdf/renderer";
 import estilos from "../estilos";

@@ -1,3 +1,5 @@
+"use client";
+
 import { Talonarios } from "@/types/recursos/productos";
 import estilos from "../estilos";
 import { Text, View } from "@react-pdf/renderer";

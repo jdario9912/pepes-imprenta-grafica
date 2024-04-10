@@ -9,5 +9,5 @@ export default function SystemLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return <>{children}</>;
 }

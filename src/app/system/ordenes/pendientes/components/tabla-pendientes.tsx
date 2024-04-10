@@ -15,10 +15,6 @@ import { useEffect, useState } from "react";
 import { columns } from "../services/columns-tabla-pendientes";
 import {
   Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
   Input,
   Table,
   TableBody,

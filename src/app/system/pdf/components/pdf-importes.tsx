@@ -1,3 +1,5 @@
+"use client";
+
 import type { Producto } from "@/types/recursos/productos";
 import { Text, View } from "@react-pdf/renderer";
 
@@ -74,9 +76,14 @@ const PdfImportes = ({ orden }: { orden: Producto }) => (
             fontSize: 15,
           }}
         >
-          Entrega <Text style={{
-            fontSize: 10
-          }}>({orden.metodo_pago})</Text>
+          Entrega{" "}
+          <Text
+            style={{
+              fontSize: 10,
+            }}
+          >
+            ({orden.metodo_pago})
+          </Text>
         </Text>
       </View>
       <View

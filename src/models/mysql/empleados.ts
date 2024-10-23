@@ -89,10 +89,7 @@ export class EmpleadosModel {
     return empleado.permisos === "admin";
   }
 
-  static async actualizarPassword(
-    id: Id,
-    password: string
-  ): Promise<boolean> {
+  static async actualizarPassword(id: Id, password: string): Promise<boolean> {
     const [result]: [ResultSetHeader, FieldPacket[]] = await pool.query(
       "UPDATE empleados SET password = ? WHERE id = ?",
       [hashPass(password), id]
